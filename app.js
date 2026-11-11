@@ -277,7 +277,6 @@ class TabiiyFanlarApp {
       this.iframeResizeObserver = null;
     }
 
-    this.topicIframe.src = `topics/${topic.slug}`;
     this.topicIframe.onload = () => {
       setTimeout(() => {
         this.frameLoader.classList.remove('active');
@@ -297,8 +296,16 @@ class TabiiyFanlarApp {
             });
           }
         } catch (e) { }
-      }, 160);
+      }, 100);
     };
+
+    if (topic.htmlContent) {
+      this.topicIframe.removeAttribute('src');
+      this.topicIframe.srcdoc = topic.htmlContent;
+    } else {
+      this.topicIframe.removeAttribute('srcdoc');
+      this.topicIframe.src = `topics/${topic.slug}`;
+    }
 
     this.renderEnrichedContent(topic);
     this.renderQuiz(topic);
@@ -479,9 +486,11 @@ class TabiiyFanlarApp {
     if (!topic) return;
 
     // Play pre-generated Pure Uzbek Male (uz-UZ-SardorNeural) MP3 audio file!
-    const mp3Url = `audio/mavzu-${topic.id}.mp3?v=50`;
-    this.htmlAudio = new Audio(mp3Url);
+    const localMp3 = `audio/mavzu-${topic.id}.mp3?v=60`;
+    const cdnMp3 = `https://aliyevogabek894-cmyk.github.io/tabiiy-fanlar-6/audio/mavzu-${topic.id}.mp3`;
+    this.htmlAudio = new Audio(localMp3);
     this.htmlAudio.playbackRate = this.audioRate;
+    let triedCdn = false;
 
     this.htmlAudio.onplay = () => {
       this.audioPlaying = true;
@@ -495,14 +504,25 @@ class TabiiyFanlarApp {
     };
 
     this.htmlAudio.onerror = () => {
-      // Fallback to SpeechSynthesis if MP3 fails
-      this.startFallbackSpeech(topic);
+      if (!triedCdn) {
+        triedCdn = true;
+        this.htmlAudio.src = cdnMp3;
+        this.htmlAudio.playbackRate = this.audioRate;
+        this.htmlAudio.play().catch(() => this.startFallbackSpeech(topic));
+      } else {
+        this.startFallbackSpeech(topic);
+      }
     };
 
     const playPromise = this.htmlAudio.play();
     if (playPromise !== undefined) {
       playPromise.catch(() => {
-        this.startFallbackSpeech(topic);
+        if (!triedCdn) {
+          triedCdn = true;
+          this.htmlAudio.src = cdnMp3;
+          this.htmlAudio.playbackRate = this.audioRate;
+          this.htmlAudio.play().catch(() => this.startFallbackSpeech(topic));
+        }
       });
     }
   }
@@ -839,8 +859,7 @@ class TabiiyFanlarApp {
     });
 
     this.btnReload.addEventListener('click', () => {
-      this.frameLoader.classList.add('active');
-      this.topicIframe.src = this.topicIframe.src;
+      this.loadTopic(this.currentTopicId);
     });
 
     this.btnAudioToggle.addEventListener('click', () => this.toggleAudio());
