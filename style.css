@@ -1137,8 +1137,15 @@ body.topic-focused .back-inline-btn {
     font-size: 13px;
   }
 
+  .brand-info {
+    max-width: 78px;
+    overflow: hidden;
+  }
+
   .brand-info h1 {
-    font-size: 12px;
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .brand-info h1 span.badge,
