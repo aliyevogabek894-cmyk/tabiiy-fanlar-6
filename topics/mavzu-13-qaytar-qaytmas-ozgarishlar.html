@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Tabiiy fan: Qaytar va qaytmas o‘zgarishlar</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
+body{background:#f0f4f8;color:#333;line-height:1.6;padding:16px}
+.container{max-width:1100px;margin:auto}
+header{background:linear-gradient(135deg,#1e3c72,#2a5298);color:#fff;text-align:center;padding:25px 20px;border-radius:12px;box-shadow:0 4px 15px #0000001a;margin-bottom:22px}
+header h1{font-size:clamp(1.5rem,4vw,2.2rem);margin-bottom:8px}
+.nav-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;background:#fff;padding:8px;border-radius:10px;box-shadow:0 2px 8px #0000000d}
+.tab-btn{flex:1 1 150px;padding:12px;border:0;background:transparent;font-size:1rem;font-weight:600;color:#555;cursor:pointer;border-radius:8px}
+.tab-btn.active{background:#2a5298;color:white}
+.tab-content{display:none;background:#fff;padding:clamp(16px,3vw,25px);border-radius:12px;box-shadow:0 4px 15px #0000000d;margin-bottom:20px}
+.tab-content.active{display:block}
+h2{margin-bottom:10px;color:#1e3c72}h3{margin-bottom:10px}p{margin-bottom:8px}
+.theory-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:18px;margin-top:15px}
+.card{border:2px solid #e2e8f0;border-radius:10px;padding:18px}
+.card.reversible{border-top:5px solid #38a169}.card.irreversible{border-top:5px solid #e53e3e}
+.card ul{margin:8px 0 0 20px}
+.important-note{background:#fffaf0;border-left:4px solid #dd6b20;padding:15px;margin-top:20px;border-radius:4px}
+.sim-container{display:flex;flex-direction:column;align-items:center}
+.sim-stage{width:100%;min-height:280px;height:320px;background:#edf2f7;border-radius:12px;position:relative;overflow:hidden;display:flex;justify-content:center;align-items:center;margin:14px 0 18px;border:2px dashed #cbd5e0}
+.controls{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}
+.btn{padding:10px 17px;border:0;border-radius:6px;font-size:.95rem;font-weight:600;cursor:pointer;color:#fff;background:#4a5568}
+.btn-heat{background:#e53e3e}.btn-cool{background:#3182ce}.btn-action{background:#dd6b20}.btn-reset{background:#718096}
+.sim-status{font-size:1.05rem;font-weight:600;margin-top:8px;color:#2d3748;text-align:center}
+#water-substance{width:120px;height:120px;border-radius:12px;transition:all .7s ease;display:flex;justify-content:center;align-items:center;text-align:center;font-weight:bold;color:white;box-shadow:0 4px 10px #0000001a;padding:8px}
+.state-ice{background:#90cdf4;border:3px solid #63b3ed;clip-path:polygon(10% 0%,90% 0%,100% 90%,0% 100%)}
+.state-water{background:#3182ce;border-radius:50% 50% 10% 10%!important;height:80px!important;width:140px!important}
+.state-steam{background:#e2e8f0cc;border:2px dashed #a0aec0;border-radius:50%!important;transform:translateY(-35px) scale(1.2);color:#4a5568!important;filter:blur(1px)}
+#glass-container{position:relative;width:100px;height:150px}
+.glass-whole{width:100%;height:100%;background:#b4dcf099;border:3px solid #63b3ed;border-radius:0 0 15px 15px;position:absolute}
+.shards{display:none;position:absolute;width:100%;height:100%}
+.shard{position:absolute;background:#b4dcf0cc;border:1px solid #3182ce;bottom:0}
+.spring-container{display:flex;flex-direction:column;align-items:center;width:200px}
+.spring{width:30px;height:100px;border:4px solid #4a5568;border-top:none;border-bottom:none;border-radius:10px;transition:all .3s}
+.wire{width:80px;height:8px;background:#a0aec0;border-radius:4px;transition:all .5s}
+.quiz-option{background:#edf2f7;padding:12px;margin:8px 0;border-radius:6px;cursor:pointer}
+.quiz-option:hover{background:#e2e8f0}.quiz-option.correct{background:#c6f6d5;color:#22543d}.quiz-option.wrong{background:#fed7d7;color:#742a2a}
+footer{text-align:center;margin-top:25px;color:#718096;font-size:.9rem}
+@media(max-width:600px){body{padding:8px}.sim-stage{height:260px}.tab-btn{flex-basis:100%}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<div class="container">
+<header><h1>Qaytar va qaytmas o‘zgarishlar</h1><p>6-sinf Tabiiy fanlar kursi uchun interaktiv dars va virtual simulyatsiya</p></header>
+<div class="nav-tabs">
+<button class="tab-btn active" onclick="switchTab('theory',this)">📚 Nazariy bilimlar</button>
+<button class="tab-btn" onclick="switchTab('sim1',this)">🧪 Suv va muz</button>
+<button class="tab-btn" onclick="switchTab('sim2',this)">💥 Shisha stakan</button>
+<button class="tab-btn" onclick="switchTab('sim3',this)">🌀 Prujina va sim</button>
+<button class="tab-btn" onclick="switchTab('quiz',this)">✍️ Mustahkamlash</button>
+</div>
+<section id="theory" class="tab-content active">
+<h2>Mavzu: Qaytar va qaytmas o‘zgarishlar</h2>
+<p>Tabiatdagi narsalar doimiy o‘zgarishda bo‘ladi. O‘zgarishlar qaytar va qaytmas bo‘lishi mumkin.</p>
+<div class="theory-grid">
+<div class="card reversible"><h3>🔄 Qaytar o‘zgarishlar</h3><p>Moddaning tarkibi o‘zgarmay, uning shakli yoki holati o‘zgaradi va jarayonni teskari yo‘nalishda amalga oshirish mumkin.</p><ul><li>Muzning erib suvga aylanishi va suvning muzlashi.</li><li>Suvning bug‘lanishi va bug‘ning kondensatsiyalanishi.</li><li>Elastik prujinaning cho‘zilib, yana qaytishi.</li></ul></div>
+<div class="card irreversible"><h3>🚫 Qaytmas o‘zgarishlar</h3><p>O‘zgarishdan keyin dastlabki holatga qaytish qiyin yoki odatiy sharoitda imkonsiz bo‘ladi. Kimyoviy jarayonlarda yangi moddalar hosil bo‘lishi mumkin.</p><ul><li>Qog‘oz yoki o‘tinning yonishi.</li><li>Xom tuxumning pishishi.</li><li>Temirning zanglashi.</li><li>Shisha stakanning sinishi.</li></ul></div>
+</div>
+<div class="important-note"><h3>💡 Muhim eslatma</h3><p>Har qanday fizik o‘zgarish ham qaytar bo‘lavermaydi. Masalan, shisha stakan singanda yangi modda hosil bo‘lmaydi, ammo stakan o‘z-o‘zidan avvalgi holatiga qaytmaydi. Bu — qaytmas fizik o‘zgarish.</p></div>
+</section>
+<section id="sim1" class="tab-content"><h2>1-simulyatsiya: Sehrli suv va muz</h2><p>Suvning muzlashi, erishi va bug‘lanishi holat o‘zgarishlariga misol bo‘ladi.</p><div class="sim-container"><div class="sim-stage"><div id="water-substance" class="state-ice">Muz (0°C)</div></div><div class="controls"><button class="btn btn-heat" onclick="heatWater()">🔥 Isitish</button><button class="btn btn-cool" onclick="coolWater()">❄️ Sovutish</button><button class="btn btn-reset" onclick="resetWater()">🔄 Qayta boshlash</button></div><div id="sim1-status" class="sim-status">Holat: qattiq — muz.</div></div></section>
+<section id="sim2" class="tab-content"><h2>2-simulyatsiya: Stakanni sindirish</h2><p>Stakan singanda shisha moddasining tarkibi o‘zgarmaydi, faqat shakli buziladi.</p><div class="sim-container"><div class="sim-stage"><div id="glass-container"><div id="glass-whole" class="glass-whole"></div><div id="glass-shards" class="shards"><div class="shard" style="width:30px;height:20px;left:-20px;transform:rotate(15deg)"></div><div class="shard" style="width:25px;height:30px;left:20px;transform:rotate(-30deg)"></div><div class="shard" style="width:40px;height:15px;left:60px;transform:rotate(45deg)"></div><div class="shard" style="width:20px;height:20px;left:0;transform:rotate(-10deg)"></div></div></div></div><div class="controls"><button class="btn btn-action" onclick="breakGlass()">🔨 Zarb berish (sindirish)</button><button class="btn btn-reset" onclick="restoreGlass()">🔄 Qayta tiklashga urinish</button><button class="btn btn-cool" onclick="resetGlass()">Yangi stakan</button></div><div id="sim2-status" class="sim-status">Holat: butun shisha stakan.</div></div></section>
+<section id="sim3" class="tab-content"><h2>3-simulyatsiya: Prujina va metall sim</h2><p>Elastik deformatsiyada jism kuch olib tashlangach dastlabki holatiga qaytadi. Plastik deformatsiyada esa shakl o‘zgarishi saqlanib qolishi mumkin.</p><div class="sim-container"><div class="sim-stage"><div style="display:flex;gap:clamp(25px,8vw,60px);align-items:flex-end;height:200px;flex-wrap:wrap;justify-content:center"><div style="text-align:center"><p><strong>Prujina (elastik)</strong></p><div id="spring-element" class="spring" style="margin:20px auto"></div></div><div style="text-align:center"><p><strong>Metall sim (plastik)</strong></p><div id="wire-element" class="wire" style="margin:60px auto"></div></div></div></div><div class="controls"><button class="btn btn-action" onclick="applyForce()">💪 Kuch ta’sir ettirish</button><button class="btn btn-reset" onclick="releaseForce()">🖐️ Kuchni olib tashlash</button></div><div id="sim3-status" class="sim-status">Holat: tinch holatda.</div></div></section>
+<section id="quiz" class="tab-content"><h2>Mustahkamlash uchun savollar</h2><p>To‘g‘ri javobni tanlang:</p><div style="margin:18px 0"><p><strong>1. Shisha stakanning sinishi qanday jarayon?</strong></p><div class="quiz-option" onclick="checkQuiz(this,false)">Qaytar kimyoviy jarayon</div><div class="quiz-option" onclick="checkQuiz(this,true)">Qaytmas fizik jarayon</div><div class="quiz-option" onclick="checkQuiz(this,false)">Qaytar fizik jarayon</div></div><div style="margin:18px 0"><p><strong>2. Qaysi biri qaytar o‘zgarishga misol?</strong></p><div class="quiz-option" onclick="checkQuiz(this,false)">Qog‘ozning yonishi</div><div class="quiz-option" onclick="checkQuiz(this,false)">Tuxumning pishishi</div><div class="quiz-option" onclick="checkQuiz(this,true)">Muzning erishi</div></div><div style="margin:18px 0"><p><strong>3. Qog‘oz yonishi natijasida nima yuz beradi?</strong></p><div class="quiz-option" onclick="checkQuiz(this,true)">Yangi moddalar, jumladan kul va gazlar hosil bo‘ladi</div><div class="quiz-option" onclick="checkQuiz(this,false)">Faqat shakli o‘zgaradi</div><div class="quiz-option" onclick="checkQuiz(this,false)">Qog‘oz muzga aylanadi</div></div><button class="btn btn-reset" onclick="resetQuiz()">Testni qayta boshlash</button><p id="quiz-score" class="sim-status"></p></section>
+<footer><p>6-sinf Tabiiy fanlar darsi uchun maxsus tayyorlandi.</p></footer>
+</div>
+<script>
+function switchTab(tabId,button){document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById(tabId).classList.add('active');button.classList.add('active')}
+let waterState=0;
+function updateWater(){const sub=document.getElementById('water-substance'),status=document.getElementById('sim1-status');if(waterState===0){sub.className='state-ice';sub.textContent='Muz (0°C)';status.textContent='Holat: qattiq — muz. Sovutilgan suv muzlaydi.'}else if(waterState===1){sub.className='state-water';sub.textContent='Suv (25°C)';status.textContent='Holat: suyuq — suv. Muz eridi; bu qaytar fizik o‘zgarish.'}else{sub.className='state-steam';sub.textContent='Bug‘';status.textContent='Holat: gaz — suv bug‘i. Isitilganda bug‘lanadi; sovutilganda kondensatsiyalanadi.'}}
+function heatWater(){if(waterState<2)waterState++;updateWater()}
+function coolWater(){if(waterState>0)waterState--;updateWater()}
+function resetWater(){waterState=0;updateWater()}
+let isBroken=false;
+function breakGlass(){if(!isBroken){document.getElementById('glass-whole').style.display='none';document.getElementById('glass-shards').style.display='block';document.getElementById('sim2-status').textContent='Stakan sindi! Shisha tarkibi o‘zgarmadi, lekin shakli buzildi. Bu qaytmas fizik o‘zgarish.';isBroken=true}}
+function restoreGlass(){document.getElementById('sim2-status').textContent=isBroken?'Parchalangan shisha o‘z-o‘zidan avvalgi stakan holatiga qaytmaydi.':'Stakan hali butun — sindirish tugmasini bosing.'}
+function resetGlass(){isBroken=false;document.getElementById('glass-whole').style.display='block';document.getElementById('glass-shards').style.display='none';document.getElementById('sim2-status').textContent='Holat: butun shisha stakan.'}
+let forceApplied=false;
+function applyForce(){forceApplied=true;document.getElementById('spring-element').style.height='160px';document.getElementById('wire-element').style.transform='rotate(45deg)';document.getElementById('sim3-status').textContent='Kuch ta’sir etmoqda: prujina cho‘zildi, sim egildi.'}
+function releaseForce(){document.getElementById('spring-element').style.height='100px';document.getElementById('wire-element').style.transform=forceApplied?'rotate(45deg)':'rotate(0deg)';document.getElementById('sim3-status').textContent=forceApplied?'Kuch olib tashlandi: prujina dastlabki holatiga qaytdi, sim esa egilgancha qoldi.':'Hozircha kuch ta’sir ettirilmagan.'}
+function checkQuiz(el,correct){if(el.dataset.answered)return;el.dataset.answered='1';el.classList.add(correct?'correct':'wrong');el.textContent+=correct?' — To‘g‘ri!':' — Noto‘g‘ri!';let score=Number(document.getElementById('quiz-score').dataset.score||0);if(correct)score++;document.getElementById('quiz-score').dataset.score=score;document.getElementById('quiz-score').textContent='To‘g‘ri javoblar: '+score+' / 3'}
+function resetQuiz(){document.querySelectorAll('.quiz-option').forEach(el=>{el.classList.remove('correct','wrong');delete el.dataset.answered;el.textContent=el.textContent.replace(' — To‘g‘ri!','').replace(' — Noto‘g‘ri!','')});let score=document.getElementById('quiz-score');score.textContent='';delete score.dataset.score}
+</script>
+</body>
+</html>

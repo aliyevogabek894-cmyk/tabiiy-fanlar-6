@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nafas va qon aylanish</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef7f6;--cd:#fff;--tx:#12363d;--ac:#0e8a8a;--rd:#e5484d;--bl:#3b5bdb;--ok:#2b9348;--no:#d62839;--ln:#cfe3e1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d2226;--cd:#153238;--tx:#e6f4f2;--ac:#4fd1c5;--ln:#24484f}}
+:root[data-theme="dark"]{--bg:#0d2226;--cd:#153238;--tx:#e6f4f2;--ac:#4fd1c5;--ln:#24484f}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--tx);font:600 17px/1.45 Nunito,system-ui,sans-serif;padding-bottom:84px}
+header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5;border-bottom:2px solid var(--ln)}
+h1{font-size:19px;margin:0;font-weight:800}
+#sb{background:var(--ac);color:#fff;padding:4px 12px;border-radius:20px;font-weight:800}
+main{max-width:640px;margin:0 auto;padding:12px 14px}
+section{display:none}section.on{display:block}
+h2{font-size:21px;margin:8px 0;font-weight:800}
+h3{font-size:17px;margin:14px 0 6px;font-weight:800}
+.c{background:var(--cd);border:2px solid var(--ln);border-radius:14px;padding:10px 12px;margin:8px 0}
+.c b{color:var(--ac)}
+.box{background:var(--cd);border:2px solid var(--ln);border-radius:14px;padding:12px;margin:8px 0}
+svg{width:100%;height:auto;display:block;border-radius:10px}
+label{display:block;margin:8px 0 2px}
+input[type=range]{width:100%;height:32px;accent-color:var(--ac)}
+button{font:inherit;font-weight:800;min-height:48px;padding:8px 14px;margin:4px 4px 4px 0;border-radius:12px;border:2px solid var(--ac);background:var(--cd);color:var(--tx);cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--bl);outline-offset:2px}
+button.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+button.no{background:var(--no);border-color:var(--no);color:#fff}
+.q{font-size:20px;font-weight:800}
+.bar{height:16px;background:var(--ln);border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;width:50%;transition:width .4s,background .4s}
+.msg{margin:8px 0;font-weight:800}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--cd);border-top:2px solid var(--ln);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;margin:0;border:0;border-radius:0;min-height:60px;font-size:13px;background:none}
+nav button.on{color:var(--ac);box-shadow:inset 0 3px 0 var(--ac)}
+nav span{display:block;font-size:22px}
+.lung{transform-box:fill-box;transform-origin:center;animation:br var(--bt,3.2s) ease-in-out infinite}
+.dia{animation:dp var(--bt,3.2s) ease-in-out infinite}
+@keyframes br{0%,100%{transform:scale(.82)}50%{transform:scale(1.08)}}
+@keyframes dp{0%,100%{transform:translateY(-4px)}50%{transform:translateY(6px)}}
+.smoky .lung{fill:#8a8f98}
+@media(prefers-reduced-motion:reduce){.lung,.dia{animation-duration:8s}}
+.st{font-size:32px;text-align:center;margin:8px 0}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header><h1>🫁 Nafas va qon aylanish</h1><div id="sb">⭐ <span id="sc">0</span></div></header>
+<main>
+
+<section id="s0" class="on">
+<h2>1. Tashqi muhit ta'siri</h2>
+<div class="c"><b>Tashqi muhit:</b> havo, suv, tuproq, harorat, yorug'lik, oziq-ovqat.</div>
+<div class="c"><b>Havo tarkibi:</b> azot ~78%, kislorod ~21%, karbonat angidrid ~0,04%, boshqa gazlar va suv bug'i.</div>
+<div class="c">Toza havo salomatlikka foydali. Tutun va chang nafas yo'llariga zarar qiladi. Inson muhitni asraydi: daraxt ekadi, chiqindini saralaydi, filtr qo'yadi.</div>
+<h3>Shahar va havo sifati</h3>
+<div class="box">
+<svg id="sc1" viewBox="0 0 300 150" role="img" aria-label="Shahar manzarasi"></svg>
+<label>🌳 Daraxtlar: <b id="vt">5</b><input id="tr" type="range" min="0" max="10" value="5"></label>
+<label>🚗 Mashinalar: <b id="vc">3</b><input id="cr" type="range" min="0" max="10" value="3"></label>
+<label>🏭 Zavod tutuni: <b id="vf">3</b><input id="fa" type="range" min="0" max="10" value="3"></label>
+<div class="bar"><i id="aqb"></i></div>
+<div class="st" id="av">🙂</div>
+<div class="msg" id="aqm"></div>
+</div>
+<h3>O'yin: foydali yoki zararli?</h3>
+<div class="box" id="g1"></div>
+</section>
+
+<section id="s1">
+<h2>2. Tirik organizm uchun yashash muhiti</h2>
+<div class="c"><b>Yashash muhitlari:</b> quruqlik-havo, suv, tuproq va tirik organizm ichi.</div>
+<div class="c">Har muhitning o'z sharoiti bor: yorug'lik, harorat, namlik, kislorod. Organizm shunga <b>moslashadi</b> (adaptatsiya).</div>
+<div class="c">Misollar: baliqda jabra va suzgich, tuyada yog' saqlaydigan bo'rtiq, qutb ayig'ida qalin mo'yna, kaktusda suv saqlaydigan poya.</div>
+<h3>O'yin: kim qayerda yashaydi?</h3>
+<div class="box" id="g2"></div>
+</section>
+
+<section id="s2">
+<h2>3. Nafas va qon aylanish</h2>
+<h3>Nafas sistemasi</h3>
+<div class="c"><b>Yo'l:</b> burun → halqum → hiqildoq → kekirdak → bronxlar → o'pka (alveolalar).</div>
+<div class="c">Burun havoni isitadi, namlaydi va changdan tozalaydi. <b>Alveolalarda</b> gaz almashinuvi bo'ladi: kislorod qonga o'tadi, karbonat angidrid chiqadi.</div>
+<div class="c">Nafas olganda diafragma va qovurg'a mushaklari qisqaradi, ko'krak qafasi kengayadi. Dam olganda 11–12 yoshli bola daqiqasiga taxminan 18–20 marta nafas oladi.</div>
+<div class="box">
+<svg viewBox="0 0 300 170" role="img" aria-label="O'pka sxemasi (soddalashtirilgan)">
+<rect width="300" height="170" fill="#ffeef0" opacity=".35"/>
+<rect x="144" y="8" width="12" height="70" rx="6" fill="#f4a261"/>
+<path d="M150 70 L112 100 M150 70 L188 100" stroke="#f4a261" stroke-width="7" fill="none"/>
+<ellipse class="lung" cx="105" cy="105" rx="46" ry="52" fill="#f08a9b"/>
+<ellipse class="lung" cx="195" cy="105" rx="46" ry="52" fill="#f08a9b"/>
+<g class="dia"><path d="M40 160 Q150 140 260 160" stroke="#7c4a2d" stroke-width="7" fill="none"/></g>
+<text x="8" y="16" font-size="11" fill="currentColor">sxema</text>
+</svg>
+<label>Faollik: <b id="an">Dam olish</b><input id="ac" type="range" min="0" max="2" value="0"></label>
+<div class="msg">💨 Nafas: <b id="nb">19</b> marta/daqiqa &nbsp; ❤️ Puls: <b id="pb">80</b> urish/daqiqa</div>
+<button id="sm">🌫️ Chang va tutun</button>
+<div class="msg" id="sm2"></div>
+</div>
+
+<h3>Qon aylanish sistemasi</h3>
+<div class="c"><b>Yurak</b> mushakli a'zo, 4 kamerali (2 bo'lmacha, 2 qorincha), qonni haydaydi.</div>
+<div class="c"><b>Tomirlar:</b> arteriya (yurakdan chiqaradi), vena (yurakka olib keladi), kapillyar (eng ingichka, almashinuv shu yerda).</div>
+<div class="c"><b>Katta doira:</b> chap qorincha → aorta → tana → o'ng bo'lmacha. <b>Kichik doira:</b> o'ng qorincha → o'pka → chap bo'lmacha (qon kislorodga boyiydi).</div>
+<div class="box">
+<svg viewBox="0 0 300 170" role="img" aria-label="Qon aylanishi sxemasi (soddalashtirilgan)">
+<circle cx="80" cy="85" r="52" fill="none" stroke="#3b5bdb" stroke-width="3" stroke-dasharray="5 4"/>
+<circle cx="220" cy="85" r="52" fill="none" stroke="#e5484d" stroke-width="3" stroke-dasharray="5 4"/>
+<text x="80" y="24" font-size="12" text-anchor="middle" fill="currentColor">🫁 kichik doira</text>
+<text x="220" y="24" font-size="12" text-anchor="middle" fill="currentColor">🧍 katta doira</text>
+<text x="150" y="98" font-size="34" text-anchor="middle" id="ht">🫀</text>
+<g id="dots"></g>
+<text x="150" y="162" font-size="11" text-anchor="middle" fill="currentColor">🔴 kislorodli qon &nbsp; 🔵 kislorodsiz qon</text>
+</svg>
+<div class="msg">Slayder yuqoridagi "Faollik" bilan birga puls va qon oqimini tezlashtiradi.</div>
+</div>
+<h3>Qon tarkibi</h3>
+<div class="box">
+<button data-b="🔴 Eritrotsit: kislorod tashiydi (gemoglobin bilan).">🔴 Eritrotsit</button>
+<button data-b="⚪ Leykotsit: mikroblarni yutib, tanani himoya qiladi.">⚪ Leykotsit</button>
+<button data-b="🩹 Trombotsit: yarada to'planib, qon ivishini ta'minlaydi.">🩹 Trombotsit</button>
+<button data-b="💧 Plazma: qonning suyuq qismi, moddalarni tashiydi.">💧 Plazma</button>
+<div class="msg" id="bm">Birini bosing.</div>
+</div>
+<div class="c"><b>Yurakni asrash:</b> harakat, sog'lom ovqat, uyqu, chekmaslik.</div>
+</section>
+
+<section id="s3">
+<h2>Yakuniy test</h2>
+<div class="box" id="g3"></div>
+</section>
+</main>
+
+<nav>
+<button class="on" data-t="0"><span>🌍</span>Muhit</button>
+<button data-t="1"><span>🐪</span>Yashash</button>
+<button data-t="2"><span>🫁</span>Nafas, qon</button>
+<button data-t="3"><span>📝</span>Test</button>
+</nav>
+
+<script>
+// ---- Umumiy holat va menyu ----
+let score=0;const $=s=>document.querySelector(s);
+const upd=()=>{$('#sc').textContent=score};
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('section').forEach((s,i)=>s.classList.toggle('on',i==b.dataset.t));
+  window.scrollTo(0,0);
+});
+
+// ---- Universal savol-javob funksiyasi ----
+function quiz(box,items,done){
+  let i=0,ok=0;
+  const go=()=>{
+    if(i>=items.length){
+      box.innerHTML=`<p class="q">Natija: ${ok}/${items.length} ${done?done(ok):''}</p><button class="rs">Qayta boshlash</button>`;
+      box.querySelector('.rs').onclick=()=>quiz(box,items,done);return;
+    }
+    const t=items[i];
+    box.innerHTML=`<p class="q">${t.q}</p>`+t.o.map((x,k)=>`<button data-k="${k}">${x}</button>`).join('')+'<div class="msg fb"></div>';
+    box.querySelectorAll('button').forEach(b=>b.onclick=()=>{
+      const k=+b.dataset.k;
+      box.querySelectorAll('button').forEach(x=>x.disabled=true);
+      if(k==t.a){ok++;score+=10;b.classList.add('ok')}
+      else{b.classList.add('no');box.querySelector(`[data-k="${t.a}"]`).classList.add('ok')}
+      upd();
+      box.querySelector('.fb').innerHTML=(k==t.a?'✅ To\'g\'ri! ':'❌ Noto\'g\'ri. ')+t.e+'<br><button class="nx">Keyingisi</button>';
+      box.querySelector('.nx').onclick=()=>{i++;go()};
+    });
+  };go();
+}
+
+// ---- 1-bo'lim: shahar simulyatsiyasi ----
+function scene(){
+  const t=+$('#tr').value,c=+$('#cr').value,f=+$('#fa').value;
+  $('#vt').textContent=t;$('#vc').textContent=c;$('#vf').textContent=f;
+  const aq=Math.max(0,Math.min(100,60+t*5-c*4-f*5));
+  const sky=`hsl(${aq>66?200:aq>33?45:20},${25+aq*.4}%,${88-(100-aq)*.45}%)`;
+  let s=`<rect width="300" height="150" fill="${sky}"/><rect y="118" width="300" height="32" fill="#6b8f71"/><rect y="132" width="300" height="18" fill="#59616b"/>`;
+  s+=`<text x="235" y="118" font-size="38">🏭</text>`;
+  for(let j=0;j<f;j++)s+=`<text x="${215+j*8}" y="${90-j*7}" font-size="18" opacity=".8">☁️</text>`;
+  for(let j=0;j<t;j++)s+=`<text x="${6+j*22}" y="118" font-size="24">🌳</text>`;
+  for(let j=0;j<c;j++)s+=`<text x="${8+j*28}" y="146" font-size="18">🚗</text>`;
+  $('#sc1').innerHTML=s;
+  $('#aqb').style.width=aq+'%';
+  $('#aqb').style.background=aq>66?'#2b9348':aq>33?'#e9c46a':'#d62839';
+  $('#av').textContent=aq>66?'🙂':aq>33?'😐':'😷';
+  $('#aqm').textContent=aq>66?'Havo toza. Daraxtlar kislorod beradi, nafas olish yengil.':aq>33?'Havo o\'rtacha. Tutun va mashinalar ko\'paysa, yomonlashadi.':'Havo ifloslangan! Nafas yo\'llariga zarar. Daraxt ko\'paytiring, tutunni kamaytiring.';
+}
+['tr','cr','fa'].forEach(id=>$('#'+id).oninput=scene);scene();
+
+const yes=['Foydali ✅','Zararli ⛔'];
+quiz($('#g1'),[
+ ['🌳 Daraxt ekish',0,'Daraxtlar kislorod beradi va havoni tozalaydi.'],
+ ['🏭 Filtrsiz zavod tutuni',1,'Tutun havoni ifloslaydi.'],
+ ['🪟 Xonani shamollatish',0,'Toza havo kirib, karbonat angidrid chiqadi.'],
+ ['🚬 Tutun ichida bo\'lish',1,'Tutun o\'pkaga zarar qiladi.'],
+ ['🏃 Toza havoda yugurish',0,'Nafas va yurak mushaklari mustahkamlanadi.'],
+ ['🗑️ Chiqindini yoqish',1,'Zaharli gazlar havoga chiqadi.'],
+ ['🚲 Velosipedda yurish',0,'Havoni ifloslantirmaydi, sog\'liq uchun foydali.'],
+ ['🚗 Juda ko\'p mashina',1,'Chiqindi gazlar havoni ifloslaydi.']
+].map(x=>({q:x[0],o:yes,a:x[1],e:x[2]})));
+
+// ---- 2-bo'lim: yashash muhiti ----
+const env=['🏜️ Cho\'l','🌊 Dengiz','🌲 O\'rmon','🧊 Qutb'];
+quiz($('#g2'),[
+ ['🐪 Tuya',0,'Bo\'rtig\'ida yog\' to\'playdi, suvsiz uzoq yura oladi.'],
+ ['🐟 Baliq',1,'Jabra bilan suvda nafas oladi, suzgichi bor.'],
+ ['🐻‍❄️ Qutb ayig\'i',3,'Qalin mo\'yna va yog\' qatlami sovuqdan asraydi.'],
+ ['🌵 Kaktus',0,'Poyasida suv saqlaydi, tikanlari suvni tejaydi.'],
+ ['🐸 Qurbaqa',2,'Nam joyni yaxshi ko\'radi, terisi orqali ham nafas oladi.'],
+ ['🍄 Qo\'ziqorin',2,'Nam va soyali o\'rmon tuprog\'ida o\'sadi.'],
+ ['🐧 Pingvin',3,'Yog\' qatlami va zich patlar sovuqda isitadi.'],
+ ['🦈 Akula',1,'Suvda yashaydi, jabra bilan nafas oladi.']
+].map(x=>({q:x[0]+' qayerda yashaydi?',o:env,a:x[1],e:x[2]})));
+
+// ---- 3-bo'lim: nafas va qon simulyatsiyasi ----
+const lv=[['Dam olish',19,80,3.2,4],['Yurish',26,105,2.2,2.8],['Yugurish',40,150,1.4,1.6]];
+function mkDots(){
+  let s='';
+  // katta doira: qizil -> ko'k; kichik doira: ko'k -> qizil
+  [[220,'#e5484d','#3b5bdb'],[80,'#3b5bdb','#e5484d']].forEach(([cx,c1,c2])=>{
+    for(let j=0;j<4;j++){
+      const p=`M ${cx} 33 a52 52 0 1 1 -0.1 0`;
+      s+=`<circle r="6"><animateMotion class="am" dur="4s" begin="${-j}s" repeatCount="indefinite" path="${p}"/><animate attributeName="fill" values="${c1};${c1};${c2};${c2}" keyTimes="0;.5;.5;1" calcMode="discrete" dur="4s" begin="${-j}s" repeatCount="indefinite" class="am"/></circle>`;
+    }
+  });
+  $('#dots').innerHTML=s;
+}
+mkDots();
+function act(){
+  const a=lv[+$('#ac').value];
+  $('#an').textContent=a[0];$('#nb').textContent=a[1];$('#pb').textContent=a[2];
+  document.documentElement.style.setProperty('--bt',a[3]+'s');
+  document.querySelectorAll('.am').forEach(e=>e.setAttribute('dur',a[4]+'s'));
+}
+$('#ac').oninput=act;act();
+$('#sm').onclick=()=>{
+  const on=document.body.classList.toggle('smoky');
+  $('#sm2').textContent=on?'😷 Chang va tutun bronxlarni toraytiradi, nafas qiyinlashadi va yo\'tal paydo bo\'ladi.':'';
+};
+document.querySelectorAll('[data-b]').forEach(b=>b.onclick=()=>{$('#bm').textContent=b.dataset.b});
+
+// ---- Yakuniy test ----
+const T=[
+ ['Havoda eng ko\'p gaz qaysi?',['Kislorod','Azot','Karbonat angidrid','Vodorod'],1,'Havoning ~78% qismi azot.'],
+ ['Havoni tozalab, kislorod beradigan?',['Daraxtlar','Mashinalar','Zavod tutuni','Chang'],0,'O\'simliklar kislorod chiqaradi.'],
+ ['Havoni isitib, namlab, changdan tozalaydigan a\'zo?',['Oshqozon','Burun','Yurak','Jigar'],1,'Burun bo\'shlig\'i shu vazifani bajaradi.'],
+ ['Tuyaning bo\'rtig\'ida nima to\'planadi?',['Suv','Havo','Yog\'','Qon'],2,'Yog\' energiya manbai.'],
+ ['Baliq suvda nima bilan nafas oladi?',['O\'pka','Jabra','Teri','Burun'],1,'Jabra suvdagi kislorodni oladi.'],
+ ['Qutb ayig\'i sovuqqa qanday moslashgan?',['Ingichka teri','Qalin mo\'yna','Tikan','Qanot'],1,'Qalin mo\'yna isitadi.'],
+ ['Gaz almashinuvi qayerda bo\'ladi?',['Kekirdakda','Burunda','Alveolalarda','Og\'izda'],2,'Alveolalar mayda pufakchalar.'],
+ ['Nafas olganda ko\'krak qafasi qanday o\'zgaradi?',['Kengayadi','Torayadi','O\'zgarmaydi','Qotadi'],0,'Diafragma va qovurg\'a mushaklari qisqaradi.'],
+ ['Yurak necha kamerali?',['2','3','4','5'],2,'2 bo\'lmacha va 2 qorincha.'],
+ ['Kislorodni tashiydigan qon hujayrasi?',['Leykotsit','Trombotsit','Eritrotsit','Plazma'],2,'Eritrotsitdagi gemoglobin kislorodni biriktiradi.'],
+ ['Mikroblardan himoya qiladigan hujayra?',['Eritrotsit','Leykotsit','Trombotsit','Kapillyar'],1,'Leykotsitlar mikrobni yutadi.'],
+ ['Yurakdan qon olib chiqadigan tomir?',['Vena','Kapillyar','Arteriya','Bronx'],2,'Arteriya yurakdan tanaga qon olib boradi.']
+].map(x=>({q:x[0],o:x[1],a:x[2],e:x[3]}));
+quiz($('#g3'),T,ok=>'<br>'+(ok>=11?'⭐⭐⭐ Ajoyib!':ok>=8?'⭐⭐ Yaxshi!':ok>=5?'⭐ Yomon emas.':'Yana urinib ko\'r.')+'<br><small>Eslab qol: alveolalarda gaz almashinuvi bo\'ladi, yurak qonni katta va kichik doira bo\'ylab haydaydi.</small>');
+</script>
+</body>
+</html>

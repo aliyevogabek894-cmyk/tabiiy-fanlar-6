@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Tabiiy fan — Yuqumli kasalliklar</title>
+<style>
+:root{--navy:#16324f;--blue:#2878b5;--teal:#13a89e;--gold:#ffd166;--bg:#f3f8fc;--ink:#203247;--red:#e85d75;--green:#2a9d68}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+header{background:linear-gradient(135deg,#16324f,#2878b5 65%,#13a89e);color:white;padding:34px 18px;text-align:center}
+header h1{font-size:clamp(1.8rem,5vw,3rem);margin:8px 0}header p{max-width:850px;margin:8px auto}
+.badge{display:inline-block;background:var(--gold);color:#25364a;border-radius:30px;padding:5px 13px;font-weight:bold}
+nav{position:sticky;top:0;z-index:5;background:#fff;display:flex;gap:8px;overflow:auto;padding:10px;box-shadow:0 3px 12px #17324f18}
+nav a{white-space:nowrap;text-decoration:none;color:var(--navy);font-weight:bold;padding:8px 12px;border-radius:10px}nav a:hover{background:#e8f5ff}
+main{max-width:1100px;margin:22px auto;padding:0 15px}.card{background:#fff;border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 8px 25px #193b5a0c;border:1px solid #e2edf5}
+h2{color:var(--navy);margin-top:0}h3{color:#236c91}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tile{border-radius:14px;padding:16px;background:#eef7ff;border-left:5px solid var(--blue)}.tile:nth-child(2){background:#effbf7;border-color:var(--teal)}.tile:nth-child(3){background:#fff7e5;border-color:#f3b63f}.tile:nth-child(4){background:#fff0f2;border-color:var(--red)}
+.icon{font-size:2rem}.pill{display:inline-block;border-radius:20px;background:#e9f6f2;color:#176a53;padding:3px 10px;font-size:.9rem;font-weight:bold}
+.note{background:#fff8df;border-left:5px solid #f2bc42;padding:13px 16px;border-radius:10px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}.step{background:#f2f7fb;border-radius:12px;padding:12px;text-align:center}
+button{border:0;border-radius:10px;background:var(--blue);color:#fff;padding:10px 15px;font-size:1rem;font-weight:bold;cursor:pointer}button:hover{filter:brightness(.92)}button.secondary{background:#536579}button.good{background:var(--green)}
+label{display:block;padding:8px;margin:5px 0;border-radius:9px;background:#f4f8fb;cursor:pointer}input[type=radio]{margin-right:8px}
+#quizResult{font-weight:bold;margin-top:12px}.sim-layout{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center}
+.people{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:14px 0}.person{padding:12px 2px;text-align:center;background:#dff4e9;border-radius:12px;font-size:1.5rem;border:2px solid transparent;transition:.3s}.person small{display:block;font-size:.65rem}.person.infected{background:#ffe1e6;border-color:var(--red);animation:pulse 1s infinite alternate}
+@keyframes pulse{to{transform:scale(1.06)}}.bar{height:15px;background:#e5edf3;border-radius:20px;overflow:hidden}.bar span{display:block;height:100%;width:10%;background:linear-gradient(90deg,var(--teal),var(--red));transition:width .4s}
+canvas{width:100%;max-width:450px;height:auto;background:#eff8ff;border-radius:16px;border:1px solid #d8eaf5}
+footer{text-align:center;padding:25px;color:#60758a}
+@media(max-width:650px){.sim-layout{grid-template-columns:1fr}.card{padding:16px}.people{grid-template-columns:repeat(5,1fr)}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header>
+  <span class="badge">6-sinf • Tabiiy fan</span>
+  <h1>🦠 Yuqumli kasalliklar</h1>
+  <p>Kasalliklarning kelib chiqish sabablari, tarqalish yo‘llari va ulardan himoyalanishni o‘rganamiz.</p>
+  <p><strong>O‘rganamiz • Kuzatamiz • Sinab ko‘ramiz • Bilimimizni tekshiramiz</strong></p>
+</header>
+<nav>
+  <a href="#reja">Dars rejasi</a><a href="#mikroblar">Kasallik sabablari</a><a href="#tarqalish">Tarqalish yo‘llari</a><a href="#simulyatsiya">Simulyatsiya</a><a href="#himoya">Himoyalanish</a><a href="#test">Test</a>
+</nav>
+<main>
+<section class="card" id="reja">
+<h2>📋 Dars maqsadi va rejasi</h2>
+<p><strong>Dars maqsadi:</strong> o‘quvchilar yuqumli kasalliklarni keltirib chiqaruvchi omillarni, ularning tarqalish yo‘llarini va profilaktika choralarini tushuntira oladi.</p>
+<div class="grid">
+<div class="tile"><span class="icon">🔬</span><h3>1. Kasallik sabablari</h3><p>Viruslar, bakteriyalar, zamburug‘lar va parazitlar haqida bilib olamiz.</p></div>
+<div class="tile"><span class="icon">🌬️</span><h3>2. Tarqalish yo‘llari</h3><p>Havo orqali, iflos suv va oziq-ovqat, aloqa hamda ayrim hasharotlar orqali yuqishni ko‘rib chiqamiz.</p></div>
+<div class="tile"><span class="icon">🛡️</span><h3>3. Himoyalanish</h3><p>Gigiyena, toza suv, emlash va kasallik alomatlarida kattalarga murojaat qilishni o‘rganamiz.</p></div>
+</div>
+</section>
+
+<section class="card" id="mikroblar">
+<h2>1. Yuqumli kasalliklar nimadan kelib chiqadi?</h2>
+<p><strong>Yuqumli kasalliklar</strong> — ayrim kasallik qo‘zg‘atuvchilar sababli yuzaga keladigan va ma’lum sharoitlarda bir odamdan boshqasiga yoki hayvonlardan odamga yuqishi mumkin bo‘lgan kasalliklardir. Ko‘plab mikroorganizmlar esa foydali yoki zararsiz bo‘ladi.</p>
+<div class="grid">
+<div class="tile"><span class="icon">🧬</span><h3>Viruslar</h3><p>Ko‘payish uchun tirik hujayraga muhtoj bo‘lgan juda mayda zarrachalar. <strong>Misol:</strong> gripp, qizamiq, suvchechak viruslari.</p></div>
+<div class="tile"><span class="icon">🦠</span><h3>Bakteriyalar</h3><p>Bir hujayrali mikroorganizmlar. Ayrim turlari kasallik keltirib chiqaradi. <strong>Misol:</strong> sil va vabo qo‘zg‘atuvchi bakteriyalar.</p></div>
+<div class="tile"><span class="icon">🍄</span><h3>Zamburug‘lar</h3><p>Ayrim turlari teri va tirnoqlarda infeksiya keltirib chiqarishi mumkin.</p></div>
+<div class="tile"><span class="icon">🪱</span><h3>Parazitlar</h3><p>Boshqa organizm hisobiga yashaydi. Ayrim ichak qurtlari iflos qo‘l, suv yoki oziq-ovqat orqali yuqishi mumkin.</p></div>
+</div>
+<div class="note"><strong>Esda tuting:</strong> antibiotiklar bakteriyalarga qarshi qo‘llanadi, viruslarga esa ta’sir qilmaydi. Dori vositalarini faqat tibbiyot mutaxassisi tavsiyasi bilan ishlatish kerak.</div>
+<h3>🔎 Tezkor savol</h3>
+<p>Quyidagilardan qaysi biri kasallik qo‘zg‘atuvchisi bo‘lishi mumkin?</p>
+<div id="quickOptions">
+<label><input type="radio" name="quick" value="a"> Faqat kitoblar</label>
+<label><input type="radio" name="quick" value="b"> Ayrim viruslar va bakteriyalar</label>
+<label><input type="radio" name="quick" value="c"> Quyosh nuri</label>
+</div>
+<button onclick="checkQuick()">Javobni tekshirish</button><span id="quickResult" style="margin-left:10px"></span>
+</section>
+
+<section class="card" id="tarqalish">
+<h2>2. Kasalliklar qanday tarqaladi?</h2>
+<div class="grid">
+<div class="tile"><span class="icon">🌬️</span><h3>Havo orqali</h3><p>Ba’zi infeksiyalar kasallangan odam nafas chiqarganda, yo‘talganda yoki aksirganda havoga tarqalgan zarrachalar orqali yuqadi. <strong>Misol:</strong> gripp, qizamiq.</p></div>
+<div class="tile"><span class="icon">🚰</span><h3>Suv va oziq-ovqat orqali</h3><p>Ifloslangan suv yoki yaxshi yuvilmagan mahsulotlar orqali ayrim infeksiyalar yuqishi mumkin.</p></div>
+<div class="tile"><span class="icon">🤝</span><h3>Aloqa orqali</h3><p>Ba’zi infeksiyalar teri bilan bevosita aloqa yoki ifloslangan buyumlar orqali tarqaladi. Barcha kasalliklar qo‘l berib ko‘rishishdan yuqmaydi.</p></div>
+<div class="tile"><span class="icon">🦟</span><h3>Hasharot yoki hayvon orqali</h3><p>Ayrim kasalliklar chivin, kana yoki kasallangan hayvon orqali yuqishi mumkin. Hayvon tishlasa, darhol kattalarga aytib, tibbiy yordam olish kerak.</p></div>
+</div>
+<h3>🔗 Yuqish zanjiri</h3>
+<div class="steps">
+<div class="step">👤<br><strong>1. Manba</strong><br>Kasallangan odam yoki hayvon</div><div class="step">💨<br><strong>2. Tarqalish</strong><br>Havo, suv, aloqa yoki tashuvchi</div><div class="step">🧒<br><strong>3. Yangi odam</strong><br>Qo‘zg‘atuvchi organizmga kiradi</div><div class="step">🧼<br><strong>4. Zanjirni uzish</strong><br>Gigiyena va profilaktika</div>
+</div>
+<p class="note">Kasallikning tarqalishi qo‘zg‘atuvchi turiga va sharoitga bog‘liq. Har bir infeksiya barcha yo‘llar bilan yuqavermaydi.</p>
+</section>
+
+<section class="card" id="simulyatsiya">
+<h2>🎮 Simulyatsiya: “Infeksiya tarqalishi”</h2>
+<p>Bu soddalashtirilgan o‘quv modeli. U haqiqiy epidemiyani aniq bashorat qilmaydi, faqat ehtiyot choralarining tarqalishga ta’sirini ko‘rsatadi.</p>
+<div class="sim-layout">
+<div>
+<label><input type="checkbox" id="wash"> Qo‘l gigiyenasi va tozalik qoidalariga amal qilish</label>
+<label><input type="checkbox" id="distance"> Kasal bo‘lganda uyda qolish va yaqin aloqani kamaytirish</label>
+<label><input type="checkbox" id="ventilate"> Xonani shamollatish</label>
+<p><strong>Modeldagi tarqalish ehtimoli:</strong></p><div class="bar"><span id="riskBar"></span></div><p id="riskText">Himoya choralarini tanlang, so‘ng simulyatsiyani boshlang.</p>
+<button onclick="runSimulation()">▶ Simulyatsiyani boshlash</button>
+<button class="secondary" onclick="resetSimulation()">↺ Qayta boshlash</button>
+</div>
+<div>
+<div class="people" id="people">
+<div class="person infected">🤒<small>1-manba</small></div>
+<div class="person">🙂<small>2</small></div><div class="person">🙂<small>3</small></div><div class="person">🙂<small>4</small></div><div class="person">🙂<small>5</small></div>
+<div class="person">🙂<small>6</small></div><div class="person">🙂<small>7</small></div><div class="person">🙂<small>8</small></div><div class="person">🙂<small>9</small></div><div class="person">🙂<small>10</small></div>
+</div><p id="simResult" aria-live="polite">Hozircha 1 ta manba ko‘rsatilgan. Himoya choralarini sinab ko‘ring.</p>
+</div>
+</div>
+</section>
+
+<section class="card" id="himoya">
+<h2>3. Yuqumli kasalliklardan himoyalanish</h2>
+<div class="grid">
+<div class="tile"><span class="icon">🧼</span><h3>Qo‘lni yuvish</h3><p>Ovqatdan oldin, hojatxonadan keyin va ko‘chadan kelgach qo‘llarni sovun bilan yaxshilab yuving.</p></div>
+<div class="tile"><span class="icon">🍎</span><h3>Oziq-ovqat tozaligi</h3><p>Meva-sabzavotlarni yuving, ovqatni toza saqlang va xavfsiz ichimlik suvidan foydalaning.</p></div>
+<div class="tile"><span class="icon">🤧</span><h3>Yo‘tal odobi</h3><p>Yo‘talganda yoki aksirganda og‘iz-burunni salfetka yoki tirsak bukilmasi bilan yoping.</p></div>
+<div class="tile"><span class="icon">💉</span><h3>Emlash</h3><p>Tavsiya etilgan emlashlar ayrim xavfli infeksiyalardan himoyalanishga yordam beradi.</p></div>
+<div class="tile"><span class="icon">🌬️</span><h3>Toza havo</h3><p>Yopiq xonalarni muntazam shamollating. Kasallik alomatlari bo‘lsa, kattalarga ayting.</p></div>
+<div class="tile"><span class="icon">🩺</span><h3>Tibbiy maslahat</h3><p>O‘zboshimchalik bilan dori ichmang. Zarur bo‘lsa, ota-ona yoki tibbiyot xodimiga murojaat qiling.</p></div>
+</div>
+<h3>🧪 Sinf tajribasi: “Mikroblar qanday tarqalishi mumkin?”</h3>
+<p>O‘qituvchi qo‘lga ozgina yuviladigan yaltiroq kukun yoki yuviladigan bo‘yoq surtib, buyumlarga tekkizadi. Izlarning bir qo‘ldan boshqasiga o‘tishi kuzatiladi. Bu mikroblarning o‘zi emas, balki aloqa orqali tarqalishni ko‘rsatuvchi modeldir. Material ko‘zga tushmasin, allergiya bo‘lsa ishlatilmasin; tajribadan keyin qo‘llar yuviladi.</p>
+</section>
+
+<section class="card" id="test">
+<h2>📝 Bilimingizni tekshiring</h2>
+<p>Har bir savolda bitta to‘g‘ri javobni tanlang.</p>
+<form id="quiz">
+<div class="question"><p><strong>1. Viruslar ko‘payishi uchun odatda nima kerak?</strong></p><label><input type="radio" name="q1" value="a"> Tirik hujayra</label><label><input type="radio" name="q1" value="b"> Tosh</label><label><input type="radio" name="q1" value="c"> Quruq qum</label></div>
+<div class="question"><p><strong>2. Qo‘lni qachon sovunlab yuvish kerak?</strong></p><label><input type="radio" name="q2" value="a"> Faqat haftada bir marta</label><label><input type="radio" name="q2" value="b"> Ovqatdan oldin va hojatxonadan keyin</label><label><input type="radio" name="q2" value="c"> Hech qachon</label></div>
+<div class="question"><p><strong>3. Aksirganda nima qilish to‘g‘ri?</strong></p><label><input type="radio" name="q3" value="a"> Boshqalarga qarab aksirish</label><label><input type="radio" name="q3" value="b"> Og‘iz-burunni salfetka yoki tirsak bukilmasi bilan yopish</label><label><input type="radio" name="q3" value="c"> Qo‘lni yuvmaslik</label></div>
+<div class="question"><p><strong>4. Iflos suv orqali qanday xavf yuzaga kelishi mumkin?</strong></p><label><input type="radio" name="q4" value="a"> Ayrim ichak infeksiyalari</label><label><input type="radio" name="q4" value="b"> Faqat suyak sinishi</label><label><input type="radio" name="q4" value="c"> Sochning o‘sishi</label></div>
+<div class="question"><p><strong>5. Antibiotiklar haqida qaysi fikr to‘g‘ri?</strong></p><label><input type="radio" name="q5" value="a"> Har qanday virusni davolaydi</label><label><input type="radio" name="q5" value="b"> Faqat shirinlik bilan ichiladi</label><label><input type="radio" name="q5" value="c"> Ayrim bakterial infeksiyalarda qo‘llanadi, mutaxassis tavsiyasi zarur</label></div>
+<div class="question"><p><strong>6. Yuqumli kasalliklardan himoyalanishga nima yordam beradi?</strong></p><label><input type="radio" name="q6" value="a"> Toza suv, gigiyena va tavsiya etilgan emlashlar</label><label><input type="radio" name="q6" value="b"> Yuvilmagan meva yeyish</label><label><input type="radio" name="q6" value="c"> Kasal bo‘lganda boshqalar bilan yaqin aloqada bo‘lish</label></div>
+<button type="button" onclick="gradeQuiz()">Natijani hisoblash</button>
+<button type="button" class="secondary" onclick="document.getElementById('quiz').reset();document.getElementById('quizResult').textContent=''">Qayta ishlash</button>
+</form>
+<div id="quizResult" aria-live="polite"></div>
+</section>
+
+<section class="card">
+<h2>💬 Dars yakuni — muhokama</h2>
+<ul>
+<li>Yuqumli kasalliklarni qaysi qo‘zg‘atuvchilar keltirib chiqarishi mumkin?</li>
+<li>Kasallik tarqalish zanjirini uzish uchun nimalar qilish mumkin?</li>
+<li>Nima uchun faqat toza ichimlik suvidan foydalanish muhim?</li>
+<li>Bugundan boshlab qaysi gigiyena qoidasiga alohida amal qilasiz?</li>
+</ul>
+<div class="note"><strong>Asosiy xulosa:</strong> qo‘l gigiyenasi, xavfsiz suv va oziq-ovqat, yo‘tal odobi, shamollatish hamda tavsiya etilgan emlashlar ko‘plab infeksiyalar xavfini kamaytiradi.</div>
+</section>
+</main>
+<footer>6-sinf Tabiiy fan • “Yuqumli kasalliklar” interaktiv dars materiali</footer>
+<script>
+function checkQuick(){
+ const v=document.querySelector('input[name="quick"]:checked');const out=document.getElementById('quickResult');
+ if(!v){out.textContent='Avval javob tanlang.';out.style.color='#b45309';return}
+ out.textContent=v.value==='b'?'To‘g‘ri! Ayrim viruslar va bakteriyalar kasallik qo‘zg‘atadi.':'Qayta urinib ko‘ring.';
+ out.style.color=v.value==='b'?'#218653':'#c03955';
+}
+function risk(){
+ let r=100;
+ if(document.getElementById('wash').checked)r-=25;
+ if(document.getElementById('distance').checked)r-=35;
+ if(document.getElementById('ventilate').checked)r-=20;
+ return Math.max(10,r);
+}
+function updateRisk(){
+ let r=risk();document.getElementById('riskBar').style.width=r+'%';
+ document.getElementById('riskText').textContent='Modeldagi shartli tarqalish ko‘rsatkichi: '+r+'% (bu haqiqiy tibbiy ehtimol emas).';
+}
+['wash','distance','ventilate'].forEach(id=>document.getElementById(id).addEventListener('change',updateRisk));
+function runSimulation(){
+ let r=risk(), people=[...document.querySelectorAll('.person')], count=Math.max(1,Math.round(1+(r/100)*8));
+ people.forEach((p,i)=>{p.classList.toggle('infected',i<count);p.innerHTML=(i<count?'🤒':'🙂')+'<small>'+(i===0?'1-manba':i+1)+'</small>'});
+ document.getElementById('simResult').textContent='Model natijasi: '+count+' ta belgi infeksiya bilan bog‘liq holatni ifodalaydi. Himoya choralarini ko‘paytirib, qayta sinab ko‘ring.';
+}
+function resetSimulation(){
+ document.getElementById('wash').checked=false;document.getElementById('distance').checked=false;document.getElementById('ventilate').checked=false;
+ [...document.querySelectorAll('.person')].forEach((p,i)=>{p.classList.toggle('infected',i===0);p.innerHTML=(i===0?'🤒':'🙂')+'<small>'+(i===0?'1-manba':i+1)+'</small>'});
+ document.getElementById('simResult').textContent='Hozircha 1 ta manba ko‘rsatilgan. Himoya choralarini sinab ko‘ring.';updateRisk();
+}
+function gradeQuiz(){
+ const answers={q1:'a',q2:'b',q3:'b',q4:'a',q5:'c',q6:'a'};let score=0,missing=0;
+ for(const [q,a] of Object.entries(answers)){const s=document.querySelector('input[name="'+q+'"]:checked');if(!s)missing++;else if(s.value===a)score++}
+ const out=document.getElementById('quizResult');
+ if(missing){out.textContent='Barcha savollarga javob bering. Hali '+missing+' ta savol qolgan.';out.style.color='#b45309';return}
+ let msg=score===6?'A’lo!':score>=4?'Yaxshi natija!':'Mavzuni yana bir bor takrorlang.';
+ out.textContent=msg+' Natija: '+score+'/6 ('+Math.round(score/6*100)+'%).';out.style.color=score>=4?'#218653':'#c03955';
+}
+updateRisk();
+</script>
+</body>
+</html>

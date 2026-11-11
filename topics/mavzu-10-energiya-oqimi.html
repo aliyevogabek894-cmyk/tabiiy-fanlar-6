@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Tabiiy fan — Energiya va zaharli moddalar oqimi</title>
+<style>
+:root{--bg:#071b2b;--panel:#102b40;--panel2:#15384e;--text:#eef8ff;--muted:#b6cbd8;--green:#63e6a4;--yellow:#ffd166;--red:#ff667a;--blue:#65c9ff}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(145deg,#071b2b,#0b2b3c 55%,#123b45);color:var(--text);line-height:1.55}
+header{padding:30px 18px 24px;text-align:center;background:radial-gradient(circle at top,#20536a,#0b2538 68%);border-bottom:1px solid #2e596d}
+header .tag{display:inline-block;padding:6px 12px;border-radius:99px;background:#19465b;color:#a8f3d0;font-weight:bold;font-size:.85rem}
+h1{font-size:clamp(1.8rem,5vw,3rem);margin:12px auto 8px;max-width:900px;line-height:1.15}header p{max-width:850px;margin:0 auto;color:var(--muted)}
+main{max-width:1120px;margin:auto;padding:18px}
+nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:8px 0 22px}
+button{border:0;border-radius:12px;padding:10px 15px;font-weight:bold;cursor:pointer;transition:.2s}
+button:hover{transform:translateY(-1px);filter:brightness(1.08)}button:focus-visible{outline:3px solid white;outline-offset:2px}
+.navbtn{background:#17394e;color:var(--text);border:1px solid #2c5a70}.navbtn.active{background:var(--green);color:#07291e}
+section.card{background:rgba(16,43,64,.94);border:1px solid #28516a;border-radius:20px;padding:20px;margin:16px 0;box-shadow:0 12px 28px #0002}
+h2{margin:0 0 10px;font-size:1.45rem}h3{margin:12px 0 6px;color:#aeeed0}.lead{color:var(--muted);margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.tile{padding:15px;background:#15384e;border-radius:15px;border:1px solid #2c566a}
+.icon{font-size:2rem}.tile p{margin:5px 0 0;color:var(--muted)}
+.flow{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;margin:18px 0}
+.organism{min-width:112px;text-align:center;background:#183e52;border:1px solid #397086;border-radius:16px;padding:12px}
+.organism b{display:block;font-size:1.08rem}.arrow{color:var(--yellow);font-size:1.6rem;font-weight:bold}
+.callout{padding:13px 15px;border-left:4px solid var(--yellow);background:#263d47;border-radius:8px;margin:12px 0}
+.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}
+.controls label{font-weight:bold}.controls input[type=range]{width:min(330px,100%)}
+.action{background:var(--green);color:#082b20}.secondary{background:#234c63;color:white}.danger{background:#7e3044;color:white}
+.statrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:14px 0}
+.stat{background:#0a2335;border-radius:12px;padding:12px;text-align:center}.stat strong{font-size:1.5rem;display:block;color:var(--yellow)}
+.barwrap{height:22px;background:#25475a;border-radius:99px;overflow:hidden;margin:7px 0 12px}.bar{height:100%;width:100%;border-radius:99px;transition:width .7s;background:linear-gradient(90deg,#55d98b,#d5f879)}
+.energy-stage{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}
+.energy-box{padding:13px 8px;text-align:center;border-radius:12px;background:#0a2335;border:1px solid #2d566a}
+.cubes{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;min-height:28px;margin:8px 0}
+.cube{width:10px;height:10px;background:var(--yellow);border-radius:2px;box-shadow:0 0 7px #ffd16699}
+.muted{color:var(--muted);font-size:.94rem}.result{font-weight:bold;margin-top:10px;min-height:24px}
+.toxin-water{background:linear-gradient(#17617b,#0c354b);border-radius:16px;padding:14px;border:1px solid #39748b}
+.toxin-levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:12px}
+.toxin-creature{background:#0b2b40;border:1px solid #397086;border-radius:12px;padding:12px;text-align:center}
+.dots{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;min-height:22px;margin:8px auto}
+.dot{height:9px;width:9px;border-radius:50%;background:var(--red);box-shadow:0 0 7px #ff667a99}
+.warning{color:#ffd5dc}.quizq{padding:14px;background:#15384e;border-radius:13px;margin:12px 0}.quizq label{display:block;padding:5px;cursor:pointer}.quizq input{margin-right:8px}
+footer{text-align:center;color:var(--muted);padding:25px}
+.hidden{display:none!important}
+@media(max-width:620px){main{padding:12px}.energy-stage{grid-template-columns:repeat(2,1fr)}section.card{padding:15px}.flow{gap:5px}.organism{min-width:90px;padding:9px}.arrow{font-size:1.2rem}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header>
+ <span class="tag">6-SINF · TABIIY FAN</span>
+ <h1>🌿 Energiya va zaharli moddalar oqimi</h1>
+ <p>Ekotizimda energiya qanday uzatiladi va zaharli moddalar oziq zanjirida nima sababdan to‘planadi? O‘rganing, simulyatsiya qiling va bilimingizni sinang.</p>
+</header>
+<main>
+<nav>
+ <button class="navbtn active" data-target="nazariya">📘 Nazariya</button>
+ <button class="navbtn" data-target="energiya">☀️ Energiya simulyatsiyasi</button>
+ <button class="navbtn" data-target="zahar">☣️ Zahar oqimi</button>
+ <button class="navbtn" data-target="test">🧠 Mini-test</button>
+</nav>
+
+<div id="nazariya" class="page">
+<section class="card">
+<h2>1. Oziq zanjiri bo‘ylab energiya qanday uzatiladi?</h2>
+<p class="lead">Ekotizimdagi energiyaning asosiy manbai — Quyosh. Energiya oziq orqali bir organizmdan boshqasiga o‘tadi.</p>
+<div class="flow">
+ <div class="organism"><span class="icon">☀️</span><b>Quyosh</b><small>yorug‘lik</small></div><span class="arrow">→</span>
+ <div class="organism"><span class="icon">🌿</span><b>O‘simlik</b><small>produtsent</small></div><span class="arrow">→</span>
+ <div class="organism"><span class="icon">🐇</span><b>Quyon</b><small>1-darajali konsument</small></div><span class="arrow">→</span>
+ <div class="organism"><span class="icon">🦊</span><b>Tulki</b><small>yirtqich</small></div>
+</div>
+<div class="grid">
+<div class="tile"><div class="icon">🌱</div><h3>Produtsentlar</h3><p>Yashil o‘simliklar va suvo‘tlar fotosintez orqali Quyosh energiyasini kimyoviy energiyaga aylantiradi.</p></div>
+<div class="tile"><div class="icon">🐛</div><h3>Konsumentlar</h3><p>Hayvonlar boshqa organizmlarni yeyish orqali energiya oladi. O‘txo‘rlar o‘simlik bilan, yirtqichlar esa boshqa hayvonlar bilan oziqlanadi.</p></div>
+<div class="tile"><div class="icon">🍄</div><h3>Redutsentlar</h3><p>Zamburug‘lar va ko‘plab bakteriyalar o‘lik organizmlar hamda chiqindilarni parchalaydi, moddalarni muhitga qaytaradi.</p></div>
+</div>
+<div class="callout"><b>10% qoidasi:</b> soddalashtirilgan modelda bir trofik darajadagi energiyaning taxminan 10 foizi keyingi darajada yangi biomassa hosil qilishga o‘tadi. Qolgan qismi organizmning hayotiy faoliyatiga sarflanadi va issiqlik sifatida tarqaladi. Bu aniq, hamma holatda bir xil qonun emas — taxminiy qoidadir.</div>
+<h3>Oziq zanjiri va oziq to‘ri</h3>
+<div class="grid">
+<div class="tile"><b>➡️ Oziq zanjiri</b><p>Organizmlar orasidagi oziqlanishning bitta ketma-ket yo‘li: o‘t → chigirtka → qurbaqa → ilon.</p></div>
+<div class="tile"><b>🕸️ Oziq to‘ri</b><p>Bir-biriga bog‘langan ko‘plab oziq zanjirlari. Tabiatda bir hayvon bir necha turdagi ozuqani yeyishi mumkin.</p></div>
+</div>
+</section>
+<section class="card">
+<h2>2. Zaharli moddalar oziq zanjiri bo‘ylab uzatiladimi?</h2>
+<p>Ha. Ayrim zaharli moddalar, masalan simobning ayrim shakllari va ba’zi uzoq saqlanuvchi pestitsidlar, organizmlarda to‘planishi mumkin.</p>
+<div class="flow">
+ <div class="organism"><span class="icon">💧</span><b>Suv</b><small>ifloslanish</small></div><span class="arrow">→</span>
+ <div class="organism"><span class="icon">🦠</span><b>Plankton</b><small>modda yutiladi</small></div><span class="arrow">→</span>
+ <div class="organism"><span class="icon">🐟</span><b>Mayda baliq</b><small>ko‘p plankton yeydi</small></div><span class="arrow">→</span>
+ <div class="organism"><span class="icon">🦅</span><b>Baliqxo‘r qush</b><small>yuqori daraja</small></div>
+</div>
+<div class="callout"><b>Biomagnifikatsiya</b> — ayrim zaharli moddalarning oziq zanjirining yuqori trofik darajalarida konsentratsiyasi ortib borishi. Har bir modda ham shunday tutmaydi: bu uning xususiyatlari va organizmlarning modda almashinuviga bog‘liq.</div>
+<p class="muted">Eslab qoling: energiya oqimi bir yo‘nalishda bo‘lib, oxir-oqibat issiqlik sifatida tarqaladi. Moddalar esa tabiatda aylanishi mumkin; ayrim zaharli moddalar uzoq vaqt saqlanib, organizmlarda yig‘iladi.</p>
+</section>
+</div>
+
+<div id="energiya" class="page hidden">
+<section class="card">
+<h2>☀️ Interaktiv simulyatsiya: energiya piramidasi</h2>
+<p class="lead">Boshlang‘ich energiya miqdorini o‘zgartiring. Har bir keyingi bosqichga 10% o‘tishini kuzating.</p>
+<div class="controls"><label for="energyInput">O‘simlikdagi energiya:</label><input id="energyInput" type="range" min="100" max="10000" step="100" value="1000"><strong id="energyValue">1000 birlik</strong></div>
+<div class="energy-stage">
+ <div class="energy-box"><div class="icon">🌿</div><b>O‘simlik</b><div class="cubes" id="c0"></div><strong id="e0">1000</strong><small>birlik</small></div>
+ <div class="energy-box"><div class="icon">🐛</div><b>Chigirtka</b><div class="cubes" id="c1"></div><strong id="e1">100</strong><small>birlik</small></div>
+ <div class="energy-box"><div class="icon">🐸</div><b>Qurbaqa</b><div class="cubes" id="c2"></div><strong id="e2">10</strong><small>birlik</small></div>
+ <div class="energy-box"><div class="icon">🐍</div><b>Ilon</b><div class="cubes" id="c3"></div><strong id="e3">1</strong><small>birlik</small></div>
+</div>
+<div id="energyBars"></div>
+<div class="controls"><button class="action" id="energyPlay">▶ Energiya oqimini ko‘rsat</button><button class="secondary" id="energyReset">↺ Qayta boshlash</button></div>
+<p class="result" id="energyMessage" aria-live="polite">Simulyatsiyani boshlash uchun tugmani bosing.</p>
+<p class="muted">Kubiklar ko‘rgazmali tasvir: juda katta sonlarda hammasi alohida chizilmaydi. Hisob-kitob 10% qoidasining soddalashtirilgan modeliga asoslangan.</p>
+</section>
+</div>
+
+<div id="zahar" class="page hidden">
+<section class="card">
+<h2>☣️ Interaktiv simulyatsiya: zaharning sayohati</h2>
+<p class="lead">Shartli zahar birliklari oziq zanjiri bo‘ylab qanday to‘planishini ko‘ring. Bu haqiqiy tabiatdagi aniq o‘lchov emas, tushuntirish uchun yaratilgan model.</p>
+<div class="toxin-water">
+ <div style="text-align:center;font-size:1.2rem">💧 Ko‘l suvi — shartli ifloslanish</div>
+ <div class="controls" style="justify-content:center"><label for="toxinInput">Suvdagi ifloslanish darajasi:</label><input id="toxinInput" type="range" min="1" max="5" value="2"><strong id="toxinValue">2</strong></div>
+ <div class="toxin-levels">
+  <div class="toxin-creature"><div class="icon">🌿</div><b>Suv o‘tlari</b><div class="dots" id="d0"></div><strong id="t0">2</strong><small>shartli birlik</small></div>
+  <div class="toxin-creature"><div class="icon">🐟</div><b>Mayda baliq</b><div class="dots" id="d1"></div><strong id="t1">20</strong><small>shartli birlik</small></div>
+  <div class="toxin-creature"><div class="icon">🐠</div><b>Yirik baliq</b><div class="dots" id="d2"></div><strong id="t2">200</strong><small>shartli birlik</small></div>
+  <div class="toxin-creature"><div class="icon">🦅</div><b>Baliqxo‘r qush</b><div class="dots" id="d3"></div><strong id="t3">2000</strong><small>shartli birlik</small></div>
+ </div>
+</div>
+<div class="controls"><button class="action" id="toxinPlay">▶ Zaharning harakatini ko‘rsat</button><button class="secondary" id="toxinReset">↺ Qayta boshlash</button></div>
+<p class="result warning" id="toxinMessage" aria-live="polite">Suvdagi darajani tanlab, simulyatsiyani boshlang.</p>
+<div class="callout"><b>Muhim:</b> zaharli moddalarni tabiatga tashlamang. Batareya, elektron chiqindi, moy va kimyoviy moddalarni tegishli yig‘ish joylariga topshirish kerak.</div>
+</section>
+</div>
+
+<div id="test" class="page hidden">
+<section class="card">
+<h2>🧠 Bilimingizni sinang</h2>
+<p class="lead">Har bir savol uchun bitta javobni belgilang, so‘ng natijani tekshiring.</p>
+<form id="quiz">
+<div class="quizq"><b>1. Ekotizimdagi energiyaning asosiy manbai nima?</b>
+<label><input type="radio" name="q1" value="a"> Oy</label><label><input type="radio" name="q1" value="b"> Quyosh</label><label><input type="radio" name="q1" value="c"> Tuproq</label></div>
+<div class="quizq"><b>2. O‘simliklar oziq zanjirida qanday ataladi?</b>
+<label><input type="radio" name="q2" value="a"> Produtsentlar</label><label><input type="radio" name="q2" value="b"> Yirtqichlar</label><label><input type="radio" name="q2" value="c"> Redutsentlar</label></div>
+<div class="quizq"><b>3. 10% qoidasiga ko‘ra, 1000 birlik energiyadan keyingi darajaga taxminan qancha o‘tadi?</b>
+<label><input type="radio" name="q3" value="a"> 900 birlik</label><label><input type="radio" name="q3" value="b"> 500 birlik</label><label><input type="radio" name="q3" value="c"> 100 birlik</label></div>
+<div class="quizq"><b>4. Oziq to‘ri nima?</b>
+<label><input type="radio" name="q4" value="a"> Faqat bitta oziq zanjiri</label><label><input type="radio" name="q4" value="b"> O‘zaro bog‘langan oziq zanjirlari</label><label><input type="radio" name="q4" value="c"> Faqat o‘simliklar to‘plami</label></div>
+<div class="quizq"><b>5. Biomagnifikatsiya nimani anglatadi?</b>
+<label><input type="radio" name="q5" value="a"> Quyosh energiyasining ko‘payishi</label><label><input type="radio" name="q5" value="b"> Ayrim zaharli moddalarning yuqori oziq darajalarida konsentratsiyasi ortishi</label><label><input type="radio" name="q5" value="c"> O‘simliklarning tez o‘sishi</label></div>
+<div class="quizq"><b>6. Redutsentlar qanday vazifani bajaradi?</b>
+<label><input type="radio" name="q6" value="a"> Quyosh nurini qaytaradi</label><label><input type="radio" name="q6" value="b"> Barcha hayvonlarni ovlaydi</label><label><input type="radio" name="q6" value="c"> O‘lik qoldiqlarni parchalaydi</label></div>
+<button class="action" type="submit">Natijani tekshirish</button> <button class="secondary" type="reset" id="quizReset">Tozalash</button>
+</form>
+<div class="result" id="quizResult" aria-live="polite"></div>
+</section>
+</div>
+<footer>🌍 Tabiatni asraylik — energiya oqimini tushunaylik, ifloslanishning oldini olaylik!</footer>
+</main>
+<script>
+const navButtons=document.querySelectorAll('.navbtn');
+navButtons.forEach(btn=>btn.addEventListener('click',()=>{
+ navButtons.forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+ document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));
+ document.getElementById(btn.dataset.target).classList.remove('hidden');
+}));
+const energyInput=document.getElementById('energyInput');
+function renderEnergy(){
+ const base=Number(energyInput.value),vals=[base,base*.1,base*.01,base*.001];
+ document.getElementById('energyValue').textContent=base.toLocaleString('uz-UZ')+' birlik';
+ vals.forEach((v,i)=>{
+  document.getElementById('e'+i).textContent=Number(v.toFixed(3)).toLocaleString('uz-UZ');
+  const cubes=document.getElementById('c'+i);cubes.innerHTML='';
+  const n=Math.max(1,Math.min(40,Math.round(v/base*40)));
+  for(let j=0;j<n;j++){const s=document.createElement('span');s.className='cube';cubes.appendChild(s)}
+ });
+ document.getElementById('energyBars').innerHTML=vals.map((v,i)=>`<div><b>${['O‘simlik','Chigirtka','Qurbaqa','Ilon'][i]} — ${Number(v.toFixed(3)).toLocaleString('uz-UZ')} birlik</b><div class="barwrap"><div class="bar" style="width:${Math.max(.5,v/base*100)}%"></div></div></div>`).join('');
+}
+energyInput.addEventListener('input',()=>{renderEnergy();document.getElementById('energyMessage').textContent='Yangi energiya miqdori hisoblandi. Oqimni kuzatish uchun tugmani bosing.'});
+renderEnergy();
+let energyTimer;
+document.getElementById('energyPlay').addEventListener('click',()=>{
+ clearInterval(energyTimer);const msg=document.getElementById('energyMessage');let i=0;
+ const stages=['Quyosh energiyasi o‘simlikda kimyoviy energiyaga aylanadi.','Chigirtka o‘simlik bilan oziqlanadi: energiyaning taxminan 10% i keyingi darajaga o‘tadi.','Qurbaqa chigirtkani yeydi: energiya yana kamayadi.','Ilon qurbaqani yeydi: keyingi darajaga juda kam energiya yetib boradi.'];
+ msg.textContent=stages[0];energyTimer=setInterval(()=>{i++;if(i>=stages.length){clearInterval(energyTimer);msg.textContent='Xulosa: oziq zanjiri bo‘ylab foydalanish mumkin bo‘lgan energiya kamayib boradi.'}else msg.textContent=stages[i]},1500);
+});
+document.getElementById('energyReset').addEventListener('click',()=>{clearInterval(energyTimer);energyInput.value=1000;renderEnergy();document.getElementById('energyMessage').textContent='Simulyatsiyani boshlash uchun tugmani bosing.'});
+
+const toxinInput=document.getElementById('toxinInput');
+function renderToxin(){
+ const v=Number(toxinInput.value),vals=[v,v*10,v*100,v*1000];
+ document.getElementById('toxinValue').textContent=v;
+ vals.forEach((n,i)=>{
+  document.getElementById('t'+i).textContent=n.toLocaleString('uz-UZ');
+  const box=document.getElementById('d'+i);box.innerHTML='';
+  const count=Math.min(36,Math.max(1,Math.round(n/Math.max(1,v*1000)*36)));
+  for(let j=0;j<count;j++){let dot=document.createElement('span');dot.className='dot';box.appendChild(dot)}
+ });
+}
+toxinInput.addEventListener('input',renderToxin);renderToxin();
+let toxinTimer;
+document.getElementById('toxinPlay').addEventListener('click',()=>{
+ clearInterval(toxinTimer);let i=0;const msg=document.getElementById('toxinMessage');
+ const stages=['Suvdagi ayrim zaharli moddalarni plankton va suv o‘tlari yutishi mumkin.','Mayda baliqlar ko‘plab planktonlarni yegani uchun modda ularning tanasiga o‘tadi.','Yirik baliq ko‘plab mayda baliqlar bilan oziqlanadi; ayrim moddalar unda ko‘proq to‘planishi mumkin.','Baliqxo‘r qush ko‘p baliq yeydi. Ayrim barqaror moddalar yuqori oziq darajasida yuqori konsentratsiyaga yetishi mumkin.'];
+ msg.textContent=stages[0];toxinTimer=setInterval(()=>{i++;if(i>=stages.length){clearInterval(toxinTimer);msg.textContent='Xulosa: ayrim zaharli moddalar oziq zanjiri bo‘ylab o‘tib, yuqori darajalarda ko‘proq to‘planishi mumkin.'}else msg.textContent=stages[i]},1700);
+});
+document.getElementById('toxinReset').addEventListener('click',()=>{clearInterval(toxinTimer);toxinInput.value=2;renderToxin();document.getElementById('toxinMessage').textContent='Suvdagi darajani tanlab, simulyatsiyani boshlang.'});
+
+const answers={q1:'b',q2:'a',q3:'c',q4:'b',q5:'b',q6:'c'};
+document.getElementById('quiz').addEventListener('submit',e=>{
+ e.preventDefault();let score=0,missing=0;
+ Object.entries(answers).forEach(([q,a])=>{const picked=document.querySelector(`input[name="${q}"]:checked`);if(!picked)missing++;else if(picked.value===a)score++});
+ const result=document.getElementById('quizResult');
+ result.textContent=`Natija: ${score}/6 ta to‘g‘ri javob (${Math.round(score/6*100)}%).`+(missing?` ${missing} ta savol javobsiz qoldi.`:'')+(score===6?' Ajoyib! Barcha savollar to‘g‘ri.':score>=4?' Yaxshi! Xatolarni ham ko‘rib chiqing.':' Nazariyani qayta o‘qib, yana urinib ko‘ring.');
+ result.style.color=score>=4?'#63e6a4':'#ffd166';
+});
+document.getElementById('quizReset').addEventListener('click',()=>document.getElementById('quizResult').textContent='');
+</script>
+</body>
+</html>

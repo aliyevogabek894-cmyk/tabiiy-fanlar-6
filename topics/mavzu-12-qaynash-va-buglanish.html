@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Tabiiy fan — Qaynash va bug‘lanish</title>
+<style>
+:root{--ink:#17324d;--blue:#1677c8;--cyan:#dff6ff;--orange:#ff9e43;--bg:#f3f8fc;--green:#198754}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+header{padding:34px 18px;text-align:center;color:white;background:linear-gradient(135deg,#075985,#0ea5e9,#67e8f9)}
+header h1{margin:0;font-size:clamp(1.8rem,4vw,3rem)}header p{margin:8px auto 0;max-width:800px}
+main{max-width:1100px;margin:auto;padding:20px}
+nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:16px 0 24px}
+nav a{background:white;color:#075985;border:1px solid #c6e7f6;padding:9px 14px;border-radius:999px;text-decoration:none;font-weight:bold}
+section,.card{background:white;border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 5px 18px #17324d12}
+h2{color:#075985;margin-top:0}h3{color:#0e7490}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.info{background:#f0f9ff;border-left:5px solid #0ea5e9;padding:14px;border-radius:10px}
+.warn{background:#fff7ed;border-left:5px solid #fb923c;padding:14px;border-radius:10px}
+button,select,input{font:inherit}
+button{border:0;border-radius:10px;padding:10px 15px;background:var(--blue);color:white;cursor:pointer;font-weight:bold}
+button:hover{filter:brightness(.93)}button.secondary{background:#64748b}button.orange{background:#ea580c}
+.sim-layout{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+@media(max-width:700px){.sim-layout{grid-template-columns:1fr}main{padding:12px}}
+canvas{width:100%;height:300px;background:linear-gradient(#e0f7ff 0 48%,#fef3c7 48%);border:2px solid #bae6fd;border-radius:14px;display:block}
+.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}
+label{font-weight:bold}input[type=range]{width:min(260px,100%)}
+.stat{background:#ecfeff;border-radius:12px;padding:12px;text-align:center}.stat strong{display:block;font-size:1.5rem;color:#0369a1}
+table{width:100%;border-collapse:collapse;margin-top:12px}th,td{padding:10px;border:1px solid #d5e5ef;text-align:left}th{background:#e0f2fe}
+.quiz-q{padding:15px;border:1px solid #dbeafe;border-radius:12px;margin:12px 0}.quiz-q label{display:block;font-weight:normal;margin:6px 0;cursor:pointer}
+#result{font-size:1.1rem;font-weight:bold;margin-top:14px}
+footer{text-align:center;padding:24px;color:#527086}
+.pill{display:inline-block;padding:4px 10px;border-radius:999px;background:#dbeafe;color:#1d4ed8;font-size:.85rem;font-weight:bold}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header>
+  <span class="pill">6-sinf • Tabiiy fan</span>
+  <h1>Qaynash va bug‘lanish</h1>
+  <p>Suyuqlik qanday qilib gazga aylanadi? Interaktiv simulyatsiya, hayotiy misollar va mini-test orqali o‘rganing.</p>
+</header>
+<main>
+<nav>
+<a href="#nazariya">Nazariya</a><a href="#simulyatsiya">Simulyatsiya</a><a href="#taqqoslash">Taqqoslash</a><a href="#hayot">Hayotda</a><a href="#test">Mini-test</a>
+</nav>
+<section id="nazariya">
+<h2>1. Asosiy tushunchalar</h2>
+<div class="grid">
+<div class="card"><h3>💨 Bug‘lanish</h3><p><b>Bug‘lanish</b> — suyuqlikning sirtidan molekulalar ajralib chiqib, gaz holatiga o‘tishidir. U har qanday haroratda sodir bo‘lishi mumkin.</p><p><b>Misol:</b> ho‘l kiyimning qurishi, ko‘l yuzasidan suvning bug‘lanishi.</p></div>
+<div class="card"><h3>♨️ Qaynash</h3><p><b>Qaynash</b> — suyuqlikning butun hajmida bug‘ pufakchalari hosil bo‘lishi bilan kechadigan jadal bug‘lanish jarayonidir.</p><p><b>Misol:</b> isitilayotgan choynakdagi suvning pufakchalar hosil qilib qaynashi.</p></div>
+<div class="card"><h3>🌡️ Qaynash harorati</h3><p>Normal atmosfera bosimida toza suv taxminan <b>100 °C</b> da qaynaydi. Bosim o‘zgarsa, qaynash harorati ham o‘zgaradi.</p></div>
+</div>
+<div class="info"><b>Molekulalar qanday harakatlanadi?</b> Suyuqlik molekulalari doimo harakatda. Yetarli energiyaga ega sirt molekulalari suyuqlikni tark etadi — bu bug‘lanish. Qaynashda esa suyuqlik ichida ham bug‘ pufakchalari hosil bo‘ladi.</div>
+</section>
+
+<section id="simulyatsiya">
+<h2>2. Interaktiv simulyatsiya</h2>
+<p>Rejimni tanlang, haroratni o‘zgartiring va <b>“Boshlash”</b> tugmasini bosing. Rangli doiralar — suyuqlik molekulalarining soddalashtirilgan modeli.</p>
+<div class="sim-layout">
+<div>
+<canvas id="scene" width="600" height="360" aria-label="Bug‘lanish va qaynash simulyatsiyasi"></canvas>
+<div class="controls">
+<label for="mode">Jarayon:</label>
+<select id="mode"><option value="evap">Bug‘lanish</option><option value="boil">Qaynash</option></select>
+</div>
+<div class="controls">
+<label for="temp">Harorat: <span id="tempVal">25</span> °C</label>
+<input id="temp" type="range" min="10" max="100" value="25">
+</div>
+<div class="controls">
+<button id="start">▶ Boshlash</button><button id="pause" class="secondary">⏸ To‘xtatish</button><button id="reset" class="orange">↺ Qayta boshlash</button>
+</div>
+</div>
+<div>
+<div class="grid">
+<div class="stat"><strong id="state">Sekin bug‘lanish</strong><span>Jarayon holati</span></div>
+<div class="stat"><strong id="speed">Past</strong><span>Molekulalar harakati</span></div>
+</div>
+<h3>Hozir nimani kuzatyapsiz?</h3>
+<p id="explain">Suyuqlik yuzasidagi ayrim molekulalar havoga chiqmoqda. Pufakchalar yo‘q.</p>
+<div class="warn">Model tushuntirish uchun soddalashtirilgan. Harorat slayderi haqiqiy laboratoriya o‘lchovi emas.</div>
+</div>
+</div>
+</section>
+
+<section id="taqqoslash">
+<h2>3. Bug‘lanish va qaynash farqi</h2>
+<table>
+<thead><tr><th>Belgi</th><th>Bug‘lanish</th><th>Qaynash</th></tr></thead>
+<tbody>
+<tr><td>Qayerda sodir bo‘ladi?</td><td>Suyuqlik sirtida</td><td>Butun hajmida</td></tr>
+<tr><td>Qaysi haroratda?</td><td>Har qanday haroratda</td><td>Muayyan qaynash haroratida</td></tr>
+<tr><td>Ko‘rinishi</td><td>Odatda sezilarsiz, pufakchasiz</td><td>Pufakchalar paydo bo‘ladi</td></tr>
+<tr><td>Tezligiga ta’sir qiluvchi omillar</td><td>Harorat, sirt maydoni, shamol, suyuqlik turi</td><td>Asosan bosim va berilayotgan issiqlik</td></tr>
+<tr><td>Harorat</td><td>Bug‘lanish suyuqlikni sovitishi mumkin</td><td>Toza modda qaynab turganda, berilgan bosimda harorat deyarli o‘zgarmaydi</td></tr>
+</tbody></table>
+</section>
+
+<section id="hayot">
+<h2>4. Kundalik hayotdan misollar</h2>
+<div class="grid">
+<div class="info"><b>👕 Kiyim qurishi</b><br>Quyosh va shamol bug‘lanishni tezlashtiradi. Kiyimning ochiq yoyilishi sirt maydonini oshiradi.</div>
+<div class="info"><b>🥵 Terlash</b><br>Ter bug‘langanda tanadan issiqlik oladi. Shu sababli odam salqinlikni his qiladi.</div>
+<div class="info"><b>🏔️ Tog‘da suv qaynashi</b><br>Balandlikda atmosfera bosimi pastroq bo‘lgani uchun suv 100 °C dan past haroratda qaynashi mumkin.</div>
+<div class="info"><b>❄️ Qor va muz</b><br>Qattiq moddaning suyuqlikka aylanmasdan gazga o‘tishi sublimatsiya deyiladi. Bu bug‘lanishdan boshqa jarayon.</div>
+</div>
+<h3>O‘ylab ko‘ring</h3>
+<p>Bir xil miqdordagi suv keng likopcha va tor stakanga solindi. Qaysi biridagi suv tezroq bug‘lanadi?</p>
+<button class="secondary" onclick="document.getElementById('answer').hidden=false">Javobni ko‘rish</button>
+<p id="answer" hidden><b>Javob:</b> keng likopchadagi suv tezroq bug‘lanadi, chunki uning ochiq sirt maydoni kattaroq.</p>
+</section>
+
+<section id="test">
+<h2>5. Bilimingizni sinab ko‘ring</h2>
+<p>Har bir savol uchun bitta javobni tanlang, so‘ng “Natijani tekshirish” tugmasini bosing.</p>
+<form id="quiz">
+<div class="quiz-q"><b>1. Bug‘lanish qayerda sodir bo‘ladi?</b>
+<label><input type="radio" name="q1" value="a"> Suyuqlikning faqat tubida</label>
+<label><input type="radio" name="q1" value="b"> Suyuqlik sirtida</label>
+<label><input type="radio" name="q1" value="c"> Faqat 100 °C da</label></div>
+<div class="quiz-q"><b>2. Qaynashning muhim belgisi qaysi?</b>
+<label><input type="radio" name="q2" value="a"> Suyuqlik ichida bug‘ pufakchalari hosil bo‘ladi</label>
+<label><input type="radio" name="q2" value="b"> Suyuqlik umuman bug‘lanmaydi</label>
+<label><input type="radio" name="q2" value="c"> Faqat sovuqda sodir bo‘ladi</label></div>
+<div class="quiz-q"><b>3. Suvning bug‘lanishini qaysi omil tezlashtirishi mumkin?</b>
+<label><input type="radio" name="q3" value="a"> Sirt maydonini kamaytirish</label>
+<label><input type="radio" name="q3" value="b"> Shamolni to‘xtatish</label>
+<label><input type="radio" name="q3" value="c"> Haroratni oshirish</label></div>
+<div class="quiz-q"><b>4. Normal atmosfera bosimida suv taxminan necha °C da qaynaydi?</b>
+<label><input type="radio" name="q4" value="a"> 0 °C</label>
+<label><input type="radio" name="q4" value="b"> 100 °C</label>
+<label><input type="radio" name="q4" value="c"> 50 °C</label></div>
+<div class="quiz-q"><b>5. Ter bug‘langanda odam nega salqinlikni sezadi?</b>
+<label><input type="radio" name="q5" value="a"> Bug‘lanish tanadan issiqlik oladi</label>
+<label><input type="radio" name="q5" value="b"> Tana issiqlik ishlab chiqarmay qo‘yadi</label>
+<label><input type="radio" name="q5" value="c"> Ter muzga aylanadi</label></div>
+<button type="button" id="check">Natijani tekshirish</button> <button type="reset" class="secondary" id="clear">Qayta ishlash</button>
+</form>
+<div id="result" role="status"></div>
+</section>
+<section>
+<h2>6. Dars yakuni</h2>
+<ul>
+<li>Bug‘lanish suyuqlik sirtida va har qanday haroratda sodir bo‘lishi mumkin.</li>
+<li>Qaynash suyuqlikning butun hajmida bug‘ pufakchalari hosil bo‘lishi bilan kechadi.</li>
+<li>Harorat, sirt maydoni va shamol bug‘lanish tezligiga ta’sir qiladi.</li>
+<li>Qaynash harorati tashqi bosimga bog‘liq.</li>
+</ul>
+</section>
+</main>
+<footer>6-sinf Tabiiy fan • Interaktiv o‘quv materiali</footer>
+<script>
+const canvas=document.getElementById('scene'),ctx=canvas.getContext('2d');
+const mode=document.getElementById('mode'),temp=document.getElementById('temp');
+const tempVal=document.getElementById('tempVal'),state=document.getElementById('state'),speed=document.getElementById('speed'),explain=document.getElementById('explain');
+let particles=[],vapors=[],running=true,frame=0;
+function resetParticles(){particles=[];vapors=[];for(let i=0;i<70;i++)particles.push({x:65+Math.random()*470,y:165+Math.random()*130,vx:(Math.random()-.5)*1.4,vy:(Math.random()-.5)*1.4,r:4+Math.random()*2});frame=0}
+function updateText(){
+ const t=+temp.value,boil=mode.value==='boil';
+ tempVal.textContent=t;
+ if(boil){state.textContent=t>=100?'Qaynash modeli':'Isitilmoqda';speed.textContent=t>=100?'Juda tez':t>=60?'Tez':'O‘rtacha';explain.textContent=t>=100?'Pufakchalar suyuqlik ichida paydo bo‘lib, yuqoriga ko‘tariladi. Modelda 100 °C — odatiy bosimdagi suv uchun ko‘rsatkich.':'Suyuqlik qizimoqda. Harorat qaynash nuqtasiga yetmaguncha qaynash to‘liq boshlanmaydi.'}
+ else {state.textContent=t>=70?'Tez bug‘lanish':t>=35?'O‘rtacha bug‘lanish':'Sekin bug‘lanish';speed.textContent=t>=70?'Tez':t>=35?'O‘rtacha':'Past';explain.textContent='Suyuqlik sirtidan ayrim molekulalar havoga chiqadi. Bug‘lanish uchun qaynash haroratigacha isitish shart emas.'}
+}
+function draw(){
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ ctx.fillStyle='#bae6fd';ctx.fillRect(0,0,600,175);
+ ctx.fillStyle='#38bdf8';ctx.fillRect(45,165,510,150);
+ ctx.strokeStyle='#0369a1';ctx.lineWidth=4;ctx.strokeRect(45,165,510,150);
+ ctx.fillStyle='#f59e0b';ctx.fillRect(210,322,180,12);
+ ctx.fillStyle='#92400e';ctx.font='bold 15px Arial';ctx.fillText('Issiqlik manbai',244,350);
+ ctx.fillStyle='#075985';ctx.font='bold 16px Arial';ctx.fillText(mode.value==='boil'?'QAYNASH MODELI':'BUG‘LANISH MODELI',20,28);
+ let boil=mode.value==='boil',t=+temp.value,activity=(.4+t/55);
+ particles.forEach(p=>{
+  if(running){p.x+=p.vx*activity;p.y+=p.vy*activity;
+   if(p.x<52||p.x>548)p.vx*=-1;
+   if(p.y<171||p.y>309)p.vy*=-1;
+   if(boil&&t>=95&&Math.random()<.025){vapors.push({x:p.x,y:p.y,r:3+Math.random()*4,life:55})}
+   if(!boil&&Math.random()<t/8000&&p.y<190){vapors.push({x:p.x,y:p.y,r:3,life:60});p.y=290}
+  }
+  ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='#075985';ctx.fill();
+ });
+ vapors.forEach(v=>{if(running){v.y-=1.1;v.life--}ctx.beginPath();ctx.arc(v.x,v.y,v.r,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,.8)';ctx.fill();ctx.strokeStyle='#0284c7';ctx.stroke()});
+ vapors=vapors.filter(v=>v.life>0&&v.y>30);
+ if(running)frame++;
+ requestAnimationFrame(draw);
+}
+document.getElementById('start').onclick=()=>{running=true};
+document.getElementById('pause').onclick=()=>{running=false};
+document.getElementById('reset').onclick=()=>{resetParticles();running=true};
+mode.onchange=()=>{resetParticles();updateText()};
+temp.oninput=updateText;
+resetParticles();updateText();draw();
+document.getElementById('check').onclick=()=>{
+ const answers={q1:'b',q2:'a',q3:'c',q4:'b',q5:'a'};let score=0,answered=0;
+ for(const [q,a] of Object.entries(answers)){const chosen=document.querySelector('input[name="'+q+'"]:checked');if(chosen){answered++;if(chosen.value===a)score++}}
+ const result=document.getElementById('result');
+ if(answered<5){result.textContent='Iltimos, barcha 5 ta savolga javob bering. Hozircha '+answered+' ta savol belgilangan.';result.style.color='#b45309';return}
+ result.textContent='Natija: '+score+'/5. '+(score===5?'Ajoyib! Mavzuni juda yaxshi tushunibsiz.':score>=3?'Yaxshi! Xatolarni ko‘rib, mavzuni yana takrorlang.':'Mavzuni yana bir bor o‘qing va qayta urinib ko‘ring.');
+ result.style.color=score>=4?'#198754':'#b45309';
+};
+document.getElementById('clear').onclick=()=>{document.getElementById('result').textContent=''};
+</script>
+</body>
+</html>

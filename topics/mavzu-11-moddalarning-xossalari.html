@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Tabiiy fan — Moddalarning xossalari</title>
+<style>
+:root{--bg:#eef5ff;--ink:#17233c;--blue:#2463eb;--teal:#0f9f91;--gold:#f5a623;--card:#fff;--muted:#61708b}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(140deg,#eaf2ff,#effcf8);color:var(--ink);line-height:1.6}
+header{background:linear-gradient(120deg,#1747b8,#0d9488);color:#fff;padding:30px 18px;text-align:center}
+header h1{margin:0;font-size:clamp(1.7rem,4vw,2.7rem)}header p{max-width:850px;margin:10px auto 0}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:12px;background:#fff;position:sticky;top:0;z-index:5;box-shadow:0 3px 12px #10264b18}
+nav a{padding:8px 12px;border-radius:22px;background:#eaf0ff;color:#1747b8;text-decoration:none;font-weight:bold;font-size:.92rem}
+main{max-width:1100px;margin:24px auto;padding:0 15px}.card{background:var(--card);padding:22px;border-radius:18px;margin:18px 0;box-shadow:0 7px 25px #233b6010;border:1px solid #e5ebf5}
+h2{margin-top:0;color:#1747b8}h3{color:#087f76}.tag{display:inline-block;background:#e5f8f5;color:#087f76;padding:4px 10px;border-radius:20px;font-weight:bold;font-size:.85rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.mini{background:#f5f8ff;padding:15px;border-radius:13px}.emoji{font-size:2rem}
+button,select,input{font:inherit}button{border:0;background:var(--blue);color:#fff;padding:10px 15px;border-radius:10px;cursor:pointer;font-weight:bold}button:hover{filter:brightness(.93)}button.secondary{background:#e6edff;color:#1747b8}button.green{background:var(--teal)}.control{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}.readout{font-size:1.15rem;font-weight:bold;color:#087f76}.stage{background:#f4f8ff;border:1px solid #dbe6fa;border-radius:14px;padding:18px;text-align:center;min-height:150px}
+.balloon{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:radial-gradient(circle at 35% 25%,#ff9db4,#ed3970 65%,#ad1748);color:white;font-weight:bold;box-shadow:inset -8px -8px 14px #700b3040;transition:width .3s,height .3s}
+.scale{height:16px;background:#dce5f5;border-radius:20px;overflow:hidden;max-width:420px;margin:12px auto}.scale span{display:block;height:100%;width:10%;background:linear-gradient(90deg,#2b73f6,#0fbd9f);transition:width .3s}
+.particles{height:115px;position:relative;background:#eaf2ff;border-radius:12px;overflow:hidden;margin:12px 0}.particle{position:absolute;width:9px;height:9px;background:#f5a623;border-radius:50%;animation:move 2s infinite alternate ease-in-out}
+@keyframes move{from{transform:translate(0,0)}to{transform:translate(22px,17px)}}
+.thermo{height:18px;background:linear-gradient(90deg,#7dd3fc,#facc15,#f97316,#dc2626);border-radius:20px;margin:15px 0;position:relative}.marker{position:absolute;top:-6px;width:4px;height:30px;background:#17233c;left:1%;transition:left .25s}
+.material{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#f6f8fc;padding:10px 12px;border-radius:10px;margin:7px 0}.bulb{font-size:3.8rem;filter:grayscale(1);transition:.2s}.bulb.on{filter:none;text-shadow:0 0 22px #ffd43b}.circuit{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px;background:#f4f8ff;border-radius:12px}.wire{height:4px;width:35px;background:#64748b}.quiz-q{padding:14px;border-bottom:1px solid #e7edf6}.quiz-q label{display:block;margin:5px 0;cursor:pointer}.result{font-size:1.15rem;font-weight:bold;margin-top:12px}
+footer{text-align:center;padding:25px;color:var(--muted)}.note{background:#fff7df;border-left:5px solid var(--gold);padding:12px 15px;border-radius:8px}.good{color:#087f44}.bad{color:#c62828}
+@media(max-width:600px){.card{padding:16px}nav a{font-size:.8rem;padding:7px 9px}.material{align-items:flex-start;flex-direction:column}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header>
+  <div class="tag">6-SINF • TABIIY FAN</div>
+  <h1>🔬 Moddalarning xossalari</h1>
+  <p>Hayotiy misollar, zarrachalar modeli va uchta interaktiv virtual tajriba bilan mavzuni o‘rganamiz.</p>
+</header>
+<nav>
+  <a href="#nazariya">Nazariya</a><a href="#gaz">Gazlar massasi</a><a href="#holat">Agregat holat</a><a href="#issiqlik">Issiqlik</a><a href="#elektr">Elektr</a><a href="#test">Mini-test</a>
+</nav>
+<main>
+<section class="card" id="nazariya">
+<h2>📘 1. Modda va uning xossalari</h2>
+<p><b>Modda</b> — jismlarni tashkil etadigan material. Masalan, qoshiq po‘latdan, stakan shishadan, daftar qog‘ozdan tayyorlanadi.</p>
+<div class="grid">
+ <div class="mini"><div class="emoji">🧊</div><b>Fizik xossalar</b><p>Rang, hid, qattiqlik, zichlik, erish harorati, issiqlik va elektr o‘tkazuvchanlik. Moddaning tarkibi o‘zgarmaydi.</p></div>
+ <div class="mini"><div class="emoji">🧪</div><b>Kimyoviy xossalar</b><p>Moddaning boshqa moddalarga aylanish qobiliyati. Masalan, temirning zanglashi yoki yog‘ochning yonishi.</p></div>
+ <div class="mini"><div class="emoji">⚖️</div><b>Massa va hajm</b><p>Moddalar massaga ega va joy egallaydi. Gazlar ham bundan mustasno emas.</p></div>
+</div>
+<div class="note"><b>Xavfsizlik:</b> darsdagi virtual tajribalar kompyuter simulyatsiyasidir. Uyda elektr tarmog‘i, olov yoki qaynoq suv bilan tajriba qilmang; faqat kattalar nazoratida ishlang.</div>
+</section>
+
+<section class="card" id="gaz">
+<h2>🎈 2. Gazlar ham massaga egami?</h2>
+<p>Ha. Havo gazlar aralashmasi bo‘lib, massa va hajmga ega. To‘pni damlaganda ichiga qo‘shimcha havo kiradi, shuning uchun uning massasi ortadi. Gaz zarrachalari doimo tartibsiz harakat qiladi va idish devorlariga urilib bosim hosil qiladi.</p>
+<div class="stage">
+ <div id="balloon" class="balloon" style="width:70px;height:70px">🎈</div>
+ <div class="readout" id="massText">Shartli massa: 1.2 g</div>
+ <div class="scale"><span id="massBar"></span></div>
+ <div class="particles" id="gasParticles" aria-label="Gaz zarrachalari animatsiyasi"></div>
+ <div class="control" style="justify-content:center"><button id="pump">➕ Havo kiriting</button><button class="secondary" id="release">➖ Havoni chiqaring</button><button class="secondary" id="resetGas">Qayta boshlash</button></div>
+ <p id="gasExplain">Sharchada havo kam. Nasos tugmasini bosing!</p>
+</div>
+<p><b>Hayotiy misol:</b> futbol to‘pi yoki velosiped shinasi damlanganda ichiga ko‘proq havo kiradi. Shuning uchun massasi biroz ortadi.</p>
+</section>
+
+<section class="card" id="holat">
+<h2>🌡️ 3. Bir xil haroratda moddalar turli holatda bo‘lishi mumkin</h2>
+<p>Moddalar asosan uch agregat holatda uchraydi: <b>qattiq, suyuq va gazsimon</b>. Har bir moddaning erish va qaynash harorati har xil.</p>
+<div class="grid">
+ <div class="mini"><div class="emoji">🧊</div><b>Suv</b><p>Normal atmosfera bosimida 0°C da muz eriydi, 100°C da suv qaynaydi.</p></div>
+ <div class="mini"><div class="emoji">🍫</div><b>Shokolad</b><p>Tarkibiga qarab taxminan 30–40°C atrofida yumshab, erishi mumkin.</p></div>
+ <div class="mini"><div class="emoji">🔩</div><b>Temir</b><p>Taxminan 1538°C da eriydi.</p></div>
+</div>
+<div class="stage">
+ <label for="temp"><b>Haroratni o‘zgartiring:</b> <span id="tempVal" class="readout">20°C</span></label>
+ <input id="temp" type="range" min="-20" max="1600" value="20" style="width:100%">
+ <div class="thermo"><span class="marker" id="marker"></span></div>
+ <div class="grid">
+  <div class="mini"><div class="emoji" id="waterIcon">💧</div><b>Suv:</b> <span id="waterState">suyuq</span></div>
+  <div class="mini"><div class="emoji" id="chocIcon">🍫</div><b>Shokolad:</b> <span id="chocState">qattiq</span></div>
+  <div class="mini"><div class="emoji" id="ironIcon">🔩</div><b>Temir:</b> <span id="ironState">qattiq</span></div>
+ </div>
+ <p id="tempExplain">Xona haroratida suv suyuq, shokolad odatda qattiq, temir esa qattiq holatda bo‘ladi.</p>
+</div>
+<p class="note">Eslatma: suvning erish/qaynash harorati bosimga bog‘liq. Bu simulyatsiyada odatiy atmosfera bosimi qabul qilingan. Juda yuqori haroratdagi holatlar soddalashtirilgan modeldir.</p>
+</section>
+
+<section class="card" id="issiqlik">
+<h2>🔥 4. Issiqlik o‘tkazuvchanlik</h2>
+<p><b>Issiqlik o‘tkazuvchanlik</b> — issiqlikning modda orqali uzatilish xususiyati. Mis va alyuminiy kabi metallar odatda yaxshi o‘tkazuvchi; yog‘och, jun, plastmassa va havo esa yomonroq o‘tkazadi.</p>
+<div class="grid">
+ <div class="mini"><div class="emoji">🥄</div><b>Metall qoshiq</b><p>Issiqlikni tez uzatadi. Shu sababli qizigan metall dastakka ehtiyot bo‘lish kerak.</p></div>
+ <div class="mini"><div class="emoji">🥢</div><b>Yog‘och qoshiq</b><p>Issiqlikni sekinroq uzatadi. Shu sababli ko‘plab oshxona anjomlari yog‘och yoki issiqqa chidamli plastmassadan tayyorlanadi.</p></div>
+</div>
+<div class="stage">
+ <p>Virtual issiq suv idishiga qoshiq uchlarini joylashtiring.</p>
+ <div class="grid">
+  <div class="mini"><div class="emoji">♨️</div>Issiq suv<br><span class="readout">80°C</span></div>
+  <div class="mini"><div class="emoji">🥄</div>Metall qoshiq<br><div class="scale"><span id="metalBar" style="width:10%"></span></div><b id="metalTemp">20°C</b></div>
+  <div class="mini"><div class="emoji">🥢</div>Yog‘och qoshiq<br><div class="scale"><span id="woodBar" style="width:10%"></span></div><b id="woodTemp">20°C</b></div>
+ </div>
+ <div class="control" style="justify-content:center"><button class="green" id="heatBtn">▶ Isitishni boshlash</button><button class="secondary" id="heatReset">Qayta boshlash</button></div>
+ <p id="heatExplain">Metall qoshiqning harorati tezroq ortadi. Bu sifat jihatidan ko‘rsatilgan model.</p>
+</div>
+<p><b>Nima uchun qishda qalin kiyim issiq tutadi?</b> Kiyim tolalari orasida qolgan havo issiqlikni yomon o‘tkazadi. Qushlar patlarini hurpaytirganda ham patlar orasida havo qatlami hosil bo‘ladi.</p>
+</section>
+
+<section class="card" id="elektr">
+<h2>⚡ 5. Elektr o‘tkazuvchanlik</h2>
+<p><b>Elektr o‘tkazuvchanlik</b> — moddaning elektr tokini o‘tkazish qobiliyati. Ko‘plab metallar elektr tokini yaxshi o‘tkazadi. Rezina, shisha va quruq plastmassa esa odatda izolyator hisoblanadi.</p>
+<div class="stage">
+ <p>Batareya va lampochka orasiga tekshiriladigan materialni ulang:</p>
+ <div class="circuit">
+  <div class="mini"><div class="emoji">🔋</div>Batareya</div><div class="wire"></div>
+  <div><div class="bulb" id="bulb">💡</div><b id="bulbStatus">Lampochka o‘chiq</b></div><div class="wire"></div>
+  <div class="mini"><div class="emoji">🧩</div><span id="sampleName">Mis sim</span></div>
+ </div>
+ <div class="control" style="justify-content:center"><label for="material">Material:</label>
+ <select id="material"><option value="copper">Mis sim</option><option value="iron">Temir mix</option><option value="aluminum">Alyuminiy folga</option><option value="plastic">Plastmassa</option><option value="rubber">Rezina</option><option value="wood">Quruq yog‘och</option><option value="glass">Shisha</option></select></div>
+ <div class="particles" id="electronArea"></div>
+ <p id="electricExplain">Mis elektr tokini yaxshi o‘tkazadi, shuning uchun zanjir yopiq bo‘lsa lampochka yonadi.</p>
+</div>
+<div class="note"><b>Muhim:</b> bu faqat past kuchlanishli virtual model. Haqiqiy elektr rozetkasi bilan tajriba qilmang. Tuzli suv va inson tanasi ham elektr tokini o‘tkazishi mumkin — bu xavf tug‘diradi.</div>
+</section>
+
+<section class="card" id="test">
+<h2>🧠 6. Bilimingizni sinab ko‘ring</h2>
+<form id="quiz">
+<div class="quiz-q"><b>1. Gazlar haqida qaysi fikr to‘g‘ri?</b>
+<label><input type="radio" name="q1" value="a"> Gazning massasi bo‘lmaydi</label>
+<label><input type="radio" name="q1" value="b"> Gaz massaga va hajmga ega</label>
+<label><input type="radio" name="q1" value="c"> Gaz faqat ko‘rinadigan bo‘ladi</label></div>
+<div class="quiz-q"><b>2. Xona haroratida qaysi modda gaz holatida bo‘ladi?</b>
+<label><input type="radio" name="q2" value="a"> Temir</label>
+<label><input type="radio" name="q2" value="b"> Suv</label>
+<label><input type="radio" name="q2" value="c"> Kislorod</label></div>
+<div class="quiz-q"><b>3. Qaysi material elektr tokini odatda yaxshi o‘tkazadi?</b>
+<label><input type="radio" name="q3" value="a"> Mis</label>
+<label><input type="radio" name="q3" value="b"> Rezina</label>
+<label><input type="radio" name="q3" value="c"> Quruq plastmassa</label></div>
+<div class="quiz-q"><b>4. Qalin kiyimning issiq tutishiga nima yordam beradi?</b>
+<label><input type="radio" name="q4" value="a"> Kiyim ichidagi havo qatlami</label>
+<label><input type="radio" name="q4" value="b"> Kiyimning elektr toki chiqarishi</label>
+<label><input type="radio" name="q4" value="c"> Kiyimning suvga aylanishi</label></div>
+<div class="quiz-q"><b>5. Temir taxminan nechchi °C da eriydi?</b>
+<label><input type="radio" name="q5" value="a"> 0°C</label>
+<label><input type="radio" name="q5" value="b"> 100°C</label>
+<label><input type="radio" name="q5" value="c"> 1538°C</label></div>
+<button type="submit">Javoblarni tekshirish</button> <button type="button" class="secondary" id="clearQuiz">Tozalash</button>
+<div class="result" id="quizResult" aria-live="polite"></div>
+</form>
+</section>
+
+<section class="card">
+<h2>🏠 Uyga vazifa</h2>
+<ol>
+<li>Uyda uchta qattiq, ikkita suyuq va ikkita gazsimon moddaga misol yozing.</li>
+<li>Nima uchun qozonlar ko‘pincha metalldan, dastaklari esa issiqlikni yomon o‘tkazuvchi materiallardan tayyorlanadi?</li>
+<li>Mis sim va plastmassa nima sababdan elektr o‘tkazuvchanligi bo‘yicha farq qiladi?</li>
+<li>O‘zingiz tanlagan moddaning rangi, qattiqligi, eruvchanligi yoki elektr/issiqlik o‘tkazuvchanligi haqida kuzatuv yozing. Xavfli tajribalar o‘tkazmang.</li>
+</ol>
+</section>
+</main>
+<footer>6-sinf Tabiiy fan • Interaktiv o‘quv materiali</footer>
+<script>
+const gasParticles=document.getElementById('gasParticles');
+for(let i=0;i<22;i++){let p=document.createElement('span');p.className='particle';p.style.left=(Math.random()*94)+'%';p.style.top=(Math.random()*80)+'%';p.style.animationDelay=(Math.random()*2)+'s';p.style.animationDuration=(1+Math.random()*2)+'s';gasParticles.appendChild(p)}
+let air=0;
+function renderGas(){let size=70+air*12;document.getElementById('balloon').style.width=size+'px';document.getElementById('balloon').style.height=size+'px';document.getElementById('massText').textContent='Shartli massa: '+(1.2+air*.45).toFixed(2)+' g';document.getElementById('massBar').style.width=Math.min(100,10+air*9)+'%';document.getElementById('gasExplain').textContent=air===0?'Sharchada havo kam. Nasos tugmasini bosing!':`Havo miqdori ${air} bosqichga oshdi. Shartli massa ortdi, zarrachalar devorlarga urilib bosim hosil qiladi.`}
+document.getElementById('pump').onclick=()=>{air=Math.min(10,air+1);renderGas()};document.getElementById('release').onclick=()=>{air=Math.max(0,air-1);renderGas()};document.getElementById('resetGas').onclick=()=>{air=0;renderGas()};
+const temp=document.getElementById('temp');
+function renderTemp(){let t=+temp.value;document.getElementById('tempVal').textContent=t+'°C';document.getElementById('marker').style.left=((t+20)/1620*98)+'%';
+let ws=t<0?'qattiq (muz)':t<100?'suyuq':'gaz (bug‘)';let cs=t<32?'qattiq':t<40?'yumshayotgan / eriyotgan':'erigan';let is=t<1538?'qattiq':'suyuq';
+document.getElementById('waterState').textContent=ws;document.getElementById('chocState').textContent=cs;document.getElementById('ironState').textContent=is;
+document.getElementById('waterIcon').textContent=t<0?'🧊':t<100?'💧':'☁️';document.getElementById('chocIcon').textContent=t<32?'🍫':t<40?'🍫':'🥣';document.getElementById('ironIcon').textContent=t<1538?'🔩':'🌋';
+document.getElementById('tempExplain').textContent=t<0?'Suv muz holatida. Harorat 0°C ga yaqinlashganda muz eriy boshlaydi.':t<32?'Suv suyuq, shokolad odatda qattiq, temir qattiq holatda.':t<40?'Shokolad yumshab, eriy boshlashi mumkin; suv suyuq, temir qattiq.':t<100?'Shokolad erigan; suv suyuq, temir esa qattiq.':t<1538?'Normal bosimda suv bug‘ holatida, temir esa qattiq holatda.':'Temir erish haroratiga yetdi va suyuq holatga o‘tadi. Model soddalashtirilgan.'}
+temp.addEventListener('input',renderTemp);renderTemp();
+let heating=false,heat=0,timer=null;
+function renderHeat(){document.getElementById('metalTemp').textContent=Math.round(20+heat*.6)+'°C';document.getElementById('woodTemp').textContent=Math.round(20+heat*.18)+'°C';document.getElementById('metalBar').style.width=Math.min(100,10+heat*1.4)+'%';document.getElementById('woodBar').style.width=Math.min(100,10+heat*.5)+'%';document.getElementById('heatExplain').textContent=heat===0?'Metall qoshiqning harorati tezroq ortadi. Bu sifat jihatidan ko‘rsatilgan model.':'Metall qoshiq yog‘ochga qaraganda tezroq qizimoqda. Raqamlar tushuntirish uchun shartli ko‘rsatkichlardir.'}
+document.getElementById('heatBtn').onclick=()=>{if(timer){clearInterval(timer);timer=null;document.getElementById('heatBtn').textContent='▶ Davom ettirish';return}document.getElementById('heatBtn').textContent='⏸ To‘xtatish';timer=setInterval(()=>{heat=Math.min(100,heat+2);renderHeat();if(heat>=100){clearInterval(timer);timer=null;document.getElementById('heatBtn').textContent='▶ Qayta isitish'}},150)};
+document.getElementById('heatReset').onclick=()=>{clearInterval(timer);timer=null;heat=0;renderHeat();document.getElementById('heatBtn').textContent='▶ Isitishni boshlash'};renderHeat();
+const mat=document.getElementById('material');const electronArea=document.getElementById('electronArea');
+for(let i=0;i<18;i++){let p=document.createElement('span');p.className='particle';p.style.left=(Math.random()*94)+'%';p.style.top=(Math.random()*80)+'%';p.style.animationDelay=(Math.random()*2)+'s';electronArea.appendChild(p)}
+function renderElectric(){let names={copper:'Mis sim',iron:'Temir mix',aluminum:'Alyuminiy folga',plastic:'Plastmassa',rubber:'Rezina',wood:'Quruq yog‘och',glass:'Shisha'};let conductive=['copper','iron','aluminum'].includes(mat.value);document.getElementById('sampleName').textContent=names[mat.value];document.getElementById('bulb').classList.toggle('on',conductive);document.getElementById('bulbStatus').textContent=conductive?'Lampochka yondi':'Lampochka o‘chiq';document.getElementById('electricExplain').textContent=conductive?names[mat.value]+' elektr tokini yaxshi o‘tkazadi, shuning uchun virtual zanjirda lampochka yonadi.':'Bu modelda '+names[mat.value].toLowerCase()+' izolyator sifatida ko‘rsatilgan, shuning uchun zanjirda tok o‘tmaydi.';electronArea.style.opacity=conductive?'1':'.25';}
+mat.addEventListener('change',renderElectric);renderElectric();
+document.getElementById('quiz').addEventListener('submit',e=>{e.preventDefault();let ans={q1:'b',q2:'c',q3:'a',q4:'a',q5:'c'},score=0;for(let q in ans){let el=document.querySelector(`input[name="${q}"]:checked`);if(el&&el.value===ans[q])score++}let r=document.getElementById('quizResult');r.textContent=`Natija: ${score}/5 ta to‘g‘ri javob. `+(score===5?'Ajoyib! Mavzuni juda yaxshi tushunibsiz.':score>=3?'Yaxshi! Noto‘g‘ri javoblarni qayta ko‘rib chiqing.':'Nazariyani yana bir bor o‘qing va qayta urinib ko‘ring.');r.className='result '+(score>=4?'good':'bad')});
+document.getElementById('clearQuiz').onclick=()=>{document.getElementById('quiz').reset();document.getElementById('quizResult').textContent='';};
+</script>
+</body>
+</html>

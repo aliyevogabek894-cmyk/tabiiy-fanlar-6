@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Tabiiy fan — Qon aylanish sistemasi</title>
+<style>
+:root{--green:#16834a;--light:#eaf8ef;--dark:#143d2a;--red:#e94b5b;--blue:#3286d8;--gold:#f0b429}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4faf6;color:#20352a;line-height:1.55}
+header{background:linear-gradient(120deg,#116b3d,#28a765);color:white;padding:28px 16px;text-align:center}
+header h1{margin:0 0 8px;font-size:clamp(26px,5vw,42px)}header p{margin:0 auto;max-width:850px}
+main{max-width:1100px;margin:auto;padding:16px}.card{background:white;border-radius:18px;padding:20px;margin:16px 0;box-shadow:0 5px 18px #163d2a12;border:1px solid #d9eee0}
+h2{color:#137441;margin-top:0}h3{color:#176b3e}.tag{display:inline-block;background:#dff5e6;color:#12653a;padding:5px 10px;border-radius:20px;font-weight:bold;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.mini{background:#f2fbf5;border:1px solid #d7efdf;border-radius:14px;padding:14px}
+.flow-area{display:grid;grid-template-columns:1.05fr 1fr;gap:16px;align-items:center}
+svg{width:100%;height:auto;max-height:460px;background:#f7fcf8;border-radius:14px;border:1px solid #d9eee0}
+.vessel{fill:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:round}.artery{stroke:#e94b5b}.vein{stroke:#3286d8}
+.pulse{fill:none;stroke:#ffb13b;stroke-width:4;stroke-dasharray:5 13;animation:flow 1.2s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-36}}.heart{transform-origin:190px 200px;animation:beat 1s infinite}.paused .pulse,.paused .heart{animation-play-state:paused}
+@keyframes beat{0%,100%{transform:scale(1)}12%{transform:scale(1.06)}25%{transform:scale(1)}}
+button,select,input{font:inherit}button{background:#16834a;color:white;border:0;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:bold;margin:4px}button:hover{background:#0c6135}button.secondary{background:#e3f4e9;color:#155e37}button.orange{background:#e9a31a;color:#392800}
+label{display:block;font-weight:bold;margin:10px 0 5px}.meter{height:14px;background:#e4eee7;border-radius:99px;overflow:hidden}.meter>div{height:100%;background:linear-gradient(90deg,#34ad67,#f1b82d);width:70%;transition:width .3s}
+.note{border-left:5px solid #28a765;background:#effaf2;padding:12px 15px;border-radius:8px}.warning{border-left-color:#e9a31a;background:#fff8e6}
+table{width:100%;border-collapse:collapse;margin:12px 0}th,td{border:1px solid #d5e8da;padding:10px;text-align:left;vertical-align:top}th{background:#e3f5e9}
+.question{padding:14px;background:#f7fbf8;border-radius:12px;margin:12px 0}.question button{display:block;text-align:left;width:100%;background:white;color:#234b34;border:1px solid #c9e4d1;font-weight:normal}.question button:hover{background:#eaf8ef}.correct{background:#d7f5df!important;border-color:#2b9c51!important}.wrong{background:#ffe0e0!important;border-color:#d94b4b!important}
+footer{text-align:center;padding:22px;color:#567462;font-size:14px}
+@media(max-width:720px){.flow-area{grid-template-columns:1fr}.card{padding:15px}table{font-size:14px}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header>
+  <span class="tag">6-sinf • Tabiiy fan</span>
+  <h1>🫀 QON AYLANISH SISTEMASI</h1>
+  <p>Yurak, qon va qon tomirlari qanday hamkorlikda ishlaydi? Animatsiya, model, taqqoslash va mini-test orqali o‘rganamiz.</p>
+</header>
+<main>
+<section class="card">
+<h2>📚 Dars rejasi</h2>
+<ol>
+<li>Odamning qon aylanish sistemasini va uning funksiyalarini tavsiflaymiz.</li>
+<li>Aksariyat umurtqali hayvonlarning qon aylanish sistemasidagi o‘xshash jihatlarni aniqlaymiz.</li>
+<li>Ilmiy hodisani tasvirlash va izohlashda modeldan foydalanamiz.</li>
+</ol>
+<div class="note"><b>Dars maqsadi:</b> dars oxirida yurak, qon va qon tomirlarining vazifasini tushuntira olasiz; qonning katta va kichik aylanish yo‘lini modelda kuzatasiz; odam va boshqa umurtqali hayvonlar qon aylanishini taqqoslaysiz.</div>
+</section>
+
+<section class="card">
+<h2>1. Qon aylanish sistemasi nima?</h2>
+<p><b>Qon aylanish sistemasi</b> — yurak va qon tomirlaridan tashkil topgan, qonning tana bo‘ylab harakatlanishini ta’minlaydigan sistema. Qon hujayralarga kislorod va oziq moddalarni yetkazadi, karbonat angidrid hamda ayrim chiqindi moddalarni olib ketadi.</p>
+<div class="grid">
+<div class="mini"><h3>🫀 Yurak — nasos</h3><p>Yurak mushaklardan tuzilgan a’zo. U qisqarib qonni tomirlarga haydaydi, bo‘shashganda esa yana qon bilan to‘ladi.</p></div>
+<div class="mini"><h3>🩸 Qon — tashuvchi</h3><p>Qon kislorod, oziq moddalar, gormonlar va issiqlikni tashishda qatnashadi. Himoya vazifasini ham bajaradi.</p></div>
+<div class="mini"><h3>🛣️ Qon tomirlari — yo‘llar</h3><p>Arteriyalar qonni yurakdan olib chiqadi, venalar yurakka olib keladi, kapillyarlarda moddalar almashinuvi sodir bo‘ladi.</p></div>
+</div>
+<h3>Qonning asosiy vazifalari</h3>
+<ul>
+<li><b>Tashish:</b> kislorod va oziq moddalarni to‘qimalarga yetkazish.</li>
+<li><b>Olib ketish:</b> karbonat angidrid va ayrim chiqindi moddalarni chiqarish a’zolariga eltish.</li>
+<li><b>Himoya:</b> oq qon hujayralari organizmni mikroblardan himoya qilishda qatnashadi.</li>
+<li><b>Haroratni boshqarish:</b> issiqlikni tana bo‘ylab tarqatishga yordam beradi.</li>
+<li><b>Muvozanatni saqlash:</b> suv va turli moddalar miqdorini me’yorda ushlab turishga ko‘maklashadi.</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>2. Qonning yo‘lini animatsiyada kuzating</h2>
+<p>Quyidagi chizma — <b>o‘quv modeli</b>. U yurak, o‘pka va tana o‘rtasidagi qon yo‘lini soddalashtirib ko‘rsatadi. Harakatlanuvchi chiziqlar qon oqimini ifodalaydi.</p>
+<div class="flow-area">
+<div id="diagram" class="diagram">
+<svg viewBox="0 0 380 440" role="img" aria-label="Yurak, o‘pka va tana orasidagi qon aylanish modeli">
+<rect x="112" y="25" width="156" height="75" rx="18" fill="#e1f1ff" stroke="#3286d8" stroke-width="2"/>
+<text x="190" y="55" text-anchor="middle" font-size="17" font-weight="bold" fill="#205b91">O‘PKA</text>
+<text x="190" y="77" text-anchor="middle" font-size="12" fill="#205b91">Kislorod qonga o‘tadi</text>
+<rect x="95" y="325" width="190" height="78" rx="18" fill="#fff0dc" stroke="#e6a03a" stroke-width="2"/>
+<text x="190" y="355" text-anchor="middle" font-size="17" font-weight="bold" fill="#805014">TANA A’ZOLARI</text>
+<text x="190" y="377" text-anchor="middle" font-size="12" fill="#805014">Kislorod sarflanadi</text>
+<path class="vessel vein" d="M145 325 L145 245 L145 180 L145 100"/>
+<path class="pulse" stroke="#3286d8" d="M145 325 L145 245 L145 180 L145 100"/>
+<path class="vessel artery" d="M235 100 L235 180 L235 245 L235 325"/>
+<path class="pulse" d="M235 100 L235 180 L235 245 L235 325"/>
+<path class="vessel artery" d="M145 100 Q165 130 170 160"/>
+<path class="vessel vein" d="M210 160 Q215 130 235 100"/>
+<g class="heart">
+<path d="M190 160 C165 135 135 157 150 185 L190 225 L230 185 C245 157 215 135 190 160Z" fill="#e94b5b" stroke="#b72b3a" stroke-width="2"/>
+<path d="M190 163 L190 218" stroke="#fff" stroke-width="3"/>
+<text x="190" y="245" text-anchor="middle" font-size="15" font-weight="bold" fill="#9b2632">YURAK</text>
+</g>
+<text x="95" y="275" font-size="11" fill="#286ca8" transform="rotate(-90 95 275)">Kislorodi kamroq qon</text>
+<text x="275" y="275" font-size="11" fill="#c33443" transform="rotate(-90 275 275)">Kislorodga boy qon</text>
+<text x="190" y="425" text-anchor="middle" font-size="11" fill="#53705e">Ko‘k va qizil ranglar — sxematik belgi</text>
+</svg>
+</div>
+<div>
+<h3>Model qanday ishlaydi?</h3>
+<ol>
+<li>Tana a’zolaridan kislorodi kamaygan qon yurakning o‘ng tomoniga qaytadi.</li>
+<li>Yurak qonni o‘pkaga yuboradi.</li>
+<li>O‘pkada qon karbonat angidridni chiqarib, kislorod oladi.</li>
+<li>Kislorodga boy qon yurakning chap tomoniga qaytadi.</li>
+<li>Yurak uni tana a’zolariga haydaydi.</li>
+</ol>
+<div class="note"><b>Eslab qoling:</b> odamda qon odatda yopiq tomirlar tizimi ichida harakatlanadi. Odamning qon aylanishi ikki asosiy doiradan — kichik (o‘pka) va katta (tana) qon aylanish doirasidan iborat.</div>
+<div style="margin-top:12px">
+<button onclick="toggleFlow()" id="flowBtn">⏸ Animatsiyani to‘xtatish</button>
+<button class="secondary" onclick="showPath('small')">Kichik doirani ko‘rsatish</button>
+<button class="secondary" onclick="showPath('large')">Katta doirani ko‘rsatish</button>
+<button class="secondary" onclick="showPath('all')">Hammasini ko‘rsatish</button>
+</div>
+<p id="pathText" aria-live="polite">Hozir umumiy qon aylanish modeli ko‘rsatilmoqda.</p>
+</div>
+</div>
+</section>
+
+<section class="card">
+<h2>3. Kichik va katta qon aylanish doiralari</h2>
+<div class="grid">
+<div class="mini"><h3>🔵 Kichik (o‘pka) doirasi</h3><p><b>Yo‘li:</b> yurakning o‘ng qorinchasi → o‘pka tomirlari → o‘pka kapillyarlari → o‘pka venalari → yurakning chap bo‘lmachasi.</p><p><b>Vazifasi:</b> qonni o‘pkada kislorod bilan boyitish va karbonat angidridni chiqarishga yordam berish.</p></div>
+<div class="mini"><h3>🔴 Katta (tana) doirasi</h3><p><b>Yo‘li:</b> yurakning chap qorinchasi → aorta va arteriyalar → tana kapillyarlari → venalar → yuqori va pastki kovak venalar → yurakning o‘ng bo‘lmachasi.</p><p><b>Vazifasi:</b> kislorod va oziq moddalarni tana hujayralariga yetkazish.</p></div>
+</div>
+<div class="note warning"><b>Muhim:</b> “arteriya” doim kislorodga boy qon degani emas. Arteriya — qonni yurakdan olib chiqadigan tomir; vena esa qonni yurakka olib keladi. O‘pka arteriyasida kislorodi kamroq, o‘pka venalarida esa kislorodga boy qon oqadi.</div>
+</section>
+
+<section class="card">
+<h2>4. Yurak qanday ishlaydi?</h2>
+<p>Yurak ko‘krak qafasida, biroz chaproqda joylashgan mushakli a’zo. Inson yuragi to‘rt kamerali: ikkita bo‘lmacha va ikkita qorincha.</p>
+<div class="grid">
+<div class="mini"><b>O‘ng bo‘lmacha</b><p>Tana bo‘ylab kelgan qonni qabul qiladi.</p></div>
+<div class="mini"><b>O‘ng qorincha</b><p>Qonni o‘pkaga haydaydi.</p></div>
+<div class="mini"><b>Chap bo‘lmacha</b><p>O‘pkadan kelgan kislorodga boy qonni qabul qiladi.</p></div>
+<div class="mini"><b>Chap qorincha</b><p>Qonni butun tanaga haydaydi; devori kuchliroq, chunki qonni uzoq masofaga yuboradi.</p></div>
+</div>
+<h3>Yurak urishini o‘lchash — kichik tajriba</h3>
+<p>Bilakdagi tomir urishini yoki ko‘krakdagi yurak urishini sezib, 30 soniya sanang va natijani 2 ga ko‘paytiring. Bu bir daqiqadagi taxminiy urishlar sonini beradi. Mashqdan oldin va keyin natijani taqqoslang.</p>
+<label for="pulse">O‘lchagan yurak urishingiz (bir daqiqada): <span id="pulseVal">75</span></label>
+<input id="pulse" type="range" min="45" max="160" value="75" oninput="updatePulse(this.value)" style="width:100%">
+<div class="meter"><div id="pulseMeter"></div></div>
+<p id="pulseText">75 urish/minut — model ko‘rsatkichi. Odamlarning yurak urishi yosh, faollik va boshqa omillarga qarab farq qiladi.</p>
+<div class="note warning">Bu interaktiv ko‘rsatkich tibbiy tekshiruv emas. O‘zingizni yomon his qilsangiz, kattalarga ayting.</div>
+</section>
+
+<section class="card">
+<h2>5. Qon nimalardan tashkil topgan?</h2>
+<div class="grid">
+<div class="mini"><h3>🔴 Eritrotsitlar</h3><p>Qizil qon hujayralari. Gemoglobin yordamida kislorodni tashishda muhim rol o‘ynaydi.</p></div>
+<div class="mini"><h3>⚪ Leykotsitlar</h3><p>Oq qon hujayralari. Organizmni mikroblar va kasallik qo‘zg‘atuvchilaridan himoya qilishda qatnashadi.</p></div>
+<div class="mini"><h3>🟡 Trombotsitlar</h3><p>Qon ivishida qatnashadigan mayda hujayra bo‘lakchalari. Jarohatda qon ketishini to‘xtatishga yordam beradi.</p></div>
+<div class="mini"><h3>💧 Plazma</h3><p>Qonning suyuq qismi. Unda suv, oziq moddalar, tuzlar, oqsillar va boshqa moddalar tashiladi.</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2>6. Qon tomirlarini farqlaymiz</h2>
+<table>
+<thead><tr><th>Tomir turi</th><th>Qon harakati</th><th>Asosiy xususiyati</th><th>Vazifasi</th></tr></thead>
+<tbody>
+<tr><td><b>Arteriya</b></td><td>Yurakdan a’zolarga</td><td>Devori qalin va elastik</td><td>Qonni yurakdan olib chiqadi</td></tr>
+<tr><td><b>Vena</b></td><td>A’zolardan yurakka</td><td>Devori nisbatan yupqaroq; ko‘pchiligida klapanlar bor</td><td>Qonni yurakka qaytaradi</td></tr>
+<tr><td><b>Kapillyar</b></td><td>Arteriya va venalarni bog‘laydi</td><td>Juda ingichka, devori bir hujayra qalinligida</td><td>Kislorod, oziq moddalar va chiqindi moddalar almashinuvi</td></tr>
+</tbody></table>
+</section>
+
+<section class="card">
+<h2>7. Umurtqali hayvonlarda qon aylanishi</h2>
+<p>Odam, baliq, amfibiya (masalan, baqa), sudralib yuruvchi (masalan, kaltakesak), qush va sutemizuvchilarning barchasida yurak va qon tomirlari mavjud. Ular tanaga kerakli moddalarni tashishda qon aylanish sistemasidan foydalanadi. Lekin yurak kameralarining soni va qon aylanish doiralari farq qiladi.</p>
+<table>
+<thead><tr><th>Hayvonlar guruhi</th><th>Yurak tuzilishi</th><th>Qon aylanishi</th><th>Asosiy xususiyat</th></tr></thead>
+<tbody>
+<tr><td><b>Baliqlar</b></td><td>2 kamera: 1 bo‘lmacha, 1 qorincha</td><td>Bir doirali</td><td>Qon yurakdan jabralarga, so‘ng tana bo‘ylab oqadi.</td></tr>
+<tr><td><b>Amfibiyalar</b> (baqa)</td><td>3 kamera: 2 bo‘lmacha, 1 qorincha</td><td>Ikki doirali, to‘liq ajralmagan</td><td>Qonning kislorodga boy va kamroq boy qismlari qorinchada qisman aralashishi mumkin.</td></tr>
+<tr><td><b>Ko‘pchilik sudralib yuruvchilar</b></td><td>Odatda 3 kamera, qorincha qisman to‘siqli</td><td>Ikki doirali</td><td>Qon oqimlari amfibiyalarga qaraganda yaxshiroq ajralgan. Timsohlarda 4 kamerali yurak bor.</td></tr>
+<tr><td><b>Qushlar</b></td><td>4 kamera</td><td>Ikki doirali</td><td>Kislorodga boy va kislorodi kamroq qon to‘liq ajralgan.</td></tr>
+<tr><td><b>Sutemizuvchilar</b> (odam ham)</td><td>4 kamera</td><td>Ikki doirali</td><td>Ikki xil qon yurakda aralashmaydi; to‘qimalarga kislorod yetkazish samarali.</td></tr>
+</tbody></table>
+<div class="note"><b>O‘xshash jihatlar:</b> qon aylanishi moddalarni tashiydi; yurak qonni harakatga keltiradi; qon tomirlari qon oqadigan yo‘l bo‘lib xizmat qiladi. <b>Farqli jihatlar:</b> yurak kameralari soni, qon aylanish doiralari va kislorodga boy hamda kamroq boy qonning ajralish darajasi.</div>
+</section>
+
+<section class="card">
+<h2>8. Ilmiy hodisani tushuntirishda modeldan foydalanish</h2>
+<p><b>Model</b> — haqiqiy obyekt yoki jarayonning muhim xususiyatlarini soddalashtirib ko‘rsatuvchi tasvir, maket, chizma yoki kompyuter simulyatsiyasi.</p>
+<div class="grid">
+<div class="mini"><h3>🧩 Model nimani ko‘rsatadi?</h3><p>Yurakning nasos vazifasini, qonning tomirlar bo‘ylab yo‘nalishini va o‘pka bilan tana o‘rtasidagi aloqani.</p></div>
+<div class="mini"><h3>🔎 Nima uchun kerak?</h3><p>Qon tananing ichida harakatlangani sababli uni bevosita kuzatish qiyin. Model jarayonni ko‘z oldimizga keltirishga yordam beradi.</p></div>
+<div class="mini"><h3>⚠️ Modelning cheklovi</h3><p>Haqiqiy qon tomirlari juda ko‘p va murakkab. Chizmada ular soddalashtirilgan, ranglar esa qonning kislorod bilan bog‘liq holatini ifodalaydi.</p></div>
+</div>
+<h3>🧪 Simulyatsiya: jismoniy harakat yurak urishiga qanday ta’sir qiladi?</h3>
+<p>Quyidagi tugmalar modeldagi faollikni o‘zgartiradi. Bu aniq shaxsiy tibbiy natija emas, faqat o‘quv modeli.</p>
+<button onclick="activity('tinch')">🪑 Tinch holat</button>
+<button onclick="activity('yurish')">🚶 Yurish</button>
+<button onclick="activity('yugurish')">🏃 Yugurish</button>
+<div class="mini">
+<p><b>Modeldagi yurak urishi:</b> <span id="activityValue">75</span> urish/minut</p>
+<div class="meter"><div id="activityMeter" style="width:38%"></div></div>
+<p id="activityExplain">Tinch holatda mushaklarning kislorod va energiyaga ehtiyoji nisbatan kamroq.</p>
+</div>
+</section>
+
+<section class="card">
+<h2>9. Kundalik hayot bilan bog‘laymiz</h2>
+<ul>
+<li>Nima uchun yugurgandan keyin yurak tezroq ura boshlaydi? Mushaklar ko‘proq kislorod va oziq moddalar talab qiladi, yurak esa qonni tezroq haydaydi.</li>
+<li>Nima uchun chuqur nafas olish muhim? O‘pkada qonga kislorod o‘tadi va karbonat angidrid chiqariladi.</li>
+<li>Nima uchun kesilgan joydan qon oqadi? Qon tomiri shikastlanadi; trombotsitlar va ivish jarayoni qon ketishini kamaytirishga yordam beradi.</li>
+<li>Nima uchun uzoq vaqt harakatsiz o‘tirish o‘rniga tanaffusda harakatlanish foydali? Harakat mushaklar faoliyatini qo‘llab-quvvatlaydi va umumiy salomatlik uchun foydali odat hisoblanadi.</li>
+</ul>
+</section>
+
+<section class="card">
+<h2>10. Mustahkamlash uchun mini-test 📝</h2>
+<p>Har bir savol uchun bitta javobni tanlang. Oxirida natijangiz chiqadi.</p>
+<div id="quiz"></div>
+<button onclick="checkQuiz()">Natijani tekshirish</button>
+<button class="secondary" onclick="resetQuiz()">Qayta ishlash</button>
+<p id="quizResult" aria-live="polite"></p>
+</section>
+
+<section class="card">
+<h2>11. Dars yakunida eslab qoling</h2>
+<ol>
+<li>Qon aylanish sistemasi yurak, qon va qon tomirlaridan tashkil topgan.</li>
+<li>Yurak qonni haydaydi; arteriyalar qonni yurakdan olib chiqadi; venalar yurakka qaytaradi; kapillyarlarda moddalar almashadi.</li>
+<li>Odamda kichik qon aylanish doirasi o‘pka bilan, katta qon aylanish doirasi esa butun tana bilan bog‘liq.</li>
+<li>Umurtqali hayvonlarda qon aylanish sistemasining umumiy vazifasi o‘xshash, ammo yurak tuzilishi va qon aylanish yo‘li farq qiladi.</li>
+<li>Model murakkab hodisani tushunishga yordam beradi, lekin haqiqiy jarayonning barcha tafsilotlarini ko‘rsatmaydi.</li>
+</ol>
+<h3>Uyga vazifa</h3>
+<p>1) Yurak, arteriya, vena va kapillyar rasmini chizing va nomlarini yozing. 2) Baliq va odamning qon aylanishini ikki ustunli jadvalda taqqoslang. 3) “Yurakni sog‘lom saqlash uchun nimalar qilaman?” mavzusida 5 ta gap yozing.</p>
+</section>
+</main>
+<footer>6-sinf Tabiiy fan • Interaktiv o‘quv materiali • O‘qituvchi rahbarligida foydalanish uchun</footer>
+<script>
+let paused=false;
+function toggleFlow(){paused=!paused;document.getElementById('diagram').classList.toggle('paused',paused);document.getElementById('flowBtn').textContent=paused?'▶ Animatsiyani davom ettirish':'⏸ Animatsiyani to‘xtatish'}
+function showPath(which){
+ const lines=document.querySelectorAll('#diagram .vessel,#diagram .pulse');
+ lines.forEach(x=>{x.style.opacity=which==='all'?'1':(which==='small'?(x.getAttribute('d').includes('145')?'1':'.2'):(x.getAttribute('d').includes('235')?'1':'.2'))});
+ const t={small:'Kichik doira: yurakning o‘ng qorinchasi → o‘pka → yurakning chap bo‘lmachasi.',large:'Katta doira: yurakning chap qorinchasi → tana a’zolari → yurakning o‘ng bo‘lmachasi.',all:'Hozir umumiy qon aylanish modeli ko‘rsatilmoqda.'};
+ document.getElementById('pathText').textContent=t[which];
+}
+function updatePulse(v){document.getElementById('pulseVal').textContent=v;document.getElementById('pulseMeter').style.width=((v-45)/115*100)+'%';document.getElementById('pulseText').textContent=v+' urish/minut — model ko‘rsatkichi. Yurak urishi yosh, faollik va boshqa omillarga qarab farq qiladi.'}
+function activity(a){
+ const vals={tinch:70,yurish:100,yugurish:140},txt={tinch:'Tinch holatda mushaklarning kislorod va energiyaga ehtiyoji nisbatan kamroq.',yurish:'Yurishda mushaklar faolroq ishlaydi, yurak qonni tezroq haydashi mumkin.',yugurish:'Yugurishda energiya va kislorodga ehtiyoj oshadi, shu sabab yurak urishi tezlashishi mumkin.'};
+ let v=vals[a];document.getElementById('activityValue').textContent=v;document.getElementById('activityMeter').style.width=(v/160*100)+'%';document.getElementById('activityExplain').textContent=txt[a];
+}
+const questions=[
+{q:'1. Qon aylanish sistemasining asosiy nasosi qaysi a’zo?',a:['O‘pka','Yurak','Oshqozon'],c:1,e:'Yurak qisqarib qonni qon tomirlariga haydaydi.'},
+{q:'2. Arteriyalar qonni qayerga olib boradi?',a:['Yurakdan tashqariga, a’zolar tomon','Faqat o‘pkaga','A’zolardan yurakka'],c:0,e:'Arteriya qonni yurakdan olib chiqadi.'},
+{q:'3. Moddalar almashinuvi eng faol kechadigan mayda tomirlar qaysi?',a:['Arteriyalar','Venalar','Kapillyarlar'],c:2,e:'Kapillyarlarning yupqa devori moddalar almashinuviga imkon beradi.'},
+{q:'4. Odam yuragi nechta kameradan iborat?',a:['2 ta','3 ta','4 ta'],c:2,e:'Odam yuragida ikki bo‘lmacha va ikki qorincha bor.'},
+{q:'5. Kichik qon aylanish doirasi qaysi a’zo bilan bog‘liq?',a:['O‘pka','Buyrak','Oshqozon'],c:0,e:'Kichik doirada qon yurak va o‘pka orasida harakatlanadi.'},
+{q:'6. Baliq yuragi odatda nechta kamerali?',a:['2 ta','3 ta','4 ta'],c:0,e:'Baliq yuragida bitta bo‘lmacha va bitta qorincha bo‘ladi.'},
+{q:'7. Qaysi qon hujayralari kislorod tashishda muhim?',a:['Eritrotsitlar','Leykotsitlar','Trombotsitlar'],c:0,e:'Eritrotsitlarda kislorod tashishda qatnashuvchi gemoglobin bor.'},
+{q:'8. Modeldan foydalanishning asosiy foydasi nima?',a:['Haqiqiy tanani almashtiradi','Murakkab jarayonni soddalashtirib tushuntiradi','Barcha tafsilotlarni doim aniq ko‘rsatadi'],c:1,e:'Model jarayonning muhim jihatlarini ko‘rsatadi, lekin hamma tafsilotni qamrab olmasligi mumkin.'}
+];
+function buildQuiz(){const root=document.getElementById('quiz');root.innerHTML='';questions.forEach((q,i)=>{let d=document.createElement('div');d.className='question';d.innerHTML='<b>'+q.q+'</b>';q.a.forEach((a,j)=>{let b=document.createElement('button');b.textContent=a;b.dataset.q=i;b.dataset.a=j;b.onclick=()=>{d.querySelectorAll('button').forEach(x=>x.classList.remove('correct','wrong'));b.classList.add('selected');};d.appendChild(b)});root.appendChild(d)})}
+function checkQuiz(){let score=0;document.querySelectorAll('.question').forEach((d,i)=>{let sel=d.querySelector('button.selected');d.querySelectorAll('button').forEach(b=>{if(+b.dataset.a===questions[i].c)b.classList.add('correct');if(b===sel&&+b.dataset.a!==questions[i].c)b.classList.add('wrong')});if(sel&&+sel.dataset.a===questions[i].c)score++});document.getElementById('quizResult').innerHTML='<b>Natija: '+score+' / '+questions.length+'.</b> '+(score===questions.length?'Ajoyib! Mavzuni juda yaxshi tushungansiz.':score>=6?'Yaxshi natija! Xato javoblar izohini o‘qib, yana bir bor takrorlang.':'Mavzuni qayta o‘qing va testni yana bajaring.')+'<br>'+questions.map((q,i)=>(i+1)+'. '+q.e).join('<br>')}
+function resetQuiz(){buildQuiz();document.getElementById('quizResult').textContent=''}
+buildQuiz();
+</script>
+</body>
+</html>

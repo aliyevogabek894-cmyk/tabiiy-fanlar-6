@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Tabiiy fan — Oziq zanjirlari va oziq torlari</title>
+<style>
+:root{--green:#217a42;--light:#edf8ed;--ink:#183126;--gold:#ffd45b;--blue:#dff2ff}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f2f7f0;color:var(--ink);line-height:1.55}
+header{background:linear-gradient(135deg,#14532d,#3f9b55);color:white;text-align:center;padding:28px 16px}
+header h1{margin:0 0 8px;font-size:clamp(24px,4vw,38px)}
+header p{margin:0;font-size:17px}
+main{max-width:1100px;margin:auto;padding:18px}
+section{background:white;border-radius:16px;padding:20px;margin:18px 0;box-shadow:0 4px 16px #1231}
+h2{color:#176236;margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.card{border:2px solid #d5e8d5;border-radius:12px;padding:14px;text-align:center;background:#fbfffb}
+.icon{font-size:42px;display:block}
+.pill{display:inline-block;background:#e5f5e7;color:#176236;padding:4px 10px;border-radius:20px;font-weight:bold;font-size:13px}
+.chain{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin:18px 0}
+.node{min-width:110px;padding:12px;border:2px solid #8bc59a;border-radius:12px;background:#f4fff4;text-align:center;font-weight:bold}
+.arrow{font-size:28px;color:#287d43}
+.note{background:#fff7d8;border-left:5px solid #e5ad18;padding:12px;border-radius:8px}
+.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:12px 0}
+button{border:0;background:#217a42;color:white;border-radius:9px;padding:11px 16px;font-size:15px;font-weight:bold;cursor:pointer}
+button:hover{background:#14532d}
+button.secondary{background:#426b8b}
+button.warning{background:#a04a36}
+#message{background:#e8f4ff;border-radius:10px;padding:14px;min-height:54px;margin-top:12px}
+.active{animation:pulse 1s ease-in-out 2;border-color:#edaa00!important;background:#fff6c8!important}
+@keyframes pulse{50%{transform:scale(1.05);box-shadow:0 0 18px #ffd45b}}
+.web{width:100%;min-height:290px;background:#f8fcf8;border-radius:12px;border:1px solid #d5e8d5}
+.web svg{width:100%;height:auto;display:block}
+.nodebox{fill:#fff;stroke:#47945a;stroke-width:2}
+.edge{stroke:#39814c;stroke-width:2.5;fill:none;marker-end:url(#arrow)}
+.quiz-q{padding:13px;margin:12px 0;border:1px solid #dbe8db;border-radius:10px}
+.quiz-q label{display:block;margin:6px 0;cursor:pointer}
+#score{font-weight:bold;font-size:18px;margin-top:12px}
+footer{text-align:center;color:#54705b;padding:20px}
+small{color:#56705d}
+@media(max-width:600px){main{padding:10px}section{padding:15px}.node{min-width:90px}.arrow{font-size:22px}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header>
+  <h1>🌱 Oziq zanjirlari va oziq torlari</h1>
+  <p>6-sinf Tabiiy fan • Interaktiv dars va simulyatsiya</p>
+</header>
+<main>
+<section>
+<h2>1. Mavzuning asosiy mazmuni</h2>
+<p>Tabiatdagi tirik organizmlar yashashi, o‘sishi va ko‘payishi uchun energiya oladi. Ko‘pchilik ekotizimlarda energiyaning asosiy manbayi — <b>Quyosh</b>. Yashil o‘simliklar Quyosh nuri yordamida fotosintez qiladi va oziq modda hosil qiladi. Oziqlanish jarayonida energiya bir organizmdan boshqasiga o‘tadi.</p>
+<div class="grid">
+<div class="card"><span class="icon">🌿</span><h3>Produtsentlar</h3><p>O‘z oziq moddasini hosil qiluvchilar. Masalan: o‘t, daraxt, suvo‘tlar.</p><span class="pill">Ishlab chiqaruvchilar</span></div>
+<div class="card"><span class="icon">🐇</span><h3>Konsumentlar</h3><p>Tayyor organik moddalar bilan oziqlanadi. Masalan: quyon, chigirtka, qurbaqa, tulki.</p><span class="pill">Iste’molchilar</span></div>
+<div class="card"><span class="icon">🍄</span><h3>Redutsentlar</h3><p>O‘lik organizmlar qoldiqlarini parchalaydi. Masalan: zamburug‘lar va bakteriyalar.</p><span class="pill">Parchalovchilar</span></div>
+</div>
+<div class="note"><b>Eslab qoling:</b> oziq zanjiridagi strelka oziqdan uni iste’mol qiluvchi organizmga, ya’ni energiya o‘tadigan yo‘nalishga qarab chiziladi.</div>
+</section>
+
+<section>
+<h2>2. Oziq zanjiri qanday tuziladi?</h2>
+<p>Oziq zanjiri — organizmlarning kim kim bilan oziqlanishini ko‘rsatadigan ketma-ketlik.</p>
+<div class="chain" id="chain">
+<div class="node" id="n0">☀️ Quyosh</div><span class="arrow">→</span>
+<div class="node" id="n1">🌱 O‘t</div><span class="arrow">→</span>
+<div class="node" id="n2">🦗 Chigirtka</div><span class="arrow">→</span>
+<div class="node" id="n3">🐸 Qurbaqa</div><span class="arrow">→</span>
+<div class="node" id="n4">🐍 Ilon</div><span class="arrow">→</span>
+<div class="node" id="n5">🦅 Burgut</div>
+</div>
+<div class="controls">
+<button onclick="playChain()">▶ Zanjir animatsiyasini boshlash</button>
+<button class="secondary" onclick="resetChain()">↺ Qayta boshlash</button>
+</div>
+<div id="message" aria-live="polite">Animatsiyani boshlang: energiyaning oziq zanjiri bo‘ylab o‘tishini kuzating.</div>
+<p><b>Yana bir misol:</b> bug‘doy → sichqon → ilon → burgut.</p>
+</section>
+
+<section>
+<h2>3. Oziq tori: bir nechta zanjirlar birlashganda</h2>
+<p>Tabiatda ko‘plab hayvonlar turli oziqlar bilan oziqlanadi. Bir ekotizimdagi o‘zaro bog‘langan oziq zanjirlari <b>oziq torini</b> hosil qiladi.</p>
+<div class="web">
+<svg viewBox="0 0 900 390" role="img" aria-label="O‘t, chigirtka, sichqon, quyon, qurbaqa, ilon, tulki va burgutdan tashkil topgan oziq tori">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#39814c"/></marker></defs>
+<!-- arrows: food to eater -->
+<path class="edge" d="M130 190 L245 85"/><path class="edge" d="M130 200 L245 190"/><path class="edge" d="M130 210 L245 295"/>
+<path class="edge" d="M335 85 L445 130"/><path class="edge" d="M335 190 L445 130"/><path class="edge" d="M335 295 L445 190"/>
+<path class="edge" d="M535 130 L645 85"/><path class="edge" d="M535 190 L645 190"/><path class="edge" d="M535 130 L645 295"/>
+<path class="edge" d="M335 85 L645 85"/><path class="edge" d="M335 295 L645 295"/>
+<rect class="nodebox" x="30" y="165" rx="12" width="100" height="65"/><text x="80" y="192" text-anchor="middle" font-size="17">🌿 O‘t</text><text x="80" y="212" text-anchor="middle" font-size="12">Produtsent</text>
+<rect class="nodebox" x="245" y="55" rx="12" width="90" height="60"/><text x="290" y="91" text-anchor="middle" font-size="16">🦗 Chigirtka</text>
+<rect class="nodebox" x="245" y="160" rx="12" width="90" height="60"/><text x="290" y="196" text-anchor="middle" font-size="16">🐭 Sichqon</text>
+<rect class="nodebox" x="245" y="265" rx="12" width="90" height="60"/><text x="290" y="301" text-anchor="middle" font-size="16">🐇 Quyon</text>
+<rect class="nodebox" x="445" y="100" rx="12" width="90" height="60"/><text x="490" y="136" text-anchor="middle" font-size="16">🐸 Qurbaqa</text>
+<rect class="nodebox" x="445" y="165" rx="12" width="90" height="60"/><text x="490" y="201" text-anchor="middle" font-size="16">🐍 Ilon</text>
+<rect class="nodebox" x="645" y="55" rx="12" width="105" height="60"/><text x="697" y="91" text-anchor="middle" font-size="16">🦊 Tulki</text>
+<rect class="nodebox" x="645" y="160" rx="12" width="105" height="60"/><text x="697" y="196" text-anchor="middle" font-size="16">🦅 Burgut</text>
+<rect class="nodebox" x="645" y="265" rx="12" width="105" height="60"/><text x="697" y="301" text-anchor="middle" font-size="16">🦊 Tulki</text>
+<text x="790" y="360" text-anchor="middle" font-size="12" fill="#56705d">Strelka: oziq → iste’molchi</text>
+</svg>
+</div>
+<div class="note">Oziq tori murakkab bog‘lanishlarni ko‘rsatadi. Bir tur kamayib ketsa, unga bog‘liq boshqa turlar soni ham o‘zgarishi mumkin. Boshqa oziq manbalari mavjudligi ayrim yirtqichlarga moslashishga yordam beradi.</div>
+</section>
+
+<section>
+<h2>4. Simulyatsiya: quyonlar kamayib ketsa nima bo‘ladi?</h2>
+<p>Quyidagi tugmalar yordamida ekotizimdagi o‘zgarishlarni tasavvur qiling. Bu soddalashtirilgan o‘quv modeli; haqiqiy tabiatdagi o‘zgarishlar ko‘plab omillarga bog‘liq.</p>
+<div class="grid">
+<div class="card"><span class="icon">🌿</span><h3>O‘simliklar</h3><p id="plants">Miqdor: ko‘p</p></div>
+<div class="card"><span class="icon">🐇</span><h3>Quyonlar</h3><p id="rabbits">Miqdor: ko‘p</p></div>
+<div class="card"><span class="icon">🦊</span><h3>Tulkilar</h3><p id="foxes">Miqdor: o‘rtacha</p></div>
+<div class="card"><span class="icon">🐭</span><h3>Sichqonlar</h3><p id="mice">Miqdor: o‘rtacha</p></div>
+</div>
+<div class="controls">
+<button onclick="scenario('normal')">🌳 Muvozanatli holat</button>
+<button class="warning" onclick="scenario('few')">🐇 Quyonlar kamayadi</button>
+<button class="secondary" onclick="scenario('plants')">🌿 O‘simliklar kamayadi</button>
+</div>
+<div id="simMessage" class="note">Holatni tanlang va o‘zgarishlarni muhokama qiling.</div>
+</section>
+
+<section>
+<h2>5. Bilimingizni sinab ko‘ring</h2>
+<form id="quiz">
+<div class="quiz-q"><b>1. Oziq zanjiridagi energiyaning asosiy manbayi nima?</b>
+<label><input type="radio" name="q1" value="a"> Oy</label><label><input type="radio" name="q1" value="b"> Quyosh</label><label><input type="radio" name="q1" value="c"> Tuproq</label></div>
+<div class="quiz-q"><b>2. O‘simliklar oziq zanjirida qanday ataladi?</b>
+<label><input type="radio" name="q2" value="a"> Redutsentlar</label><label><input type="radio" name="q2" value="b"> Konsumentlar</label><label><input type="radio" name="q2" value="c"> Produtsentlar</label></div>
+<div class="quiz-q"><b>3. Oziq zanjiridagi strelka nimani bildiradi?</b>
+<label><input type="radio" name="q3" value="a"> Energiya o‘tish yo‘nalishini</label><label><input type="radio" name="q3" value="b"> Hayvonning yoshini</label><label><input type="radio" name="q3" value="c"> Yashash joyini</label></div>
+<div class="quiz-q"><b>4. O‘lik qoldiqlarni parchalovchilar qaysilar?</b>
+<label><input type="radio" name="q4" value="a"> Quyon va kiyik</label><label><input type="radio" name="q4" value="b"> Zamburug‘lar va bakteriyalar</label><label><input type="radio" name="q4" value="c"> Burgut va tulki</label></div>
+<div class="quiz-q"><b>5. Oziq tori nima?</b>
+<label><input type="radio" name="q5" value="a"> Bitta hayvonning uyasi</label><label><input type="radio" name="q5" value="b"> Faqat o‘simliklar ro‘yxati</label><label><input type="radio" name="q5" value="c"> O‘zaro bog‘langan oziq zanjirlari</label></div>
+<button type="button" onclick="checkQuiz()">Javoblarni tekshirish</button>
+<button type="button" class="secondary" onclick="resetQuiz()">Qayta ishlash</button>
+<div id="score" aria-live="polite"></div>
+</form>
+</section>
+
+<section>
+<h2>6. Mustahkamlash uchun savollar</h2>
+<ol>
+<li>Agar ekotizimdagi barcha yashil o‘simliklar yo‘qolsa, nima yuz beradi? Nega?</li>
+<li>Redutsentlar tabiat uchun nima sababdan muhim?</li>
+<li>Oziq zanjiri va oziq tori o‘rtasidagi farqni tushuntiring.</li>
+<li>O‘t → quyon → tulki zanjirida energiya qaysi yo‘nalishda o‘tadi?</li>
+<li>Mahalliy tabiatdan misol keltirib, kamida to‘rtta organizmdan iborat oziq zanjiri tuzing.</li>
+</ol>
+</section>
+<section>
+<h2>7. Qisqa xulosa</h2>
+<ul>
+<li><b>Oziq zanjiri</b> — oziqlanish orqali energiyaning bir organizmdan boshqasiga o‘tish ketma-ketligi.</li>
+<li><b>Oziq tori</b> — bir ekotizimdagi o‘zaro bog‘langan bir nechta oziq zanjirlari.</li>
+<li><b>Produtsentlar</b> oziq modda hosil qiladi, <b>konsumentlar</b> tayyor oziqni iste’mol qiladi, <b>redutsentlar</b> qoldiqlarni parchalaydi.</li>
+<li>Tabiatdagi barcha organizmlar o‘zaro bog‘langan; bir tur sonining o‘zgarishi boshqalariga ham ta’sir qilishi mumkin.</li>
+</ul>
+</section>
+</main>
+<footer>6-sinf Tabiiy fan • O‘qituvchi uchun interaktiv ko‘rgazmali material</footer>
+<script>
+const descriptions=[
+"Quyosh energiyasi o‘simliklarga yetib boradi. O‘simliklar fotosintez orqali organik modda hosil qiladi.",
+"Chigirtka o‘simlik bilan oziqlanadi. Energiya o‘simlikdan chigirtkaga o‘tadi.",
+"Qurbaqa chigirtkani yeydi. Energiya qurbaqaga o‘tadi.",
+"Ilon qurbaqa bilan oziqlanishi mumkin. Energiya ilonga o‘tadi.",
+"Burgut ilon kabi hayvonlarni ovlashi mumkin. Energiya oziq orqali burgutga o‘tadi.",
+"Organizm qoldiqlari zamburug‘lar va bakteriyalar tomonidan parchalanadi. Mineral moddalar tabiatga qaytadi."
+];
+let chainTimer=[];
+function playChain(){
+ resetChain();
+ const ids=["n0","n1","n2","n3","n4","n5"];
+ ids.forEach((id,i)=>{chainTimer.push(setTimeout(()=>{
+ document.getElementById(id).classList.add("active");
+ document.getElementById("message").textContent=(i===0?descriptions[0]:i===1?"O‘simlik oziq modda hosil qildi. Keyingi bosqichda uni o‘txo‘r iste’mol qiladi.":i===2?descriptions[1]:i===3?descriptions[2]:i===4?descriptions[3]:descriptions[4]);
+ if(i>0) document.getElementById(ids[i-1]).classList.remove("active");
+ if(i===5) chainTimer.push(setTimeout(()=>{document.getElementById("message").textContent=descriptions[5];document.getElementById("n5").classList.remove("active");},1800));
+ },i*1500));});
+}
+function resetChain(){chainTimer.forEach(clearTimeout);chainTimer=[];document.querySelectorAll(".node").forEach(n=>n.classList.remove("active"));document.getElementById("message").textContent="Animatsiyani boshlang: energiyaning oziq zanjiri bo‘ylab o‘tishini kuzating."}
+function scenario(type){
+ const data={
+ normal:["Miqdor: ko‘p","Miqdor: ko‘p","Miqdor: o‘rtacha","Miqdor: o‘rtacha","Ekotizimda turlar o‘zaro bog‘langan. Bu boshlang‘ich, soddalashtirilgan holat."],
+ few:["Miqdor: ko‘payishi mumkin","Miqdor: kam","Miqdor: boshqa oziqqa o‘tishi mumkin","Miqdor: o‘zgarishi mumkin","Quyonlar kamayganda o‘simliklarga bosim kamayishi mumkin. Tulkilar boshqa oziqni izlaydi; sichqonlar va boshqa turlarning soni ham o‘zgarishi mumkin."],
+ plants:["Miqdor: kam","Miqdor: kamayishi mumkin","Miqdor: oziq kamaygani uchun o‘zgaradi","Miqdor: oziq kamaygani uchun o‘zgaradi","O‘simliklar kamayishi o‘txorlarga oziq yetishmasligiga olib keladi. Bu holat keyingi darajadagi iste’molchilarga ham ta’sir ko‘rsatadi."]
+ };
+ let d=data[type];["plants","rabbits","foxes","mice"].forEach((id,i)=>document.getElementById(id).textContent=d[i]);document.getElementById("simMessage").textContent=d[4];
+}
+function checkQuiz(){
+ const answers={q1:"b",q2:"c",q3:"a",q4:"b",q5:"c"};let score=0,missing=0;
+ for(const [q,a] of Object.entries(answers)){const chosen=document.querySelector('input[name="'+q+'"]:checked');if(!chosen)missing++;else if(chosen.value===a)score++;}
+ document.getElementById("score").textContent="Natija: "+score+"/5 ta to‘g‘ri."+(missing?" Javob berilmagan savollar: "+missing+".":score===5?" A’lo! Mavzuni yaxshi tushunibsiz.":" Javoblarni qayta ko‘rib chiqing.");
+}
+function resetQuiz(){document.getElementById("quiz").reset();document.getElementById("score").textContent=""}
+</script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Tabiiy fan — Massa, og‘irlik va gravitatsiya kuchi</title>
+<style>
+:root{--navy:#14213d;--blue:#2563eb;--sky:#eaf4ff;--gold:#fbbf24;--green:#15803d;--ink:#1f2937;--muted:#64748b;--card:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#f3f7fc;line-height:1.65}
+header{background:linear-gradient(135deg,#14213d,#2563eb);color:white;padding:34px 18px;text-align:center}
+header .tag{display:inline-block;background:#ffffff22;border:1px solid #ffffff55;border-radius:99px;padding:5px 13px;font-size:.9rem}
+h1{font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.2;margin:15px 0 10px}header p{max-width:760px;margin:auto;color:#e7efff}
+nav{position:sticky;top:0;z-index:10;background:#fff;box-shadow:0 3px 12px #0f172a12;display:flex;gap:8px;overflow-x:auto;padding:10px}
+nav a{white-space:nowrap;text-decoration:none;color:#1d4ed8;background:#eff6ff;padding:8px 12px;border-radius:10px;font-size:.92rem}
+main{max-width:1050px;margin:22px auto;padding:0 14px}.card{background:var(--card);padding:22px;margin:16px 0;border-radius:18px;box-shadow:0 5px 20px #0f172a0b;border:1px solid #e5eaf2}
+h2{color:#173b78;margin-top:0}h3{color:#1d4ed8}.lead{font-size:1.06rem}.callout{padding:14px 16px;background:#eff6ff;border-left:5px solid #3b82f6;border-radius:10px;margin:14px 0}.warning{background:#fff7ed;border-left-color:#f59e0b}.good{background:#f0fdf4;border-left-color:#22c55e}
+table{width:100%;border-collapse:collapse;margin:12px 0}th,td{padding:11px;border:1px solid #dbe3ef;text-align:left;vertical-align:top}th{background:#eaf2ff;color:#183b73}
+.formula{font-size:1.5rem;font-weight:bold;text-align:center;background:#14213d;color:#fff;border-radius:12px;padding:15px;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.mini{padding:16px;border:1px solid #dce6f4;border-radius:14px;background:#fbfdff}
+button{border:0;border-radius:10px;padding:10px 15px;background:#2563eb;color:white;font-weight:bold;cursor:pointer}button:hover{filter:brightness(.94)}input,select{padding:10px;border:1px solid #cbd5e1;border-radius:9px;font:inherit;max-width:100%}
+.sim{background:linear-gradient(180deg,#e0f2fe,#f8fafc);border-radius:15px;padding:18px;text-align:center}.planet{font-size:4.5rem;line-height:1.3}.readout{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:15px 0}.readout div{background:white;border:1px solid #dbeafe;border-radius:12px;padding:12px 18px;min-width:140px}.value{font-size:1.5rem;color:#1d4ed8;font-weight:bold}.scale{width:170px;height:18px;border-radius:20px;background:#cbd5e1;margin:12px auto;overflow:hidden}.scale span{display:block;height:100%;background:#2563eb;width:100%;transition:width .3s}
+.question{padding:15px;border:1px solid #e2e8f0;border-radius:12px;margin:12px 0}.question label{display:block;margin:6px 0;cursor:pointer}.feedback{font-weight:bold;margin-top:10px}.small{color:var(--muted);font-size:.92rem}footer{text-align:center;padding:28px;color:#64748b}
+@media(max-width:600px){.card{padding:16px}th,td{padding:8px;font-size:.92rem}.formula{font-size:1.25rem}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header>
+  <span class="tag">6-sinf • Tabiiy fanlar • Fizika bo‘limi</span>
+  <h1>Massa, og‘irlik va gravitatsiya kuchi</h1>
+  <p>Jismlar nima uchun Yerga tortiladi? Massa va og‘irlikning farqi nimada? Interaktiv simulyatsiya, misollar va testlar orqali o‘rganamiz.</p>
+</header>
+<nav>
+<a href="#maqsad">Dars maqsadi</a><a href="#massa">Massa va og‘irlik</a><a href="#gravitatsiya">Gravitatsiya</a><a href="#simulyatsiya">Simulyatsiya</a><a href="#misollar">Misollar</a><a href="#test">Test</a>
+</nav>
+<main>
+<section class="card" id="maqsad">
+<h2>1. Dars maqsadi</h2>
+<div class="grid">
+<div class="mini"><h3>📘 Bilim</h3><p>Massa, og‘irlik va gravitatsiya tushunchalarini izohlash.</p></div>
+<div class="mini"><h3>🧮 Hisoblash</h3><p>P = m × g formulasi yordamida og‘irlikni hisoblash.</p></div>
+<div class="mini"><h3>🔎 Kuzatish</h3><p>Turli osmon jismlarida massa bir xil, og‘irlik esa turlicha bo‘lishini ko‘rish.</p></div>
+</div>
+<div class="callout"><b>Esda tuting:</b> massa — jismdagi modda miqdorini tavsiflaydi. Og‘irlik esa jismning gravitatsiya ta’sirida tayanchga yoki osmaga ko‘rsatadigan kuchidir.</div>
+</section>
+
+<section class="card" id="massa">
+<h2>2. Massa va og‘irlik orasidagi farq</h2>
+<p class="lead">Kundalik suhbatda “vaznim 40 kg” deyish odatiy. Fizikada esa kilogramm massa birligi, nyuton kuch birligidir.</p>
+<table>
+<thead><tr><th>Xususiyat</th><th>Massa (m)</th><th>Og‘irlik (P)</th></tr></thead>
+<tbody>
+<tr><td>Ma’nosi</td><td>Jismning inertligini va modda miqdorini tavsiflaydi.</td><td>Jismning tayanchga yoki osmaga gravitatsiya sabab ko‘rsatadigan kuchi.</td></tr>
+<tr><td>Birligi</td><td>Kilogramm (kg), gramm (g)</td><td>Nyuton (N)</td></tr>
+<tr><td>O‘lchash</td><td>Tarozi yordamida</td><td>Dinamometr yordamida</td></tr>
+<tr><td>Joyga bog‘liqligi</td><td>Joy o‘zgarsa ham odatda o‘zgarmaydi.</td><td>Gravitatsiya va vaziyatga qarab o‘zgarishi mumkin.</td></tr>
+</tbody></table>
+<div class="callout warning"><b>Muhim aniqlik:</b> tarozi kundalik hayotda ko‘pincha kilogrammda ko‘rsatadi, lekin kuchni o‘lchaydigan dinamometr nyutonda ko‘rsatadi. Og‘irlik — gravitatsiya kuchi bilan bog‘liq kuch; uni “massa” bilan adashtirmang.</div>
+</section>
+
+<section class="card" id="gravitatsiya">
+<h2>3. Gravitatsiya kuchi nima?</h2>
+<p>Gravitatsiya — massaga ega jismlarning bir-birini tortish hodisasi. Yer bizni o‘ziga tortgani uchun biz yer yuzasida turamiz, tashlab yuborilgan to‘p esa pastga tushadi. Quyoshning gravitatsiyasi sayyoralarni o‘z orbitasida ushlab turishga yordam beradi.</p>
+<div class="grid">
+<div class="mini"><h3>🌍 Yer</h3><p>Yer yuzasida g taxminan 9,8 N/kg. Maktabdagi sodda hisoblarda 10 N/kg deb olinadi.</p></div>
+<div class="mini"><h3>🌙 Oy</h3><p>Oy sirtida tortishish Yerdagidan taxminan 6 marta kuchsiz. Shu sababli astronavtning og‘irligi kamayadi.</p></div>
+<div class="mini"><h3>🪐 Boshqa sayyoralar</h3><p>Har bir sayyorada gravitatsiya turlicha. Shu bois bir xil massali jismning og‘irligi ham turlicha bo‘ladi.</p></div>
+</div>
+<h3>Og‘irlikni hisoblash formulasi</h3>
+<div class="formula">P = m × g</div>
+<ul>
+<li><b>P</b> — og‘irlik kuchi (nyuton, N);</li>
+<li><b>m</b> — massa (kilogramm, kg);</li>
+<li><b>g</b> — gravitatsion maydon kuchlanganligi, Yerda taxminan 9,8 N/kg (sodda hisobda 10 N/kg).</li>
+</ul>
+<div class="callout good"><b>Oddiy misol:</b> massasi 40 kg bo‘lgan bola uchun Yerda g ≈ 10 N/kg deb olsak, P = 40 × 10 = 400 N.</div>
+<p><b>Vaznsizlik haqida:</b> kosmik kemada odam “suzib yurgandek” ko‘rinishi gravitatsiya umuman yo‘qligini anglatmaydi. Kema va uning ichidagi odam birgalikda erkin tushish holatida bo‘lgani uchun tayanch bosimi sezilmaydi.</p>
+</section>
+
+<section class="card" id="simulyatsiya">
+<h2>4. Interaktiv simulyatsiya: sayyorani almashtiring</h2>
+<p>Massa qiymatini kiriting, so‘ng osmon jismini tanlang. Massa o‘zgarmaydi, og‘irlik esa tanlangan joydagi g qiymatiga qarab hisoblanadi.</p>
+<div class="sim">
+<div class="planet" id="planetIcon">🌍</div>
+<label for="massInput"><b>Jism massasi (kg):</b></label>
+<input id="massInput" type="number" min="0.1" max="10000" step="0.1" value="40">
+<div style="margin:14px"><label for="world"><b>Osmon jismi:</b></label>
+<select id="world">
+<option value="9.8" data-icon="🌍">Yer — g = 9,8 N/kg</option>
+<option value="1.6" data-icon="🌙">Oy — g = 1,6 N/kg</option>
+<option value="3.7" data-icon="🔴">Mars — g = 3,7 N/kg</option>
+<option value="24.8" data-icon="🪐">Yupiter — g = 24,8 N/kg</option>
+</select></div>
+<div class="readout">
+<div><div>Massa</div><div class="value" id="massOut">40 kg</div></div>
+<div><div>Og‘irlik</div><div class="value" id="weightOut">392 N</div></div>
+<div><div>g qiymati</div><div class="value" id="gOut">9,8 N/kg</div></div>
+</div>
+<div class="scale"><span id="scaleFill"></span></div>
+<p id="simText">Yerda 40 kg massali jismning og‘irligi taxminan 392 N.</p>
+<button onclick="resetSim()">Boshlang‘ich holat</button>
+</div>
+<p class="small">Simulyatsiya ta’limiy modeldir. Hisoblashda P = m × g formulasi ishlatiladi; natija ikki xonagacha yaxlitlanadi.</p>
+</section>
+
+<section class="card" id="misollar">
+<h2>5. Yechilgan misollar</h2>
+<div class="mini"><h3>1-misol</h3><p>Massasi 5 kg bo‘lgan sumkaning Yer sirtidagi og‘irligini toping. g = 10 N/kg.</p><p><b>Yechish:</b> P = m × g = 5 × 10 = <b>50 N</b>.</p></div>
+<div class="mini"><h3>2-misol</h3><p>Massasi 30 kg bo‘lgan jism Oyda qanday og‘irlikka ega? g = 1,6 N/kg.</p><p><b>Yechish:</b> P = 30 × 1,6 = <b>48 N</b>. Massasi esa 30 kg bo‘lib qoladi.</p></div>
+<div class="mini"><h3>3-misol</h3><p>Jismning massasi 2 kg. Yerda g = 9,8 N/kg. Og‘irligini hisoblang.</p><p><b>Yechish:</b> P = 2 × 9,8 = <b>19,6 N</b>.</p></div>
+<h3>Mustaqil mashq</h3>
+<p>Massasi 8 kg bo‘lgan jismning Yer sirtidagi og‘irligini g = 10 N/kg deb olib hisoblang.</p>
+<details><summary><b>Javobni ko‘rish</b></summary><p>P = 8 × 10 = <b>80 N</b>.</p></details>
+</section>
+
+<section class="card" id="test">
+<h2>6. Bilimingizni sinab ko‘ring</h2>
+<p>Har bir savol uchun bitta javobni belgilang va “Natijani tekshirish” tugmasini bosing.</p>
+<form id="quiz">
+<div class="question"><b>1. Massaning asosiy o‘lchov birligi qaysi?</b>
+<label><input type="radio" name="q1" value="a"> Nyuton (N)</label><label><input type="radio" name="q1" value="b"> Kilogramm (kg)</label><label><input type="radio" name="q1" value="c"> Metr (m)</label></div>
+<div class="question"><b>2. Og‘irlik kuchini o‘lchash uchun qaysi asbob ishlatiladi?</b>
+<label><input type="radio" name="q2" value="a"> Dinamometr</label><label><input type="radio" name="q2" value="b"> Termometr</label><label><input type="radio" name="q2" value="c"> Chizg‘ich</label></div>
+<div class="question"><b>3. P = m × g formuladagi g nimani bildiradi?</b>
+<label><input type="radio" name="q3" value="a"> Jismning hajmini</label><label><input type="radio" name="q3" value="b"> Haroratni</label><label><input type="radio" name="q3" value="c"> Gravitatsion maydon kuchlanganligini</label></div>
+<div class="question"><b>4. Massasi 10 kg bo‘lgan jism Yerda g = 10 N/kg bo‘lsa, og‘irligi qancha?</b>
+<label><input type="radio" name="q4" value="a"> 10 N</label><label><input type="radio" name="q4" value="b"> 100 N</label><label><input type="radio" name="q4" value="c"> 1 kg</label></div>
+<div class="question"><b>5. Bir xil jism Oydan Yerga olib kelinganda nima bo‘ladi?</b>
+<label><input type="radio" name="q5" value="a"> Massasi 6 marta ortadi</label><label><input type="radio" name="q5" value="b"> Massasi yo‘qoladi</label><label><input type="radio" name="q5" value="c"> Massasi bir xil qoladi, og‘irligi ortadi</label></div>
+<button type="button" onclick="checkQuiz()">Natijani tekshirish</button>
+<button type="reset" style="background:#64748b" onclick="document.getElementById('quizResult').textContent=''">Qayta ishlash</button>
+<div class="feedback" id="quizResult" aria-live="polite"></div>
+</form>
+</section>
+
+<section class="card">
+<h2>7. Dars yakuni — eslab qoling!</h2>
+<ul>
+<li>Massa kilogrammda (kg), og‘irlik kuchi nyutonda (N) o‘lchanadi.</li>
+<li>Massa odatda joy o‘zgarganda ham bir xil qoladi.</li>
+<li>Og‘irlik gravitatsiyaga bog‘liq va turli osmon jismlarida o‘zgaradi.</li>
+<li>Og‘irlikni hisoblash formulasi: <b>P = m × g</b>.</li>
+<li>Gravitatsiya — massaga ega jismlarning o‘zaro tortishish hodisasi.</li>
+</ul>
+<div class="callout good"><b>O‘ylab ko‘ring:</b> Nima uchun Oyda astronavt balandroq sakray oladi? Javob: Oyda gravitatsiya kuchsizroq, shuning uchun astronavtning og‘irligi Yerdagidan kichikroq.</div>
+</section>
+</main>
+<footer>6-sinf Tabiiy fanlar • Massa, og‘irlik va gravitatsiya kuchi<br>O‘quv maqsadida tayyorlangan interaktiv HTML darsi</footer>
+<script>
+const massInput=document.getElementById('massInput'),world=document.getElementById('world');
+function updateSim(){
+ let m=parseFloat(massInput.value); if(!Number.isFinite(m)||m<0){m=0}
+ let g=parseFloat(world.value),p=m*g;
+ document.getElementById('massOut').textContent=m.toLocaleString('uz-UZ',{maximumFractionDigits:2})+' kg';
+ document.getElementById('weightOut').textContent=p.toLocaleString('uz-UZ',{maximumFractionDigits:2})+' N';
+ document.getElementById('gOut').textContent=g.toLocaleString('uz-UZ')+' N/kg';
+ document.getElementById('planetIcon').textContent=world.selectedOptions[0].dataset.icon;
+ document.getElementById('simText').textContent=world.selectedOptions[0].text.split(' — ')[0]+'da '+m+' kg massali jismning og‘irligi taxminan '+p.toLocaleString('uz-UZ',{maximumFractionDigits:2})+' N. Massa esa '+m+' kg bo‘lib qoladi.';
+ document.getElementById('scaleFill').style.width=Math.min(100,(p/Math.max(m*24.8,1))*100)+'%';
+}
+function resetSim(){massInput.value=40;world.value='9.8';updateSim()}
+massInput.addEventListener('input',updateSim);world.addEventListener('change',updateSim);updateSim();
+function checkQuiz(){
+ const answers={q1:'b',q2:'a',q3:'c',q4:'b',q5:'c'};let score=0,answered=0;
+ for(const [q,a] of Object.entries(answers)){const chosen=document.querySelector('input[name="'+q+'"]:checked');if(chosen){answered++;if(chosen.value===a)score++}}
+ const result=document.getElementById('quizResult');
+ if(answered<5){result.textContent='Iltimos, barcha 5 ta savolga javob bering. Hozircha '+answered+' ta savol belgilangan.';result.style.color='#b45309';return}
+ result.textContent='Natija: '+score+'/5 ('+(score*20)+'%). '+(score===5?'Ajoyib! Mavzuni juda yaxshi tushunibsiz.':score>=3?'Yaxshi! Xatolarni ko‘rib, mavzuni yana bir marta takrorlang.':'Mavzuni qayta o‘qing va yana urinib ko‘ring.');
+ result.style.color=score>=4?'#15803d':'#b45309';
+}
+</script>
+</body>
+</html>

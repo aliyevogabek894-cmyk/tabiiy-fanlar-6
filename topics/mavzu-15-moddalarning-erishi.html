@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Tabiiy fan — Moddalarning erish jarayoni</title>
+<style>
+:root{--blue:#1769aa;--deep:#103b66;--cyan:#dff6ff;--green:#16794b;--orange:#f29b38;--ink:#203044;--bg:#f2f7fc}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+header{background:linear-gradient(135deg,#0c477d,#1384b8);color:#fff;padding:32px 18px;text-align:center}
+header h1{margin:0 0 8px;font-size:clamp(1.7rem,4vw,2.6rem)}header p{max-width:850px;margin:auto}
+nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:#fff;padding:12px;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0001}
+nav a{color:var(--deep);text-decoration:none;padding:7px 12px;border-radius:20px;background:#eaf4fc;font-size:.92rem}
+main{max-width:1100px;margin:22px auto;padding:0 14px}.card{background:#fff;border-radius:16px;padding:22px;margin:18px 0;box-shadow:0 5px 20px #153a5b0c;border:1px solid #e2edf5}
+h2{color:var(--deep);margin-top:0}.tag{display:inline-block;background:#e3f6ed;color:#14633c;border-radius:8px;padding:3px 9px;font-weight:bold}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.mini{background:#f5faff;padding:15px;border-radius:12px;border:1px solid #dcebf7}
+.beaker-area{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;align-items:center}
+.beaker{height:245px;width:190px;margin:0 auto;position:relative;border:5px solid #8abbd3;border-top:0;border-radius:0 0 24px 24px;overflow:hidden;background:linear-gradient(to bottom,transparent 0 20%,#d9f5ff 20%);box-shadow:inset 0 -8px 0 #ffffff70}
+.water{position:absolute;inset:20% 0 0;background:linear-gradient(#b8edffb8,#56bce6b8);transition:background .3s}
+.particle{position:absolute;width:9px;height:9px;border-radius:50%;background:#e6a323;box-shadow:0 0 0 2px #fff7;transition:all .8s}
+.beaker-label{text-align:center;font-weight:bold;margin-top:8px}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}
+button{border:0;background:var(--blue);color:white;padding:10px 15px;border-radius:9px;cursor:pointer;font-weight:bold}button:hover{filter:brightness(.92)}button.secondary{background:#557083}button.green{background:var(--green)}
+input[type=range]{accent-color:var(--blue);width:min(100%,260px)}select{padding:9px;border:1px solid #bfd2e1;border-radius:8px}
+.stat{background:#edf8ff;padding:12px;border-radius:10px;text-align:center}.stat strong{font-size:1.25rem;color:var(--deep)}
+.note{border-left:5px solid var(--orange);padding:10px 14px;background:#fff8ec;border-radius:6px}
+.quiz-q{padding:14px;border:1px solid #e1eaf2;border-radius:12px;margin:12px 0}.quiz-q label{display:block;margin:5px 0;cursor:pointer}
+footer{text-align:center;padding:25px;color:#5b6c7a}
+@media(max-width:520px){.card{padding:16px}.beaker{height:220px;width:165px}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header>
+  <div>🔬 6-SINF · TABIIY FAN</div>
+  <h1>Moddalarning erish jarayoni</h1>
+  <p>Erish qanday sodir bo‘ladi? Harorat, aralashtirish va zarrachalar harakati eritma hosil bo‘lishiga qanday ta’sir qiladi? Keling, kuzatamiz va tajriba qilamiz!</p>
+</header>
+<nav>
+  <a href="#tushuncha">Asosiy tushuncha</a><a href="#simulyatsiya">Simulyatsiya</a><a href="#harorat">Harorat tajribasi</a><a href="#eritma">Eritmalar</a><a href="#tajriba">Mini-loyiha</a><a href="#test">Test</a>
+</nav>
+<main>
+<section class="card" id="tushuncha">
+<h2>1. Erish nima?</h2>
+<p><b>Erish (erish jarayoni)</b> — moddaning boshqa modda ichida zarrachalar darajasida tarqalib, bir jinsli aralashma — <b>eritma</b> hosil qilishidir. Masalan, shakar suvda eriydi. Shakar yo‘q bo‘lib ketmaydi: uning juda mayda zarrachalari suv bo‘ylab tarqaladi.</p>
+<div class="grid">
+ <div class="mini"><h3>💧 Erituvchi</h3><p>Boshqa moddani eritadigan modda. Kundalik hayotda ko‘pincha suv erituvchi bo‘ladi.</p><i>Misol: suv.</i></div>
+ <div class="mini"><h3>🧂 Eruvchi modda</h3><p>Erituvchida tarqaladigan modda.</p><i>Misol: osh tuzi yoki shakar.</i></div>
+ <div class="mini"><h3>🥤 Eritma</h3><p>Erituvchi va erigan modda bir tekis taqsimlanganda hosil bo‘lgan bir jinsli aralashma.</p><i>Misol: shakarli suv.</i></div>
+</div>
+<div class="note"><b>Muhim farq:</b> bu darsda “erish” deganda shakarning suvda erishini nazarda tutamiz. Muzning suvga aylanishi ham “erish” deb ataladi, ammo u qattiq holatdan suyuq holatga o‘tish — boshqa fizik jarayondir.</div>
+<h3>Hayotiy misollar</h3>
+<ul><li>Choyga shakar solganda shakar zarrachalari choy bo‘ylab tarqaladi.</li><li>Suvga tuz qo‘shib aralashtirilganda tuzli eritma hosil bo‘ladi.</li><li>Gazlangan ichimlikda karbonat angidrid gazi suyuqlikda erigan bo‘ladi.</li></ul>
+</section>
+
+<section class="card" id="simulyatsiya">
+<h2>2. Interaktiv simulyatsiya: “Stakanda nima sodir bo‘ladi?”</h2>
+<p>Quyidagi boshqaruvlardan foydalaning. Shakar qo‘shing, aralashtiring va zarrachalar qanday tarqalishini kuzating. Bu model jarayonning soddalashtirilgan tasviridir.</p>
+<div class="beaker-area">
+ <div><div class="beaker" id="beaker"><div class="water" id="water"></div></div><div class="beaker-label">🧪 Suv va shakar modeli</div></div>
+ <div>
+  <div class="stat"><strong id="sugarCount">0</strong><br>shartli shakar zarrachalari</div>
+  <div class="stat" style="margin-top:9px"><strong id="state">Toza suv</strong><br>hozirgi holat</div>
+  <div class="controls"><button id="add">＋ Shakar qo‘shish</button><button id="stir" class="green">⟳ Aralashtirish</button><button id="reset" class="secondary">Qayta boshlash</button></div>
+  <p id="explain">Stakanda hozircha faqat suv bor. Shakar qo‘shib ko‘ring.</p>
+ </div>
+</div>
+</section>
+
+<section class="card" id="harorat">
+<h2>3. Harorat erish tezligiga qanday ta’sir qiladi?</h2>
+<p>Ko‘p qattiq moddalar, jumladan shakar, iliq yoki issiq suvda odatda tezroq eriydi. Harorat oshganda suv zarrachalari tezroq harakatlanadi. Aralashtirish ham erish tezligini oshiradi.</p>
+<div class="grid">
+ <div class="mini"><h3>❄️ A-stakan: sovuq suv</h3><div class="stat"><strong id="coldVal">10°C</strong></div><p>Suv zarrachalari nisbatan sekin harakatlanadi. Shakar ko‘pincha sekinroq eriydi.</p></div>
+ <div class="mini"><h3>☀️ B-stakan: issiq suv</h3><div class="stat"><strong id="hotVal">80°C</strong></div><p>Suv zarrachalari tezroq harakatlanadi. Bir xil sharoitda shakar odatda tezroq eriydi.</p></div>
+</div>
+<div class="controls"><label for="temp">Suv harorati: <b id="tempText">25°C</b></label><input type="range" id="temp" min="5" max="90" value="25"></div>
+<div class="controls"><label for="mix">Aralashtirish:</label><select id="mix"><option value="0">Aralashtirilmaydi</option><option value="1">Sekin aralashtirish</option><option value="2">Tez aralashtirish</option></select></div>
+<div class="stat"><strong id="speedText">O‘rtacha tezlik</strong><br><span id="speedExplain">Harorat va aralashtirishni o‘zgartirib, taxminiy ta’sirni solishtiring.</span></div>
+<p class="note">Eslatma: ekrandagi tezlik bahosi faqat tushuntirish uchun tuzilgan model. Haqiqiy erish vaqti shakar miqdori, kristallarning kattaligi, suv hajmi va aralashtirishga ham bog‘liq. Issiq suv bilan tajribani faqat kattalar nazoratida bajaring.</p>
+</section>
+
+<section class="card" id="eritma">
+<h2>4. To‘yinmagan va to‘yingan eritmalar</h2>
+<div class="grid">
+ <div class="mini"><h3>To‘yinmagan eritma</h3><p>Berilgan haroratda yana eruvchi modda erita oladigan eritma. Ozgina tuz solib aralashtirilganda odatda shunday bo‘ladi.</p></div>
+ <div class="mini"><h3>To‘yingan eritma</h3><p>Berilgan haroratda eruvchi moddaning eng ko‘p miqdori erigan eritma. Ortiqcha tuz tubda qolishi mumkin.</p></div>
+</div>
+<h3>Tabiatdagi ahamiyati</h3>
+<p>Suvda kislorod kabi gazlar ham eriydi. Baliqlar suvda erigan kisloroddan nafas oladi. Suv harorati ko‘tarilganda kislorodning suvda eruvchanligi odatda kamayadi; shu sababli juda iliq suv suv jonivorlariga qiyinchilik tug‘dirishi mumkin.</p>
+</section>
+
+<section class="card" id="tajriba">
+<h2>5. Mini-loyiha: “Qaysi sharoitda shakar tezroq eriydi?”</h2>
+<p><span class="tag">Guruhli tajriba</span></p>
+<h3>Kerakli jihozlar</h3><ul><li>2 ta shaffof stakan</li><li>Bir xil hajmdagi suv: biri salqin, biri iliq</li><li>2 ta bir xil choy qoshiq shakar</li><li>Qoshiq va sekundomer</li></ul>
+<h3>Bajarish tartibi</h3>
+<ol><li>Stakanlarga teng miqdorda suv quying.</li><li>Birinchi stakanga shakar solib, aralashtirmasdan kuzating.</li><li>Ikkinchi stakanga xuddi shuncha shakar solib, bir xil tezlikda aralashtiring.</li><li>Shakar ko‘rinmay qolguncha ketgan vaqtni yozib oling.</li><li>Tajriba natijasini solishtiring va xulosa chiqaring.</li></ol>
+<p class="note"><b>Adolatli tajriba:</b> faqat bitta omilni o‘zgartiring. Harorat ta’sirini o‘rganishda ikkala stakanni ham bir xil usulda aralashtiring; aralashtirish ta’sirini o‘rganishda esa haroratni bir xil saqlang.</p>
+<h3>Kuzatish jadvali</h3>
+<table style="width:100%;border-collapse:collapse"><thead><tr style="background:#eaf4fc"><th style="padding:10px;border:1px solid #d4e3ee">Stakan</th><th style="padding:10px;border:1px solid #d4e3ee">Suv harorati</th><th style="padding:10px;border:1px solid #d4e3ee">Aralashtirish</th><th style="padding:10px;border:1px solid #d4e3ee">Erish vaqti</th></tr></thead><tbody><tr><td style="padding:10px;border:1px solid #d4e3ee">A</td><td style="padding:10px;border:1px solid #d4e3ee">Salqin</td><td style="padding:10px;border:1px solid #d4e3ee">Bir xil usul</td><td style="padding:10px;border:1px solid #d4e3ee">_____ soniya</td></tr><tr><td style="padding:10px;border:1px solid #d4e3ee">B</td><td style="padding:10px;border:1px solid #d4e3ee">Iliq</td><td style="padding:10px;border:1px solid #d4e3ee">Bir xil usul</td><td style="padding:10px;border:1px solid #d4e3ee">_____ soniya</td></tr></tbody></table>
+</section>
+
+<section class="card" id="test">
+<h2>6. Bilimingizni sinab ko‘ring</h2>
+<form id="quiz">
+<div class="quiz-q"><b>1. Erituvchi nima?</b><label><input type="radio" name="q1" value="a"> Eritmada eriydigan modda</label><label><input type="radio" name="q1" value="b"> Boshqa moddani eritadigan modda</label><label><input type="radio" name="q1" value="c"> Faqat qattiq modda</label></div>
+<div class="quiz-q"><b>2. Shakar suvda eriganda nima sodir bo‘ladi?</b><label><input type="radio" name="q2" value="a"> Shakar yo‘q bo‘lib ketadi</label><label><input type="radio" name="q2" value="b"> Shakar zarrachalari suv bo‘ylab tarqaladi</label><label><input type="radio" name="q2" value="c"> Suv darhol muzlaydi</label></div>
+<div class="quiz-q"><b>3. Odatda shakar qaysi suvda tezroq eriydi?</b><label><input type="radio" name="q3" value="a"> Iliqroq suvda</label><label><input type="radio" name="q3" value="b"> Har doim muzdek suvda</label><label><input type="radio" name="q3" value="c"> Harorat ta’sir qilmaydi</label></div>
+<div class="quiz-q"><b>4. To‘yingan eritmada nima kuzatilishi mumkin?</b><label><input type="radio" name="q4" value="a"> Har qanday miqdor cheksiz eriydi</label><label><input type="radio" name="q4" value="b"> Ortiqcha modda erimay qoladi</label><label><input type="radio" name="q4" value="c"> Erituvchi yo‘qoladi</label></div>
+<div class="quiz-q"><b>5. Tajriba adolatli bo‘lishi uchun nima qilish kerak?</b><label><input type="radio" name="q5" value="a"> Bir vaqtda barcha shartlarni o‘zgartirish</label><label><input type="radio" name="q5" value="b"> Faqat tekshirilayotgan bitta omilni o‘zgartirish</label><label><input type="radio" name="q5" value="c"> Natijalarni yozmaslik</label></div>
+<button type="button" id="check" class="green">Javoblarni tekshirish</button> <button type="reset" class="secondary" id="clear">Qayta ishlash</button>
+</form>
+<div id="result" class="stat" style="display:none;margin-top:14px" aria-live="polite"></div>
+</section>
+</main>
+<footer>6-sinf Tabiiy fan · Interaktiv dars materiali · O‘rganing, kuzating, xulosa chiqaring!</footer>
+<script>
+const beaker=document.getElementById('beaker'), water=document.getElementById('water');
+let particles=0, dissolved=false;
+function drawParticles(){
+ beaker.querySelectorAll('.particle').forEach(p=>p.remove());
+ for(let i=0;i<Math.min(particles,34);i++){
+  const p=document.createElement('span');p.className='particle';
+  if(dissolved){p.style.left=(8+Math.random()*82)+'%';p.style.top=(25+Math.random()*68)+'%';p.style.width='7px';p.style.height='7px';}
+  else{p.style.left=(38+Math.random()*24)+'%';p.style.top=(78+Math.random()*12)+'%';p.style.width='8px';p.style.height='8px';}
+  beaker.appendChild(p);
+ }
+ document.getElementById('sugarCount').textContent=particles;
+ document.getElementById('state').textContent=particles===0?'Toza suv':dissolved?'Eritma hosil bo‘ldi':'Shakar tubda';
+ document.getElementById('explain').textContent=particles===0?'Stakanda hozircha faqat suv bor. Shakar qo‘shib ko‘ring.':dissolved?'Aralashtirish natijasida shakar zarrachalari suv bo‘ylab tarqaldi. Ular ko‘zga ko‘rinmasa ham eritmada mavjud.':'Shakar qo‘shildi. Endi aralashtirib, zarrachalarning tarqalishini kuzating.';
+}
+document.getElementById('add').onclick=()=>{particles=Math.min(34,particles+6);dissolved=false;drawParticles()};
+document.getElementById('stir').onclick=()=>{if(!particles){document.getElementById('explain').textContent='Avval shakar qo‘shing.';return}dissolved=true;drawParticles()};
+document.getElementById('reset').onclick=()=>{particles=0;dissolved=false;drawParticles()};
+const temp=document.getElementById('temp'), mix=document.getElementById('mix');
+function updateSpeed(){
+ const t=+temp.value,m=+mix.value;document.getElementById('tempText').textContent=t+'°C';
+ let score=(t-5)/85 + m*.42;
+ let label=score<.35?'Sekinroq':score<.85?'O‘rtacha tezlik':'Tezroq';
+ document.getElementById('speedText').textContent=label;
+ document.getElementById('speedExplain').textContent=`Model bahosi: harorat ${t}°C, aralashtirish — ${mix.options[mix.selectedIndex].text.toLowerCase()}.`;
+}
+temp.addEventListener('input',updateSpeed);mix.addEventListener('change',updateSpeed);
+document.getElementById('check').onclick=()=>{
+ const answers={q1:'b',q2:'b',q3:'a',q4:'b',q5:'b'};let score=0,answered=0;
+ for(const [q,a] of Object.entries(answers)){const chosen=document.querySelector(`input[name="${q}"]:checked`);if(chosen){answered++;if(chosen.value===a)score++}}
+ const r=document.getElementById('result');r.style.display='block';
+ r.innerHTML=`Natija: <strong>${score}/5</strong><br>${answered<5?'Barcha savollarga javob bering. ':''}${score===5?'Ajoyib! Mavzuni yaxshi tushunibsiz.':score>=3?'Yaxshi! Xatolarni ko‘rib, mavzuni yana takrorlang.':'Mavzuni qayta o‘qib, yana urinib ko‘ring.'}`;
+};
+document.getElementById('clear').onclick=()=>{setTimeout(()=>document.getElementById('result').style.display='none',0)};
+drawParticles();updateSpeed();
+</script>
+</body>
+</html>

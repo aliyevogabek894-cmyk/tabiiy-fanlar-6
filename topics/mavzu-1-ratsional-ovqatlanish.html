@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ratsional ovqatlanish</title>
+<style>
+/* ===== Asosiy uslublar ===== */
+:root{--c:#6366f1;--bg:#fff8e7;--tx:#1f2937}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+body{font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;font-size:18px;background:var(--bg);color:var(--tx);padding-bottom:84px}
+header{position:sticky;top:0;z-index:20;display:flex;gap:8px;align-items:center;justify-content:space-between;padding:8px 12px;background:#fff;box-shadow:0 2px 8px #0002}
+.pill{background:#fde68a;border-radius:24px;padding:8px 14px;font-weight:700}
+.ib{min-height:48px;min-width:48px;border:0;border-radius:24px;background:#e0e7ff;font-size:22px}
+main{max-width:760px;margin:0 auto;padding:12px}
+section{display:none;--c:#6366f1}
+section.on{display:block}
+#v-s1{--c:#22c55e}#v-s2{--c:#f59e0b}#v-s3{--c:#ec4899}#v-t{--c:#8b5cf6}
+h1{font-size:30px;text-align:center;margin:8px 0}
+h2{color:var(--c);font-size:24px;margin:16px 0 8px}
+h3{margin:12px 0 6px;color:var(--c)}
+.card{background:#fff;border-left:8px solid var(--c);border-radius:14px;padding:12px 14px;margin:8px 0;box-shadow:0 2px 6px #0001}
+.btn{min-height:52px;padding:10px 16px;border:0;border-radius:16px;background:var(--c);color:#fff;font-size:18px;font-weight:700;margin:4px 2px;cursor:pointer}
+.btn.big{display:block;width:100%;margin:10px 0;font-size:22px}
+.btn.alt{background:#fff;color:var(--c);border:3px solid var(--c)}
+.btn.bad{background:#ef4444}
+.row{display:flex;flex-wrap:wrap;gap:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+/* Avatar */
+.avbox{display:flex;align-items:center;gap:10px;background:#fff;border-radius:20px;padding:8px;margin:8px 0;position:sticky;top:64px;z-index:10;box-shadow:0 2px 8px #0002}
+.avw{position:relative;width:96px;text-align:center;flex:none}
+.av{font-size:70px;line-height:1;display:inline-block}
+.fx{position:absolute;right:-6px;top:-8px;font-size:32px;opacity:0}
+.fx.show{animation:pop 1.6s ease-out}
+.bub{flex:1;background:#fef3c7;border-radius:16px;padding:10px 12px;font-size:16px;position:relative}
+.bub:before{content:"";position:absolute;left:-10px;top:24px;border:8px solid transparent;border-right-color:#fef3c7;border-left:0}
+.av.jump{animation:jump .7s 2}.av.shake{animation:shake .5s 3}.av.yawn{animation:yawn 1.2s 2}
+.av.run{animation:run .5s 5}.av.sleep{animation:sleep 1.5s 2}
+@keyframes jump{50%{transform:translateY(-22px) rotate(8deg)}}
+@keyframes shake{25%{transform:rotate(-12deg)}75%{transform:rotate(12deg)}}
+@keyframes yawn{50%{transform:scale(1.3,.85)}}
+@keyframes run{0%,100%{transform:translateX(-14px)}50%{transform:translateX(14px) rotate(10deg)}}
+@keyframes sleep{50%{transform:rotate(-15deg) scale(.92)}}
+@keyframes pop{0%{opacity:0;transform:translateY(10px)}20%,80%{opacity:1}100%{opacity:0;transform:translateY(-24px)}}
+/* Shkalalar */
+.bar{background:#e5e7eb;border-radius:12px;height:22px;overflow:hidden;margin:2px 0 8px}
+.bar i{display:block;height:100%;background:var(--c);transition:width .5s;border-radius:12px}
+/* Sudrash */
+.dc{background:#fff;border:3px solid var(--c);border-radius:14px;padding:10px;text-align:center;min-height:64px;touch-action:none;user-select:none;font-weight:700;cursor:grab}
+.dc.sel{background:#fde68a;transform:scale(1.05)}
+.dc.wrong,.slot.wrong{animation:shake .4s}
+.zone{min-height:90px;border:4px dashed var(--c);border-radius:16px;padding:8px;text-align:center;background:#fff8}
+.zone.good{border-color:#22c55e}.zone.badz{border-color:#ef4444}
+.ghost{position:fixed;z-index:99;pointer-events:none;width:120px;opacity:.85}
+.slot{flex:1;min-width:90px;min-height:78px;border:3px dashed var(--c);border-radius:12px;text-align:center;background:#fff;padding:4px;font-size:15px}
+.slot.ok{background:#bbf7d0;border-style:solid;border-color:#22c55e}
+.pie{width:120px;height:120px;border-radius:50%;margin:8px auto;border:4px solid #fff;box-shadow:0 2px 6px #0003}
+.item{display:flex;align-items:center;gap:8px;background:#fff;border-radius:12px;padding:6px 8px;margin:4px 0}
+.item input{flex:1;height:32px}
+.warn{background:#fee2e2;border-radius:12px;padding:8px;margin:6px 0;font-weight:700}
+.okmsg{background:#dcfce7;border-radius:12px;padding:8px;margin:6px 0;font-weight:700}
+.cf{position:fixed;top:-30px;font-size:28px;z-index:98;pointer-events:none;animation:fall 1.6s linear forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(360deg)}}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:#fff;box-shadow:0 -2px 10px #0003;z-index:30;padding-bottom:env(safe-area-inset-bottom,0)}
+nav button{flex:1;min-height:60px;border:0;background:none;font-size:13px;font-weight:700}
+nav button b{display:block;font-size:24px}
+nav button.on{background:#fde68a}
+#modal{position:fixed;inset:0;background:#0007;display:none;align-items:center;justify-content:center;z-index:50;padding:14px}
+#modal.on{display:flex}
+#mb{background:#fff;border-radius:20px;padding:16px;max-width:520px;width:100%;max-height:88vh;overflow:auto}
+svg text{font-family:inherit}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header>
+  <span class="pill">⭐ <span id="st">0</span></span>
+  <span class="pill">🏅 Ball: <span id="sc">0</span></span>
+  <button class="ib" id="snd" aria-label="Ovoz">🔊</button>
+  <button class="ib" id="rst" aria-label="Qayta boshlash">🔄</button>
+</header>
+<main>
+  <section id="v-home" class="on"></section>
+  <section id="v-s1"></section>
+  <section id="v-s2"></section>
+  <section id="v-s3"></section>
+  <section id="v-t"></section>
+</main>
+<nav>
+  <button data-v="home"><b>🏠</b>Bosh</button>
+  <button data-v="s1"><b>🌿</b>Turmush</button>
+  <button data-v="s2"><b>🕒</b>Tartib</button>
+  <button data-v="s3"><b>🍎</b>Kaloriya</button>
+  <button data-v="t"><b>📝</b>Test</button>
+</nav>
+<div id="modal"><div id="mb"></div></div>
+
+<script>
+/* ===================== MA'LUMOTLAR (o'qituvchi o'zgartirishi mumkin) ===================== */
+// Nazariya kartochkalari
+const THEORY = {
+  s1: [
+    "🌿 Sog'lom turmush tarzi — to'g'ri ovqatlanish, uyqu, harakat, toza havo, gigiyena va zararli odatlardan saqlanish.",
+    "😴 6-sinf o'quvchisi uchun uyqu: 9–10 soat.",
+    "🏃 Jismoniy faollik: kuniga kamida 60 daqiqa.",
+    "💧 Suv: kuniga 1,5–2 litr.",
+    "📺 Ekran oldida vaqt: 2 soatdan oshmasin."
+  ],
+  s2: [
+    "🍽 Kuniga 4–5 marta ovqatlan, oralig'i 3–4 soat.",
+    "🕒 07:00 nonushta, 10:30 yengil tushlik (meva, sut), 13:00 tushlik, 16:30 poldnik, 19:00 kechki ovqat.",
+    "🌙 Kechki ovqat uxlashdan kamida 2 soat oldin bo'lsin.",
+    "📊 Kunlik ulush: nonushta 25%, tushlik 35%, poldnik 10–15%, kechki ovqat 20–25%.",
+    "🥣 Nonushta miya va tanaga energiya beradi, diqqatni oshiradi.",
+    "🦷 Ovqatni yaxshilab chaynab, shoshilmasdan ye. Ovqatdan oldin qo'lni yuv."
+  ],
+  s3: [
+    "⚡ Kaloriya (kkal) — ovqat beradigan energiya o'lchovi.",
+    "🎯 6-sinf o'quvchisiga kuniga taxminan 2200–2500 kkal kerak (harakatga qarab o'zgaradi).",
+    "⚖️ Ortiqcha kaloriya semizlikka, kam kaloriya holsizlikka olib keladi.",
+    "🥩 Oqsil — o'sish va mushaklar uchun.  🧈 Yog' — energiya va vitaminlar uchun.",
+    "🍞 Uglevod — asosiy energiya manbai.  🍊 Vitamin va minerallar — immunitet va suyaklar uchun."
+  ]
+};
+
+// 1-bo'lim: foydali odatlar (h=salomatlik, en=energiya, m=kayfiyat o'zgarishi)
+const HABITS = [
+  {e:"😴",n:"Uxlash",h:8,en:30,m:6,a:"sleep",fx:"💤",t:"Zzz... Uyqu tanani tiklaydi. 9–10 soat uxlash kerak!"},
+  {e:"⚽",n:"Sport",h:8,en:-10,m:10,a:"run",fx:"🏃",t:"Harakat mushak va yurakni kuchaytiradi. Kuniga 60 daqiqa!"},
+  {e:"💧",n:"Suv ichish",h:6,en:6,m:3,a:"jump",fx:"🥤",t:"Suv tanani tozalaydi. Kuniga 1,5–2 litr ichaman!"},
+  {e:"🧼",n:"Qo'l yuvish",h:7,en:0,m:3,a:"jump",fx:"🫧",t:"Toza qo'l — mikroblardan himoya."},
+  {e:"🌳",n:"Ochiq havoda sayr",h:8,en:8,m:10,a:"jump",fx:"☀️",t:"Toza havo kayfiyatni ko'taradi."},
+  {e:"📺",n:"Telefon / TV",tv:1}
+];
+// Zararli odatlar
+const BAD = [
+  {e:"📱🌙",n:"Kechasi telefon",h:-12,en:-15,m:-6,t:"Ekran nuri uyquni buzadi, ertasi kuni holsiz bo'laman."},
+  {e:"🥱",n:"Uyqusiz qolish",h:-14,en:-25,m:-10,t:"Kam uxlasam, diqqat pasayadi va tez charchayman."}
+];
+// "Odatni top" o'yini: g=1 foydali, g=0 zararli
+const HABIT_CARDS = [
+  {e:"🥦",n:"Sabzavot yeyish",g:1},{e:"🍬",n:"Ko'p shirinlik",g:0},
+  {e:"🏃",n:"Ertalabki yugurish",g:1},{e:"🎮",n:"Tunda o'yin o'ynash",g:0},
+  {e:"💧",n:"Suv ichish",g:1},{e:"🥤",n:"Kuniga 3 ta gazli ichimlik",g:0},
+  {e:"😴",n:"Vaqtida uxlash",g:1},{e:"🍟",n:"Har kuni chips va fast-food",g:0}
+];
+
+// 2-bo'lim: ovqat vaqtlari (t = soat, s = kunlik ulush %)
+const MEALS = [
+  {id:"n",e:"🥣",n:"Nonushta",t:7,tl:"07:00",s:25,c:"#f59e0b"},
+  {id:"y",e:"🍎",n:"Yengil tushlik",t:10.5,tl:"10:30",s:10,c:"#84cc16"},
+  {id:"t",e:"🍲",n:"Tushlik",t:13,tl:"13:00",s:35,c:"#ef4444"},
+  {id:"p",e:"🥛",n:"Poldnik",t:16.5,tl:"16:30",s:10,c:"#06b6d4"},
+  {id:"k",e:"🍚",n:"Kechki ovqat",t:19,tl:"19:00",s:20,c:"#8b5cf6"}
+];
+const MISS = {
+  n:["hungry","Nonushtasiz qoldim... Qornim och, diqqatim pasaydi! 😵‍💫"],
+  y:["tired","Ovqatlar orasi uzoq bo'ldi, holsizlanyapman."],
+  t:["hungry","Tushlik yo'q! Kuchim tugadi, esnayapman 🥱"],
+  p:["tired","Poldniksiz holsiz bo'lib qoldim."],
+  k:["hungry","Kechki ovqatsiz uxlash qiyin, qorin och."]
+};
+// Ovqat hazm qilish bosqichlari (p = yo'lning boshlanishi 0–1)
+const STAGES = [
+  {p:0,t:"👄 Og'iz: ovqat chaynaladi va so'lak bilan aralashadi."},
+  {p:.14,t:"➡️ Qizilo'ngach: ovqat oshqozonga tushadi."},
+  {p:.3,t:"🫃 Oshqozon: oshqozon shirasi ovqatni eritadi."},
+  {p:.5,t:"🌀 Ingichka ichak: foydali moddalar qonga so'riladi."},
+  {p:.8,t:"🚽 Yo'g'on ichak: suv so'riladi, keraksiz qoldiq chiqariladi."}
+];
+
+// 3-bo'lim: mahsulotlar (100 g uchun): k=kkal, p=oqsil, f=yog', c=uglevod; t: v=meva/sabzavot, g=don, p=oqsil, o=boshqa
+const FOODS = [
+  {e:"🍎",n:"Olma",k:52,p:.3,f:.2,c:14,t:"v"},{e:"🍌",n:"Banan",k:89,p:1.1,f:.3,c:23,t:"v"},
+  {e:"🍞",n:"Non",k:265,p:9,f:3,c:49,t:"g"},{e:"🍚",n:"Guruch",k:130,p:2.7,f:.3,c:28,t:"g"},
+  {e:"🥚",n:"Tuxum",k:155,p:13,f:11,c:1,t:"p"},{e:"🥛",n:"Sut",k:60,p:3.2,f:3.3,c:4.8,t:"p"},
+  {e:"🍗",n:"Tovuq go'shti",k:165,p:31,f:3.6,c:0,t:"p"},{e:"🐟",n:"Baliq",k:140,p:20,f:6,c:0,t:"p"},
+  {e:"🥗",n:"Sabzavot salati",k:25,p:1,f:.2,c:5,t:"v"},{e:"🥜",n:"Yong'oq",k:650,p:15,f:60,c:14,t:"p"},
+  {e:"🍫",n:"Shokolad",k:540,p:6,f:31,c:58,t:"o"},{e:"🍟",n:"Chips",k:540,p:6,f:35,c:50,t:"o"},
+  {e:"🥤",n:"Gazli ichimlik",k:42,p:0,f:0,c:10.6,t:"o"},{e:"🍰",n:"Tort / pirojnoe",k:400,p:5,f:20,c:50,t:"o"}
+];
+// "Taqqosla": [mahsulot indeksi, gramm]
+const MENU_GOOD = [[0,200],[1,150],[2,150],[3,200],[4,100],[5,300],[6,200],[7,150],[8,250],[9,30]];
+const MENU_BAD  = [[11,200],[12,300],[13,250],[10,100],[2,100]];
+const TARGET = 2400;
+
+// Yakuniy test (s = bo'lim 1/2/3, a = to'g'ri javob indeksi)
+const QUESTIONS = [
+  {s:1,q:"6-sinf o'quvchisi kuniga necha soat uxlashi kerak?",o:["5–6","7–8","9–10","12–13"],a:2,e:"9–10 soat uyqu tanani va miyani tiklaydi."},
+  {s:1,q:"Kuniga kamida necha daqiqa harakat qilish kerak?",o:["10","30","60","180"],a:2,e:"Kamida 60 daqiqa jismoniy faollik kerak."},
+  {s:1,q:"Ekran oldida kuniga necha soatdan oshmaslik kerak?",o:["2","5","8","Cheklov yo'q"],a:0,e:"Ekran vaqti 2 soatdan oshmasligi kerak."},
+  {s:2,q:"Kuniga necha marta ovqatlanish tavsiya etiladi?",o:["1–2","3","4–5","8–9"],a:2,e:"4–5 marta, oralig'i 3–4 soat."},
+  {s:2,q:"Kechki ovqat uxlashdan kamida qancha oldin bo'lsin?",o:["10 daqiqa","30 daqiqa","2 soat","Farqi yo'q"],a:2,e:"Kechki ovqat uxlashdan kamida 2 soat oldin bo'lishi kerak."},
+  {s:2,q:"Kunlik ovqatning eng katta ulushi qaysi ovqatga to'g'ri keladi?",o:["Nonushta","Tushlik","Poldnik","Yengil tushlik"],a:1,e:"Tushlik — taxminan 35%."},
+  {s:3,q:"Kaloriya nimani o'lchaydi?",o:["Ovqat og'irligini","Ovqat energiyasini","Ovqat narxini","Ovqat hajmini"],a:1,e:"Kaloriya (kkal) — ovqat beradigan energiya o'lchovi."},
+  {s:3,q:"Qaysi modda mushak va o'sish uchun kerak?",o:["Oqsil","Gazli ichimlik","Tuz","Shakar"],a:0,e:"Oqsil o'sish va mushaklar uchun kerak."},
+  {s:3,q:"Sog'lom likopchaning yarmi nimadan iborat bo'lishi kerak?",o:["Shirinlik","Sabzavot va meva","Go'sht","Non"],a:1,e:"Yarmi sabzavot va meva, choragi don, choragi oqsil."},
+  {s:3,q:"Ortiqcha kaloriya nimaga olib keladi?",o:["Semizlikka","Uzun bo'yga","Yaxshi ko'rishga","Hech nimaga"],a:0,e:"Ortiqcha kaloriya semizlikka olib keladi."}
+];
+const SECNAME = {1:"Sog'lom turmush tarzi",2:"Ovqatlanish tartibi",3:"Kaloriya"};
+const SECVIEW = {1:"s1",2:"s2",3:"s3"};
+const RECAP = [
+  "😴 Uyqu 9–10 soat, harakat 60 daqiqa, suv 1,5–2 litr, ekran 2 soatgacha.",
+  "🍽 Kuniga 4–5 marta, oralig'i 3–4 soat; nonushtani o'tkazib yuborma.",
+  "🌙 Kechki ovqat uxlashdan kamida 2 soat oldin.",
+  "⚡ Kuniga taxminan 2200–2500 kkal: ortiqchasi ham, kami ham zararli.",
+  "🥗 Likopchaning yarmi sabzavot va meva, choragi don, choragi oqsil."
+];
+
+/* ===================== UMUMIY FUNKSIYALAR ===================== */
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const S = {score:0, stars:0, snd:true};
+const shuffle = a => [...a].sort(() => Math.random() - .5);
+const clamp = v => Math.max(0, Math.min(100, v));
+
+// Ball va yulduzcha qo'shish
+function add(p, st = 0){ S.score += p; S.stars += st; $("#sc").textContent = S.score; $("#st").textContent = S.stars; }
+
+// Oddiy signal tovushi (Web Audio)
+function beep(f = 600, d = .12){
+  if(!S.snd) return;
+  try{
+    const a = beep.c || (beep.c = new (window.AudioContext || window.webkitAudioContext)());
+    const o = a.createOscillator(), g = a.createGain();
+    o.frequency.value = f; g.gain.value = .08; o.connect(g); g.connect(a.destination);
+    o.start(); o.stop(a.currentTime + d);
+  }catch(e){}
+}
+const good = () => { beep(700); setTimeout(() => beep(950), 110); };
+const bad = () => beep(200, .25);
+
+// Konfetti
+function confetti(){
+  for(let i = 0; i < 24; i++){
+    const s = document.createElement("span");
+    s.className = "cf"; s.textContent = ["🎉","⭐","🎊","✨"][i % 4];
+    s.style.left = Math.random() * 95 + "vw"; s.style.animationDelay = Math.random() * .5 + "s";
+    document.body.appendChild(s); setTimeout(() => s.remove(), 2300);
+  }
+}
+
+// Oyna
+function modal(html){ $("#mb").innerHTML = html + `<button class="btn big" onclick="$('#modal').classList.remove('on')">Yopish</button>`; $("#modal").classList.add("on"); }
+
+/* ===================== AVATAR "AZIZ" ===================== */
+const MOOD = {happy:"😄",tired:"🥱",hungry:"🤤",heavy:"🤢",strong:"😎",sleep:"😴",sad:"😩",dizzy:"😵‍💫"};
+function avHTML(id){
+  return `<div class="avbox"><div class="avw"><div class="av" id="av${id}">😄</div><div class="fx" id="fx${id}"></div></div><div class="bub" id="bub${id}">Salom! Men Azizman 👋</div></div>`;
+}
+// Holatni o'zgartirish: kayfiyat, matn, animatsiya, effekt emoji
+function setAv(id, m, t, anim, fx){
+  const a = $("#av" + id); if(!a) return;
+  a.textContent = MOOD[m] || m; a.className = "av"; void a.offsetWidth;
+  if(anim) a.classList.add(anim);
+  if(t) $("#bub" + id).textContent = t;
+  const f = $("#fx" + id); f.className = "fx"; f.textContent = fx || ""; void f.offsetWidth;
+  if(fx) f.classList.add("show");
+}
+
+/* ===================== SUDRAB QO'YISH + BOSIB TANLASH ===================== */
+// Sudrash (pointer events: telefonda ham ishlaydi)
+function drag(el, zones, cb){
+  el.addEventListener("pointerdown", e => {
+    let moved = false, g; const sx = e.clientX, sy = e.clientY;
+    const mv = ev => {
+      if(!moved && Math.hypot(ev.clientX - sx, ev.clientY - sy) < 8) return;
+      if(!moved){ moved = true; g = el.cloneNode(true); g.classList.add("ghost"); document.body.appendChild(g); }
+      g.style.left = ev.clientX - 60 + "px"; g.style.top = ev.clientY - 40 + "px";
+    };
+    const up = ev => {
+      removeEventListener("pointermove", mv); removeEventListener("pointerup", up);
+      if(moved){
+        g.remove();
+        const t = document.elementFromPoint(ev.clientX, ev.clientY);
+        const z = t && t.closest(zones); if(z) cb(el, z);
+        el._d = true; setTimeout(() => el._d = false, 50);
+      }
+    };
+    addEventListener("pointermove", mv); addEventListener("pointerup", up);
+  });
+}
+// Ikkala usul: sudrash yoki "kartani bos, keyin joyni bos"
+function wire(cards, zones, cb){
+  let sel = null;
+  cards.forEach(c => {
+    drag(c, zones, cb);
+    c.addEventListener("click", () => { if(c._d) return; cards.forEach(x => x.classList.remove("sel")); sel = c; c.classList.add("sel"); });
+  });
+  $$(zones).forEach(z => z.addEventListener("click", () => { if(sel && sel.isConnected){ const s = sel; sel.classList.remove("sel"); sel = null; cb(s, z); } }));
+}
+const theory = k => `<h2>📖 Nazariya</h2>` + THEORY[k].map(t => `<div class="card">${t}</div>`).join("");
+
+/* ===================== NAVIGATSIYA ===================== */
+const INIT = {}; // bo'lim bir marta quriladi
+function show(v){
+  stopSims();
+  $$("section").forEach(s => s.classList.toggle("on", s.id === "v-" + v));
+  $$("nav button").forEach(b => b.classList.toggle("on", b.dataset.v === v));
+  if(!INIT[v]){ INIT[v] = 1; ({home:buildHome, s1:buildS1, s2:buildS2, s3:buildS3, t:buildTest})[v](); }
+  scrollTo(0, 0);
+}
+$$("nav button").forEach(b => b.onclick = () => show(b.dataset.v));
+$("#snd").onclick = () => { S.snd = !S.snd; $("#snd").textContent = S.snd ? "🔊" : "🔇"; };
+$("#rst").onclick = () => { if(confirm("Hammasi nolga qaytariladi. Davom etamizmi?")) location.reload(); };
+
+/* ===================== BOSH EKRAN ===================== */
+function buildHome(){
+  $("#v-home").innerHTML = `<h1>🥗 Ratsional ovqatlanish</h1>${avHTML("H")}
+  <button class="btn big" style="background:#22c55e" onclick="show('s1')">🌿 1. Sog'lom turmush tarzi</button>
+  <button class="btn big" style="background:#f59e0b" onclick="show('s2')">🕒 2. Ovqatlanish tartibi</button>
+  <button class="btn big" style="background:#ec4899" onclick="show('s3')">🍎 3. Kaloriyaga e'tibor</button>
+  <button class="btn big" style="background:#8b5cf6" onclick="show('t')">📝 Test</button>
+  <button class="btn big alt" onclick="recap()">💡 Eslab qol!</button>`;
+  setAv("H", "happy", "Salom! Men Azizman. Keling, sog'lom ovqatlanishni o'rganamiz!", "jump", "👋");
+}
+function recap(){ modal(`<h2>💡 Eslab qol!</h2>` + RECAP.map(t => `<div class="card">${t}</div>`).join("")); }
+
+/* ===================== 1-BO'LIM ===================== */
+const D1 = {h:60, en:60, m:60, tv:0};
+function bars(){
+  return [["h","Salomatlik"],["en","Energiya"],["m","Kayfiyat"]].map(([k,n]) => `<div>${n}: <b id="t-${k}">${D1[k]}</b>%</div><div class="bar"><i id="b-${k}" style="width:${D1[k]}%"></i></div>`).join("");
+}
+function buildS1(){
+  $("#v-s1").innerHTML = `<h1>🌿 Sog'lom turmush tarzi</h1>${avHTML(1)}${theory("s1")}
+  <h2>🎮 Mening kunim</h2><div class="card">${bars()}</div>
+  <h3>Foydali odatlar</h3><div class="row" id="hab"></div>
+  <h3>Zararli odatlar</h3><div class="row" id="bad"></div>
+  <h2>🧩 Odatni top</h2><div class="card">Kartani "Foydali" yoki "Zararli" savatiga sudra (yoki kartani bos, keyin savatni bos).</div>
+  <div class="grid" id="hc"></div>
+  <div class="row" style="margin-top:8px"><div class="zone good" data-k="1" style="flex:1">✅ Foydali</div><div class="zone badz" data-k="0" style="flex:1">⚠️ Zararli</div></div>
+  <div id="hmsg"></div>`;
+  HABITS.forEach(h => { const b = document.createElement("button"); b.className = "btn"; b.textContent = h.e + " " + h.n; b.onclick = () => habit(h); $("#hab").append(b); });
+  BAD.forEach(h => { const b = document.createElement("button"); b.className = "btn bad"; b.textContent = h.e + " " + h.n; b.onclick = () => habit(h, true); $("#bad").append(b); });
+  shuffle(HABIT_CARDS).forEach(c => {
+    const d = document.createElement("div"); d.className = "dc"; d.dataset.g = c.g; d.innerHTML = `<div style="font-size:34px">${c.e}</div>${c.n}`; $("#hc").append(d);
+  });
+  wire($$("#hc .dc"), "#v-s1 .zone", (el, z) => {
+    if(el.dataset.g === z.dataset.k){ el.remove(); add(10); good(); setAv(1, "happy", "To'g'ri! +10 ball 🎉", "jump", "⭐");
+      if(!$("#hc .dc")){ $("#hmsg").innerHTML = `<div class="okmsg">Barcha odatlar to'g'ri joylandi! 🏆</div>`; add(0, 1); confetti(); } }
+    else { bad(); el.classList.add("wrong"); setTimeout(() => el.classList.remove("wrong"), 500); setAv(1, "sad", "Yo'q, qaytadan o'ylab ko'r 🤔", "shake"); }
+  });
+  setAv(1, "happy", "Odatlarni bos va nima bo'lishini ko'r!");
+}
+function habit(h, harm){
+  let x = h, msg;
+  if(h.tv){ // telefon/TV: 2 martadan keyin zararli
+    D1.tv++;
+    x = D1.tv > 2 ? {h:-10,en:-10,m:-5,a:"yawn",t:"Juda ko'p ekran! Ko'zlar charchaydi, harakat kam bo'ladi. 2 soatdan oshmasin!"} : {h:0,en:-3,m:3,a:"jump",fx:"📺",t:"1 soat ko'rdim — bo'ladi. Jami 2 soatdan oshmasin."};
+    harm = D1.tv > 2;
+  }
+  D1.h = clamp(D1.h + x.h); D1.en = clamp(D1.en + x.en); D1.m = clamp(D1.m + x.m);
+  ["h","en","m"].forEach(k => { $("#b-" + k).style.width = D1[k] + "%"; $("#t-" + k).textContent = D1[k]; });
+  if(harm){ bad(); setAv(1, "tired", x.t, "yawn", "💫"); }
+  else { good(); add(5); const m = D1.h >= 85 ? "strong" : "happy"; setAv(1, h.a === "sleep" ? "sleep" : m, x.t, x.a, x.fx); }
+}
+
+/* ===================== 2-BO'LIM ===================== */
+let clk = null, dig = null, digP = 0, digPause = false, gm = null;
+const placed = {}; let T = 6, snacks = 0;
+function stopSims(){ clearInterval(clk); clearInterval(gm); clk = null; gm = null; }
+
+function buildS2(){
+  $("#v-s2").innerHTML = `<h1>🕒 Ovqatlanish tartibi</h1>${avHTML(2)}${theory("s2")}
+  <h2>⏰ Soat va tarelka</h2>
+  <svg id="sky" viewBox="0 0 300 150" style="width:100%;border-radius:16px">
+    <rect id="skyr" width="300" height="150" fill="#fdba74"/>
+    <circle id="sun" r="14" fill="#fbbf24"/><circle id="moon" r="11" fill="#e5e7eb"/>
+    <rect y="128" width="300" height="22" fill="#4ade80"/>
+    <circle cx="150" cy="82" r="34" fill="#fff" stroke="#374151" stroke-width="4"/>
+    <line id="hh" x1="150" y1="82" x2="150" y2="62" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+    <line id="mh" x1="150" y1="82" x2="150" y2="56" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+    <text id="dt" x="150" y="140" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">06:00</text>
+  </svg>
+  <div class="card">Ovqat kartasini soat chizig'idagi to'g'ri vaqtga sudra (yoki kartani, keyin vaqtni bos), so'ng kunni boshla.</div>
+  <div class="row" id="slots"></div>
+  <div class="grid" id="mc" style="margin-top:8px"></div>
+  <button class="btn big" id="go">▶ Kunni boshlash</button>
+  <div class="row"><button class="btn bad" id="late">🍔 Kechasi 22:00 da og'ir ovqat</button><button class="btn alt" id="snack">🍬 Tamaddi</button></div>
+  <div id="pie"></div>
+  <h2>🫀 Oshqozon-ichak yo'li</h2>
+  <svg viewBox="0 0 300 230" style="width:100%;background:#fff;border-radius:16px">
+    <path id="tract" d="M150,20 L150,70 C150,105 105,105 105,130 L195,130 L105,152 L195,152 L105,174 L195,174 L215,180 L215,212 L85,212 L85,192 L60,192" fill="none" stroke="#fbcfe8" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="165" y="24" font-size="13">👄 Og'iz</text><text x="165" y="60" font-size="13">Qizilo'ngach</text>
+    <text x="115" y="118" font-size="13">Oshqozon</text><text x="205" y="148" font-size="13">Ingichka</text>
+    <text x="30" y="226" font-size="13">Yo'g'on ichak</text>
+    <circle id="food" r="9" fill="#f59e0b" stroke="#b45309" stroke-width="2"/>
+  </svg>
+  <div class="card" id="stg"></div>
+  <div class="row"><button class="btn" id="pz">⏸ To'xtat</button><label style="flex:1;min-width:150px">Tezlik <input type="range" id="spd" min="1" max="10" value="4" style="width:100%;height:40px"></label></div>
+  <h2>⏱ Mini-o'yin: ovqatlanish tartibi</h2>
+  <div class="card">Ovqatlarni ertalabdan kechgacha to'g'ri ketma-ketlikda bos. 60 soniya!</div>
+  <button class="btn big" id="gs">▶ O'yinni boshlash</button><div id="gt" style="font-weight:700"></div><div class="grid" id="gc"></div>`;
+  // Vaqt chizig'i
+  MEALS.forEach(m => { const s = document.createElement("div"); s.className = "slot"; s.dataset.id = m.id; s.innerHTML = `<b>${m.tl}</b><br>?`; $("#slots").append(s); });
+  shuffle(MEALS).forEach(m => { const d = document.createElement("div"); d.className = "dc"; d.dataset.id = m.id; d.innerHTML = `<div style="font-size:32px">${m.e}</div>${m.n}`; $("#mc").append(d); });
+  wire($$("#mc .dc"), "#slots .slot", (el, z) => {
+    const m = MEALS.find(x => x.id === el.dataset.id);
+    if(z.dataset.id === el.dataset.id && !placed[m.id]){
+      placed[m.id] = 1; z.classList.add("ok"); z.innerHTML = `<b>${m.tl}</b><br>${m.e} ✅`; el.remove(); add(10); good(); confetti();
+      setAv(2, "happy", `To'g'ri! ${m.n} soat ${m.tl} da. +10 ball`, "jump", "✅");
+      if(Object.keys(placed).length === 5) $("#pie").innerHTML = pie();
+    } else { bad(); z.classList.add("wrong"); setTimeout(() => z.classList.remove("wrong"), 500); setAv(2, "sad", "Bu vaqt to'g'ri kelmaydi. Yana urin!", "shake"); }
+  });
+  $("#go").onclick = startDay;
+  $("#late").onclick = () => { bad(); setAv(2, "heavy", "Kechasi og'ir ovqat! Uxlay olmayman, qornim og'riyapti 😣", "shake", "🤢"); };
+  $("#snack").onclick = () => { snacks++; if(snacks > 2){ bad(); setAv(2, "heavy", "Juda ko'p tamaddi! Qorin og'ir, asosiy ovqatga ishtaha yo'q.", "shake", "🍬"); } else setAv(2, "happy", "Bitta yengil tamaddi zarar qilmaydi 🙂", "jump"); };
+  $("#pz").onclick = () => { digPause = !digPause; $("#pz").textContent = digPause ? "▶ Davom ettir" : "⏸ To'xtat"; };
+  $("#gs").onclick = startOrder; drawClock(6);
+  startDig(); setAv(2, "happy", "Ovqatlarni vaqtiga qo'yib chiq!");
+}
+// Soatni chizish: vaqtga qarab osmon, quyosh va oy
+function drawClock(t){
+  const H = Math.floor(t), M = Math.floor((t % 1) * 60);
+  $("#dt").textContent = String(H).padStart(2,"0") + ":" + String(M).padStart(2,"0");
+  const rot = (id, deg) => $(id).setAttribute("transform", `rotate(${deg} 150 82)`);
+  rot("#hh", (t % 12) / 12 * 360); rot("#mh", (t % 1) * 360);
+  $("#skyr").setAttribute("fill", t < 8 ? "#fdba74" : t < 17 ? "#7dd3fc" : t < 19.5 ? "#fb923c" : "#1e1b4b");
+  const f = (t - 6) / 13, g = Math.max(0, (t - 18.5) / 3.5);
+  $("#sun").setAttribute("cx", 20 + 260 * Math.min(1, f)); $("#sun").setAttribute("cy", 115 - 90 * Math.sin(Math.PI * Math.min(1, f)));
+  $("#sun").style.opacity = t < 19.5 ? 1 : 0;
+  $("#moon").setAttribute("cx", 40 + 220 * g); $("#moon").setAttribute("cy", 60 - 30 * Math.sin(Math.PI * g)); $("#moon").style.opacity = t >= 18.5 ? 1 : 0;
+}
+function startDay(){
+  stopSims(); T = 6; const chk = {}; let missed = 0; snacks = 0;
+  setAv(2, "happy", "Kun boshlandi! ☀️");
+  clk = setInterval(() => {
+    T += .1; drawClock(Math.min(T, 22));
+    MEALS.forEach(m => {
+      if(T >= m.t + .4 && !chk[m.id]){
+        chk[m.id] = 1;
+        if(!placed[m.id]){ missed++; bad(); const r = MISS[m.id]; setAv(2, r[0], r[1], "yawn", m.id === "n" ? "😵‍💫" : "⚠️"); }
+        else { good(); setAv(2, "happy", `${m.n} vaqtida yeyildi. Ajoyib!`, "jump", m.e); }
+      }
+    });
+    if(T >= 22){ stopSims(); $("#pie").innerHTML = pie();
+      if(!missed){ setAv(2, "strong", "Kun a'lo o'tdi! Kuchim to'la 💪", "jump", "🏆"); add(20, 1); confetti(); }
+      else setAv(2, "tired", `${missed} ta ovqat o'tkazib yuborildi. Ertaga tartibga rioya qilaman!`, "yawn"); }
+  }, 250);
+}
+// Ovqat ulushi doiraviy diagrammasi
+function pie(){
+  let a = 0; const seg = [], leg = [];
+  MEALS.filter(m => placed[m.id]).forEach(m => { seg.push(`${m.c} ${a}% ${a + m.s}%`); a += m.s; leg.push(`<span style="color:${m.c}">■</span> ${m.n} ${m.s}%`); });
+  seg.push(`#e5e7eb ${a}% 100%`);
+  return `<div class="card"><h3>📊 Kunlik ovqat ulushi</h3><div class="pie" style="background:conic-gradient(${seg.join(",")})"></div>${leg.join("<br>")}</div>`;
+}
+// Hazm qilish animatsiyasi
+function startDig(){
+  const path = $("#tract"), L = path.getTotalLength(); cancelAnimationFrame(dig);
+  const step = () => {
+    if($("#v-s2").classList.contains("on") && !digPause){
+      digP += $("#spd").value * .0004; if(digP > 1) digP = 0;
+      const p = path.getPointAtLength(digP * L); $("#food").setAttribute("cx", p.x); $("#food").setAttribute("cy", p.y);
+      const st = [...STAGES].reverse().find(s => digP >= s.p); $("#stg").textContent = st.t;
+    }
+    dig = requestAnimationFrame(step);
+  };
+  step();
+}
+// Mini-o'yin: to'g'ri ketma-ketlik
+function startOrder(){
+  clearInterval(gm); let next = 0, left = 60; $("#gt").textContent = "⏱ 60"; $("#gc").innerHTML = "";
+  shuffle(MEALS).forEach(m => {
+    const d = document.createElement("div"); d.className = "dc"; d.innerHTML = `<div style="font-size:32px">${m.e}</div>${m.n}`;
+    d.onclick = () => {
+      if(!gm) return;
+      if(MEALS[next].id === m.id){ next++; d.style.background = "#bbf7d0"; d.innerHTML += ` ✅${next}`; d.onclick = null; good();
+        if(next === 5){ clearInterval(gm); gm = null; add(20 + left, 1); confetti(); $("#gt").textContent = "🎉 Ajoyib! Qolgan vaqt uchun bonus oldingiz."; } }
+      else { bad(); d.classList.add("wrong"); setTimeout(() => d.classList.remove("wrong"), 500); }
+    };
+    $("#gc").append(d);
+  });
+  gm = setInterval(() => { left--; $("#gt").textContent = "⏱ " + left; if(left <= 0){ clearInterval(gm); gm = null; $("#gt").textContent = "⌛ Vaqt tugadi. Yana urinib ko'r!"; } }, 1000);
+}
+
+/* ===================== 3-BO'LIM ===================== */
+const plate = {}; // mahsulot indeksi -> gramm
+let hpDone = false;
+function buildS3(){
+  $("#v-s3").innerHTML = `<h1>🍎 Kaloriyaga e'tibor</h1>${avHTML(3)}${theory("s3")}
+  <h2>🧮 Kaloriya hisoblagich</h2>
+  <div class="card">Mahsulotni bos yoki likopchaga sudra. Grammni slayder bilan o'zgartir (50–300 g).</div>
+  <div class="grid" id="fd"></div>
+  <h3>🍽 Mening likopcham</h3>
+  <div class="zone" id="plate">Bu yerga tashla</div>
+  <div class="card" style="margin-top:8px"><b id="kc">0</b> / ${TARGET} kkal <span id="zn"></span><div class="bar"><i id="kb" style="width:0"></i></div>
+    <div class="pie" id="mp" style="background:#e5e7eb"></div><div id="ml" style="text-align:center"></div></div>
+  <div id="vt"></div>
+  <label style="display:block;margin:8px 0"><input type="checkbox" id="hp" style="width:28px;height:28px;vertical-align:middle"> 🥗 Sog'lom likopcha rejimi</label>
+  <div id="hpb"></div>
+  <button class="btn big alt" id="cmp">⚖️ Taqqosla: sog'lom va nosog'lom kun</button>`;
+  FOODS.forEach((f, i) => {
+    const d = document.createElement("div"); d.className = "dc"; d.dataset.i = i;
+    d.innerHTML = `<div style="font-size:34px">${f.e}</div>${f.n}<div style="font-size:13px;font-weight:400">${f.k} kkal · O${f.p} Y${f.f} U${f.c}</div>`;
+    d.onclick = () => { if(!d._d) addFood(i); }; drag(d, "#plate", () => addFood(i)); $("#fd").append(d);
+  });
+  $("#hp").onchange = calc; $("#cmp").onclick = compare; calc();
+}
+function addFood(i){ if(!plate[i]) plate[i] = 100; good(); calc(); }
+function calc(){
+  let k = 0, p = 0, f = 0, c = 0; const grp = {v:0, g:0, p:0, o:0};
+  $("#plate").innerHTML = "";
+  const keys = Object.keys(plate);
+  if(!keys.length) $("#plate").textContent = "Bu yerga tashla";
+  keys.forEach(i => {
+    const x = FOODS[i], g = plate[i]; k += x.k * g / 100; p += x.p * g / 100; f += x.f * g / 100; c += x.c * g / 100; grp[x.t] += g;
+    const r = document.createElement("div"); r.className = "item";
+    r.innerHTML = `<span style="font-size:28px">${x.e}</span><input type="range" min="50" max="300" step="10" value="${g}"><b style="min-width:52px">${g} g</b><button class="ib" style="background:#fecaca">✖</button>`;
+    r.querySelector("input").oninput = e => { plate[i] = +e.target.value; calc(); };
+    r.querySelector("button").onclick = () => { delete plate[i]; calc(); };
+    $("#plate").append(r);
+  });
+  k = Math.round(k); $("#kc").textContent = k; $("#kb").style.width = Math.min(100, k / TARGET * 100) + "%";
+  // Zona va avatar
+  let z, m, t, an;
+  if(!keys.length){ z = ""; m = "happy"; t = "Mahsulot tanla, kaloriyani hisoblaymiz!"; }
+  else if(k < 1600){ z = "🔻 Kam"; m = "tired"; t = "Kaloriya kam — holsizlanyapman."; an = "yawn"; }
+  else if(k >= 2000 && k <= 2600){ z = "✅ Me'yorda"; m = "strong"; t = "Zo'r! Kaloriya me'yorida, kuchim to'la!"; an = "jump"; }
+  else if(k > 2800){ z = "🔺 Ko'p"; m = "heavy"; t = "Juda ko'p kaloriya, qorin og'ir..."; an = "shake"; }
+  else { z = "〰️ Deyarli"; m = "happy"; t = "Me'yorga yaqin (2000–2600 kkal)."; }
+  $("#zn").textContent = z; setAv(3, m, t, an);
+  // Oqsil/yog'/uglevod ulushi
+  const tot = p + f + c || 1, pp = Math.round(p / tot * 100), fp = Math.round(f / tot * 100), cp = 100 - pp - fp;
+  $("#mp").style.background = keys.length ? `conic-gradient(#ef4444 0 ${pp}%,#facc15 ${pp}% ${pp + fp}%,#3b82f6 ${pp + fp}% 100%)` : "#e5e7eb";
+  $("#ml").innerHTML = keys.length ? `<span style="color:#ef4444">■</span> Oqsil ${pp}% <span style="color:#ca8a04">■</span> Yog' ${fp}% <span style="color:#3b82f6">■</span> Uglevod ${keys.length ? cp : 0}%` : "";
+  // Vitamin ko'rsatkichi
+  $("#vt").innerHTML = keys.length ? (grp.v ? `<div class="okmsg">🍊 Vitamin ko'rsatkichi: yaxshi (meva/sabzavot bor)</div>` : `<div class="warn">⚠️ Meva yoki sabzavot yo'q — vitamin yetishmaydi!</div>`) : "";
+  // Sog'lom likopcha rejimi: yarmi meva/sabzavot, choragi don, choragi oqsil
+  const all = grp.v + grp.g + grp.p + grp.o;
+  if($("#hp").checked){
+    const pc = x => all ? Math.round(x / all * 100) : 0, V = pc(grp.v), G = pc(grp.g), P = pc(grp.p);
+    const ok = all >= 300 && V >= 40 && V <= 60 && G >= 15 && G <= 35 && P >= 15 && P <= 35 && !grp.o;
+    $("#hpb").innerHTML = `<div class="card"><div class="pie" style="background:conic-gradient(#4ade80 0 50%,#fbbf24 50% 75%,#f87171 75% 100%)"></div>
+      Ko'rsatma: 🥦 50% sabzavot/meva, 🍚 25% don, 🍗 25% oqsil.<br>Seniki: 🥦 ${V}% · 🍚 ${G}% · 🍗 ${P}%</div>` + (ok ? `<div class="okmsg">🌟 Sog'lom likopcha! Yulduzcha olding!</div>` : "");
+    if(ok && !hpDone){ hpDone = true; add(30, 1); confetti(); good(); }
+  } else $("#hpb").innerHTML = "";
+}
+// Ikki xil kun menyusini taqqoslash
+function compare(){
+  const sum = list => { let k = 0, p = 0, f = 0, c = 0; list.forEach(([i, g]) => { const x = FOODS[i]; k += x.k * g / 100; p += x.p * g / 100; f += x.f * g / 100; c += x.c * g / 100; }); return {k:Math.round(k), p:Math.round(p), f:Math.round(f), c:Math.round(c)}; };
+  const col = (title, list, cl) => { const s = sum(list); return `<div style="flex:1;min-width:140px;background:${cl};border-radius:14px;padding:10px"><h3>${title}</h3>${list.map(([i, g]) => `${FOODS[i].e} ${FOODS[i].n} ${g} g`).join("<br>")}<p><b>${s.k} kkal</b><br>Oqsil ${s.p} g<br>Yog' ${s.f} g<br>Uglevod ${s.c} g</p></div>`; };
+  modal(`<h2>⚖️ Taqqoslash</h2><div class="row">${col("😄 Sog'lom kun", MENU_GOOD, "#dcfce7")}${col("🤢 Nosog'lom kun", MENU_BAD, "#fee2e2")}</div><p>Nosog'lom menyuda shirinlik, chips va gazli ichimlik ko'p, sabzavot va oqsil kam. Kaloriya ko'p, foyda oz.</p>`);
+}
+
+/* ===================== YAKUNIY TEST ===================== */
+let qi = 0, right = 0; const wrongBy = {1:0, 2:0, 3:0}; let order = [];
+function buildTest(){ qi = 0; right = 0; order = shuffle(QUESTIONS); [1,2,3].forEach(k => wrongBy[k] = 0); $("#v-t").innerHTML = `<h1>📝 Yakuniy test</h1>${avHTML("T")}<div id="tq"></div>`; setAv("T", "happy", "Omad! 10 ta savol."); question(); }
+function question(){
+  if(qi >= order.length) return result();
+  const q = order[qi];
+  $("#tq").innerHTML = `<div class="card"><b>Savol ${qi + 1}/10</b><br>${q.q}</div><div class="grid" style="grid-template-columns:1fr" id="op"></div><div id="ex"></div>`;
+  q.o.forEach((o, i) => { const b = document.createElement("button"); b.className = "btn alt"; b.textContent = o; b.onclick = () => answer(i, b); $("#op").append(b); });
+}
+function answer(i, b){
+  const q = order[qi]; $$("#op button").forEach((x, j) => { x.disabled = true; if(j === q.a) x.style.background = "#bbf7d0"; });
+  if(i === q.a){ right++; add(10); good(); $("#ex").innerHTML = `<div class="okmsg">✅ To'g'ri! ${q.e}</div>`; setAv("T", "strong", "Barakalla!", "jump", "⭐"); }
+  else { wrongBy[q.s]++; bad(); b.style.background = "#fecaca"; $("#ex").innerHTML = `<div class="warn">❌ To'g'ri javob: ${q.o[q.a]}. ${q.e}</div>`; setAv("T", "sad", "Xato qilsang ham, o'rganasan!", "shake"); }
+  $("#ex").innerHTML += `<button class="btn big" onclick="qi++;question()">Keyingisi ➡️</button>`;
+}
+function result(){
+  const st = right >= 9 ? 3 : right >= 7 ? 2 : right >= 5 ? 1 : 0;
+  const weak = [1,2,3].sort((a, b) => wrongBy[b] - wrongBy[a])[0];
+  if(st) { add(0, st); confetti(); }
+  setAv("T", st ? "strong" : "tired", st ? "Ajoyib natija!" : "Yana urinib ko'r!", st ? "jump" : "yawn");
+  $("#tq").innerHTML = `<div class="card" style="text-align:center"><h2>${right} / 10</h2><div style="font-size:44px">${st ? "⭐".repeat(st) : "💪"}</div><p>${st ? "Barakalla!" : "Yana urinib ko'r"}</p>
+    ${wrongBy[weak] ? `<p>Eng kuchsiz bo'lim: <b>${SECNAME[weak]}</b></p><button class="btn big" onclick="show('${SECVIEW[weak]}')">Shu bo'limga o'tish</button>` : `<p>Hamma bo'limni yaxshi bilasan! 🏆</p>`}
+    <button class="btn big alt" onclick="buildTest()">🔁 Qayta topshirish</button><button class="btn big alt" onclick="recap()">💡 Eslab qol!</button></div>`;
+}
+
+/* ===================== BOSHLASH ===================== */
+show("home");
+</script>
+</body>
+</html>

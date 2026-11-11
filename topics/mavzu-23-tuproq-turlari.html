@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Tabiiy fan — Tuproq turlari</title>
+<style>
+:root{--green:#236b45;--light:#eef8ef;--earth:#795548;--gold:#f3c969;--ink:#24332b}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f7f2;color:var(--ink);line-height:1.65}
+header{background:linear-gradient(135deg,#174b35,#4d9661);color:white;padding:34px 18px;text-align:center}
+header h1{margin:0 0 8px;font-size:clamp(1.7rem,4vw,2.7rem)}
+header p{margin:0 auto;max-width:800px}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:12px;background:#fff;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0001}
+nav a{color:var(--green);text-decoration:none;font-weight:bold;padding:7px 11px;border-radius:20px;background:var(--light);font-size:.9rem}
+main{max-width:1100px;margin:auto;padding:18px}
+section{background:white;margin:18px 0;padding:22px;border-radius:16px;box-shadow:0 4px 16px #1b3b2510}
+h2{color:var(--green);margin-top:0}
+h3{color:#5b493b}
+.lead{font-size:1.08rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{border:1px solid #e1e9df;border-radius:13px;padding:15px;background:#fcfefb}
+.badge{display:inline-block;background:#e3f3e5;color:#236b45;padding:3px 9px;border-radius:15px;font-size:.82rem;font-weight:bold}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.95rem}
+th,td{padding:11px;border:1px solid #dce5dc;text-align:left;vertical-align:top}
+th{background:#e7f4e7;color:#1f5b39}
+.table-wrap{overflow-x:auto}
+.soil-profile{border-radius:12px;overflow:hidden;border:2px solid #9b8065}
+.layer{padding:14px 18px;color:#fff;position:relative}
+.layer strong{display:block;font-size:1.05rem}
+.topsoil{background:#5d4037;min-height:105px}
+.subsoil{background:#a87950;min-height:100px}
+.parent{background:#c6b39a;color:#30271f;min-height:90px}
+.bedrock{background:#8b9291;color:#182321;min-height:70px}
+.plant{font-size:1.6rem}
+.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:12px 0}
+button{border:0;border-radius:10px;padding:10px 15px;background:var(--green);color:white;font-weight:bold;cursor:pointer}
+button:hover{filter:brightness(1.08)}
+input[type=range]{accent-color:var(--green);max-width:260px}
+.lab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.lab-card{background:#f8faf7;border:1px solid #dce5dc;border-radius:12px;padding:14px;text-align:center}
+.glass{height:100px;width:70px;margin:12px auto 5px;border:4px solid #a8c7d3;border-top:0;border-radius:0 0 12px 12px;position:relative;overflow:hidden;background:#fff}
+.water{position:absolute;bottom:0;left:0;right:0;background:#68c8ee;height:30%;transition:height .6s}
+.soil-swatch{height:22px;border-radius:6px;margin:8px 0}
+.result{font-weight:bold;color:var(--green);min-height:28px}
+.question{border-bottom:1px solid #e5eae3;padding:12px 0}
+.question p{font-weight:bold;margin:0 0 8px}
+.question label{display:block;padding:4px 0;cursor:pointer}
+.feedback{font-weight:bold;margin-top:12px}
+footer{text-align:center;padding:25px;color:#607367}
+@media(max-width:600px){main{padding:10px}section{padding:16px}nav{position:static}th,td{padding:8px}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header>
+  <div style="font-size:2.4rem">🌱 🪨 💧</div>
+  <h1>6-sinf Tabiiy fan: Tuproq turlari</h1>
+  <p>Tuproq qanday hosil bo‘ladi, uning turlari, O‘zbekistondagi tarqalishi va suvni o‘tkazish xususiyatlarini o‘rganamiz.</p>
+</header>
+<nav>
+  <a href="#hosil">Hosil bo‘lishi</a><a href="#turlar">Tuproq turlari</a><a href="#uzbekiston">O‘zbekiston</a><a href="#profil">Tuproq profili</a><a href="#laboratoriya">Simulyatsiya</a><a href="#test">Test</a>
+</nav>
+<main>
+<section id="hosil">
+<h2>1. Tuproq nima va qanday hosil bo‘ladi?</h2>
+<p class="lead"><b>Tuproq</b> — Yer yuzasining o‘simliklar o‘sishi uchun zarur bo‘lgan unumdor ustki qatlamidir. U tog‘ jinslarining nurashi, suv, havo, harorat o‘zgarishi hamda tirik organizmlar faoliyati natijasida uzoq vaqt davomida hosil bo‘ladi.</p>
+<div class="grid">
+ <div class="card"><h3>☀️ Quyosh va harorat</h3><p>Tog‘ jinslari qizib-soviydi. Vaqt o‘tishi bilan ularda yoriqlar paydo bo‘lishi mumkin.</p></div>
+ <div class="card"><h3>🌧️ Suv va shamol</h3><p>Suv jinslarni yemiradi, shamol mayda zarrachalarni ko‘chiradi.</p></div>
+ <div class="card"><h3>🍂 Tirik organizmlar</h3><p>Barglar va o‘simlik qoldiqlari chiriydi. Chuvalchanglar va mikroorganizmlar tuproq tuzilishiga yordam beradi.</p></div>
+</div>
+<h3>Gumus (chirindi) va unumdorlik</h3>
+<p><b>Gumus</b> — chirigan o‘simlik va hayvon qoldiqlaridan hosil bo‘ladigan organik modda. U tuproqni oziq moddalar bilan boyitadi va namlikni saqlashga yordam beradi. Ko‘pincha gumusga boy tuproq to‘q rangli bo‘ladi.</p>
+<div class="card"><b>Esda tuting:</b> tuproq unumdorligi faqat gumusga emas, balki suv, havo, mineral moddalar, harorat va tuproq tuzilishiga ham bog‘liq.</div>
+</section>
+
+<section id="turlar">
+<h2>2. Tuproqning asosiy turlari</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Tuproq turi</th><th>Tarkibi va xususiyati</th><th>Unumdorligi</th><th>Uchrashi</th></tr></thead>
+<tbody>
+<tr><td><b>Qora tuproq</b></td><td>Gumusga boy, odatda to‘q rangli; namlik va oziq moddalarni yaxshi saqlaydi.</td><td>Ko‘pincha yuqori</td><td>Asosan dasht va o‘rmon-dasht mintaqalari</td></tr>
+<tr><td><b>Sur tuproq</b></td><td>Ochiq kulrang tusli, quruq iqlimda keng tarqalgan; gumus miqdori hududga qarab farqlanadi.</td><td>Sug‘orish va parvarish bilan yuqori bo‘lishi mumkin</td><td>Markaziy Osiyo, jumladan O‘zbekistonning tog‘ etaklari va vodiylari</td></tr>
+<tr><td><b>Qumli tuproq</b></td><td>Yirikroq zarrachali, suvni tez o‘tkazadi va namlikni kam saqlaydi.</td><td>Odatda pastroq</td><td>Cho‘l va qumli hududlar</td></tr>
+<tr><td><b>Qumloq tuproq</b></td><td>Qum bilan mayda zarrachalar aralashmasi; qumli tuproqqa qaraganda suvni yaxshiroq saqlashi mumkin.</td><td>Parvarishga bog‘liq</td><td>Turli hududlar</td></tr>
+<tr><td><b>Loyli tuproq</b></td><td>Juda mayda zarrachali; suvni sekin o‘tkazadi, nam holida yopishqoq, quriganda qattiq bo‘lishi mumkin.</td><td>Oziq moddalarga boy bo‘lishi mumkin, ammo havo almashinuvi sustlashadi</td><td>Pasttekisliklar va ayrim daryo vodiylari</td></tr>
+<tr><td><b>O‘tloqi va qayir tuproqlari</b></td><td>Suv ta’sirida shakllanadi; ayrimlari gumusga va oziq moddalarga boy.</td><td>Ko‘pincha yaxshi, lekin joyiga bog‘liq</td><td>Daryo vodiylari va qayirlar</td></tr>
+<tr><td><b>Sho‘rxok tuproq</b></td><td>Tuzlar ko‘p to‘planadi; tuz miqdori ortsa o‘simlik o‘sishi qiyinlashadi.</td><td>Ko‘pincha past, melioratsiya talab qilishi mumkin</td><td>Quruq cho‘l hududlari va Orolbo‘yi</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="uzbekiston">
+<h2>3. O‘zbekistonda tarqalgan tuproqlar</h2>
+<div class="grid">
+<div class="card"><span class="badge">Vodiy va tog‘ etaklari</span><h3>Sur tuproqlar</h3><p>Farg‘ona vodiysi, Toshkent, Samarqand va boshqa hududlarning ayrim qismlarida uchraydi. Sug‘orish va to‘g‘ri agrotexnika dehqonchilik uchun muhim.</p></div>
+<div class="card"><span class="badge">Cho‘l mintaqalari</span><h3>Qumli va cho‘l tuproqlari</h3><p>Qizilqum va boshqa qurg‘oqchil hududlarda uchraydi. Namlik tanqisligi o‘simliklar o‘sishini cheklaydi.</p></div>
+<div class="card"><span class="badge">Tuz to‘planadigan joylar</span><h3>Sho‘rxok tuproqlar</h3><p>Orolbo‘yi va ayrim past, quruq hududlarda uchrashi mumkin. Sho‘rlanishni kamaytirish uchun suv va drenajni to‘g‘ri boshqarish zarur.</p></div>
+<div class="card"><span class="badge">Daryo vodiylari</span><h3>O‘tloqi va qayir tuproqlari</h3><p>Daryo bo‘ylarida va suv ta’siri bo‘lgan maydonlarda shakllanadi. Xususiyatlari joyning namligi va cho‘kindilarga bog‘liq.</p></div>
+</div>
+<p><b>Inson tuproqni qanday asraydi?</b> Eroziyaga qarshi daraxt ekish, sug‘orishni me’yorida olib borish, sho‘rlanishning oldini olish, organik o‘g‘itlardan oqilona foydalanish va tuproqni chiqindilar bilan ifloslantirmaslik kerak.</p>
+</section>
+
+<section id="profil">
+<h2>4. Animatsion model: tuproq profili</h2>
+<p>Qatlamlarni yuqoridan pastga kuzating. Har bir qatlamni bosing yoki ustiga kursor olib boring.</p>
+<div class="soil-profile">
+<div class="layer topsoil" tabindex="0" title="Eng ustki qatlam"><span class="plant">🌱 🌿 🍂 🪱</span><strong>A qatlam — ustki tuproq</strong>Gumus, ildizlar va ko‘plab tirik organizmlar. Odatda o‘simliklar uchun muhim qatlam.</div>
+<div class="layer subsoil" tabindex="0" title="Ostki tuproq"><strong>B qatlam — ostki tuproq</strong>Loy zarrachalari va ayrim mineral moddalar to‘planishi mumkin; gumus odatda yuqori qatlamdagidan kam.</div>
+<div class="layer parent" tabindex="0" title="Ona jins"><strong>C qatlam — ona jins materiali</strong>Nuragan tog‘ jinsi bo‘laklari va tuproq hosil bo‘lishida ishtirok etuvchi material.</div>
+<div class="layer bedrock" tabindex="0" title="Qattiq tog‘ jinsi"><strong>Qattiq tog‘ jinsi</strong>Chuqurroqda yemirilmagan yoki kam yemirilgan tog‘ jinslari uchrashi mumkin.</div>
+</div>
+<p id="layerInfo" class="result">A qatlam: gumus va ildizlar ko‘p bo‘ladigan ustki qatlam.</p>
+<p><i>Eslatma: qatlamlarning qalinligi va aniq ko‘rinishi hudud hamda tuproq turiga qarab o‘zgaradi.</i></p>
+</section>
+
+<section id="laboratoriya">
+<h2>5. Interaktiv laboratoriya: tuproq va suv</h2>
+<p>Bu virtual tajribada bir xil miqdordagi suv qumli, bog‘ tuprog‘i va loyli tuproqdan qanday o‘tishini taqqoslang. Natijalar soddalashtirilgan modeldir; haqiqiy tuproq natijalari namlik, zichlik va tarkibga qarab o‘zgaradi.</p>
+<div class="controls"><label for="waterAmount">Quyiladigan suv: <b id="waterLabel">100 ml</b></label><input id="waterAmount" type="range" min="50" max="200" step="25" value="100"><button id="runLab">Tajribani bajarish</button><button id="resetLab" style="background:#6b7770">Qayta boshlash</button></div>
+<div class="lab-grid">
+<div class="lab-card"><h3>🏖️ Qum</h3><div class="soil-swatch" style="background:#e7cc8e"></div><div class="glass"><div class="water" id="wSand" style="height:0%"></div></div><div class="result" id="rSand">Kutilmoqda</div><p>Suv odatda tez o‘tadi.</p></div>
+<div class="lab-card"><h3>🌱 Bog‘ tuprog‘i</h3><div class="soil-swatch" style="background:#795548"></div><div class="glass"><div class="water" id="wGarden" style="height:0%"></div></div><div class="result" id="rGarden">Kutilmoqda</div><p>Suvning bir qismi ushlanib qoladi.</p></div>
+<div class="lab-card"><h3>🟤 Loyli tuproq</h3><div class="soil-swatch" style="background:#a87950"></div><div class="glass"><div class="water" id="wClay" style="height:0%"></div></div><div class="result" id="rClay">Kutilmoqda</div><p>Suv odatda sekin o‘tadi.</p></div>
+</div>
+<div class="card"><b>O‘ylab ko‘ring:</b> qaysi tuproqda suv eng tez o‘tdi? Qaysi tuproqda suv ko‘proq ushlanib qoldi? O‘simlik ildizlari uchun faqat suvning ko‘pligi yetarlimi yoki havo ham kerakmi?</div>
+<p><b>Xavfsizlik:</b> tajribani kattalar nazoratida bajaring. Idishlar toza bo‘lsin; tajriba tuprog‘ini tatib ko‘rmang va undan keyin qo‘llarni yuving.</p>
+</section>
+
+<section id="test">
+<h2>6. Bilimingizni sinab ko‘ring</h2>
+<p>Har bir savol uchun bitta javobni tanlang, so‘ng “Natijani tekshirish” tugmasini bosing.</p>
+<form id="quiz">
+<div class="question"><p>1. Tuproq unumdorligiga yordam beradigan organik modda nima?</p>
+<label><input type="radio" name="q1" value="a"> Qum</label><label><input type="radio" name="q1" value="b"> Gumus (chirindi)</label><label><input type="radio" name="q1" value="c"> Shisha</label></div>
+<div class="question"><p>2. Qaysi tuproq odatda suvni tez o‘tkazadi?</p>
+<label><input type="radio" name="q2" value="a"> Qumli tuproq</label><label><input type="radio" name="q2" value="b"> Loyli tuproq</label><label><input type="radio" name="q2" value="c"> Muz</label></div>
+<div class="question"><p>3. Sho‘rxok tuproqda qanday muammo ko‘p uchraydi?</p>
+<label><input type="radio" name="q3" value="a"> Tuzlarning ortiqcha to‘planishi</label><label><input type="radio" name="q3" value="b"> Qor doim yog‘ishi</label><label><input type="radio" name="q3" value="c"> Hamma joyda o‘rmon bo‘lishi</label></div>
+<div class="question"><p>4. Tuproq hosil bo‘lishida qaysilar ishtirok etadi?</p>
+<label><input type="radio" name="q4" value="a"> Faqat plastik</label><label><input type="radio" name="q4" value="b"> Suv, havo, harorat va tirik organizmlar</label><label><input type="radio" name="q4" value="c"> Faqat yorug‘lik</label></div>
+<div class="question"><p>5. Tuproqning qaysi qatlamida odatda gumus va ildizlar ko‘proq bo‘ladi?</p>
+<label><input type="radio" name="q5" value="a"> Ustki qatlamda</label><label><input type="radio" name="q5" value="b"> Qattiq tog‘ jinsida</label><label><input type="radio" name="q5" value="c"> Atmosferada</label></div>
+<div class="question"><p>6. Tuproqni asrashning to‘g‘ri usuli qaysi?</p>
+<label><input type="radio" name="q6" value="a"> Uni chiqindi bilan to‘ldirish</label><label><input type="radio" name="q6" value="b"> Sug‘orishni nazoratsiz qilish</label><label><input type="radio" name="q6" value="c"> Eroziyani kamaytirish va oqilona sug‘orish</label></div>
+<button type="button" id="checkQuiz">Natijani tekshirish</button>
+<button type="reset" style="background:#6b7770">Javoblarni tozalash</button>
+<div id="quizResult" class="feedback" aria-live="polite"></div>
+</form>
+</section>
+
+<section>
+<h2>7. Muhokama savollari</h2>
+<ol>
+<li>Nima uchun gumusga boy tuproq ko‘pincha unumdor bo‘ladi?</li>
+<li>Cho‘l o‘simliklari suv tanqisligiga qanday moslashgan?</li>
+<li>Qumli va loyli tuproqlarning suv o‘tkazish xususiyatlari qanday farq qiladi?</li>
+<li>O‘z hududingizda qaysi tuproq turi uchrashi mumkin? Buni qanday aniqlash mumkin?</li>
+</ol>
+<div class="card"><b>Uyga vazifa:</b> hovli yoki bog‘ tuprog‘idan ozgina namuna oling (ruxsat bilan), rangini va donadorligini kuzating. Uni qum, loy va gumus xususiyatlari bilan taqqoslab, 4–5 gap yozing. Tuproqni tatib ko‘rmang.</div>
+</section>
+</main>
+<footer>6-sinf Tabiiy fanlar uchun interaktiv dars materiali • Tuproqni asraylik — hayotni asraylik! 🌍</footer>
+<script>
+const info={
+'A qatlam':'A qatlam: gumus va ildizlar ko‘p bo‘ladigan ustki qatlam.',
+'B qatlam':'B qatlam: ostki tuproq; unda loy va ayrim mineral moddalar to‘planishi mumkin.',
+'C qatlam':'C qatlam: nuragan ona jins materiali.',
+'Qattiq tog‘ jinsi':'Qattiq tog‘ jinsi: tuproq ostida joylashgan jins.'
+};
+document.querySelectorAll('.layer').forEach(el=>el.addEventListener('click',()=>{
+ const title=el.querySelector('strong').textContent;
+ document.getElementById('layerInfo').textContent=title+': '+(title.startsWith('A qatlam')?'gumus va ildizlar ko‘p bo‘ladigan ustki qatlam.':title.startsWith('B qatlam')?'ostki tuproq; ayrim minerallar to‘planishi mumkin.':title.startsWith('C qatlam')?'nuragan ona jins materiali.':'tuproq ostidagi qattiq jins.');
+}));
+const slider=document.getElementById('waterAmount');
+slider.addEventListener('input',()=>document.getElementById('waterLabel').textContent=slider.value+' ml');
+document.getElementById('runLab').addEventListener('click',()=>{
+ const amount=Number(slider.value);
+ const sand=Math.max(8,Math.min(95,amount*.20));
+ const garden=Math.max(10,Math.min(95,amount*.36));
+ const clay=Math.max(10,Math.min(95,amount*.48));
+ document.getElementById('wSand').style.height=sand+'%';
+ document.getElementById('wGarden').style.height=garden+'%';
+ document.getElementById('wClay').style.height=clay+'%';
+ document.getElementById('rSand').textContent='Tez o‘tadi';
+ document.getElementById('rGarden').textContent='O‘rtacha ushlaydi';
+ document.getElementById('rClay').textContent='Sekin o‘tadi';
+});
+document.getElementById('resetLab').addEventListener('click',()=>{
+ ['wSand','wGarden','wClay'].forEach(id=>document.getElementById(id).style.height='0%');
+ ['rSand','rGarden','rClay'].forEach(id=>document.getElementById(id).textContent='Kutilmoqda');
+ slider.value=100;document.getElementById('waterLabel').textContent='100 ml';
+});
+document.getElementById('checkQuiz').addEventListener('click',()=>{
+ const answers={q1:'b',q2:'a',q3:'a',q4:'b',q5:'a',q6:'c'};
+ let score=0,unanswered=0;
+ Object.entries(answers).forEach(([q,a])=>{
+  const selected=document.querySelector('input[name="'+q+'"]:checked');
+  if(!selected)unanswered++;else if(selected.value===a)score++;
+ });
+ const result=document.getElementById('quizResult');
+ result.textContent='Natija: '+score+'/6 ta to‘g‘ri.'+(unanswered?' '+unanswered+' ta savol javobsiz qoldi.':'')+(score===6?' Ajoyib!':score>=4?' Yaxshi natija!':' Mavzuni yana bir bor takrorlang.');
+});
+document.getElementById('quiz').addEventListener('reset',()=>document.getElementById('quizResult').textContent='');
+</script>
+</body>
+</html>

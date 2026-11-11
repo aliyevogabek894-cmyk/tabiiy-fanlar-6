@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Tabiiy fan — Yorug‘likning sinishi</title>
+<style>
+:root{--blue:#1769aa;--dark:#16324f;--light:#eef7ff;--gold:#ffcc55;--green:#16856b}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;line-height:1.65;color:#203044;background:#f3f7fb}
+header{background:linear-gradient(135deg,#123c69,#168aad);color:white;padding:36px 18px;text-align:center}
+header h1{margin:0 0 8px;font-size:clamp(1.8rem,5vw,3rem)}
+header p{margin:0;font-size:1.05rem}
+main{max-width:1050px;margin:auto;padding:20px}
+section,.card{background:white;border-radius:16px;padding:22px;margin:18px 0;box-shadow:0 5px 18px #12334412}
+h2{color:var(--blue);margin-top:0}
+h3{color:var(--dark)}
+.plan{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.plan div{background:var(--light);padding:12px;border-radius:10px}
+.note{background:#fff7df;border-left:5px solid var(--gold);padding:13px 16px;border-radius:8px}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th,td{padding:11px;border:1px solid #d8e2ec;text-align:left}
+th{background:#eaf4fc}
+.diagram{width:100%;height:auto;background:#f7fbff;border-radius:12px;border:1px solid #d9e7f2}
+button{background:var(--blue);color:white;border:0;border-radius:9px;padding:10px 15px;font-size:1rem;cursor:pointer;margin:4px}
+button:hover{filter:brightness(.92)}
+.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0}
+input[type=range]{width:min(300px,100%)}
+.result{font-weight:bold;color:var(--green);min-height:28px}
+.quiz-q{padding:14px;background:#f5f9fc;border-radius:10px;margin:12px 0}
+label{display:block;margin:6px 0;cursor:pointer}
+footer{text-align:center;padding:24px;color:#607080}
+.small{font-size:.92rem;color:#536579}
+@media(max-width:600px){main{padding:10px}section,.card{padding:16px}table{font-size:.9rem}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header>
+  <h1>Yorug‘likning sinishi</h1>
+  <p>6-sinf Tabiiy fanlar · Batafsil dars va interaktiv simulyatsiyalar</p>
+</header>
+<main>
+<section>
+<h2>Dars rejasi</h2>
+<div class="plan">
+<div>1. Yorug‘lik muhit almashganda nima sodir bo‘ladi?</div>
+<div>2. Sinish hodisasining sababi va mohiyati</div>
+<div>3. Suvdagi qalam, avtomobil va prizma modellari</div>
+<div>4. Tabiat va texnikadagi qo‘llanishi</div>
+<div>5. Mustahkamlash savollari va mini-test</div>
+</div>
+</section>
+
+<section>
+<h2>1. Yorug‘likning sinishi nima?</h2>
+<p>Yorug‘lik bir shaffof muhitdan ikkinchi shaffof muhitga, masalan, havodan suvga yoki shishaga o‘tganda, uning tarqalish yo‘nalishi o‘zgarishi mumkin. Bu hodisa <b>yorug‘likning sinishi</b> deyiladi.</p>
+<div class="note"><b>Esda tuting:</b> yorug‘lik sinishining asosiy sababi — turli muhitlarda yorug‘lik tezligi turlicha bo‘lishidir. Nur chegaraga tik tushsa, yo‘nalishi o‘zgarmasligi mumkin, ammo tezligi o‘zgaradi.</div>
+<svg class="diagram" viewBox="0 0 700 300" role="img" aria-label="Havodan suvga o‘tgan yorug‘lik nuri sinishi">
+<rect x="0" y="0" width="700" height="145" fill="#eaf7ff"/><rect x="0" y="145" width="700" height="155" fill="#bce8fa"/>
+<line x1="0" y1="145" x2="700" y2="145" stroke="#267da8" stroke-width="3"/>
+<line x1="350" y1="15" x2="350" y2="285" stroke="#777" stroke-dasharray="7 7" stroke-width="2"/>
+<line x1="160" y1="35" x2="350" y2="145" stroke="#f39c12" stroke-width="5"/>
+<line x1="350" y1="145" x2="420" y2="265" stroke="#f39c12" stroke-width="5"/>
+<polygon points="350,145 342,128 360,135" fill="#f39c12"/><polygon points="420,265 404,255 419,249" fill="#f39c12"/>
+<text x="25" y="35" font-size="20" fill="#16324f">Havo</text><text x="25" y="180" font-size="20" fill="#16324f">Suv</text>
+<text x="120" y="25" font-size="16" fill="#a65c00">Tushayotgan nur</text><text x="430" y="245" font-size="16" fill="#a65c00">Singan nur</text>
+<text x="365" y="30" font-size="14" fill="#555">Tik chiziq</text>
+</svg>
+<h3>Yorug‘lik tezligi</h3>
+<table><thead><tr><th>Muhit</th><th>Taxminiy tezlik</th></tr></thead><tbody>
+<tr><td>Vakuum</td><td>300 000 km/s</td></tr><tr><td>Havo</td><td>300 000 km/s ga juda yaqin</td></tr><tr><td>Suv</td><td>225 000 km/s atrofida</td></tr><tr><td>Shisha</td><td>200 000 km/s atrofida</td></tr>
+</tbody></table>
+<p class="small">Qiymatlar taxminiy. Har qanday shaffof materialda tezlik uning xususiyatlariga bog‘liq.</p>
+</section>
+
+<section>
+<h2>2. Interaktiv simulyatsiya: nur yo‘nalishi</h2>
+<p>Quyidagi boshqaruv yordamida tushish burchagini o‘zgartiring. Modelda nur havodan suvga o‘tmoqda. Burchak kattalashsa, singan nur ham chegaraga nisbatan ko‘proq og‘adi.</p>
+<div class="controls"><label for="angle">Tushish burchagi: <b id="angleText">45°</b></label><input id="angle" type="range" min="0" max="75" value="45"></div>
+<svg id="raySvg" class="diagram" viewBox="0 0 700 350" role="img" aria-label="Burchak o‘zgartiriladigan yorug‘lik sinishi simulyatsiyasi">
+<rect width="700" height="170" fill="#eaf7ff"/><rect y="170" width="700" height="180" fill="#bce8fa"/>
+<line x1="0" y1="170" x2="700" y2="170" stroke="#267da8" stroke-width="3"/>
+<line x1="350" y1="15" x2="350" y2="330" stroke="#777" stroke-dasharray="7 7" stroke-width="2"/>
+<line id="incoming" x1="150" y1="25" x2="350" y2="170" stroke="#f39c12" stroke-width="5"/>
+<line id="outgoing" x1="350" y1="170" x2="430" y2="300" stroke="#f39c12" stroke-width="5"/>
+<circle cx="350" cy="170" r="6" fill="#16324f"/>
+<text x="22" y="35" font-size="21" fill="#16324f">HAVO</text><text x="22" y="205" font-size="21" fill="#16324f">SUV</text>
+<text x="470" y="325" font-size="15" fill="#16324f">Singan nur</text>
+</svg>
+<div class="result" id="rayInfo" aria-live="polite"></div>
+<p class="small">Bu soddalashtirilgan model. Haqiqiy sinish Snell qonuniga bo‘ysunadi va burchaklar sirtga tik chiziqqa nisbatan o‘lchanadi.</p>
+</section>
+
+<section>
+<h2>3. Uy tajribasi: suvli stakandagi qalam</h2>
+<ol>
+<li>Shaffof stakanga qalam soling va qalamga yon tomondan qarang.</li>
+<li>Stakanga suv quying.</li>
+<li>Suv va havo chegarasida qalam go‘yo egilgandek yoki uzilgandek ko‘rinishini kuzating.</li>
+</ol>
+<svg class="diagram" viewBox="0 0 700 260" role="img" aria-label="Suvli stakan va egilgandek ko‘ringan qalam">
+<path d="M180 40 L200 220 Q270 240 340 220 L360 40" fill="none" stroke="#6a8799" stroke-width="7"/>
+<path d="M190 115 L350 115 L340 220 Q270 240 200 220 Z" fill="#9ee0f7" opacity=".8"/>
+<line x1="235" y1="45" x2="270" y2="120" stroke="#d7a34a" stroke-width="12" stroke-linecap="round"/>
+<line x1="270" y1="120" x2="315" y2="215" stroke="#d7a34a" stroke-width="12" stroke-linecap="round"/>
+<text x="390" y="85" font-size="20" fill="#16324f">Qalam egilgandek</text><text x="390" y="115" font-size="20" fill="#16324f">ko‘rinadi</text>
+<text x="390" y="165" font-size="16" fill="#536579">Sabab: yorug‘lik nurlari</text><text x="390" y="190" font-size="16" fill="#536579">suvdan havoga o‘tishda sinadi.</text>
+</svg>
+<p><b>Nima uchun?</b> Qalamdan kelayotgan yorug‘lik suvdan havoga o‘tganda sinadi. Ko‘zimiz nurni to‘g‘ri chiziq bo‘ylab kelgandek qabul qilgani uchun qalamning suv ichidagi qismi boshqa joyda turgandek ko‘rinadi.</p>
+</section>
+
+<section>
+<h2>4. Analogiya: avtomobilning qumga kirishi</h2>
+<p>Tasavvur qiling, o‘yinchoq mashina asfalt ustida ketmoqda. Uning bir g‘ildiragi qumga birinchi kirsa, u sekinlashadi, ikkinchi g‘ildirak esa hali tezroq yuradi. Shu sababli mashina buriladi.</p>
+<div class="note">Bu faqat tushunishni osonlashtiruvchi o‘xshatish: yorug‘lik nuri ham yangi muhitga qiyshiq kirganda, to‘lqinning bir qismi boshqasidan oldin muhitga o‘tishi sababli yo‘nalishini o‘zgartiradi.</div>
+</section>
+
+<section>
+<h2>5. Shisha prizma va kamalak</h2>
+<p>Oq yorug‘lik turli ranglardan tashkil topgan. Prizmadan o‘tganda ranglar turlicha sinadi va oq nur ranglarga ajraladi. Bu hodisa <b>yorug‘likning dispersiyasi</b> deb ataladi.</p>
+<svg class="diagram" viewBox="0 0 700 280" role="img" aria-label="Oq nur prizma orqali ranglarga ajralishi">
+<polygon points="280,45 390,220 170,220" fill="#d8f0ff" stroke="#4786a8" stroke-width="3" opacity=".9"/>
+<line x1="25" y1="145" x2="220" y2="145" stroke="#fff" stroke-width="12"/>
+<line x1="25" y1="145" x2="220" y2="145" stroke="#aaa" stroke-width="2"/>
+<text x="30" y="120" font-size="18" fill="#16324f">Oq nur</text>
+<line x1="350" y1="155" x2="660" y2="80" stroke="#e53935" stroke-width="5"/>
+<line x1="350" y1="155" x2="660" y2="105" stroke="#f28c28" stroke-width="5"/>
+<line x1="350" y1="155" x2="660" y2="130" stroke="#f5d442" stroke-width="5"/>
+<line x1="350" y1="155" x2="660" y2="155" stroke="#36a852" stroke-width="5"/>
+<line x1="350" y1="155" x2="660" y2="180" stroke="#258bd2" stroke-width="5"/>
+<line x1="350" y1="155" x2="660" y2="205" stroke="#4247b8" stroke-width="5"/>
+<line x1="350" y1="155" x2="660" y2="230" stroke="#8c45bd" stroke-width="5"/>
+<text x="440" y="48" font-size="18" fill="#16324f">Ranglar spektri</text>
+</svg>
+<p>Ranglar tartibi: <b>qizil, zarg‘aldoq, sariq, yashil, moviy, ko‘k, binafsha</b>. Odatda binafsha rang qizil rangga qaraganda ko‘proq sinadi.</p>
+</section>
+
+<section>
+<h2>6. Sinish qayerlarda uchraydi?</h2>
+<ul>
+<li><b>Ko‘zoynak va lupa:</b> linzalar nurlarni sindirib, tasvirni tiniqlashtirish yoki kattalashtirishga yordam beradi.</li>
+<li><b>Suv tubi:</b> suvdagi buyumlar haqiqiy joyidan yuqoriroqda, suv esa sayozroq ko‘rinishi mumkin.</li>
+<li><b>Sarob:</b> harorati turlicha bo‘lgan havo qatlamlarida yorug‘lik egri yo‘l bo‘ylab tarqalishi natijasida uzoqda suv bordek taassurot paydo bo‘ladi.</li>
+<li><b>Kamalak:</b> yomg‘ir tomchilarida yorug‘lik sinadi, ichkarida qaytadi va ranglarga ajraladi.</li>
+<li><b>Kamera va teleskop:</b> linzalar yorug‘likni boshqarib, tasvir hosil qiladi.</li>
+</ul>
+</section>
+
+<section>
+<h2>7. Bilimingizni sinab ko‘ring</h2>
+<form id="quiz">
+<div class="quiz-q"><b>1. Yorug‘likning sinishi nima?</b>
+<label><input type="radio" name="q1" value="a"> Yorug‘likning butunlay yo‘qolishi</label>
+<label><input type="radio" name="q1" value="b"> Yorug‘lik boshqa shaffof muhitga o‘tganda yo‘nalishining o‘zgarishi</label>
+<label><input type="radio" name="q1" value="c"> Jismning qizishi</label></div>
+<div class="quiz-q"><b>2. Suvdagi qalam nega egilgandek ko‘rinadi?</b>
+<label><input type="radio" name="q2" value="a"> Yorug‘lik suv va havo chegarasida sinishi sababli</label>
+<label><input type="radio" name="q2" value="b"> Qalam haqiqatan egilgani uchun</label>
+<label><input type="radio" name="q2" value="c"> Suv qalamni kattalashtirib yuborgani uchun</label></div>
+<div class="quiz-q"><b>3. Prizmada odatda qaysi rang ko‘proq sinadi?</b>
+<label><input type="radio" name="q3" value="a"> Qizil</label>
+<label><input type="radio" name="q3" value="b"> Binafsha</label>
+<label><input type="radio" name="q3" value="c"> Oq</label></div>
+<div class="quiz-q"><b>4. Yorug‘likning sinishiga asosiy sabab nima?</b>
+<label><input type="radio" name="q4" value="a"> Turli muhitlarda yorug‘lik tezligining turlicha bo‘lishi</label>
+<label><input type="radio" name="q4" value="b"> Yorug‘likning massasi katta bo‘lishi</label>
+<label><input type="radio" name="q4" value="c"> Havoning rangli bo‘lishi</label></div>
+<div class="quiz-q"><b>5. Suv tubi ko‘pincha qanday ko‘rinadi?</b>
+<label><input type="radio" name="q5" value="a"> Haqiqiy holatidan sayozroq</label>
+<label><input type="radio" name="q5" value="b"> Har doim chuqurroq</label>
+<label><input type="radio" name="q5" value="c"> Umuman ko‘rinmaydi</label></div>
+<button type="button" onclick="checkQuiz()">Javoblarni tekshirish</button>
+<button type="reset" onclick="document.getElementById('quizResult').textContent=''">Qayta ishlash</button>
+<div id="quizResult" class="result" aria-live="polite"></div>
+</form>
+</section>
+
+<section>
+<h2>Dars yakuni</h2>
+<ul>
+<li>Yorug‘lik sinishi — yorug‘likning bir shaffof muhitdan boshqasiga o‘tganda yo‘nalishi o‘zgarishi.</li>
+<li>Hodisa yorug‘lik tezligining muhitga qarab o‘zgarishi bilan bog‘liq.</li>
+<li>Sinish suvdagi qalam, linzalar, prizma va kamalak kabi hodisalarni tushuntiradi.</li>
+</ul>
+<div class="note"><b>Uyga vazifa:</b> suvli stakan va qalam tajribasini kattalar nazoratida bajaring. Kuzatuvingizni 3–4 gap bilan yozing va kundalik hayotdan sinishga yana ikkita misol toping.</div>
+</section>
+</main>
+<footer>6-sinf Tabiiy fanlar · Yorug‘likning sinishi · Interaktiv HTML dars</footer>
+<script>
+const angle = document.getElementById('angle');
+const angleText = document.getElementById('angleText');
+const incoming = document.getElementById('incoming');
+const outgoing = document.getElementById('outgoing');
+const rayInfo = document.getElementById('rayInfo');
+function updateRay(){
+  const deg = Number(angle.value);
+  angleText.textContent = deg + '°';
+  // Burchaklar sirtga tik chiziqqa nisbatan; Snell qonuni uchun n_havo=1, n_suv=1.33
+  const rad = deg * Math.PI / 180;
+  const refr = Math.asin(Math.sin(rad)/1.33);
+  const x1 = 350 - 145*Math.tan(rad);
+  incoming.setAttribute('x1', Math.max(15,Math.min(335,x1)));
+  incoming.setAttribute('y1', 25);
+  incoming.setAttribute('x2', 350);
+  incoming.setAttribute('y2', 170);
+  const x2 = 350 + 145*Math.tan(refr);
+  outgoing.setAttribute('x1',350); outgoing.setAttribute('y1',170);
+  outgoing.setAttribute('x2',Math.min(680,x2)); outgoing.setAttribute('y2',315);
+  rayInfo.textContent = 'Suvga kirganda nur tik chiziqqa yaqinroq yo‘naladi. Modeldagi sinish burchagi taxminan ' + Math.round(refr*180/Math.PI) + '°.';
+}
+angle.addEventListener('input',updateRay); updateRay();
+function checkQuiz(){
+ const answers={q1:'b',q2:'a',q3:'b',q4:'a',q5:'a'};
+ let score=0;
+ for(const [q,a] of Object.entries(answers)){
+   const picked=document.querySelector('input[name="'+q+'"]:checked');
+   if(picked && picked.value===a) score++;
+ }
+ const msg=score===5?'Ajoyib! Barcha javoblar to‘g‘ri.':score>=3?'Yaxshi! '+score+'/5 ta to‘g‘ri. Matnni yana bir bor ko‘rib chiqing.':'Natija: '+score+'/5. Mavzuni qayta o‘qib, yana urinib ko‘ring.';
+ document.getElementById('quizResult').textContent=msg;
+}
+</script>
+</body>
+</html>

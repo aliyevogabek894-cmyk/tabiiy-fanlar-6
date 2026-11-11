@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Tabiiy fanlar — Togʻ jinslarining oʻzgarishi va toshqotgan qoldiqlar</title>
+<style>
+:root{--ink:#203047;--muted:#5b6b7f;--green:#287a57;--sand:#f5ead5;--sky:#eaf6ff;--card:#fff;--line:#d9e4ea;--orange:#e28a37}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;line-height:1.65;color:var(--ink);background:linear-gradient(180deg,#eaf7ff,#f8f6ef 48%,#edf7ee)}
+header{padding:42px 18px;text-align:center;color:white;background:linear-gradient(135deg,#174e70,#287a57);position:relative;overflow:hidden}
+header:after{content:"";position:absolute;width:280px;height:280px;border:30px solid #ffffff18;border-radius:50%;right:-60px;top:-120px}
+header h1{max-width:950px;margin:0 auto 12px;font-size:clamp(26px,4vw,42px);line-height:1.2}header p{max-width:800px;margin:auto;font-size:17px;color:#eaf8ff}
+.wrap{max-width:1100px;margin:auto;padding:22px 16px 50px}.nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 22px}.nav a{background:white;border:1px solid var(--line);padding:9px 13px;border-radius:20px;text-decoration:none;color:#205b4a;font-weight:bold;font-size:14px}
+section,.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 7px 22px #183b5010}
+h2{color:#21684c;margin-top:0;font-size:25px}h3{margin:12px 0 6px;color:#245a73}p{margin:8px 0}ul,ol{padding-left:24px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.mini{padding:16px;border-radius:14px;background:#f6fafb;border:1px solid var(--line)}.icon{font-size:32px}.tag{display:inline-block;padding:4px 10px;border-radius:15px;background:#e2f4e9;color:#21684c;font-weight:bold;font-size:13px}
+.note{padding:13px 16px;background:#fff6df;border-left:5px solid var(--orange);border-radius:8px;margin:14px 0}.blue{background:#eef8ff;border-left-color:#3996c8}.sim{background:#f7fbff;border:1px solid #cbdfea;border-radius:16px;padding:18px;margin-top:12px}.controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:14px 0}.controls button,.quiz button{border:0;border-radius:10px;padding:10px 15px;background:#287a57;color:white;font-weight:bold;cursor:pointer}.controls button.secondary{background:#47738b}.controls input{width:min(100%,400px);accent-color:#287a57}.stage{min-height:155px;border-radius:12px;background:linear-gradient(#dff2ff 0 48%,#d8c39a 48% 100%);padding:18px;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}.rock{font-size:68px;filter:drop-shadow(2px 4px 2px #0002);transition:.4s}.stage .caption{position:absolute;bottom:10px;left:10px;right:10px;background:#ffffffd9;border-radius:8px;padding:5px;font-weight:bold}.layers{height:180px;display:flex;flex-direction:column;justify-content:flex-end;background:#dff2ff;border-radius:12px;overflow:hidden;border:1px solid #cbdfea}.layer{height:30px;display:flex;align-items:center;padding-left:12px;font-size:13px;font-weight:bold;color:#263b46;transition:height .4s}.layer:nth-child(1){background:#d6bd8e}.layer:nth-child(2){background:#c7a16c}.layer:nth-child(3){background:#a77e56}.layer:nth-child(4){background:#8b674c}.layer:nth-child(5){background:#72543f}.fossil{font-size:36px;display:inline-block;transition:.4s}.timeline{display:flex;flex-wrap:wrap;gap:8px}.timeline span{background:#eef6f1;border-radius:9px;padding:8px 11px;font-size:14px}.question{padding:15px;margin:12px 0;border:1px solid var(--line);border-radius:12px}.question label{display:block;margin:7px 0;cursor:pointer}.feedback{font-weight:bold;margin-top:8px}.good{color:#16824b}.bad{color:#b33c2d}.footer{text-align:center;color:var(--muted);padding:18px;font-size:14px}
+@media print{body{background:white}.nav,.controls button,.quiz button{display:none}section,.panel{box-shadow:none;break-inside:avoid}header{background:#287a57!important;print-color-adjust:exact}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header>
+  <div style="font-size:48px">⛰️ 🦴 🌿</div>
+  <h1>Togʻ jinslarining oʻzgarishi va toshqotgan qoldiqlar</h1>
+  <p>6-sinf Tabiiy fanlar uchun interaktiv dars konspekti, matnli animatsiyalar va virtual simulyatsiyalar</p>
+</header>
+<div class="wrap">
+<nav class="nav">
+<a href="#maqsad">Dars maqsadi</a><a href="#nurash">Nurash</a><a href="#fossil">Toshqotmalar</a><a href="#sim">Simulyatsiyalar</a><a href="#tajriba">Uy tajribasi</a><a href="#test">Mini-test</a>
+</nav>
+
+<section id="maqsad">
+<h2>📋 Dars rejasi va maqsadlari</h2>
+<ol><li>Togʻ jinslarining oʻzgarishi, nurash va yemirilish jarayonlarini tushunish.</li><li>Fizik, kimyoviy va biologik nurashni misollar orqali farqlash.</li><li>Toshqotgan qoldiqlar qanday hosil boʻlishini bosqichma-bosqich izohlash.</li><li>Simulyatsiyalar va oddiy tajriba orqali kuzatish hamda xulosa chiqarish.</li></ol>
+<div class="grid">
+<div class="mini"><span class="tag">Asosiy tushuncha</span><h3>Nurash</h3><p>Togʻ jinslarining suv, havo, harorat va tirik organizmlar taʼsirida parchalanishi yoki tarkibining oʻzgarishi.</p></div>
+<div class="mini"><span class="tag">Asosiy tushuncha</span><h3>Fossiliya</h3><p>Qadimda yashagan organizmlarning saqlanib qolgan qoldigʻi yoki izi.</p></div>
+<div class="mini"><span class="tag">Kutiladigan natija</span><h3>Oʻquvchi bajara oladi</h3><p>Nurash turlarini ajratadi, toshqotma hosil boʻlishini tartiblaydi va misollar keltiradi.</p></div>
+</div>
+<div class="note"><b>Oʻqituvchi uchun:</b> Dars boshida oʻquvchilardan soʻrang: “Nega togʻ choʻqqilari vaqt oʻtishi bilan oʻzgaradi?” va “Qadimgi hayvonlar haqida olimlar qanday bilib olishadi?”</div>
+</section>
+
+<section id="nurash">
+<h2>1. Togʻ jinslarining oʻzgarishi</h2>
+<p>Togʻ jinslari doimiy ravishda oʻzgarib turadi. Harorat almashishi, suv, shamol, muz, havo tarkibidagi moddalar hamda tirik organizmlar jinslarni yemirishi mumkin. Nurash natijasida yoriqlar, mayda toshlar, shagʻal va qum hosil boʻladi.</p>
+<div class="grid">
+<div class="mini"><div class="icon">🌡️🪨</div><h3>Fizik nurash</h3><p>Togʻ jinsi kimyoviy tarkibi deyarli oʻzgarmasdan mayda boʻlaklarga ajraladi. Masalan, suv yoriqqa kirib muzlaganda kengayib, yoriqni kattalashtirishi mumkin. Haroratning takroriy almashishi ham jinsni yoradi.</p><p><b>Misol:</b> muzlagan suv taʼsirida toshning boʻlinishi.</p></div>
+<div class="mini"><div class="icon">💧🧪</div><h3>Kimyoviy nurash</h3><p>Suv va unda erigan moddalar togʻ jinslarining minerallari bilan reaksiyaga kirishib, tarkibini oʻzgartiradi yoki ayrim qismlarini eritadi.</p><p><b>Misol:</b> kuchsiz kislotali yomgʻir suvi ohaktoshni asta-sekin eritishi.</p></div>
+<div class="mini"><div class="icon">🌱🪨</div><h3>Biologik nurash</h3><p>Tirik organizmlar taʼsirida togʻ jinslari yemiriladi. Oʻsimlik ildizlari yoriqlarga kirib kengayadi; ayrim mikroorganizmlar ham minerallarga taʼsir qilishi mumkin.</p><p><b>Misol:</b> daraxt ildizi tosh yorigʻini kengaytirishi.</p></div>
+</div>
+<h3>Nurashdan keyin nima boʻladi?</h3>
+<p>Yemirilgan zarrachalarni daryo, shamol, muzlik yoki tortishish kuchi boshqa joyga olib borishi mumkin. Zarrachalar choʻkib, qatlamlar hosil qiladi. Vaqt oʻtishi bilan bosim va minerallar taʼsirida ular choʻkindi togʻ jinslariga aylanishi mumkin.</p>
+<div class="note blue"><b>Eslab qoling:</b> Nurash — jinsning parchalanishi yoki oʻzgarishi; eroziya va tashilish — zarrachalarning olib ketilishi; choʻkish — zarrachalarning bir joyda toʻplanishi. Bular bir-biriga bogʻliq, ammo aynan bir jarayon emas.</div>
+</section>
+
+<section id="fossil">
+<h2>2. Toshqotgan qoldiqlar (fossiliyalar)</h2>
+<p><b>Toshqotgan qoldiqlar</b> — qadimda yashagan oʻsimlik va hayvonlarning saqlanib qolgan qoldiqlari yoki faoliyati izlari. Ular orasida suyak, tish, chigʻanoq, barg izi, oyoq izi va yogʻochning toshlashgan namunalari boʻlishi mumkin.</p>
+<div class="grid">
+<div class="mini"><div class="icon">🦕</div><h3>1-bosqich: Koʻmilish</h3><p>Organizm oʻlgach, uning qoldigʻi loy, qum yoki boshqa choʻkindi ostida tez koʻmilsa, saqlanib qolish ehtimoli ortadi. Koʻp qoldiqlar parchalanib ketadi, shuning uchun fossiliya hosil boʻlishi kam uchraydi.</p></div>
+<div class="mini"><div class="icon">🟫</div><h3>2-bosqich: Qatlamlanish</h3><p>Ustiga vaqt oʻtishi bilan yangi choʻkindi qatlamlari toʻplanadi. Pastdagi qatlamlar siqilib, qattiqlashib boradi.</p></div>
+<div class="mini"><div class="icon">💎</div><h3>3-bosqich: Saqlanish va minerallashish</h3><p>Mineralga boy suv qoldiqning gʻovaklariga kirishi yoki uning ayrim qismlarini minerallar almashtirishi mumkin. Baʼzan organizmning oʻzi saqlanmaydi, faqat izi yoki qolipi qoladi.</p></div>
+<div class="mini"><div class="icon">⛏️</div><h3>4-bosqich: Yuzaga chiqish</h3><p>Yer poʻstining koʻtarilishi va eroziya qatlamlarni ochib, fossiliyalarni yuzaga yaqinlashtirishi mumkin. Paleontologlar ularni oʻrganib, qadimgi hayot haqida maʼlumot oladi.</p></div>
+</div>
+<div class="note"><b>Muhim aniqlik:</b> Har bir toshqotma suyakning butunlay toshga aylanishi bilan hosil boʻlavermaydi. Baʼzilari qolip, iz yoki boshqa saqlanish shaklida uchraydi.</div>
+</section>
+
+<section id="sim">
+<h2>3. Interaktiv simulyatsiyalar — “Vaqt mashinasi”</h2>
+<div class="sim">
+<h3>🎞️ Simulyatsiya A: Toshning yorilishi va maydalanishi</h3>
+<p>Slayderni siljiting yoki “Keyingi bosqich” tugmasini bosing. Har bir bosqichda uzoq vaqt davomida sodir boʻlishi mumkin boʻlgan jarayonni kuzating.</p>
+<div class="stage" id="rockStage"><div class="rock" id="rockEmoji">🪨</div><div class="caption" id="rockCaption">Boshlanish: yaxlit tosh</div></div>
+<div class="controls"><button onclick="rockStep(-1)" class="secondary">◀ Oldingi</button><input type="range" id="rockRange" min="0" max="4" value="0" oninput="showRock(this.value)"><button onclick="rockStep(1)">Keyingi bosqich ▶</button><button class="secondary" onclick="showRock(0)">Qayta boshlash</button></div>
+<p id="rockText">Togʻ jinsining yuzasi hozircha yaxlit. Nurash hali sezilarli iz qoldirmagan.</p>
+<div class="timeline"><span>0 yil</span><span>Yoriqlar paydo boʻlishi</span><span>Muzlash-erish</span><span>Maydalanish</span><span>Tashilish va yumaloqlanish</span></div>
+</div>
+
+<div class="sim">
+<h3>🦴 Simulyatsiya B: Toshqotma qanday hosil boʻladi?</h3>
+<p>Bosqichlarni tanlang va qoldiqning choʻkindi qatlamlar ostida qanday saqlanishini kuzating.</p>
+<div class="stage" style="background:linear-gradient(#dff2ff 0 42%,#d8c39a 42% 100%);flex-direction:column">
+<div class="fossil" id="fossilEmoji">🦕</div>
+<div class="layers" id="layers" style="width:100%">
+<div class="layer">Yangi choʻkindi</div><div class="layer">Qum va loy</div><div class="layer">Qadimgi qatlam</div><div class="layer">Toshqotma joylashgan qatlam</div><div class="layer">Qattiq jins</div>
+</div>
+<div class="caption" id="fossilCaption">1-bosqich: organizm qoldigʻi</div>
+</div>
+<div class="controls"><button class="secondary" onclick="fossilStep(-1)">◀ Oldingi</button><input type="range" id="fossilRange" min="0" max="3" value="0" oninput="showFossil(this.value)"><button onclick="fossilStep(1)">Keyingi bosqich ▶</button></div>
+<p id="fossilText">Organizm qoldigʻi suv yoki koʻl bo‘yidagi choʻkindi muhitda qoladi.</p>
+</div>
+</section>
+
+<section id="tajriba">
+<h2>4. Uyda bajariladigan xavfsiz tajriba: fossiliya izi</h2>
+<p><b>Kerakli jihozlar:</b> plastilin, barg yoki chigʻanoq, gips kukuni va suv, kichik idish hamda qoshiq. Gips bilan ishlaganda kattalar yordami kerak; uni ogʻizga solmang va koʻzga tekkizmang.</p>
+<ol><li>Plastilinni tekis qilib yoying.</li><li>Barg yoki chigʻanoqni ustiga bosib, iz qoldiring va ehtiyotkorlik bilan oling.</li><li>Gipsni yoʻriqnomasiga muvofiq suv bilan aralashtiring. Aralashmani iz qolipiga quying.</li><li>Toʻliq qotishini kuting, soʻng ehtiyotkorlik bilan ajrating.</li><li>Hosil boʻlgan nusxani kuzating: unda qaysi belgilar saqlangan?</li></ol>
+<div class="note blue"><b>Xulosa:</b> Bu tajriba haqiqiy million yillik toshqotma hosil qilmaydi; u qoldiqning izi yoki qolipi qanday saqlanishi mumkinligini namoyish etadi.</div>
+</section>
+
+<section id="test" class="quiz">
+<h2>5. Bilimingizni tekshiring</h2>
+<p>Har bir savol uchun bitta javobni tanlang, keyin “Natijani tekshirish” tugmasini bosing.</p>
+<form id="quizForm">
+<div class="question"><b>1. Toshning kimyoviy tarkibi deyarli oʻzgarmasdan maydalanishi qaysi jarayon?</b>
+<label><input type="radio" name="q1" value="a"> Fizik nurash</label><label><input type="radio" name="q1" value="b"> Kimyoviy nurash</label><label><input type="radio" name="q1" value="c"> Minerallashish</label></div>
+<div class="question"><b>2. Oʻsimlik ildizi tosh yorigʻini kengaytirishi qaysi nurash turiga misol?</b>
+<label><input type="radio" name="q2" value="a"> Fizik</label><label><input type="radio" name="q2" value="b"> Biologik</label><label><input type="radio" name="q2" value="c"> Kimyoviy</label></div>
+<div class="question"><b>3. Fossiliya saqlanishiga qaysi sharoit yordam berishi mumkin?</b>
+<label><input type="radio" name="q3" value="a"> Qoldiqning tez koʻmilishi</label><label><input type="radio" name="q3" value="b"> Qoldiqning uzoq vaqt ochiq qolishi</label><label><input type="radio" name="q3" value="c"> Uni doimo olovda tutish</label></div>
+<div class="question"><b>4. Choʻkindi zarrachalari vaqt oʻtishi bilan qanday jins hosil qilishi mumkin?</b>
+<label><input type="radio" name="q4" value="a"> Faqat metall</label><label><input type="radio" name="q4" value="b"> Choʻkindi togʻ jinsi</label><label><input type="radio" name="q4" value="c"> Plastik</label></div>
+<div class="question"><b>5. Quyidagilardan qaysi biri fossiliya boʻlishi mumkin?</b>
+<label><input type="radio" name="q5" value="a"> Qadimgi oyoq izi</label><label><input type="radio" name="q5" value="b"> Yangi qogʻoz</label><label><input type="radio" name="q5" value="c"> Plastik oʻyinchoq</label></div>
+<button type="button" onclick="checkQuiz()">Natijani tekshirish</button>
+<button type="reset" class="secondary" onclick="document.getElementById('result').textContent=''">Qayta ishlash</button>
+<div id="result" class="feedback" aria-live="polite"></div>
+</form>
+</section>
+<section>
+<h2>🧠 Dars yakuni: eslab qoling</h2>
+<ul><li>Nurash fizik, kimyoviy va biologik boʻlishi mumkin.</li><li>Nurash jinslarni parchalab yoki tarkibini oʻzgartirib, zarrachalar hosil qiladi.</li><li>Fossiliyalar qadimgi organizmlar qoldiqlari yoki izlaridir.</li><li>Tez koʻmilish, choʻkindi qatlamlar va mineralga boy suv ayrim qoldiqlarning saqlanishiga yordam beradi.</li></ul>
+<p><b>Uyga vazifa:</b> Har bir nurash turiga bittadan hayotiy misol yozing. Fossiliya hosil boʻlishining toʻrt bosqichini rasm yoki sxema shaklida tasvirlang.</p>
+</section>
+<div class="footer">6-sinf Tabiiy fanlar • Interaktiv HTML dars • Faylni internetga ulanmasdan ham brauzerda ochish mumkin.</div>
+</div>
+<script>
+const rockData=[
+["🪨","Boshlanish: yaxlit tosh","Togʻ jinsining yuzasi hozircha yaxlit. Nurash hali sezilarli iz qoldirmagan.","scale(1) rotate(0deg)"],
+["🪨","Mayda yoriqlar paydo boʻldi","Haroratning takroriy oʻzgarishi va boshqa taʼsirlar jins yuzasida yoriqlar hosil qilishi mumkin.","scale(1) rotate(-3deg)"],
+["🪨","Yoriqqa suv kirib muzladi","Suv muzlaganda kengayishi yoriqni kattalashtirishi mumkin. Bu fizik nurashga misol.","scale(1.04) rotate(2deg)"],
+["🪨 🪨","Tosh boʻlaklarga ajraldi","Yoriqlar kattalashib, jins boʻlaklarga ajralishi mumkin.","scale(.95) rotate(0deg)"],
+["🪨 · · 🪨","Mayda zarrachalar tashildi","Suv va shamol zarrachalarni koʻchirishi mumkin. Zarrachalar bir-biriga ishqalanib, ayrimlari yumaloqlashadi.","scale(.9) rotate(0deg)"]
+];
+function showRock(v){v=+v;document.getElementById('rockRange').value=v;let d=rockData[v];document.getElementById('rockEmoji').textContent=d[0];document.getElementById('rockEmoji').style.transform=d[3];document.getElementById('rockCaption').textContent=d[1];document.getElementById('rockText').textContent=d[2]}
+function rockStep(n){let e=document.getElementById('rockRange');showRock(Math.max(0,Math.min(4,+e.value+n)))}
+const fossilData=[
+["🦕","1-bosqich: organizm qoldigʻi","Organizm qoldigʻi suv yoki koʻl bo‘yidagi choʻkindi muhitda qoladi.",0],
+["🦴","2-bosqich: koʻmilish","Loy va qum qoldiqni qoplaydi. Tez koʻmilish yemirilish va parchalanishni kamaytirishi mumkin.",1],
+["💎🦴","3-bosqich: uzoq vaqt va minerallar","Yangi qatlamlar toʻplanib siqiladi. Mineralga boy suv qoldiqni minerallashtirishi yoki uning izini saqlashi mumkin.",2],
+["⛏️🦴","4-bosqich: qatlam ochildi","Yer poʻstining harakati va eroziya qatlamlarni ochadi. Qoldiqni topish va oʻrganish mumkin boʻladi.",3]
+];
+function showFossil(v){v=+v;document.getElementById('fossilRange').value=v;let d=fossilData[v];document.getElementById('fossilEmoji').textContent=d[0];document.getElementById('fossilCaption').textContent=d[1];document.getElementById('fossilText').textContent=d[2];let ls=document.querySelectorAll('.layer');ls.forEach((el,i)=>{el.style.height=(v===0?18:v===1?25:v===2?30:18)+'px';el.style.opacity=(v===0&&i<2)?'.55':'1'});document.getElementById('layers').style.transform=v===3?'translateY(8px)':'translateY(0)'}
+function fossilStep(n){let e=document.getElementById('fossilRange');showFossil(Math.max(0,Math.min(3,+e.value+n)))}
+function checkQuiz(){const ans={q1:'a',q2:'b',q3:'a',q4:'b',q5:'a'};let score=0,total=Object.keys(ans).length;for(let q in ans){let selected=document.querySelector('input[name="'+q+'"]:checked');if(selected&&selected.value===ans[q])score++}let r=document.getElementById('result');r.textContent='Natija: '+score+' / '+total+'. '+(score===total?'Ajoyib! Barcha javoblar toʻgʻri.':score>=3?'Yaxshi! Xatolarni qayta koʻrib chiqing.':'Mavzuni yana bir bor oʻqing va qayta urinib koʻring.');r.className='feedback '+(score>=4?'good':'bad')}
+showRock(0);showFossil(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Tabiiy fan — Harakatlanayotgan jismlarga ta’sir qiluvchi kuchlar</title>
+<style>
+:root{--blue:#155eef;--navy:#14213d;--teal:#0f9d8a;--orange:#f59e0b;--bg:#f4f7fb;--ink:#243047}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+header{background:linear-gradient(135deg,#123b75,#1677c8);color:white;padding:34px 18px;text-align:center}
+header h1{font-size:clamp(1.6rem,4vw,2.6rem);margin:8px auto;max-width:950px;line-height:1.2}
+header p{margin:10px auto;max-width:780px}
+.badge{display:inline-block;background:#ffffff22;border:1px solid #ffffff55;padding:5px 12px;border-radius:30px;font-size:.9rem}
+nav{position:sticky;top:0;z-index:5;background:white;box-shadow:0 2px 12px #12213d14;padding:10px;display:flex;gap:8px;overflow-x:auto;justify-content:center}
+nav a{white-space:nowrap;text-decoration:none;color:#155eef;font-weight:bold;padding:7px 10px;border-radius:8px}nav a:hover{background:#eaf1ff}
+main{max-width:1100px;margin:22px auto;padding:0 14px}.card{background:white;border-radius:16px;padding:22px;margin:18px 0;box-shadow:0 5px 20px #2430470c;border:1px solid #e7edf5}
+h2{color:#123b75;margin-top:0;border-bottom:2px solid #eaf1ff;padding-bottom:8px}h3{color:#1767b7}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tile{border:1px solid #e2eaf5;border-radius:12px;padding:15px;background:#fbfdff}
+.icon{font-size:2rem}.note{background:#eef6ff;border-left:5px solid var(--blue);padding:13px 16px;border-radius:8px}.warning{background:#fff7e6;border-left:5px solid var(--orange);padding:13px 16px;border-radius:8px}
+button{border:0;background:var(--blue);color:white;padding:10px 15px;border-radius:9px;font-weight:bold;cursor:pointer}button:hover{filter:brightness(.92)}button.secondary{background:#e8eef8;color:#17345d}
+label{display:block;margin:8px 0;padding:10px;border:1px solid #e3eaf4;border-radius:9px;cursor:pointer}label:hover{background:#f4f8ff}
+input[type=range]{width:100%}.result{font-weight:bold;margin-top:12px}.sim{background:#f6faff;border:1px solid #dce8f8;border-radius:13px;padding:16px}
+#motionStage{height:160px;position:relative;overflow:hidden;background:linear-gradient(#dff3ff 0 72%,#c9d7a5 72%);border-radius:10px;margin:12px 0}
+#ball{position:absolute;left:6%;bottom:30px;width:45px;height:45px;border-radius:50%;background:radial-gradient(circle at 30% 25%,#ffcf67,#ed6b22 70%);box-shadow:0 4px 8px #0002}
+#arrow{position:absolute;left:8%;bottom:90px;font-size:1.6rem;color:#155eef;transition:left .2s}
+.force-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.force-row span{background:#eaf1ff;padding:5px 10px;border-radius:7px;font-size:.92rem}
+table{border-collapse:collapse;width:100%;margin:12px 0}th,td{border:1px solid #dce5f0;padding:10px;text-align:left}th{background:#edf4ff}
+footer{text-align:center;color:#65738a;padding:25px}
+.quiz-q{margin:16px 0;padding:14px;background:#fbfdff;border:1px solid #e3eaf4;border-radius:10px}
+small{color:#65738a}
+@media(max-width:600px){.card{padding:16px}nav{justify-content:flex-start}th,td{padding:7px;font-size:.9rem}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header>
+  <span class="badge">6-sinf · Tabiiy fan</span>
+  <h1>Harakatlanayotgan jismlarga ta’sir qiluvchi kuchlar</h1>
+  <p>Kuchlar, ishqalanish, havo qarshiligi va Arximed kuchini kundalik hayot misollari hamda interaktiv tajribalar orqali o‘rganamiz.</p>
+</header>
+<nav>
+  <a href="#maqsad">Dars maqsadi</a><a href="#kuch">Kuch nima?</a><a href="#turlar">Kuch turlari</a><a href="#suzish">Suzish va cho‘kish</a><a href="#tajriba">Simulyatsiya</a><a href="#test">Test</a>
+</nav>
+<main>
+<section class="card" id="maqsad">
+<h2>1. Dars maqsadi va reja</h2>
+<div class="grid">
+<div class="tile"><div class="icon">🎯</div><h3>Dars maqsadi</h3><p>O‘quvchilar kuchning jism harakatiga ta’sirini tushunadi, asosiy kuchlarni farqlaydi va jismlarning suzishi yoki cho‘kishini izohlaydi.</p></div>
+<div class="tile"><div class="icon">📚</div><h3>Dars rejasi</h3><ol><li>Kuch va uning ta’siri</li><li>Og‘irlik, ishqalanish va havo qarshiligi</li><li>Arximed kuchi, suzish va cho‘kish</li><li>Interaktiv tajriba va test</li></ol></div>
+<div class="tile"><div class="icon">🧠</div><h3>Asosiy tushuncha</h3><p>Kuch jismning tezligini, harakat yo‘nalishini yoki shaklini o‘zgartirishi mumkin.</p></div>
+</div>
+</section>
+
+<section class="card" id="kuch">
+<h2>2. Kuch nima va u qanday ta’sir qiladi?</h2>
+<p><b>Kuch</b> — jismlarning o‘zaro ta’sirini ifodalovchi fizik kattalik. Kuch <b>nyuton (N)</b> birligida o‘lchanadi. Kuchning yo‘nalishi ham, kattaligi ham muhim.</p>
+<div class="grid">
+<div class="tile"><div class="icon">🚲</div><h3>Tezlikni o‘zgartiradi</h3><p>Pedal bosilganda velosiped tezlashadi. Tormozlanganda ishqalanish uni sekinlashtiradi.</p></div>
+<div class="tile"><div class="icon">⚽</div><h3>Yo‘nalishni o‘zgartiradi</h3><p>Uchib kelayotgan to‘pni tepish uning yo‘nalishini o‘zgartiradi.</p></div>
+<div class="tile"><div class="icon">🛑</div><h3>Jismni to‘xtatadi</h3><p>Harakatga qarshi ta’sir qiluvchi kuch jismni sekinlashtirishi va to‘xtatishi mumkin.</p></div>
+<div class="tile"><div class="icon">🧽</div><h3>Shaklni o‘zgartiradi</h3><p>Plastilin yoki gubkani siqqanda u deformatsiyalanadi.</p></div>
+</div>
+<div class="note"><b>Eslab qoling:</b> kuchlar ko‘pincha birgalikda ta’sir qiladi. Agar kuchlar teng va qarama-qarshi yo‘nalgan bo‘lsa, ular bir-birini muvozanatlashi mumkin.</div>
+</section>
+
+<section class="card" id="turlar">
+<h2>3. Harakatlanayotgan jismlarga ta’sir qiluvchi kuchlar</h2>
+<div class="grid">
+<div class="tile"><div class="icon">🌍</div><h3>Og‘irlik kuchi</h3><p>Yer jismlarni o‘ziga tortadi. Shu sababli yuqoriga otilgan to‘p yana pastga tushadi.</p><p><b>Yo‘nalishi:</b> Yer markazi tomon.</p></div>
+<div class="tile"><div class="icon">🛞</div><h3>Ishqalanish kuchi</h3><p>Bir-biriga tegib turgan sirtlar orasida yuzaga keladi va ko‘pincha harakatga qarshilik qiladi. Masalan, velosiped tormozi.</p></div>
+<div class="tile"><div class="icon">🌬️</div><h3>Havo qarshiligi</h3><p>Jism havoda harakatlanganda havo bilan o‘zaro ta’sirlashadi. Odatda u harakatga qarshi yo‘naladi.</p></div>
+<div class="tile"><div class="icon">💧</div><h3>Arximed kuchi</h3><p>Suyuqlik yoki gaz ichidagi jismga yuqoriga yo‘nalgan ko‘taruvchi kuch ta’sir qiladi.</p></div>
+</div>
+<h3>Hayotiy misollar</h3>
+<table><thead><tr><th>Vaziyat</th><th>Asosiy kuch yoki ta’sir</th><th>Natija</th></tr></thead><tbody>
+<tr><td>To‘pning pastga tushishi</td><td>Og‘irlik kuchi</td><td>To‘p Yer tomon tezlanadi</td></tr>
+<tr><td>Chana qor ustida sirpanishi</td><td>Ishqalanish</td><td>Chana sekinlashadi</td></tr>
+<tr><td>Parashyutning tushishi</td><td>Havo qarshiligi</td><td>Tushish tezligi kamayadi</td></tr>
+<tr><td>Kemaning suvda turishi</td><td>Og‘irlik va Arximed kuchi</td><td>Kuchlar muvozanatlashadi</td></tr>
+</tbody></table>
+</section>
+
+<section class="card" id="suzish">
+<h2>4. Nima uchun ayrim jismlar suzadi, boshqalari cho‘kadi?</h2>
+<p>Suyuqlikka tushirilgan jismga pastga yo‘nalgan og‘irlik kuchi va yuqoriga yo‘nalgan <b>Arximed kuchi</b> ta’sir qiladi. Jismning qanday tutishi uning o‘rtacha zichligi va siqib chiqargan suyuqlik miqdoriga bog‘liq.</p>
+<div class="grid">
+<div class="tile"><div class="icon">🪨</div><h3>Cho‘kadi</h3><p>Jismning o‘rtacha zichligi suvnikidan katta bo‘lsa, u odatda cho‘kadi. Masalan, kichik temir bo‘lagi.</p></div>
+<div class="tile"><div class="icon">🪵</div><h3>Suzadi</h3><p>Jismning o‘rtacha zichligi suvnikidan kichik bo‘lsa, u suv yuzida suzishi mumkin. Masalan, yog‘och.</p></div>
+<div class="tile"><div class="icon">🚢</div><h3>Kema nega cho‘kmaydi?</h3><p>Kemaning ichi bo‘sh bo‘lgani uchun umumiy hajmiga nisbatan o‘rtacha zichligi kamayadi. Kema ko‘p suvni siqib chiqarib, yetarli ko‘taruvchi kuch hosil qiladi.</p></div>
+</div>
+<div class="warning"><b>Plastilin tajribasi:</b> plastilinni zich dumaloq bo‘lak qilib suvga soling — u cho‘kishi mumkin. Uni qayiq shaklida yasang — keng, ichi bo‘sh shakli ko‘proq suvni siqib chiqarib, suzishiga yordam beradi.</div>
+<h3>Qog‘oz nega har xil tezlikda tushadi?</h3>
+<p>Yassi qog‘oz katta yuzasi bilan havoga qarshilik qiladi va sekin tushadi. G‘ijimlangan qog‘ozning havo bilan ta’sirlashadigan yuzasi kichikroq bo‘lgani uchun, odatda, tezroq tushadi. Ikkalasiga ham og‘irlik kuchi ta’sir qiladi.</p>
+</section>
+
+<section class="card" id="tajriba">
+<h2>5. Interaktiv simulyatsiya</h2>
+<p>Quyidagi boshqaruvlar bilan kuch va harakat o‘rtasidagi bog‘liqlikni kuzating. Bu soddalashtirilgan model bo‘lib, haqiqiy tajribadagi barcha omillarni hisobga olmaydi.</p>
+<div class="sim">
+<h3>🚗 Jismning harakatini kuzatish</h3>
+<div id="motionStage"><div id="arrow">➡️</div><div id="ball"></div></div>
+<label for="push">Oldinga itarish kuchi: <b id="pushVal">5</b></label><input id="push" type="range" min="0" max="10" value="5">
+<label for="friction">Ishqalanish kuchi: <b id="fricVal">2</b></label><input id="friction" type="range" min="0" max="10" value="2">
+<div class="force-row"><span id="net">Natijaviy kuch: 3 birlik</span><span id="motionText">Jism tezlashadi</span></div>
+<button id="resetMotion" class="secondary">Boshlang‘ich holatga qaytarish</button>
+<p><small>Modelda oldinga itarish kuchi ishqalanishdan katta bo‘lsa jism tezlashadi; teng bo‘lsa tezligi o‘zgarmaydi; ishqalanish katta bo‘lsa sekinlashadi.</small></p>
+</div>
+<div class="sim" style="margin-top:18px">
+<h3>💧 Suvda suzish tajribasi</h3>
+<p>Jismning o‘rtacha zichligini tanlang:</p>
+<label><input type="radio" name="density" value="light" checked> Suvdan kichik — masalan, yog‘och</label>
+<label><input type="radio" name="density" value="same"> Suvga yaqin — muvozanatga kelishi mumkin</label>
+<label><input type="radio" name="density" value="heavy"> Suvdan katta — masalan, temir bo‘lagi</label>
+<div id="water" style="height:180px;background:linear-gradient(#d9f4ff,#55bde8);border:3px solid #b3e4f5;border-radius:12px;position:relative;overflow:hidden;margin:12px 0">
+<div style="position:absolute;top:0;left:0;right:0;height:5px;background:#fff9"></div>
+<div id="object" style="position:absolute;left:calc(50% - 28px);top:25px;width:56px;height:56px;background:#bd7b43;border:3px solid #8e552a;border-radius:12px;transition:top .7s;box-shadow:0 3px 6px #1233"></div>
+</div>
+<p class="result" id="floatResult" aria-live="polite">Jism suv yuzida suzadi.</p>
+</div>
+</section>
+
+<section class="card" id="test">
+<h2>6. Bilimingizni tekshiring</h2>
+<p>Har bir savol uchun bitta javobni tanlang. So‘ng «Javoblarni tekshirish» tugmasini bosing.</p>
+<form id="quiz">
+<div class="quiz-q"><b>1. Kuch qaysi birlikda o‘lchanadi?</b>
+<label><input type="radio" name="q1" value="a"> Kilogramm</label><label><input type="radio" name="q1" value="b"> Nyuton</label><label><input type="radio" name="q1" value="c"> Metr</label></div>
+<div class="quiz-q"><b>2. Velosiped tormozlanganda uni sekinlashtiradigan kuch qaysi?</b>
+<label><input type="radio" name="q2" value="a"> Ishqalanish kuchi</label><label><input type="radio" name="q2" value="b"> Faqat Arximed kuchi</label><label><input type="radio" name="q2" value="c"> Yorug‘lik kuchi</label></div>
+<div class="quiz-q"><b>3. Arximed kuchi qaysi tomonga yo‘naladi?</b>
+<label><input type="radio" name="q3" value="a"> Pastga</label><label><input type="radio" name="q3" value="b"> Har doim oldinga</label><label><input type="radio" name="q3" value="c"> Yuqoriga</label></div>
+<div class="quiz-q"><b>4. Nima uchun g‘ijimlangan qog‘oz odatda tezroq tushadi?</b>
+<label><input type="radio" name="q4" value="a"> Uning massasi yo‘qoladi</label><label><input type="radio" name="q4" value="b"> Havo qarshiligi kamroq bo‘ladi</label><label><input type="radio" name="q4" value="c"> Og‘irlik kuchi yo‘qoladi</label></div>
+<div class="quiz-q"><b>5. Kemaning suzishiga nima yordam beradi?</b>
+<label><input type="radio" name="q5" value="a"> Faqat uning rangi</label><label><input type="radio" name="q5" value="b"> Keng, ichi bo‘sh shakli va ko‘taruvchi kuch</label><label><input type="radio" name="q5" value="c"> Kema og‘irlik kuchiga ega emas</label></div>
+<button type="button" id="checkQuiz">Javoblarni tekshirish</button> <button type="reset" class="secondary" id="clearQuiz">Qayta ishlash</button>
+<div class="result" id="quizResult" aria-live="polite"></div>
+</form>
+</section>
+
+<section class="card">
+<h2>7. Darsni mustahkamlash</h2>
+<ul>
+<li>Uyda xavfsiz tarzda qog‘oz varaq va g‘ijimlangan qog‘ozni bir xil balandlikdan tashlab, tushish vaqtini solishtiring.</li>
+<li>Plastilindan shar va qayiq shaklini yasab, kattalar nazoratida suvda sinab ko‘ring.</li>
+<li>Daftaringizga uchta kundalik vaziyat yozing va har birida qaysi kuchlar ta’sir qilayotganini tushuntiring.</li>
+</ul>
+<div class="note"><b>Xulosa:</b> harakatdagi jismlarga bir nechta kuch bir vaqtda ta’sir qilishi mumkin. Harakatning o‘zgarishi kuchlarning kattaligi va yo‘nalishiga bog‘liq. Suzish va cho‘kishda esa og‘irlik kuchi, Arximed kuchi, jism shakli va o‘rtacha zichlik muhim.</div>
+</section>
+</main>
+<footer>6-sinf Tabiiy fan · Interaktiv dars materiali</footer>
+<script>
+const push=document.getElementById('push'), friction=document.getElementById('friction');
+function updateMotion(){
+ const p=+push.value, f=+friction.value, net=p-f;
+ document.getElementById('pushVal').textContent=p;
+ document.getElementById('fricVal').textContent=f;
+ document.getElementById('net').textContent='Natijaviy kuch: '+net+' birlik';
+ const text=net>0?'Jism tezlashadi':net<0?'Jism sekinlashadi':'Kuchlar muvozanatlashgan';
+ document.getElementById('motionText').textContent=text;
+ document.getElementById('ball').style.left=(6+Math.max(0,Math.min(10,p-f+5))*7)+'%';
+ document.getElementById('arrow').style.left=(8+Math.max(0,Math.min(10,p-f+5))*7)+'%';
+}
+push.addEventListener('input',updateMotion);friction.addEventListener('input',updateMotion);
+document.getElementById('resetMotion').addEventListener('click',()=>{push.value=5;friction.value=2;updateMotion()});
+function updateFloat(){
+ const value=document.querySelector('input[name="density"]:checked').value;
+ const obj=document.getElementById('object'), result=document.getElementById('floatResult');
+ if(value==='light'){obj.style.top='15px';obj.style.background='#bd7b43';result.textContent='Jism suv yuzida suzadi: uning o‘rtacha zichligi suvnikidan kichik.'}
+ else if(value==='same'){obj.style.top='65px';obj.style.background='#8c9aaa';result.textContent='Jism suyuqlik ichida muvozanatda turishi mumkin: o‘rtacha zichliklar yaqin.'}
+ else{obj.style.top='118px';obj.style.background='#7c8795';result.textContent='Jism cho‘kadi: uning o‘rtacha zichligi suvnikidan katta.'}
+}
+document.querySelectorAll('input[name="density"]').forEach(el=>el.addEventListener('change',updateFloat));
+const answers={q1:'b',q2:'a',q3:'c',q4:'b',q5:'b'};
+document.getElementById('checkQuiz').addEventListener('click',()=>{
+ let score=0, unanswered=0;
+ for(const [q,a] of Object.entries(answers)){
+  const selected=document.querySelector('input[name="'+q+'"]:checked');
+  if(!selected)unanswered++;else if(selected.value===a)score++;
+ }
+ const result=document.getElementById('quizResult');
+ result.textContent='Natija: '+score+'/5 ta to‘g‘ri.'+(unanswered?' '+unanswered+' ta savol javobsiz qoldi.':'')+(score===5?' Ajoyib!':score>=3?' Yaxshi! Xatolarni ko‘rib chiqing.':' Mavzuni yana bir bor takrorlang.');
+ result.style.color=score>=4?'#087f5b':'#b45309';
+});
+document.getElementById('clearQuiz').addEventListener('click',()=>{document.getElementById('quizResult').textContent=''});
+updateMotion();updateFloat();
+</script>
+</body>
+</html>

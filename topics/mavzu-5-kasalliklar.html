@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kasalliklar | 6-sinf Tabiiy fanlar</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f7ee;--cd:#fff;--tx:#23301f;--ac:#3a7d44;--rd:#d62839;--ln:#d5e2cf;--ok:#2b9348;--no:#d62839;--bl:#3b5bdb;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141d12;--cd:#1f2c1c;--tx:#e8f2e4;--ac:#7ccf84;--ln:#324a2e}}
+:root[data-theme="dark"]{--bg:#141d12;--cd:#1f2c1c;--tx:#e8f2e4;--ac:#7ccf84;--ln:#324a2e}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--tx);font:600 17px/1.45 Nunito,system-ui,sans-serif;padding-bottom:84px}
+header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5;border-bottom:2px solid var(--ln)}
+h1{font-size:19px;margin:0;font-weight:800}
+#sb{background:var(--ac);color:var(--bg);padding:4px 12px;border-radius:20px;font-weight:800}
+main{max-width:640px;margin:0 auto;padding:12px 14px}
+section{display:none}section.on{display:block}
+h2{font-size:21px;margin:8px 0;font-weight:800}h3{font-size:17px;margin:14px 0 6px;font-weight:800}
+.c,.box{background:var(--cd);border:2px solid var(--ln);border-radius:14px;padding:10px 12px;margin:8px 0}
+.c b{color:var(--ac)}
+button{font:inherit;font-weight:800;min-height:48px;padding:8px 14px;margin:4px 4px 4px 0;border-radius:12px;border:2px solid var(--ac);background:var(--cd);color:var(--tx);cursor:pointer}
+button:disabled{opacity:.6}button:focus-visible,input:focus-visible{outline:3px solid var(--bl);outline-offset:2px}
+button.ok{background:var(--ok);border-color:var(--ok);color:#fff}button.no{background:var(--no);border-color:var(--no);color:#fff}
+.q{font-size:20px;font-weight:800}.msg{margin:8px 0;font-weight:800}
+label{display:block;margin:8px 0 2px}input[type=range]{width:100%;height:32px;accent-color:var(--ac)}
+.bar{height:16px;background:var(--ln);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;width:50%;transition:width .4s,background .4s}
+.av{font-size:64px;text-align:center;line-height:1.1}.pop{animation:pop .5s}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.35) rotate(-6deg)}100%{transform:scale(1)}}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;font-size:30px;text-align:center}
+.grid span.in{animation:fl 1s infinite;background:#d6283933;border-radius:10px}
+.germs{font-size:20px;word-break:break-all;min-height:30px}
+svg{width:100%;height:auto;display:block}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--cd);border-top:2px solid var(--ln);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;margin:0;border:0;border-radius:0;min-height:60px;font-size:13px;background:none}
+nav button.on{color:var(--ac);box-shadow:inset 0 3px 0 var(--ac)}nav span{display:block;font-size:22px}
+.note{font-size:14px;opacity:.85;margin:10px 0}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition:none!important}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header><h1>🦠 Kasalliklar</h1><div id="sb">⭐ <span id="sc">0</span></div></header>
+<main>
+
+<section id="s0" class="on">
+<h2>1. Sog'lom turmush tarzi</h2>
+<div class="c"><b>Salomatlik</b> tananing jismoniy va ruhiy sog'lom holati.</div>
+<div class="c"><b>Sog'lom turmush tarzi:</b> to'g'ri ovqatlanish, kuniga 9–10 soat uyqu, kamida 60 daqiqa harakat, toza havo, gigiyena, ekran vaqtini cheklash, zararli odatlardan saqlanish.</div>
+<div class="c">Bu odatlar <b>immunitetni</b> (organizmning kasallikka qarshi kurashish qobiliyatini) mustahkamlaydi.</div>
+<h3>Immunitet shkalasi</h3>
+<div class="box">
+<div class="av" id="av0">🙂</div>
+<div class="bar"><i id="imb"></i></div>
+<div class="msg">Immunitet: <span id="imv">50</span>%</div>
+<div id="hb"></div>
+<div class="msg" id="hm">Odatni tanlang.</div>
+</div>
+<h3>O'yin: foydali yoki zararli?</h3>
+<div class="box" id="g1"></div>
+</section>
+
+<section id="s1">
+<h2>2. Kasalliklarning kelib chiqishi</h2>
+<div class="c"><b>Yuqumli kasalliklar</b> qo'zg'atuvchisi bor va odamdan odamga o'tadi: bakteriyalar, viruslar, zamburug'lar, parazitlar (masalan, gijjalar).</div>
+<div class="c"><b>Yuqumsiz kasalliklar</b> boshqalarga yuqmaydi. Sabablari: noto'g'ri ovqatlanish, kam harakat, zararli odatlar, travma, irsiyat, ifloslangan muhit.</div>
+<div class="c"><b>Yuqish yo'llari:</b> havo-tomchi (aksirish, yo'tal), iflos qo'l, ifloslangan suv va oziq, umumiy buyumlar, hasharotlar.</div>
+<div class="c"><b>Kasallik zanjiri:</b> manba → yuqish yo'li → sog'lom odam. Bitta bo'g'in uzilsa, kasallik tarqalmaydi.</div>
+<h3>Mikrob tarqalishi (sxema)</h3>
+<div class="box">
+<div class="grid" id="ppl"></div>
+<div class="msg">Kasallangan: <span id="cnt">1</span>/12</div>
+<svg viewBox="0 0 300 80" aria-label="Tarqalish grafigi"><rect width="300" height="80" fill="none" stroke="currentColor" opacity=".25"/><polyline id="ch" fill="none" stroke="#d62839" stroke-width="3" points=""/></svg>
+<label>🛡️ Immunitet kuchi: <b id="i1v">30</b>%<input id="imm1" type="range" min="0" max="100" value="30"></label>
+<button data-n="4">🤧 Aksirish</button><button data-n="2">🤝 Qo'l siqish</button><button data-n="3">🥤 Umumiy buyum</button><button data-n="5">💧 Iflos suv</button><button id="rs1">↺ Qayta</button>
+<div class="msg" id="sm"></div>
+</div>
+<h3>Immunitet jangi</h3>
+<div class="box">
+<label>🛡️ Immunitet kuchi: <b id="i2v">50</b>%<input id="imm2" type="range" min="0" max="100" value="50"></label>
+<button id="fb">🦠 Mikrob hujumi</button>
+<div class="germs" id="fv">🦠🦠🦠🦠🦠🦠🦠🦠🦠🦠</div><div class="germs" id="fl2"></div>
+<div class="av" id="av1">🙂</div><div class="msg" id="fm"></div>
+</div>
+<h3>O'yin: kasallik zanjirini uz</h3>
+<div class="box" id="g2"></div>
+<h3>O'yin: sabab toping</h3>
+<div class="box" id="g2b"></div>
+</section>
+
+<section id="s2">
+<h2>3. Kasalliklarning oldini olish</h2>
+<div class="c"><b>Gigiyena:</b> qo'lni sovun bilan kamida 20 soniya yuvish (ovqatdan oldin, hojatxonadan keyin, ko'chadan kelgach), tishni kuniga 2 marta yuvish.</div>
+<div class="c"><b>Oziq va suv:</b> meva-sabzavotni yuvish, qaynatilgan yoki toza suv ichish, muddati o'tgan mahsulotni yemaslik.</div>
+<div class="c"><b>Emlash:</b> organizmga zararsizlantirilgan qo'zg'atuvchi yoki uning qismi kiritiladi, immunitet kasallikni oldindan "o'rganadi".</div>
+<div class="c"><b>Boshqalar:</b> xonani shamollatish, aksirganda tirsak bilan yopish, sport, uyqu, karantin va izolyatsiya.</div>
+<div class="c"><b>Qo'l yuvish tartibi:</b> kaft → kaft orqasi → barmoq orasi → bosh barmoq → tirnoqlar → bilak.</div>
+<h3>Qo'l yuvish</h3>
+<div class="box">
+<button id="hs">🧼 Boshlash (20 soniya)</button> ⏱️ <b id="tm">20</b>
+<div class="germs" id="gm">🦠🦠🦠🦠🦠🦠</div>
+<div id="stp"></div><div class="msg" id="hw"></div>
+</div>
+<h3>Emlash (sxema)</h3>
+<div class="box">
+<button id="v1">💉 Emlangan bola</button><button id="v2">🧒 Emlanmagan bola</button>
+<div class="av" id="av2">🧒</div><div class="msg" id="vm">Birini tanlang, so'ng mikrob hujumini ko'ring.</div>
+</div>
+<h3>Sog'lom kun rejasi</h3>
+<div class="box" id="g3"></div>
+<h3>O'yin: xavfsizmi yoki xavfli?</h3>
+<div class="box" id="g4"></div>
+</section>
+
+<section id="s3"><h2>Yakuniy test</h2><div class="box" id="g5"></div></section>
+<p class="note">⚕️ Kasal bo'lsang, kattalarga ayt va shifokorga murojaat qil. Dorini o'zboshimchalik bilan ichma.</p>
+</main>
+<nav>
+<button class="on" data-t="0"><span>🥗</span>Turmush</button>
+<button data-t="1"><span>🦠</span>Kelib chiqishi</button>
+<button data-t="2"><span>🧼</span>Oldini olish</button>
+<button data-t="3"><span>📝</span>Test</button>
+</nav>
+<script>
+let score=0;const $=s=>document.querySelector(s),R=n=>Math.floor(Math.random()*n),upd=()=>{$('#sc').textContent=score};
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('section').forEach((s,i)=>s.classList.toggle('on',i==b.dataset.t));scrollTo(0,0)});
+const pop=el=>{el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')};
+
+// Universal savol-javob (variantlar aralashtiriladi, f=true bo'lsa tartib saqlanadi)
+function quiz(box,items,done){
+  let i=0,ok=0;
+  const go=()=>{
+    if(i>=items.length){
+      box.innerHTML=`<p class="q">Natija: ${ok}/${items.length} ${done?done(ok):''}</p><button class="rs">Qayta boshlash</button>`;
+      box.querySelector('.rs').onclick=()=>quiz(box,items,done);return}
+    const t=items[i],ord=t.o.map((_,k)=>k);if(!t.f)ord.sort(()=>Math.random()-.5);
+    box.innerHTML=`<p class="q">${t.q}</p>`+ord.map(k=>`<button data-k="${k}">${t.o[k]}</button>`).join('')+'<div class="msg fb"></div>';
+    box.querySelectorAll('button').forEach(b=>b.onclick=()=>{
+      const k=+b.dataset.k;box.querySelectorAll('button').forEach(x=>x.disabled=true);
+      if(k==t.a){ok++;score+=10;b.classList.add('ok')}else{b.classList.add('no');box.querySelector(`[data-k="${t.a}"]`).classList.add('ok')}
+      upd();box.querySelector('.fb').innerHTML=(k==t.a?'✅ To\'g\'ri! ':'❌ Noto\'g\'ri. ')+t.e+'<br><button class="nx">Keyingisi</button>';
+      box.querySelector('.nx').onclick=()=>{i++;go()}});
+  };go()}
+const mk=(arr,o,f)=>arr.map(x=>({q:x[0],o:o||x[1],a:o?x[1]:x[2],e:o?x[2]:x[3],f}));
+
+// ---- 1-bo'lim: immunitet shkalasi ----
+let imm=50;
+const H=[['😴 Uxlash',12,'Uyqu organizmni tiklaydi.'],['🏃 Sport',10,'Harakat immunitetni mustahkamlaydi.'],['🥕 Meva-sabzavot',10,'Vitaminlar himoya kuchini oshiradi.'],['💧 Toza suv',6,'Suv organizm uchun zarur.'],['🧼 Qo\'l yuvish',8,'Mikroblar kamayadi.'],['📱 Kechasi telefon',-12,'Uyqu qisqaradi, immunitet pasayadi.'],['🍟 Chips, gazli ichimlik',-10,'Foydasiz ovqat organizmni zaiflashtiradi.'],['🌙 Uyqusiz qolish',-14,'Uyqusizlik organizmni holsizlantiradi.']];
+$('#hb').innerHTML=H.map((h,i)=>`<button data-i="${i}">${h[0]}</button>`).join('');
+function showImm(m){
+  $('#imb').style.width=imm+'%';$('#imb').style.background=imm>=70?'#2b9348':imm>=40?'#e9c46a':'#d62839';$('#imv').textContent=imm;
+  $('#av0').textContent=imm>=70?'💪':imm>=45?'🙂':imm>=25?'🤧':'🤒';pop($('#av0'));if(m)$('#hm').textContent=m}
+document.querySelectorAll('#hb button').forEach(b=>b.onclick=()=>{const h=H[+b.dataset.i];imm=Math.max(0,Math.min(100,imm+h[1]));showImm(h[0]+': '+h[2])});showImm();
+const yn=['Foydali ✅','Zararli ⛔'];
+quiz($('#g1'),mk([['🍎 Har kuni meva yeyish',0,'Vitaminlar beradi.'],['🌙 Tun yarmigacha telefon',1,'Uyqu yetishmaydi.'],['🏃 Kuniga 60 daqiqa harakat',0,'Organizm mustahkamlanadi.'],['🥤 Kuniga ko\'p gazli ichimlik',1,'Shakar ko\'p, foyda kam.'],['🧼 Ovqatdan oldin qo\'l yuvish',0,'Mikroblar yuvilib ketadi.'],['🍟 Faqat chips bilan ovqatlanish',1,'Organizm kerakli moddalarni olmaydi.'],['😴 9–10 soat uyqu',0,'Organizm tiklanadi.'],['🪟 Xonani shamollatish',0,'Havo toza bo\'ladi.']],yn,true));
+
+// ---- 2-bo'lim: tarqalish ----
+let P,hist;
+function resetP(){P=Array(12).fill(0);P[0]=1;hist=[1];drawP();$('#sm').textContent=''}
+function drawP(){
+  $('#ppl').innerHTML=P.map(x=>`<span class="${x?'in':''}">${x?'🤒':'🧑'}</span>`).join('');
+  $('#cnt').textContent=P.reduce((a,b)=>a+b);
+  const n=Math.max(hist.length-1,1);
+  $('#ch').setAttribute('points',hist.map((v,i)=>`${5+i*290/n},${75-v*5.8}`).join(' '))}
+document.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{
+  const imv=+$('#imm1').value;let c=0;
+  for(let j=0;j<+b.dataset.n;j++){const i=R(12);if(!P[i]&&Math.random()>imv/100){P[i]=1;c++}}
+  hist.push(P.reduce((a,b)=>a+b));drawP();
+  $('#sm').textContent=c?`Yangi kasallanganlar: ${c}. Kasal bo'lsang, kattalarga ayt.`:'Hech kim kasallanmadi. Immunitet himoya qildi!'});
+$('#rs1').onclick=resetP;$('#imm1').oninput=e=>{$('#i1v').textContent=e.target.value};resetP();
+
+let ft;
+$('#imm2').oninput=e=>{$('#i2v').textContent=e.target.value};
+$('#fb').onclick=()=>{
+  clearInterval(ft);let m=10,t=0;const l=Math.max(1,Math.round(+$('#imm2').value/10));
+  $('#fl2').textContent='⚪'.repeat(l);$('#av1').textContent='🙂';$('#fm').textContent='';
+  const draw=()=>{$('#fv').textContent='🦠'.repeat(m)};draw();
+  ft=setInterval(()=>{
+    t++;m=Math.max(0,m-l+Math.floor(m*.3));draw();
+    if(m==0){clearInterval(ft);$('#av1').textContent='🙂';pop($('#av1'));$('#fm').textContent='Leykotsitlar mikroblarni yutib yubordi. Immunitet g\'alaba qildi!'}
+    else if(t>=8||m>=20){clearInterval(ft);$('#av1').textContent='🤒';pop($('#av1'));$('#fm').textContent='Immunitet kuchsiz edi, mikroblar ko\'paydi. Kattalarga ayt va shifokorga murojaat qil.'}
+  },700)};
+
+quiz($('#g2'),mk([
+ ['Havo-tomchi yo\'lini uzish uchun?',['Niqob taqish va xonani shamollatish','Yaqin turib gaplashish','Idishni birga ishlatish','Kech uxlash'],0,'Havo-tomchi yo\'li yopiladi.'],
+ ['Iflos qo\'l orqali yuqishni to\'xtatish?',['Sovun bilan 20 soniya yuvish','Qo\'lni kiyimga artish','Yuzga tegish','Tirnoqni tishlash'],0,'Sovun mikroblarni yuvib ketadi.'],
+ ['Iflos suv orqali yuqishni to\'xtatish?',['Qaynatilgan yoki toza suv ichish','Ariq suvidan ichish','Hovuzdan ichish','Ko\'lmak suvdan ichish'],0,'Qaynatish mikroblarni yo\'qotadi.'],
+ ['Zanjirdagi sog\'lom odamni nima himoya qiladi?',['Immunitet va emlash','Uyqusizlik','Kam harakat','Ko\'p shirinlik'],0,'Kuchli immunitet kasallikka yo\'l qo\'ymaydi.'],
+ ['Kasal odam nima qilishi kerak?',['Uyda dam olib, kattalarga aytish','Maktabga borish','Do\'stlarni quchoqlash','Dorini o\'zi tanlash'],0,'Boshqalarga yuqmasligi uchun.'],
+ ['Zanjir qachon uziladi?',['Bitta bo\'g\'in to\'xtatilsa','Hech qachon','Faqat hamma kasal bo\'lsa','Faqat qishda'],0,'Bitta bo\'g\'in yetarli.']]));
+quiz($('#g2b'),mk([
+ ['🍔 Iflos qo\'l bilan ovqatlandi. Nima bo\'lishi mumkin?',['Ichak infeksiyasi xavfi','Kuchli immunitet','Tezroq o\'sish','Hech narsa'],0,'Mikroblar ovqat bilan kiradi.'],
+ ['🤧 Yonidagi odam aksirdi, yuzini yopmadi.',['Havo-tomchi bilan yuqish','Suv orqali yuqish','Hasharot orqali yuqish','Yuqmaydi'],0,'Mikroblar havoga tarqaladi.'],
+ ['🛋️ Kam harakat va juda ko\'p shirinlik.',['Yuqumsiz kasallik xavfi ortadi','Suyaklar mustahkam','Immunitet oshadi','Hech narsa'],0,'Bu yuqumsiz kasalliklar sababi.'],
+ ['🚰 Ariq suvidan ichdi.',['Ichak kasalligi xavfi','Salomatlik yaxshilanadi','Kuch oshadi','Hech narsa'],0,'Suvda mikroblar bo\'lishi mumkin.'],
+ ['🌙 Har kuni juda kech yotadi.',['Immunitet susayadi','Immunitet kuchayadi','Bo\'y o\'sadi','Hech narsa'],0,'Uyqu yetishmasa organizm holsizlanadi.'],
+ ['🪰 Ochiq qolgan ovqatga pashsha qo\'ndi.',['Mikrob o\'tishi mumkin','Ovqat foydali bo\'ladi','Ovqat mazali bo\'ladi','Hech narsa'],0,'Hasharotlar mikrob tashiydi.']]));
+
+// ---- 3-bo'lim: qo'l yuvish ----
+const SP=['🖐️ Kaftlar','🤚 Kaft orqasi','🙌 Barmoq orasi','👍 Bosh barmoq','💅 Tirnoqlar','⌚ Bilak'];
+let ht,hi=0,hr=false;
+$('#hs').onclick=()=>{
+  clearInterval(ht);hi=0;hr=true;let s=20;$('#tm').textContent=s;$('#hw').textContent='Qadamlarni to\'g\'ri tartibda bosing!';
+  $('#gm').textContent='🦠'.repeat(6);
+  const o=SP.map((_,k)=>k).sort(()=>Math.random()-.5);
+  $('#stp').innerHTML=o.map(k=>`<button data-k="${k}">${SP[k]}</button>`).join('');
+  $('#stp').querySelectorAll('button').forEach(b=>b.onclick=()=>{
+    if(!hr)return;
+    if(+b.dataset.k==hi){hi++;b.disabled=true;b.classList.add('ok');$('#gm').textContent='🦠'.repeat(6-hi);
+      if(hi==6){hr=false;clearInterval(ht);score+=20;upd();$('#hw').textContent='✨ Qo\'llar toza! Mikroblar yo\'qoldi.'}}
+    else $('#hw').textContent='Bu hozir emas. Tartib: kaft, kaft orqasi, barmoq orasi, bosh barmoq, tirnoq, bilak.'});
+  ht=setInterval(()=>{s--;$('#tm').textContent=s;if(s<=0){clearInterval(ht);if(hr){hr=false;$('#hw').textContent='⏱️ Vaqt tugadi. Qayta urinib ko\'ring.'}}},1000)};
+const vac=(ok)=>{const a=$('#av2');a.textContent='🦠';setTimeout(()=>{a.textContent=ok?'😀':'🤒';pop(a);
+  $('#vm').textContent=ok?'Emlangan bolada leykotsitlar mikrobni tez taniydi va yengadi.':'Emlanmagan bola kasallikka tezroq beriladi va kasallik og\'ir kechishi mumkin. Shifokorga murojaat qil.'},900)};
+$('#v1').onclick=()=>vac(true);$('#v2').onclick=()=>vac(false);
+quiz($('#g3'),mk([
+ ['🌅 Maktabga chiqishdan oldin',['Yuz va qo\'l yuvish, nonushta qilish','Nonushtasiz chiqish','Tirnoq tishlash','Telefon o\'ynash'],0,'Gigiyena va ovqat kuch beradi.'],
+ ['🏫 Sinfdoshing aksirdi',['Masofa saqlab, qo\'lni yuvish','Qo\'l siqish','Bir stakandan ichish','Hech narsa qilmaslik'],0,'Havo-tomchi xavfini kamaytiradi.'],
+ ['🍎 Tushlikda olma yeyish',['Yuvib yeyish','Kiyimga artib yeyish','Yerdan olib yeyish','Yuvmay yeyish'],0,'Yuvish mikrob va changni ketkazadi.'],
+ ['🌙 Kechqurun',['Xonani shamollatib, vaqtida uxlash','Kech tungacha telefon','Chips yeb yotish','Derazani butunlay yopish'],0,'Toza havo va uyqu immunitetga foyda.']]));
+quiz($('#g4'),mk([['🍏 Yuvilmagan olma',1,'Sirtida mikrob bo\'lishi mumkin.'],['🫖 Qaynatilgan suv',0,'Mikroblar yo\'qolgan.'],['🤧 Aksirganda yuzni ochiq qoldirish',1,'Mikroblar tarqaladi.'],['💉 Emlash jadvaliga rioya qilish',0,'Immunitetni oldindan tayyorlaydi.'],['🥛 Muddati o\'tgan sut',1,'Zararli mikroblar ko\'payadi.'],['🧼 Sovun bilan qo\'l yuvish',0,'Mikroblarni yuvib ketadi.'],['🥄 Kasal bilan umumiy qoshiq',1,'Mikrob o\'tishi mumkin.'],['🪟 Shamollatilgan xona',0,'Havodagi mikroblar kamayadi.']],['Xavfsiz ✅','Xavfli ⛔'],true));
+
+// ---- Yakuniy test ----
+quiz($('#g5'),mk([
+ ['Immunitet nima?',['Organizmning kasallikka qarshi kurashish qobiliyati','Dori turi','Mikrob turi','Ovqat turi'],0,'Immunitet organizmni himoya qiladi.'],
+ ['Kuniga qancha uxlash kerak (6-sinf)?',['9–10 soat','4 soat','6 soat','14 soat'],0,'Uyqu organizmni tiklaydi.'],
+ ['Qaysi biri yuqumli kasallik qo\'zg\'atuvchisi?',['Bakteriya','Vitamin','Suv','Tuz'],0,'Bakteriya, virus, zamburug\' va parazitlar.'],
+ ['Qaysi kasallik yuqumsiz?',['Ko\'p shirinlikdan kelib chiqqan semizlik','Gripp','Ichak infeksiyasi','Qizilcha'],0,'Yuqumsiz kasalliklar boshqalarga yuqmaydi.'],
+ ['Havo-tomchi yo\'liga qaysi biri misol?',['Aksirish va yo\'tal','Iflos suv','Hasharot','Yaralangan joy'],0,'Mikroblar havo bilan tarqaladi.'],
+ ['Kasallik zanjiri nechta bo\'g\'indan iborat?',['3','1','5','7'],0,'Manba, yo\'l, sog\'lom odam.'],
+ ['Leykotsitlarning vazifasi?',['Mikroblardan himoya','Kislorod tashish','Qon ivishi','Suv saqlash'],0,'Ular mikrobni yutadi.'],
+ ['Qo\'lni kamida necha soniya yuvish kerak?',['20','2','5','60 daqiqa'],0,'Sovun bilan 20 soniya.'],
+ ['Emlash nima uchun kerak?',['Immunitet kasallikni oldindan o\'rganadi','Mikrob ko\'paysin deb','Ovqat o\'rniga','Uyqu uchun'],0,'Organizm tayyor bo\'ladi.'],
+ ['Meva-sabzavotni yeyishdan oldin nima qilinadi?',['Yuviladi','Yerga tashlanadi','Artilmaydi','Qoldiriladi'],0,'Mikrob va chang ketadi.'],
+ ['Kasal bo\'lganda nima qilish kerak?',['Kattalarga aytib, shifokorga murojaat qilish','Dorini o\'zi tanlash','Maktabga borish','Hech kimga aytmaslik'],0,'Davolashni shifokor belgilaydi.'],
+ ['Zanjirni qanday uzish mumkin?',['Bitta bo\'g\'inni to\'xtatish','Hech qanday','Faqat dori bilan','Kuta turish'],0,'Masalan, qo\'l yuvish yoki niqob.']]),
+ ok=>'<br>'+(ok>=11?'⭐⭐⭐ Ajoyib!':ok>=8?'⭐⭐ Yaxshi!':ok>=5?'⭐ Yomon emas.':'Yana urinib ko\'r.')+'<br><small>Eslab qol: kasallik zanjiri 3 bo\'g\'indan iborat, bitta bo\'g\'in uzilsa kasallik tarqalmaydi. Qo\'l yuvish, emlash va sog\'lom turmush tarzi eng yaxshi himoya.</small>');
+</script>
+</body>
+</html>

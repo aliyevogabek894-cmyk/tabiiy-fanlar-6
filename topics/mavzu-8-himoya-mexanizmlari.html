@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Tabiiy fanlar — Odam organizmining himoya mexanizmlari</title>
+<style>
+:root{--navy:#12304a;--blue:#1976d2;--teal:#12a89d;--pink:#ef6b79;--gold:#ffca58;--bg:#f3f8fc;--ink:#183247}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+header{background:linear-gradient(130deg,#12304a,#1976d2 65%,#12a89d);color:white;padding:34px 18px 28px;text-align:center}
+header .tag{display:inline-block;background:#ffffff24;border:1px solid #ffffff55;padding:5px 12px;border-radius:30px;font-size:.9rem}
+h1{font-size:clamp(1.8rem,4vw,3rem);line-height:1.15;margin:15px auto;max-width:900px}
+header p{max-width:760px;margin:auto}
+main{max-width:1100px;margin:auto;padding:20px}
+nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:16px auto}
+nav a{background:white;color:var(--navy);padding:8px 13px;border-radius:20px;text-decoration:none;border:1px solid #d9e7f1;font-weight:bold;font-size:.9rem}
+section,.card{background:white;border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 5px 18px #163b5510}
+h2{color:var(--navy);margin-top:0}h3{margin-bottom:6px;color:#176c91}
+.intro{font-size:1.08rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.stage{border-top:5px solid var(--blue)}.stage:nth-child(2){border-color:var(--teal)}.stage:nth-child(3){border-color:var(--pink)}
+.icon{font-size:2.4rem;line-height:1.3}.pill{display:inline-block;background:#e9f6ff;color:#125783;border-radius:20px;padding:3px 9px;font-size:.85rem;font-weight:bold}
+.diagram{background:#eaf5fb;border-radius:15px;padding:16px;text-align:center;margin:15px 0}
+.defense{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;font-size:1.15rem;font-weight:bold}
+.arrow{color:var(--pink);font-size:1.6rem}
+button{border:0;background:var(--blue);color:white;padding:11px 16px;border-radius:10px;font-weight:bold;cursor:pointer;margin:4px}
+button:hover{filter:brightness(.92)}button.secondary{background:#e5f2fa;color:var(--navy)}button.green{background:#0b9888}
+.simulator{background:#102d43;color:white;border-radius:18px;padding:20px;overflow:hidden}
+.simulator h2{color:white}.arena{position:relative;min-height:200px;background:radial-gradient(ellipse at center,#204d66,#0d2335);border:2px solid #4d829b;border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;padding:20px}
+.cell{font-size:3.3rem;animation:float 2.2s ease-in-out infinite}.microbe{filter:drop-shadow(0 0 6px #ff6d6d)}.whitecell{filter:drop-shadow(0 0 9px #9de5ff)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+#simStatus{font-size:1.05rem;min-height:52px;margin:13px 0}.progress{height:10px;background:#28485b;border-radius:20px;overflow:hidden}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--teal));transition:width .5s}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:14px}.step{padding:10px;background:#1b4057;border-radius:10px;font-size:.9rem}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;border-bottom:1px solid #e2ebf1;vertical-align:top}th{background:#eaf5fb;color:var(--navy)}
+.note{border-left:5px solid var(--gold);background:#fff8df;padding:13px 15px;border-radius:8px}
+.good{border-left:5px solid var(--teal);background:#e9fbf7;padding:13px 15px;border-radius:8px}
+.quiz-q{padding:15px;border:1px solid #e0eaf1;border-radius:12px;margin:12px 0}.quiz-q p{font-weight:bold;margin:0 0 9px}.quiz-q label{display:block;padding:5px 0;cursor:pointer}.result{font-weight:bold;padding:12px;border-radius:10px;margin-top:12px}
+input[type=radio]{margin-right:8px}footer{text-align:center;padding:25px;color:#60798b}
+.small{font-size:.92rem;color:#5e7381}
+@media(max-width:600px){main{padding:12px}section,.card{padding:16px}th,td{padding:7px;font-size:.92rem}.arena{min-height:180px}}
+@media print{nav,.sim-controls,button{display:none!important}body{background:white}section,.card{box-shadow:none;break-inside:avoid}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header>
+  <span class="tag">6-SINF • TABIIY FANLAR • INTERAKTIV DARS</span>
+  <h1>Odam organizmining himoya mexanizmlari</h1>
+  <p>Organizmimizni qal’aga o‘xshatamiz: teri — devor, leykotsitlar — himoyachilar, antitelolar esa aniq nishonni topuvchi maxsus vositalar.</p>
+</header>
+<main>
+<nav>
+<a href="#maqsad">Dars maqsadi</a><a href="#uchbosqich">3 bosqich</a><a href="#sim">Simulyatsiya</a><a href="#lugat">Atamalar</a><a href="#test">Mini-test</a>
+</nav>
+<section id="maqsad">
+<h2>🎯 Dars maqsadi</h2>
+<p class="intro">O‘quvchilar organizmning kasallik qo‘zg‘atuvchilaridan qanday himoyalanishini tushuntiradi, tug‘ma va orttirilgan immunitetni farqlaydi hamda sog‘lom turmush odatlari ahamiyatini izohlaydi.</p>
+<div class="grid">
+<div class="card"><div class="icon">🧱</div><h3>1. Tashqi to‘siqlar</h3><p>Teri, shilliq qavat, ko‘z yoshi va boshqa himoya vositalari mikroblarning kirishiga to‘sqinlik qiladi.</p></div>
+<div class="card"><div class="icon">🛡️</div><h3>2. Tug‘ma himoya</h3><p>Organizmga kirgan ko‘plab zararli mikroblarga tez javob beradi. Fagotsitlar ularni yutib parchalashi mumkin.</p></div>
+<div class="card"><div class="icon">🎯</div><h3>3. Orttirilgan himoya</h3><p>Immun tizim muayyan qo‘zg‘atuvchini taniydi; antitelolar va xotira hujayralari javobda qatnashadi.</p></div>
+</div>
+</section>
+<section id="uchbosqich">
+<h2>🏰 Organizmning uch bosqichli himoya tizimi</h2>
+<div class="grid">
+<article class="card stage"><span class="pill">1-BOSQICH</span><div class="icon">🧱 🧴 💧</div><h3>Tashqi himoya to‘siqlari</h3>
+<ul><li><b>Teri:</b> mikroblarning tanaga kirishini qiyinlashtiradigan jismoniy to‘siq.</li><li><b>Shilliq va tukchalar:</b> nafas yo‘llaridagi zarrachalarni ushlab, tashqariga chiqarishga yordam beradi.</li><li><b>Ko‘z yoshi va so‘lak:</b> tarkibidagi lizotsim kabi moddalar ayrim bakteriyalarga qarshi ta’sir ko‘rsatadi.</li><li><b>Oshqozon kislotasi:</b> yutilgan ko‘plab mikroblarni zararsizlantirishga yordam beradi.</li></ul></article>
+<article class="card stage"><span class="pill">2-BOSQICH</span><div class="icon">🩸 🥷</div><h3>Tug‘ma, umumiy himoya</h3>
+<ul><li><b>Leykotsitlar:</b> oq qon hujayralarining ayrim turlari mikroblarni aniqlab, yutib parchalashi mumkin.</li><li><b>Fagotsitoz:</b> hujayraning zarrachani o‘rab olib yutishi va parchalashi.</li><li><b>Yallig‘lanish:</b> shikastlangan joyda qizarish, issiqlik, shish va og‘riq kuzatilishi mumkin.</li><li><b>Isitma:</b> ayrim infeksiyalarda yuz beradigan javob; juda yuqori isitma xavfli bo‘lishi mumkin.</li></ul></article>
+<article class="card stage"><span class="pill">3-BOSQICH</span><div class="icon">🎯 🔑 🧠</div><h3>Orttirilgan, maxsus himoya</h3>
+<ul><li><b>Antitelolar:</b> ma’lum antigenni tanib bog‘lanadigan maxsus oqsillar.</li><li><b>Limfotsitlar:</b> immun javobni boshqarish va aniq qo‘zg‘atuvchiga qarshi kurashishda qatnashadi.</li><li><b>Xotira hujayralari:</b> oldin uchragan qo‘zg‘atuvchini eslab qolib, keyingi javobni tezlashtirishi mumkin.</li><li><b>Vaksina:</b> immun tizimni xavfsiz tarzda tayyorlashga yordam beradi.</li></ul></article>
+</div>
+<div class="note"><b>Eslab qoling:</b> isitma har doim ham “mikrob o‘lyapti” degani emas. Bu organizm javobining belgisi bo‘lishi mumkin. Isitmani ataylab ko‘tarish yoki davolanishni kechiktirish mumkin emas.</div>
+</section>
+<section>
+<h2>🔍 Himoya qanday ishlaydi?</h2>
+<div class="diagram"><div class="defense"><span>🦠 Mikrob</span><span class="arrow">→</span><span>🧱 Teri to‘sig‘i</span><span class="arrow">→</span><span>🛡️ Tug‘ma himoya</span><span class="arrow">→</span><span>🎯 Maxsus javob</span></div></div>
+<p>Agar teri butun bo‘lsa, ko‘plab mikroblar ichkariga kira olmaydi. Teri shikastlansa, tug‘ma immun javob faollashishi mumkin. Zarurat tug‘ilganda, orttirilgan immun tizim muayyan qo‘zg‘atuvchini taniydi va unga mos javob hosil qiladi.</p>
+</section>
+<section id="sim">
+<div class="simulator">
+<h2>🎮 Interaktiv simulyatsiya: “Qal’ani himoya qil!”</h2>
+<p>Har bir bosqich tugmasini bosing va organizm himoyasi qanday javob berishini kuzating.</p>
+<div class="arena" id="arena"><span class="cell">🧱</span><span class="cell microbe">🦠</span><span class="cell microbe">🦠</span><span class="cell">🛡️</span></div>
+<div id="simStatus" aria-live="polite">Boshlash uchun “1. Tashqi to‘siq” tugmasini bosing.</div>
+<div class="progress"><span id="bar"></span></div>
+<div class="steps">
+<div class="step"><b>1-bosqich</b><br>🧱 Tashqi to‘siq</div><div class="step"><b>2-bosqich</b><br>🛡️ Fagotsitoz</div><div class="step"><b>3-bosqich</b><br>🎯 Antitelo va xotira</div>
+</div>
+<div class="sim-controls" style="margin-top:14px">
+<button onclick="showStage(1)">1. Tashqi to‘siq</button>
+<button onclick="showStage(2)">2. Fagotsitoz</button>
+<button onclick="showStage(3)">3. Maxsus himoya</button>
+<button class="secondary" onclick="resetSim()">Qayta boshlash</button>
+</div>
+</div>
+</section>
+<section id="lugat">
+<h2>📘 Muhim atamalar</h2>
+<table><thead><tr><th>Atama</th><th>Sodda izoh</th></tr></thead><tbody>
+<tr><td><b>Immunitet</b></td><td>Organizmning infeksiya va yot moddalarga qarshi himoyalanish qobiliyati.</td></tr>
+<tr><td><b>Leykotsit</b></td><td>Oq qon hujayrasi; ayrim turlari mikroblarga qarshi kurashadi.</td></tr>
+<tr><td><b>Fagotsitoz</b></td><td>Hujayraning zarrachani o‘rab olib yutishi va parchalashi.</td></tr>
+<tr><td><b>Antitelo</b></td><td>Muayyan antigenni taniydigan va unga bog‘lanadigan oqsil.</td></tr>
+<tr><td><b>Antigen</b></td><td>Immun tizim taniy oladigan modda yoki tuzilma.</td></tr>
+<tr><td><b>Vaksina</b></td><td>Immun tizimni ma’lum infeksiyaga qarshi tayyorlashga yordam beradigan vosita.</td></tr>
+<tr><td><b>Xotira hujayrasi</b></td><td>Oldin uchragan antigenni eslab qolib, keyingi javobga yordam beradigan hujayra.</td></tr>
+<tr><td><b>Yallig‘lanish</b></td><td>Shikast yoki infeksiyaga javoban yuzaga keladigan mahalliy himoya jarayoni.</td></tr>
+</tbody></table>
+</section>
+<section>
+<h2>💡 Kundalik hayotda himoyaga yordam berish</h2>
+<div class="grid">
+<div class="card"><div class="icon">🧼</div><h3>Qo‘lni yuvish</h3><p>Ovqatdan oldin va hojatxonadan keyin qo‘llarni sovun bilan yaxshilab yuving.</p></div>
+<div class="card"><div class="icon">🥗</div><h3>Muvozanatli ovqatlanish</h3><p>Turli meva-sabzavotlar, oqsil manbalari va yetarli suv organizmning normal ishlashini qo‘llab-quvvatlaydi.</p></div>
+<div class="card"><div class="icon">😴</div><h3>Uyqu va harakat</h3><p>Yoshga mos yetarli uyqu va muntazam jismoniy faollik salomatlik uchun muhim.</p></div>
+<div class="card"><div class="icon">💉</div><h3>Emlanish</h3><p>Tavsiya etilgan vaksinalar ayrim xavfli infeksiyalardan himoyalanishga yordam beradi. Vaksinalar turiga qarab tarkibi farq qiladi; ularning barchasi tirik mikrob saqlamaydi.</p></div>
+</div>
+<div class="good"><b>Ilmiy eslatma:</b> immunitetni bir zumda “kuchaytiradigan” sehrli mahsulot yo‘q. To‘g‘ri ovqatlanish, uyqu, gigiyena va emlash — salomatlikni asrashning muhim qismlari.</div>
+</section>
+<section id="test">
+<h2>🧠 Mini-test</h2>
+<p>Har bir savol uchun bitta javobni tanlang, so‘ng “Natijani tekshirish” tugmasini bosing.</p>
+<form id="quiz">
+<div class="quiz-q"><p>1. Mikroblarning tanaga kirishiga birinchi bo‘lib nima to‘sqinlik qiladi?</p>
+<label><input type="radio" name="q1" value="a"> Antitelolar</label><label><input type="radio" name="q1" value="b"> Teri va shilliq qavatlar</label><label><input type="radio" name="q1" value="c"> Xotira hujayralari</label></div>
+<div class="quiz-q"><p>2. Fagotsitoz nima?</p>
+<label><input type="radio" name="q2" value="a"> Hujayraning zarrachani yutib parchalashi</label><label><input type="radio" name="q2" value="b"> Yurakning qon haydashi</label><label><input type="radio" name="q2" value="c"> Oziqning oshqozonda hazm bo‘lishi</label></div>
+<div class="quiz-q"><p>3. Antitelolar nimani taniydi?</p>
+<label><input type="radio" name="q3" value="a"> Har qanday narsani bir xil taniydi</label><label><input type="radio" name="q3" value="b"> Muayyan antigenni</label><label><input type="radio" name="q3" value="c"> Faqat suvni</label></div>
+<div class="quiz-q"><p>4. Vaksinaning asosiy vazifasi nima?</p>
+<label><input type="radio" name="q4" value="a"> Har qanday kasallikni darhol davolash</label><label><input type="radio" name="q4" value="b"> Immun tizimni ma’lum infeksiyaga qarshi tayyorlash</label><label><input type="radio" name="q4" value="c"> Teri qatlamini qalinlashtirish</label></div>
+<div class="quiz-q"><p>5. Xotira hujayralari nima uchun kerak?</p>
+<label><input type="radio" name="q5" value="a"> Oldin uchragan antigenni eslab, keyingi javobga yordam berish</label><label><input type="radio" name="q5" value="b"> Ovqatni maydalash</label><label><input type="radio" name="q5" value="c"> Kislorod tashish</label></div>
+<button type="button" onclick="checkQuiz()">Natijani tekshirish</button><button type="button" class="secondary" onclick="resetQuiz()">Qayta ishlash</button>
+<div id="quizResult" aria-live="polite"></div>
+</form>
+</section>
+<section>
+<h2>🏠 Uyga vazifa</h2>
+<ol><li>“Organizm — qal’a” o‘xshatishidan foydalanib, uch bosqichli himoyani o‘z so‘zingiz bilan tushuntiring.</li><li>Atamalar jadvalidan 5 ta atamani yod oling.</li><li>Mini-testni qayta ishlang va har bir javobingizni izohlang.</li></ol>
+<p class="small">Dars yakuni: organizm bir nechta himoya usullaridan foydalanadi. Ular birgalikda ishlaydi, ammo hech biri barcha kasalliklardan mutlaq himoya bermaydi.</p>
+</section>
+</main>
+<footer>6-sinf Tabiiy fanlar • O‘qituvchi uchun interaktiv dars materiali</footer>
+<script>
+function showStage(n){
+ const arena=document.getElementById('arena'),status=document.getElementById('simStatus'),bar=document.getElementById('bar');
+ if(n===1){arena.innerHTML='<span class="cell">🧱</span><span class="cell microbe">🦠</span><span class="cell microbe">🦠</span><span class="cell">🚫</span>';status.textContent='1-bosqich: Teri va shilliq qavatlar ko‘plab mikroblarning ichkariga kirishiga to‘sqinlik qiladi. Teri shikastlanmaganida bu muhim himoya devoridir.';bar.style.width='33%'}
+ if(n===2){arena.innerHTML='<span class="cell microbe">🦠</span><span class="arrow">→</span><span class="cell whitecell">🟡</span><span class="arrow">→</span><span class="cell">💥</span>';status.textContent='2-bosqich: Mikrob ichkariga kirsa, tug‘ma immun javob ishga tushishi mumkin. Fagotsit deb ataladigan ayrim leykotsitlar mikrobni o‘rab olib yutadi va parchalaydi.';bar.style.width='66%'}
+ if(n===3){arena.innerHTML='<span class="cell microbe">🦠</span><span class="arrow">+</span><span class="cell">🔱</span><span class="arrow">→</span><span class="cell">🧠</span><span class="cell">✅</span>';status.textContent='3-bosqich: Orttirilgan immun javobda antitelolar muayyan antigenni taniydi. Xotira hujayralari shu antigen qayta uchraganda tezroq javob berishga yordam beradi.';bar.style.width='100%'}
+}
+function resetSim(){document.getElementById('arena').innerHTML='<span class="cell">🧱</span><span class="cell microbe">🦠</span><span class="cell microbe">🦠</span><span class="cell">🛡️</span>';document.getElementById('simStatus').textContent='Boshlash uchun “1. Tashqi to‘siq” tugmasini bosing.';document.getElementById('bar').style.width='0%'}
+function checkQuiz(){const ans={q1:'b',q2:'a',q3:'b',q4:'b',q5:'a'};let score=0,answered=0;for(const [q,a] of Object.entries(ans)){const s=document.querySelector('input[name="'+q+'"]:checked');if(s){answered++;if(s.value===a)score++}}const r=document.getElementById('quizResult');r.className='result';r.style.background=score>=4?'#e4f8ef':'#fff3d9';r.style.color='#183247';r.textContent='Natija: '+score+'/5 ta to‘g‘ri. Javob berilgan: '+answered+'/5. '+(score===5?'Ajoyib! Mavzuni juda yaxshi tushungansiz.':score>=3?'Yaxshi! Xato javoblarni qayta ko‘rib chiqing.':'Atamalar va uch bosqichli himoyani yana bir bor o‘qing.')}
+function resetQuiz(){document.getElementById('quiz').reset();document.getElementById('quizResult').textContent='';document.getElementById('quizResult').className=''}
+</script>
+</body>
+</html>

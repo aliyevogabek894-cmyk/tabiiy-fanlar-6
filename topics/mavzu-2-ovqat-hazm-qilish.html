@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf | Ovqat hazm qilish sistemasi — interaktiv simulyatsiya</title>
+<style>
+:root{--green:#16834a;--mint:#dff8e8;--dark:#12352a;--gold:#ffd166;--blue:#dff3ff;--ink:#18312a}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f3faf5;color:var(--ink);line-height:1.55}
+header{background:linear-gradient(120deg,#075b38,#18a65d);color:white;padding:28px 18px;text-align:center}
+header h1{margin:0 0 8px;font-size:clamp(25px,4vw,40px)}header p{margin:0 auto;max-width:900px}
+nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;background:#fff;padding:12px;position:sticky;top:0;z-index:5;box-shadow:0 3px 12px #0001}
+nav a{color:#075b38;text-decoration:none;font-weight:bold;padding:8px 12px;border-radius:20px;background:#e7f8ed}
+main{max-width:1180px;margin:auto;padding:18px}.card{background:#fff;border-radius:18px;padding:20px;margin:18px 0;box-shadow:0 5px 18px #153c2a12;border:1px solid #e2f1e6}
+h2{color:#087341;margin-top:0}h3{color:#0a7040}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:14px}
+.organ{padding:14px;border-radius:14px;background:#f0faf3;border-left:5px solid #26a269}.organ b{color:#08683b}
+button,select{border:0;border-radius:10px;padding:11px 15px;font-weight:bold;cursor:pointer;background:#16834a;color:white;margin:4px}
+button:hover{filter:brightness(.94)}button.secondary{background:#e3f4e8;color:#075b38}input[type=range]{width:100%;accent-color:#16834a}
+.stage{display:flex;align-items:center;gap:10px;margin:12px 0;padding:12px;background:#f3faf5;border-radius:12px}
+.stage .num{background:#16834a;color:white;border-radius:50%;width:34px;height:34px;display:grid;place-items:center;flex-shrink:0;font-weight:bold}
+.sim-layout{display:grid;grid-template-columns:minmax(260px,1fr) minmax(260px,1fr);gap:18px;align-items:center}
+.bodybox{background:linear-gradient(#e9f7ff,#fff5ef);border-radius:18px;padding:10px;text-align:center;min-height:470px;position:relative;overflow:hidden}
+svg{max-width:100%;height:auto}.organ-shape{stroke:#693e31;stroke-width:2;cursor:pointer;transition:filter .2s,stroke-width .2s}.organ-shape:hover,.organ-shape.active{filter:drop-shadow(0 0 5px #f4a261);stroke:#12352a;stroke-width:4}
+.food{fill:#ffd166;stroke:#9b6b00;stroke-width:1.5}.food-dot{animation:travel 6s linear infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@keyframes travel{0%{transform:translateY(0)}100%{transform:translateY(190px)}}
+.pulse{animation:pulse 1.5s infinite;transform-origin:center}
+.info-panel{padding:18px;background:#e9f8ef;border-radius:16px;min-height:210px}
+.progress{height:14px;background:#e0e9e3;border-radius:10px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,#25a55f,#b2e95b);transition:width .4s}
+table{border-collapse:collapse;width:100%;margin:10px 0}th,td{border:1px solid #d5e7da;padding:10px;text-align:left}th{background:#e1f5e7}
+.quizq{padding:15px;border:1px solid #dbece0;border-radius:12px;margin:12px 0}.quizq label{display:block;padding:5px;cursor:pointer}
+.notice{background:#fff5d7;border-left:5px solid #e7b42c;padding:13px;border-radius:10px}
+footer{text-align:center;padding:25px;color:#567166}
+@media(max-width:700px){.sim-layout{grid-template-columns:1fr}.bodybox{min-height:390px}nav{position:static}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header>
+  <h1>🥗 OVQAT HAZM QILISH SISTEMASI</h1>
+  <p>6-sinf uchun kengaytirilgan dars, animatsion model va interaktiv virtual tajriba</p>
+  <p>Ovqat og‘izdan kirib, organizmga foydali moddalar yetkazilguncha qanday yo‘l bosishini kuzating!</p>
+</header>
+<nav>
+<a href="#reja">Dars rejasi</a><a href="#nazariya">Nazariya</a><a href="#sim">Simulyatsiya</a><a href="#hayvonlar">Hayvonlar</a><a href="#model">Model va tajriba</a><a href="#test">Test</a>
+</nav>
+<main>
+<section class="card" id="reja">
+<h2>📚 Dars rejasi va maqsadlar</h2>
+<ol>
+<li>Odamning ovqat hazm qilish sistemasi organlarini tavsiflaymiz.</li>
+<li>Aksariyat umurtqali hayvonlar ovqat hazm qilish sistemasining o‘xshash jihatlarini o‘rganamiz.</li>
+<li>Modelda o‘rganilayotgan obyektning asosiy xususiyatlari qanday aks etishini bilib olamiz.</li>
+<li>Ilmiy tushunchani tasvirlashda modeldan foydalanamiz.</li>
+</ol>
+<div class="grid">
+<div class="organ"><b>🎯 Dars maqsadi</b><br>Ovqatning yo‘lini tushuntirish, organlarni vazifasi bilan bog‘lash va model yordamida hazm jarayonini ko‘rsatish.</div>
+<div class="organ"><b>🔑 Asosiy tushuncha</b><br>Hazm qilish — ovqat tarkibidagi murakkab moddalarni organizm o‘zlashtira oladigan sodda moddalarga parchalash jarayoni.</div>
+<div class="organ"><b>💡 O‘ylab ko‘ring</b><br>Nima uchun ovqatni yaxshilab chaynash kerak? Ovqatdagi oziq moddalar qayerda qonga o‘tadi?</div>
+</div>
+</section>
+
+<section class="card" id="nazariya">
+<h2>🧠 1. Ovqat hazm qilish nima?</h2>
+<p>Biz ovqat orqali energiya, o‘sish va to‘qimalarni tiklash uchun zarur moddalarni olamiz. Ammo non, go‘sht, meva va boshqa mahsulotlar tarkibidagi moddalar organizmga darhol tayyor holda singib ketmaydi. Ovqat mexanik ravishda maydalanadi, hazm shiralarining ta’sirida kimyoviy parchalanadi, foydali moddalar qonga so‘riladi, hazm bo‘lmagan qoldiqlar esa tashqariga chiqariladi.</p>
+<div class="grid">
+<div class="organ"><b>Mexanik hazm</b><br>Tishlar ovqatni maydalaydi, oshqozon va ichak mushaklari uni aralashtirib, siljitadi.</div>
+<div class="organ"><b>Kimyoviy hazm</b><br>So‘lak, oshqozon shirasi, oshqozon osti bezi shirasi va ichak shirasi tarkibidagi fermentlar oziq moddalarni mayda qismlarga parchalaydi.</div>
+<div class="organ"><b>So‘rilish</b><br>Hazm bo‘lgan oziq moddalar asosan ingichka ichak devori orqali qon va limfaga o‘tadi.</div>
+<div class="organ"><b>Chiqarish</b><br>Suvning bir qismi yo‘g‘on ichakda so‘riladi, qolgan hazm bo‘lmagan qoldiqlar najas holida chiqariladi.</div>
+</div>
+<h3>Ovqatning yo‘li — 7 asosiy bosqich</h3>
+<div class="stage"><span class="num">1</span><div><b>Og‘iz bo‘shlig‘i</b> — tishlar ovqatni maydalaydi, til uni aralashtiradi, so‘lak ovqatni namlaydi va kraxmal hazmini boshlaydi.</div></div>
+<div class="stage"><span class="num">2</span><div><b>Halqum</b> — yutilayotgan luqma og‘izdan qizilo‘ngach tomon o‘tadi. Yutishda nafas yo‘li himoyalanadi.</div></div>
+<div class="stage"><span class="num">3</span><div><b>Qizilo‘ngach</b> — mushaklarning to‘lqinsimon qisqarishi ovqatni oshqozonga suradi. Bu harakat peristaltika deyiladi.</div></div>
+<div class="stage"><span class="num">4</span><div><b>Oshqozon</b> — ovqat aralashtiriladi, oshqozon shirasi ta’sirida ayniqsa oqsillar hazmi boshlanadi. Ovqat suyuqroq aralashmaga aylanadi.</div></div>
+<div class="stage"><span class="num">5</span><div><b>Ingichka ichak</b> — hazm jarayoni asosan shu yerda yakunlanadi. Oziq moddalar ichak devoridagi mayda tukchalar orqali qonga yoki limfaga so‘riladi.</div></div>
+<div class="stage"><span class="num">6</span><div><b>Yo‘g‘on ichak</b> — suv va ayrim mineral moddalar so‘riladi, ichak bakteriyalari qoldiqlar bilan o‘zaro ta’sirlashadi, najas shakllanadi.</div></div>
+<div class="stage"><span class="num">7</span><div><b>To‘g‘ri ichak va anal teshigi</b> — najas vaqtincha to‘planadi va organizmdan chiqariladi.</div></div>
+<div class="notice"><b>Eslab qoling:</b> jigar va oshqozon osti bezi ham hazm qilishda juda muhim. Jigar ishlab chiqaradigan o‘t suyuqligi yog‘larni mayda tomchilarga ajratishga yordam beradi; oshqozon osti bezi fermentlari oqsil, yog‘ va uglevodlar hazmida qatnashadi. Ovqat bu bezlardan o‘tmaydi — ularning suyuqliklari ichakka quyiladi.</div>
+<h3>Har bir organning vazifasi</h3>
+<table><tr><th>Organ</th><th>Asosiy vazifasi</th><th>Oddiy misol</th></tr>
+<tr><td>Og‘iz, tish va til</td><td>Maydalash, aralashtirish, so‘lak bilan namlash</td><td>Nonni chaynaganda yumshaydi</td></tr>
+<tr><td>Halqum</td><td>Yutish paytida ovqatni qizilo‘ngachga o‘tkazish</td><td>Luqma keyingi yo‘lga o‘tadi</td></tr>
+<tr><td>Qizilo‘ngach</td><td>Peristaltika bilan ovqatni siljitish</td><td>Ovqat oshqozonga yetadi</td></tr>
+<tr><td>Oshqozon</td><td>Aralashtirish va oshqozon shirasi bilan hazm qilish</td><td>Ovqat bo‘tqasimon aralashmaga aylanadi</td></tr>
+<tr><td>Jigar va o‘t pufagi</td><td>Jigar o‘t ishlab chiqaradi; o‘t pufagi uni saqlab, ichakka chiqaradi</td><td>Yog‘larning hazm bo‘lishiga yordam beradi</td></tr>
+<tr><td>Oshqozon osti bezi</td><td>Hazm fermentlari va boshqa suyuqliklarni ichakka chiqaradi</td><td>Oziq moddalarni parchalashga yordam beradi</td></tr>
+<tr><td>Ingichka ichak</td><td>Hazmni yakunlash va oziq moddalarni so‘rish</td><td>Oziq moddalar qonga o‘tadi</td></tr>
+<tr><td>Yo‘g‘on ichak</td><td>Suvni so‘rish va najasni shakllantirish</td><td>Qoldiq quyuqlashadi</td></tr>
+</table>
+</section>
+
+<section class="card" id="sim">
+<h2>🎮 2. Interaktiv animatsion simulyatsiya</h2>
+<p>Quyidagi modelda ovqat luqmasi bosqichma-bosqich harakatlanadi. Bosqichlarni tugmalar bilan boshqaring yoki avtomatik animatsiyani yoqing. Organ ustiga bossangiz, uning vazifasi ko‘rsatiladi.</p>
+<div class="sim-layout">
+<div class="bodybox">
+<svg viewBox="0 0 380 500" role="img" aria-label="Ovqat hazm qilish sistemasi soddalashtirilgan modeli">
+<path d="M147 35 Q190 3 233 35 Q255 60 241 93 L226 112 L226 145 Q260 153 276 184 L300 285 Q306 315 280 325 L260 279 L250 226 L245 200 L239 260 L235 360 L224 448 L195 448 L190 330 L184 448 L154 448 L145 350 L142 260 L135 200 L130 230 L120 285 L101 325 Q77 315 83 285 L104 184 Q120 153 154 145 L154 112 L139 93 Q125 60 147 35Z" fill="#f3c8ae" stroke="#c88e75" stroke-width="2"/>
+<path d="M167 80 Q190 92 213 80 L213 107 Q190 122 167 107Z" fill="#f4a6a6" class="organ-shape" data-name="Og‘iz bo‘shlig‘i" data-info="Tishlar ovqatni maydalaydi, til aralashtiradi, so‘lak ovqatni namlaydi va uglevodlar hazmini boshlaydi."/>
+<path d="M181 107 L199 107 L199 177 Q199 191 190 193 Q181 191 181 177Z" fill="#e98a87" class="organ-shape" data-name="Qizilo‘ngach" data-info="Qizilo‘ngach mushaklarining to‘lqinsimon qisqarishi ovqatni oshqozonga siljitadi."/>
+<path d="M199 200 Q220 188 238 210 Q250 237 225 257 Q205 270 188 250 Q176 231 188 215Z" fill="#e8756d" class="organ-shape pulse" data-name="Oshqozon" data-info="Oshqozon ovqatni aralashtiradi. Oshqozon shirasi, jumladan kislota va fermentlar, hazm jarayonida qatnashadi."/>
+<path d="M165 213 Q148 204 137 222 L132 246 Q145 260 165 245Z" fill="#8fcf82" class="organ-shape" data-name="Jigar" data-info="Jigar o‘t suyuqligini ishlab chiqaradi. O‘t yog‘larni mayda tomchilarga ajratishga yordam beradi."/>
+<path d="M157 251 Q167 240 180 251 L178 263 L160 263Z" fill="#4c9b63" class="organ-shape" data-name="O‘t pufagi" data-info="O‘t pufagi jigar ishlab chiqargan o‘t suyuqligini saqlaydi va kerak bo‘lganda ichakka chiqaradi."/>
+<path d="M177 269 Q200 258 221 271 L218 282 Q198 276 178 285Z" fill="#e9b45b" class="organ-shape" data-name="Oshqozon osti bezi" data-info="Oshqozon osti bezi fermentlarni ingichka ichakka chiqarib, oziq moddalar hazmiga yordam beradi."/>
+<path d="M153 276 C123 265 121 300 146 304 C175 310 209 296 223 309 C244 330 207 340 174 325 C140 310 126 342 151 354 C179 369 218 346 225 365 C231 385 197 392 165 375 C135 359 127 392 157 403 C186 416 224 397 222 416" fill="none" stroke="#e28b46" stroke-width="15" stroke-linecap="round" class="organ-shape" data-name="Ingichka ichak" data-info="Ingichka ichakda hazm jarayoni yakunlanadi. Oziq moddalar ichak devoridan qon va limfaga so‘riladi."/>
+<path d="M139 277 L128 277 L128 405 Q128 427 150 427 L229 427 Q251 427 251 405 L251 277 L239 277 L239 400 Q239 414 225 414 L154 414 Q140 414 140 400Z" fill="#b87bd0" fill-opacity=".85" class="organ-shape" data-name="Yo‘g‘on ichak" data-info="Yo‘g‘on ichakda suv va ayrim minerallar so‘riladi. Hazm bo‘lmagan qoldiqlardan najas shakllanadi."/>
+<path d="M184 415 L184 444" stroke="#8f5ab1" stroke-width="12" stroke-linecap="round" class="organ-shape" data-name="To‘g‘ri ichak va anal teshigi" data-info="Najas to‘g‘ri ichakda vaqtincha to‘planadi va anal teshigi orqali tashqariga chiqariladi."/>
+<circle id="foodDot" cx="190" cy="86" r="7" class="food" style="display:none"/>
+<g font-size="10" fill="#173d2c" font-weight="bold">
+<text x="15" y="78">Og‘iz</text><path d="M48 75 L163 90" stroke="#567" fill="none"/>
+<text x="8" y="160">Qizilo‘ngach</text><path d="M75 157 L181 155" stroke="#567" fill="none"/>
+<text x="275" y="231">Oshqozon</text><path d="M269 234 L232 235" stroke="#567" fill="none"/>
+<text x="7" y="246">Jigar</text><path d="M37 243 L136 233" stroke="#567" fill="none"/>
+<text x="8" y="350">Ingichka</text><text x="8" y="362">ichak</text><path d="M57 350 L145 348" stroke="#567" fill="none"/>
+<text x="270" y="345">Yo‘g‘on</text><text x="270" y="357">ichak</text><path d="M267 350 L239 350" stroke="#567" fill="none"/>
+</g>
+</svg>
+</div>
+<div>
+<div class="info-panel"><h3 id="stepTitle">Boshlashga tayyormisiz?</h3><p id="stepText">“Keyingi bosqich” tugmasini bosing. Sariq nuqta ovqat luqmasini ifodalaydi. Bu biologik jarayonning soddalashtirilgan modeli.</p><p><b>Hayotiy bog‘lanish:</b> <span id="lifeText">Ovqat tanaga qurilish materiali va energiya beradi.</span></p></div>
+<div style="margin-top:14px"><button onclick="prevStep()" class="secondary">⬅ Oldingi</button><button onclick="nextStep()">Keyingi bosqich ➜</button><button onclick="toggleAuto()" id="autoBtn" class="secondary">▶ Avtoanimatsiya</button><button onclick="resetSim()" class="secondary">↺ Qayta boshlash</button></div>
+<p><b>Jarayon:</b> <span id="stepCount">0 / 7</span></p><div class="progress"><div class="bar" id="progressBar"></div></div>
+<h3>Organni tanlang</h3><p>Rasmdagi rangli organga bosing — vazifasi shu yerda tushuntiriladi.</p>
+</div>
+</div>
+<div class="notice" style="margin-top:16px"><b>Modelni kuzatish savoli:</b> Nega ovqat avval oshqozonga, undan keyin ingichka ichakka o‘tadi? Nima uchun oziq moddalar qonga asosan ingichka ichakda so‘riladi?</div>
+</section>
+
+<section class="card" id="hayvonlar">
+<h2>🐄 3. Umurtqali hayvonlarda ovqat hazm qilish sistemasi</h2>
+<p>Odam, mushuk, sigir va tovuq — barchasi umurtqali hayvonlar. Ularning ovqat hazm qilish sistemalarida umumiy qismlar mavjud, chunki barchasi ovqatni qabul qilishi, hazm qilishi, foydali moddalarni o‘zlashtirishi va qoldiqlarni chiqarishi kerak. Lekin oziqlanish turiga qarab ayrim organlar farq qiladi.</p>
+<table><tr><th>Hayvon</th><th>O‘xshash organlar</th><th>O‘ziga xos jihati</th><th>Nima uchun?</th></tr>
+<tr><td>Odam</td><td>Og‘iz, halqum, qizilo‘ngach, oshqozon, ingichka va yo‘g‘on ichak</td><td>Turli xil oziq-ovqatni iste’mol qiladi</td><td>Aralash oziqlanishga moslashgan</td></tr>
+<tr><td>Mushuk</td><td>Og‘iz, qizilo‘ngach, oshqozon, ichaklar</td><td>Ichaklari o‘simlikxo‘r hayvonlarnikiga nisbatan qisqaroq</td><td>Asosan go‘sht bilan oziqlanadi</td></tr>
+<tr><td>Sigir</td><td>Og‘iz, qizilo‘ngach, oshqozon, ichaklar</td><td>Oshqozoni to‘rt bo‘limli: katta qorin, to‘r qorin, qatqorin, shirdon</td><td>O‘simlikdagi sellyulozani mikroorganizmlar yordamida parchalashga moslashgan; kavsh qaytaradi</td></tr>
+<tr><td>Tovuq</td><td>Og‘iz, qizilo‘ngach, oshqozon, ingichka va yo‘g‘on ichak</td><td>Jig‘ildon va muskulli oshqozon mavjud; kloaka orqali chiqaradi</td><td>Tishlari yo‘q, donni muskulli oshqozonda maydalaydi</td></tr>
+<tr><td>Baliq</td><td>Og‘iz, halqum, qizilo‘ngach, oshqozon va ichak (turiga qarab)</td><td>Hazm sistemasi oziq turiga qarab farqlanadi</td><td>Suv muhitidagi turli oziq bilan oziqlanadi</td></tr>
+</table>
+<div class="grid">
+<div class="organ"><b>O‘xshashlik</b><br>Ovqat kiradigan yo‘l va hazm bo‘lmagan qoldiq chiqadigan yo‘l mavjud; ichaklar oziq moddalarni hazm qilish va so‘rishda qatnashadi.</div>
+<div class="organ"><b>Farqlanish sababi</b><br>Tishlar, oshqozon bo‘limlari va ichak uzunligi hayvonning qanday oziqlanishiga moslashgan.</div>
+</div>
+</section>
+
+<section class="card" id="model">
+<h2>🧪 4. Ilmiy model va amaliy tajriba</h2>
+<p><b>Model</b> — haqiqiy obyekt yoki jarayonning muhim xususiyatlarini soddalashtirib ko‘rsatadigan tasvir, maket yoki tajriba. Bizning animatsiyamiz ovqatning yo‘lini ko‘rsatadi, lekin haqiqiy hazm qilishning barcha kimyoviy jarayonlarini to‘liq takrorlamaydi.</p>
+<h3>Oddiy sinf modeli: “Oshqozon va ichak”</h3>
+<ol>
+<li>O‘qituvchi nazoratida pishirilgan kartoshka yoki nonning mayda bo‘laklarini yopiladigan paketga soling.</li>
+<li>Oz miqdorda suv qo‘shing. Paketni yopib, tashqaridan sekin ezib-aralashtiring. Bu tishlar va oshqozon mushaklarining mexanik ishini ramziy ko‘rsatadi.</li>
+<li>Aralashmani mato yoki mayda teshikli elak ustiga qo‘ying. O‘tgan suyuqlikni kuzating. Bu ichak devoridan so‘rilish g‘oyasini soddalashtirib ko‘rsatadi.</li>
+<li>Natijani yozing: aralashma qanday o‘zgardi? Nima o‘tdi, nima qoldi?</li>
+</ol>
+<div class="notice"><b>Xavfsizlik va aniqlik:</b> Tajriba namunasi yeyilmaydi. Bu modelda haqiqiy fermentlar, ichak tukchalari, qon aylanishi va barcha kimyoviy reaksiyalar to‘liq aks etmaydi. Model — tushuntirish vositasi, haqiqiy organ emas.</div>
+<h3>Modelning kuchli va cheklangan tomonlari</h3>
+<table><tr><th>Model nimani ko‘rsatadi?</th><th>Nimani to‘liq ko‘rsatmaydi?</th></tr>
+<tr><td>Ovqatning bosqichma-bosqich siljishi</td><td>Organlardagi murakkab mushak harakatlari</td></tr>
+<tr><td>Ovqatning maydalanishi va aralashishi</td><td>Fermentlarning aniq kimyoviy ta’siri</td></tr>
+<tr><td>Suyuqlikning elak/mato orqali o‘tishi</td><td>Ichak tukchalari orqali tanlab so‘rilish va qonga o‘tish</td></tr>
+</table>
+</section>
+
+<section class="card" id="test">
+<h2>📝 5. Bilimingizni sinab ko‘ring</h2>
+<p>Har bir savolda bitta to‘g‘ri javobni tanlang. Yakunda natijangiz ko‘rsatiladi.</p>
+<form id="quiz">
+<div class="quizq"><b>1. Ovqat hazm bo‘lishi qayerda boshlanadi?</b><label><input type="radio" name="q1" value="a"> Oshqozonda</label><label><input type="radio" name="q1" value="b"> Og‘iz bo‘shlig‘ida</label><label><input type="radio" name="q1" value="c"> Yo‘g‘on ichakda</label></div>
+<div class="quizq"><b>2. Ovqatni qizilo‘ngach bo‘ylab siljitadigan harakat nima deyiladi?</b><label><input type="radio" name="q2" value="a"> Fotosintez</label><label><input type="radio" name="q2" value="b"> Nafas olish</label><label><input type="radio" name="q2" value="c"> Peristaltika</label></div>
+<div class="quizq"><b>3. Oziq moddalarning ko‘p qismi qayerda so‘riladi?</b><label><input type="radio" name="q3" value="a"> Ingichka ichakda</label><label><input type="radio" name="q3" value="b"> Qizilo‘ngachda</label><label><input type="radio" name="q3" value="c"> Og‘izda</label></div>
+<div class="quizq"><b>4. Yo‘g‘on ichakning muhim vazifalaridan biri qaysi?</b><label><input type="radio" name="q4" value="a"> Havodan kislorod olish</label><label><input type="radio" name="q4" value="b"> Suvning bir qismini so‘rish</label><label><input type="radio" name="q4" value="c"> Qonni yurakka haydash</label></div>
+<div class="quizq"><b>5. Jigar hazm qilishda qanday yordam beradi?</b><label><input type="radio" name="q5" value="a"> Insulin bilan ovqatni chaynaydi</label><label><input type="radio" name="q5" value="b"> Ovqatni qizilo‘ngachdan o‘tkazadi</label><label><input type="radio" name="q5" value="c"> O‘t suyuqligini ishlab chiqaradi</label></div>
+<div class="quizq"><b>6. Sigir oshqozonining to‘rt bo‘limli bo‘lishi nimaga moslashgan?</b><label><input type="radio" name="q6" value="a"> O‘simlik oziqni hazm qilishga</label><label><input type="radio" name="q6" value="b"> Uchishda yengil bo‘lishga</label><label><input type="radio" name="q6" value="c"> Suv ostida nafas olishga</label></div>
+<div class="quizq"><b>7. Tovuqning muskulli oshqozoni nima uchun kerak?</b><label><input type="radio" name="q7" value="a"> Ovqatni ko‘rish uchun</label><label><input type="radio" name="q7" value="b"> Don va ovqatni maydalash uchun</label><label><input type="radio" name="q7" value="c"> Qon ishlab chiqarish uchun</label></div>
+<div class="quizq"><b>8. Ilmiy modelning asosiy vazifasi nima?</b><label><input type="radio" name="q8" value="a"> Haqiqiy obyektni barcha jihatdan aynan takrorlash</label><label><input type="radio" name="q8" value="b"> Faqat chiroyli rasm bo‘lish</label><label><input type="radio" name="q8" value="c"> Muhim xususiyatlarni soddalashtirib ko‘rsatish</label></div>
+<div class="quizq"><b>9. Ovqatning hazm bo‘lmagan qoldig‘i qayerdan chiqariladi?</b><label><input type="radio" name="q9" value="a"> Anal teshigidan</label><label><input type="radio" name="q9" value="b"> Burundan</label><label><input type="radio" name="q9" value="c"> Qizilo‘ngachdan</label></div>
+<div class="quizq"><b>10. Odam va mushuk hazm sistemalarining o‘xshashligiga qaysi misol to‘g‘ri?</b><label><input type="radio" name="q10" value="a"> Ikkalasida ham jig‘ildon bor</label><label><input type="radio" name="q10" value="b"> Ikkalasida ham og‘iz, oshqozon va ichaklar bor</label><label><input type="radio" name="q10" value="c"> Ikkalasi ham faqat o‘simlik yeydi</label></div>
+<button type="button" onclick="checkQuiz()">Natijani tekshirish</button><button type="reset" class="secondary" onclick="document.getElementById('result').textContent=''">Qayta ishlash</button>
+</form>
+<div id="result" class="info-panel" style="margin-top:14px" aria-live="polite"></div>
+</section>
+<section class="card">
+<h2>🏁 Dars yakuni — eslab qoling</h2>
+<ul>
+<li>Ovqatning yo‘li: <b>og‘iz → halqum → qizilo‘ngach → oshqozon → ingichka ichak → yo‘g‘on ichak → to‘g‘ri ichak → anal teshigi.</b></li>
+<li>Hazm qilish mexanik maydalash va kimyoviy parchalanishni o‘z ichiga oladi.</li>
+<li>Oziq moddalarning asosiy qismi ingichka ichakda so‘riladi, yo‘g‘on ichakda esa suvning bir qismi so‘riladi.</li>
+<li>Umurtqali hayvonlarda umumiy hazm organlari bor, ammo oziqlanishiga qarab tuzilishida farqlar uchraydi.</li>
+<li>Model murakkab ilmiy jarayonni tushunishni osonlashtiradi, lekin haqiqiy jarayonning barcha tafsilotlarini ko‘rsatmaydi.</li>
+</ul>
+<h3>Uyga vazifa</h3>
+<ol><li>Ovqat hazm qilish organlarini ketma-ket yozing va har birining vazifasini bir jumlada tushuntiring.</li><li>Odam, sigir va tovuq hazm sistemasidan ikkita o‘xshashlik va ikkita farq yozing.</li><li>“Model menga nimani tushunishga yordam berdi?” mavzusida 4–5 gap yozing.</li></ol>
+</section>
+</main>
+<footer>6-sinf tabiiy fanlar • Ovqat hazm qilish sistemasi • Interaktiv o‘quv modeli</footer>
+<script>
+const steps=[
+{title:"1-bosqich: Og‘iz bo‘shlig‘i",text:"Tishlar ovqatni mayda bo‘laklarga ajratadi. Til ovqatni so‘lak bilan aralashtiradi. So‘lak kraxmal hazmini boshlaydi.",life:"Ovqatni shoshmasdan chaynash hazm jarayoniga yordam beradi.",y:86},
+{title:"2-bosqich: Halqum",text:"Yutish paytida ovqat luqmasi halqumdan qizilo‘ngachga o‘tadi. Nafas yo‘liga ovqat tushmasligi uchun maxsus himoya mexanizmlari ishlaydi.",life:"Ovqatlanayotganda gapirish yoki kulish tiqilib qolish xavfini oshirishi mumkin.",y:125},
+{title:"3-bosqich: Qizilo‘ngach",text:"Qizilo‘ngach mushaklari ketma-ket qisqarib, luqmani oshqozonga suradi. Bu to‘lqinsimon harakat peristaltika deb ataladi.",life:"Ovqat tanani egib yoki yotib olganimizda ham mushaklar harakati bilan pastga siljiy oladi.",y:165},
+{title:"4-bosqich: Oshqozon",text:"Oshqozon ovqatni aralashtiradi. Oshqozon shirasi oqsillar hazm bo‘lishini boshlaydi va ko‘plab mikroblarni yo‘qotishga yordam beradi.",life:"Oshqozon — ovqatni saqlab, aralashtiradigan vaqtinchalik “qop”ga o‘xshaydi.",y:230},
+{title:"5-bosqich: Ingichka ichak",text:"O‘t suyuqligi va oshqozon osti bezi fermentlari hazmga yordam beradi. Hazm yakunlanadi, oziq moddalar ichak devori orqali qonga yoki limfaga o‘tadi.",life:"Oziq moddalardan organizm energiya oladi va o‘sish uchun foydalanadi.",y:320},
+{title:"6-bosqich: Yo‘g‘on ichak",text:"Hazm bo‘lmagan qoldiq yo‘g‘on ichakka o‘tadi. Bu yerda suv va ayrim mineral moddalar so‘rilib, najas shakllanadi.",life:"Yetarli suv ichish va tolaga boy oziq iste’mol qilish ichak faoliyatiga yordam beradi.",y:375},
+{title:"7-bosqich: To‘g‘ri ichak va anal teshigi",text:"Najas to‘g‘ri ichakda vaqtincha to‘planadi va anal teshigi orqali tashqariga chiqariladi.",life:"Organizm hazm bo‘lmagan qoldiqlarni chiqarib, ichki muhit muvozanatini saqlashga yordam beradi.",y:440}
+];
+let current=-1,autoTimer=null;
+function setStep(i){current=Math.max(-1,Math.min(6,i));const dot=document.getElementById('foodDot');if(current<0){dot.style.display='none';document.getElementById('stepTitle').textContent='Boshlashga tayyormisiz?';document.getElementById('stepText').textContent='“Keyingi bosqich” tugmasini bosing. Sariq nuqta ovqat luqmasini ifodalaydi.';document.getElementById('lifeText').textContent='Ovqat tanaga qurilish materiali va energiya beradi.';}else{let s=steps[current];dot.style.display='block';dot.setAttribute('cy',s.y);document.getElementById('stepTitle').textContent=s.title;document.getElementById('stepText').textContent=s.text;document.getElementById('lifeText').textContent=s.life;}document.getElementById('stepCount').textContent=(current+1)+' / 7';document.getElementById('progressBar').style.width=((current+1)/7*100)+'%';}
+function nextStep(){setStep(current>=6?-1:current+1)}
+function prevStep(){setStep(current<=0?-1:current-1)}
+function resetSim(){stopAuto();setStep(-1)}
+function toggleAuto(){if(autoTimer){stopAuto();return}document.getElementById('autoBtn').textContent='⏸ To‘xtatish';autoTimer=setInterval(()=>{if(current>=6){setStep(-1)}else{nextStep()}},2800)}
+function stopAuto(){if(autoTimer){clearInterval(autoTimer);autoTimer=null}document.getElementById('autoBtn').textContent='▶ Avtoanimatsiya'}
+document.querySelectorAll('.organ-shape').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('.organ-shape').forEach(x=>x.classList.remove('active'));el.classList.add('active');document.getElementById('stepTitle').textContent=el.dataset.name;document.getElementById('stepText').textContent=el.dataset.info;document.getElementById('lifeText').textContent='Organlar birgalikda ishlaydi: har birining vazifasi umumiy hazm jarayoniga hissa qo‘shadi.';}));
+const answers={q1:'b',q2:'c',q3:'a',q4:'b',q5:'c',q6:'a',q7:'b',q8:'c',q9:'a',q10:'b'};
+function checkQuiz(){let score=0,miss=[];for(let q in answers){let sel=document.querySelector('input[name="'+q+'"]:checked');if(sel&&sel.value===answers[q])score++;else miss.push(q.slice(1))}let msg='Natija: '+score+'/10 ('+(score*10)+'%). ';if(score>=9)msg+='Ajoyib! Mavzuni juda yaxshi tushunibsiz.';else if(score>=7)msg+='Yaxshi! Xato javoblarni qayta ko‘rib chiqing.';else msg+='Nazariyani yana bir marta o‘qib, simulyatsiyani qayta bajaring.';if(miss.length)msg+=' Qayta ko‘rish kerak bo‘lgan savollar: '+miss.join(', ')+'.';document.getElementById('result').textContent=msg;}
+</script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Fizika — Elektr zanjir sxemalari</title>
+<style>
+:root{--bg:#eef5ff;--card:#fff;--ink:#172554;--blue:#2563eb;--green:#16a34a;--orange:#f59e0b;--muted:#52627a}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#e0f2fe,#f8fafc 55%,#ede9fe);color:var(--ink);line-height:1.6}
+header{padding:30px 18px;text-align:center;background:linear-gradient(120deg,#1d4ed8,#6d28d9);color:#fff}
+header h1{margin:0 0 8px;font-size:clamp(26px,5vw,42px)}header p{margin:0;font-size:17px}
+main{max-width:1100px;margin:22px auto;padding:0 14px}.card{background:var(--card);border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 8px 24px #1e3a8a12;border:1px solid #dbeafe}
+h2{margin-top:0;color:#1d4ed8}h3{color:#4338ca}.plan{display:flex;gap:10px;flex-wrap:wrap}.plan span{background:#dbeafe;padding:8px 12px;border-radius:99px;font-weight:bold}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.diagram{background:#f8fafc;border:1px solid #cbd5e1;border-radius:12px;padding:12px;text-align:center;overflow:hidden}.diagram svg{width:100%;height:auto;max-height:210px}
+.note{background:#eff6ff;border-left:5px solid #3b82f6;padding:12px 15px;border-radius:8px}.warn{background:#fff7ed;border-left:5px solid #f59e0b;padding:12px 15px;border-radius:8px}
+button,select{font:inherit;border:0;border-radius:10px;padding:10px 14px;cursor:pointer}button{background:#2563eb;color:white;font-weight:bold}button:hover{filter:brightness(.94)}button.secondary{background:#475569}button.green{background:#15803d}
+.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:12px 0}.bulb{fill:#cbd5e1;stroke:#64748b;stroke-width:3}.bulb.on{fill:#fde047;stroke:#eab308;filter:drop-shadow(0 0 8px #facc15)}.wire{stroke:#64748b;stroke-width:5;fill:none;stroke-linecap:round;stroke-linejoin:round}.wire.live{stroke:#16a34a}.battery{fill:#dbeafe;stroke:#2563eb;stroke-width:2}.label{font-size:13px;fill:#172554;font-weight:bold}.electron{fill:#16a34a;stroke:white;stroke-width:1}.result{font-weight:bold;color:#166534;min-height:28px}
+table{width:100%;border-collapse:collapse;margin:12px 0}th,td{border:1px solid #cbd5e1;padding:10px;text-align:left}th{background:#dbeafe}
+.quiz-q{padding:14px;background:#f8fafc;border-radius:12px;margin:12px 0}.quiz-q label{display:block;margin:7px 0;cursor:pointer}.footer{text-align:center;color:var(--muted);padding:25px}
+@media(max-width:600px){.card{padding:16px}th,td{padding:7px;font-size:14px}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header><h1>⚡ Elektr zanjir sxemalari</h1><p>6-sinf Fizika • Nazariya, sxemalar va interaktiv simulyatsiya</p></header>
+<main>
+<section class="card"><h2>📚 Dars rejasi</h2><div class="plan"><span>1. Ketma-ket ulanish</span><span>2. Parallel ulanish</span><span>3. Chiroqlar yorqinligi</span></div><p>Elektr zanjiri — elektr toki oqishi uchun manba, simlar va iste’molchi kabi elementlar yopiq yo‘l hosil qilgan tizim. Sxema esa zanjir elementlarini shartli belgilar bilan ko‘rsatadi.</p></section>
+<section class="card"><h2>1. Elementlari ketma-ket ulangan elektr zanjir</h2><div class="grid"><div><p>Ketma-ket ulanishda elementlar bir yo‘l bo‘ylab birin-ketin ulanadi. Tok o‘tishi uchun faqat bitta yo‘l mavjud.</p><ul><li>Barcha elementlardan bir xil tok o‘tadi: <b>I = I₁ = I₂</b>.</li><li>Manba kuchlanishi qismlardagi kuchlanishlar yig‘indisiga teng: <b>U = U₁ + U₂</b>.</li><li>Bitta chiroq yoki sim uzilsa, butun zanjir ochilib, barcha chiroqlar o‘chadi.</li></ul></div><div class="diagram"><svg viewBox="0 0 420 180" role="img" aria-label="Ketma-ket ulangan ikki chiroq sxemasi"><path class="wire" d="M70 60 H115 M155 60 H205 M245 60 H295 V130 H70 V90 M70 60 V72 M70 90 V130"/><path class="wire" d="M70 72 V90"/><circle cx="135" cy="60" r="20" class="bulb on"/><path d="M122 47 L148 73 M148 47 L122 73" stroke="#92400e" stroke-width="3"/><circle cx="225" cy="60" r="20" class="bulb on"/><path d="M212 47 L238 73 M238 47 L212 73" stroke="#92400e" stroke-width="3"/><rect x="45" y="72" width="50" height="18" rx="3" class="battery"/><text x="70" y="85" text-anchor="middle" class="label">+/−</text><text x="135" y="28" text-anchor="middle" class="label">Chiroq 1</text><text x="225" y="28" text-anchor="middle" class="label">Chiroq 2</text><text x="210" y="157" text-anchor="middle" class="label">Bitta tok yo‘li</text></svg><b>Shartli sxema</b></div></div>
+<div class="note">Tasavvur qiling: tok yo‘lda ketayotgan sayohatchiga o‘xshaydi. U chiroq 1 dan, keyin chiroq 2 dan o‘tib, manbaga qaytadi.</div></section>
+<section class="card"><h2>2. Elementlari parallel ulangan elektr zanjir</h2><div class="grid"><div><p>Parallel ulanishda zanjir bir nechta tarmoqqa bo‘linadi. Har bir chiroq manbaning ikki qutbi orasiga alohida ulanadi.</p><ul><li>Har bir tarmoqdagi kuchlanish bir xil: <b>U = U₁ = U₂</b>.</li><li>Umumiy tok tarmoqlardagi toklar yig‘indisi: <b>I = I₁ + I₂</b>.</li><li>Bitta chiroq uzilsa, boshqa tarmoq ishlashda davom etadi.</li></ul></div><div class="diagram"><svg viewBox="0 0 420 180" role="img" aria-label="Parallel ulangan ikki chiroq sxemasi"><path class="wire" d="M65 65 H125 M165 65 H350 V135 H65 V95 M65 65 V75 M65 95 V135 M125 65 H145 M165 65 H350"/><path class="wire" d="M125 65 H145 M165 65 H350"/><path class="wire" d="M125 65 V40 H280 V65 M125 135 V110 H280 V135"/><circle cx="145" cy="40" r="18" class="bulb on"/><path d="M133 28 L157 52 M157 28 L133 52" stroke="#92400e" stroke-width="3"/><circle cx="145" cy="110" r="18" class="bulb on"/><path d="M133 98 L157 122 M157 98 L133 122" stroke="#92400e" stroke-width="3"/><rect x="40" y="75" width="50" height="20" rx="3" class="battery"/><text x="65" y="89" text-anchor="middle" class="label">+/−</text><text x="215" y="25" text-anchor="middle" class="label">1-tarmoq</text><text x="215" y="105" text-anchor="middle" class="label">2-tarmoq</text></svg><b>Shartli sxema</b></div></div>
+<div class="note">Uyimizdagi lampalar odatda parallel ulanadi: bir xonadagi chiroq o‘chsa ham, boshqa xonadagi chiroq yonishi mumkin.</div></section>
+<section class="card"><h2>3. Interaktiv simulyatsiya</h2><p>Ulanish turini tanlang, kalitni ochib-yoping va chiroqlar qanday o‘zgarishini kuzating.</p>
+<div class="controls"><label for="mode"><b>Ulanish turi:</b></label><select id="mode"><option value="series">Ketma-ket</option><option value="parallel">Parallel</option></select><button id="switch" class="green">🔌 Kalit yopiq</button><button id="fault" class="secondary">💡 1-chiroqni uzish</button><button id="reset" class="secondary">Qayta tiklash</button></div>
+<div class="diagram"><svg id="sim" viewBox="0 0 600 250" role="img" aria-label="Interaktiv elektr zanjiri"><g id="drawing"></g></svg><div class="result" id="status">Zanjir yopiq: chiroqlar yonmoqda.</div></div>
+<p><b>Kuzatish:</b> ketma-ket zanjirda bitta chiroq uzilsa, ikkalasi ham o‘chadi. Parallel zanjirda esa ikkinchi chiroq yonishda davom etadi.</p>
+</section>
+<section class="card"><h2>4. Qaysi zanjirdagi chiroqlar yorqinroq?</h2><p>Bir xil ikkita chiroq va bir xil batareya ishlatilsa, odatda <b>parallel ulangan chiroqlar yorqinroq</b> yonadi. Chunki parallel tarmoqdagi har bir chiroqqa manbaning to‘liq kuchlanishi beriladi. Ketma-ket ulanishda kuchlanish chiroqlar orasida taqsimlanadi.</p><div class="warn">Eslatma: bu xulosa bir xil chiroqlar va ideal manba haqidagi oddiy maktab modeli uchun. Haqiqiy yorqinlik chiroqning xususiyati va manbaga ham bog‘liq.</div>
+<table><tr><th>Xususiyat</th><th>Ketma-ket</th><th>Parallel</th></tr><tr><td>Tok yo‘llari</td><td>Bitta</td><td>Bir nechta tarmoq</td></tr><tr><td>Kuchlanish</td><td>Qismlarga taqsimlanadi</td><td>Har bir tarmoqda bir xil</td></tr><tr><td>Bitta chiroq uzilsa</td><td>Barchasi o‘chadi</td><td>Boshqasi yonishi mumkin</td></tr><tr><td>Bir xil chiroqlarning yorqinligi</td><td>Odatda xiraroq</td><td>Odatda yorqinroq</td></tr></table></section>
+<section class="card"><h2>📝 Bilimingizni tekshiring</h2><form id="quiz">
+<div class="quiz-q"><b>1. Ketma-ket zanjirda nechta asosiy tok yo‘li bor?</b><label><input type="radio" name="q1" value="a"> A) Bitta</label><label><input type="radio" name="q1" value="b"> B) Ikkita</label><label><input type="radio" name="q1" value="c"> C) Cheksiz</label></div>
+<div class="quiz-q"><b>2. Parallel zanjirda bitta chiroq uzilsa, odatda nima bo‘ladi?</b><label><input type="radio" name="q2" value="a"> A) Hamma chiroq o‘chadi</label><label><input type="radio" name="q2" value="b"> B) Boshqa tarmoqdagi chiroq yonishi davom etadi</label><label><input type="radio" name="q2" value="c"> C) Batareya yo‘qoladi</label></div>
+<div class="quiz-q"><b>3. Parallel ulanishda har bir tarmoqdagi kuchlanish qanday?</b><label><input type="radio" name="q3" value="a"> A) Har doim nol</label><label><input type="radio" name="q3" value="b"> B) Har birida har xil bo‘lishi shart</label><label><input type="radio" name="q3" value="c"> C) Manba kuchlanishiga teng</label></div>
+<div class="quiz-q"><b>4. Bir xil chiroqlar va batareyada qaysi ulanishda chiroqlar odatda yorqinroq yonadi?</b><label><input type="radio" name="q4" value="a"> A) Parallel</label><label><input type="radio" name="q4" value="b"> B) Ketma-ket</label><label><input type="radio" name="q4" value="c"> C) Ikkalasi ham doim bir xil</label></div>
+<button type="button" id="check">Javoblarni tekshirish</button><button type="reset" class="secondary">Tozalash</button><p id="quizResult" class="result"></p></form></section>
+<section class="card"><h2>🌟 Xulosa</h2><ul><li>Elektr zanjiri tok o‘tishi uchun yopiq bo‘lishi kerak.</li><li>Ketma-ket ulanishda tok uchun bitta yo‘l bor.</li><li>Parallel ulanishda tok tarmoqlarga bo‘linadi.</li><li>Parallel ulanish uy elektr tizimlarida qulay, chunki jihozlar mustaqil ishlashi mumkin.</li></ul></section>
+<div class="footer">6-sinf Fizika • Elektr zanjir sxemalari • O‘quv maqsadida tayyorlandi</div>
+</main>
+<script>
+const mode=document.getElementById('mode'), sw=document.getElementById('switch'), faultBtn=document.getElementById('fault'), reset=document.getElementById('reset'), drawing=document.getElementById('drawing'), status=document.getElementById('status');
+let closed=true, broken=false;
+function path(d,live){return `<path d="${d}" class="wire ${live?'live':''}"/>`}
+function bulb(x,y,on,label){return `<circle cx="${x}" cy="${y}" r="23" class="bulb ${on?'on':''}"/><path d="M${x-13} ${y-13} L${x+13} ${y+13} M${x+13} ${y-13} L${x-13} ${y+13}" stroke="#92400e" stroke-width="3"/><text x="${x}" y="${y-34}" text-anchor="middle" class="label">${label}</text>`}
+function render(){
+ const parallel=mode.value==='parallel'; let a=closed&&!broken, b=closed&&(!broken||parallel);
+ let s='';
+ if(!parallel){
+ s+=path('M100 80 H205',a)+path('M251 80 H345',a)+path('M391 80 H500 V190 H100 V125',a);
+ s+=`<rect x="75" y="85" width="50" height="35" rx="5" class="battery"/><text x="100" y="107" text-anchor="middle" class="label">+/−</text>`;
+ s+=bulb(228,80,a,'Chiroq 1')+bulb(368,80,b,'Chiroq 2');
+ s+=path(closed?'M100 80 V100':'M100 80 V95 M100 80 L125 55',a);
+ }else{
+ s+=path('M100 80 H165 V55 H240',a)+path('M286 55 H440 V190 H100 V125',a);
+ s+=path('M165 55 V135 H240',a)+path('M286 135 H440',b);
+ s+=`<rect x="75" y="85" width="50" height="35" rx="5" class="battery"/><text x="100" y="107" text-anchor="middle" class="label">+/−</text>`;
+ s+=bulb(263,55,a,'Chiroq 1')+bulb(263,135,b,'Chiroq 2');
+ s+=path(closed?'M100 80 V100':'M100 80 V95 M100 80 L125 55',a);
+ }
+ // moving charge dots when circuit is closed and the path is conducting
+ if(a){for(let i=0;i<5;i++){let x=145+i*58;s+=`<circle cx="${x}" cy="${parallel?190:190}" r="5" class="electron"><animate attributeName="cx" values="${x};${x+35};${x}" dur="1.4s" repeatCount="indefinite"/></circle>`}}
+ drawing.innerHTML=s;
+ sw.textContent=closed?'🔌 Kalit yopiq':'🔓 Kalit ochiq';
+ faultBtn.textContent=broken?'🛠 1-chiroqni tiklash':'💡 1-chiroqni uzish';
+ if(!closed)status.textContent='Kalit ochiq: zanjir uzilgan, chiroqlar o‘chiq.';
+ else if(broken&&!parallel)status.textContent='1-chiroq uzilgan: ketma-ket zanjir uzildi, ikkala chiroq ham o‘chiq.';
+ else if(broken&&parallel)status.textContent='1-chiroq uzilgan: 1-chiroq o‘chiq, 2-chiroq yonishda davom etadi.';
+ else status.textContent='Zanjir yopiq: ikkala chiroq yonmoqda.';
+}
+sw.onclick=()=>{closed=!closed;render()};faultBtn.onclick=()=>{broken=!broken;render()};reset.onclick=()=>{closed=true;broken=false;mode.value='series';render()};mode.onchange=render;render();
+document.getElementById('check').onclick=()=>{const ans={q1:'a',q2:'b',q3:'c',q4:'a'};let score=0;for(const [q,v] of Object.entries(ans)){const pick=document.querySelector(`input[name="${q}"]:checked`);if(pick&&pick.value===v)score++}document.getElementById('quizResult').textContent=`Natija: ${score}/4 ta to‘g‘ri javob.`+(score===4?' Ajoyib!':score>=2?' Yaxshi! Mavzuni yana bir bor takrorlang.':' Nazariyani qayta o‘qib, yana urinib ko‘ring.');};
+document.getElementById('quiz').onreset=()=>{document.getElementById('quizResult').textContent=''};
+</script>
+</body>
+</html>

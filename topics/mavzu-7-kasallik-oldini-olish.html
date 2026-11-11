@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Tabiiy fan — Kasallik tarqalishining oldini olish</title>
+<style>
+:root{--blue:#1769aa;--teal:#14b8a6;--ink:#19324d;--bg:#f3f8fc;--orange:#ffb547;--red:#e85d75;--green:#159b72}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+header{background:linear-gradient(120deg,#135ba1,#18a999);color:white;padding:28px 18px;text-align:center}
+header h1{margin:0 0 8px;font-size:clamp(25px,4vw,38px)}header p{margin:0;font-size:17px}
+main{max-width:1100px;margin:auto;padding:18px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 18px}
+button{border:0;border-radius:12px;padding:11px 15px;background:#e0ebf5;color:var(--ink);font-weight:700;cursor:pointer;transition:.2s}
+button:hover{transform:translateY(-1px)}button.active,.primary{background:var(--blue);color:white}
+.card{background:white;border-radius:18px;padding:20px;margin:14px 0;box-shadow:0 5px 18px #153b5b12}
+h2{margin-top:0;color:#135ba1}h3{margin-bottom:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.tile{border:1px solid #e1ebf4;border-radius:15px;padding:16px;background:#fbfdff}
+.icon{font-size:38px;display:block;margin-bottom:5px}
+.pill{display:inline-block;background:#e4f8f3;color:#087d68;border-radius:20px;padding:4px 10px;font-size:13px;font-weight:bold}
+.notice{background:#fff5df;border-left:5px solid var(--orange);padding:12px 15px;border-radius:10px}
+.good{color:#087d68;font-weight:bold}.bad{color:#c63d55;font-weight:bold}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.step{background:#eef7ff;border-radius:12px;padding:12px;text-align:center}
+.step b{display:block;font-size:25px}
+.sim-area{background:linear-gradient(#eaf7ff,#f7fcff);border-radius:15px;padding:18px;overflow:hidden}
+.people{display:flex;justify-content:space-around;gap:8px;flex-wrap:wrap;margin:18px 0}
+.person{width:105px;min-height:112px;border:2px solid #bdd7eb;border-radius:14px;background:white;text-align:center;padding:9px;position:relative}
+.person .face{font-size:38px}.person small{display:block}
+.germ{display:inline-block;font-size:22px;animation:float 1s infinite alternate}
+@keyframes float{from{transform:translateY(0)}to{transform:translateY(-7px)}}
+.status{font-weight:bold;min-height:30px;margin:10px 0}
+.bar{height:14px;background:#dbe8f3;border-radius:20px;overflow:hidden;margin:8px 0}.bar span{display:block;height:100%;width:0;background:var(--teal);transition:width .5s}
+.quiz-question{font-size:18px;font-weight:bold;margin:10px 0}
+.answer{display:block;width:100%;text-align:left;margin:7px 0;background:#f0f6fb}
+.answer.correct{background:#d8f7e8;color:#086b4b}.answer.wrong{background:#ffe1e5;color:#9f2437}
+#feedback{font-weight:bold;min-height:28px}
+footer{text-align:center;color:#637b91;padding:25px}
+label{font-weight:bold}input[type=range]{width:100%}
+@media(max-width:600px){main{padding:10px}.card{padding:15px}.person{width:85px}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header>
+  <div style="font-size:42px">🧼 🦠 🛡️</div>
+  <h1>Kasallik tarqalishining oldini olish</h1>
+  <p>6-sinf · Tabiiy fan · Interaktiv dars va simulyatsiyalar</p>
+</header>
+<main>
+  <div class="tabs" role="tablist">
+    <button class="active" onclick="showTab('lesson',this)">📘 Dars materiali</button>
+    <button onclick="showTab('microbes',this)">🦠 Mikrob zanjiri</button>
+    <button onclick="showTab('insects',this)">🦟 Hasharotlardan himoya</button>
+    <button onclick="showTab('quiz',this)">🧠 Viktorina</button>
+  </div>
+
+  <section id="lesson" class="tab">
+    <div class="card">
+      <span class="pill">Dars maqsadi</span>
+      <h2>Bugun nimalarni o‘rganamiz?</h2>
+      <ul>
+        <li>Yuqumli kasalliklar qanday yo‘llar bilan tarqalishini tushuntirish.</li>
+        <li>Shaxsiy gigiyena va yo‘talish-aksirish odobini qo‘llash.</li>
+        <li>Hasharotlar chaqishidan himoyalanish usullarini bilish.</li>
+        <li>Vaziyatlarni tahlil qilib, xavfsiz xulosa chiqarish.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>1. Kasalliklar qanday tarqaladi?</h2>
+      <div class="grid">
+        <div class="tile"><span class="icon">🤧</span><h3>Havo orqali</h3>Yo‘talish, aksirish yoki yaqin muloqot vaqtida ayrim mikroblar nafas yo‘llari orqali tarqalishi mumkin.</div>
+        <div class="tile"><span class="icon">🖐️</span><h3>Kontakt orqali</h3>Iflos qo‘l yoki tez-tez tegiladigan buyumlar orqali ayrim mikroblar boshqa odamga o‘tishi mumkin.</div>
+        <div class="tile"><span class="icon">🥤</span><h3>Suv va oziq-ovqat orqali</h3>Iflos suv yoki gigiyena qoidalariga rioya qilinmay tayyorlangan ovqat ayrim kasalliklarni tarqatishi mumkin.</div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>2. Kasallik tarqalishini kamaytirishning oltin qoidalari</h2>
+      <div class="grid">
+        <div class="tile"><span class="icon">🧼</span><h3>Qo‘llarni yuvish</h3>Qo‘llarni sovun va suv bilan kamida 20 soniya yuving. Kaft, qo‘l usti, barmoqlar orasi va tirnoq atroflarini unutmang.</div>
+        <div class="tile"><span class="icon">🪟</span><h3>Xonani shamollatish</h3>Xonani muntazam shamollating. Imkon bo‘lsa, har kuni 10–15 daqiqa yoki maktab qoidalariga muvofiq havo almashtiring.</div>
+        <div class="tile"><span class="icon">🤧</span><h3>Yo‘talish odobi</h3>Yo‘tal yoki aksirishda og‘iz-burunni tirsak bukilmasi yoki bir martalik salfetka bilan yoping. Salfetkani tashlab, qo‘lni yuving.</div>
+        <div class="tile"><span class="icon">💉</span><h3>Emlanish</h3>Tavsiya etilgan vaksinalar ayrim yuqumli kasalliklardan himoya qiladi. Emlash masalasida tibbiyot xodimlari tavsiyasiga amal qiling.</div>
+        <div class="tile"><span class="icon">🥗</span><h3>Sog‘lom turmush</h3>Muvozanatli ovqatlanish, yetarli uyqu va jismoniy faollik salomatlikni qo‘llab-quvvatlaydi.</div>
+        <div class="tile"><span class="icon">🚰</span><h3>Toza suv va ovqat</h3>Ichimlik suvining xavfsizligiga e’tibor bering, meva-sabzavotni yuving va ovqatni toza sharoitda tayyorlang.</div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Qo‘l yuvish algoritmi</h2>
+      <div class="steps">
+        <div class="step"><b>1 💧</b>Qo‘llarni suv bilan ho‘llang</div>
+        <div class="step"><b>2 🧼</b>Sovun surting</div>
+        <div class="step"><b>3 🤲</b>Kaft va qo‘l ustini ishqalang</div>
+        <div class="step"><b>4 🖐️</b>Barmoqlar oralari va tirnoq atroflarini yuving</div>
+        <div class="step"><b>5 🚿</b>Suv bilan chaying</div>
+        <div class="step"><b>6 🧻</b>Toza sochiq bilan quriting</div>
+      </div>
+      <p class="notice">Sovunlab ishqalash taxminan 20 soniya davom etsin. Qo‘l ko‘rinib turgan darajada kir bo‘lsa, ayniqsa sovun va suv bilan yuvish muhim.</p>
+    </div>
+    <div class="card">
+      <h2>3. Hasharot chaqishidan qanday himoyalanamiz?</h2>
+      <div class="grid">
+        <div class="tile"><span class="icon">👕</span><h3>Yopiq kiyim</h3>O‘tloq yoki butazor joylarda yengli kiyim, uzun shim va yopiq poyabzal kiying. Och rangli kiyim kanani ko‘rishni osonlashtiradi.</div>
+        <div class="tile"><span class="icon">🧴</span><h3>Repellent</h3>Chivin va kanalarni qaytaruvchi vositani yorlig‘idagi ko‘rsatma bo‘yicha ishlating. Bolalarda kattalar nazorati zarur.</div>
+        <div class="tile"><span class="icon">🪟</span><h3>Deraza to‘ri</h3>Deraza va eshiklardagi moskit to‘rlari hasharotlarning xonaga kirishini kamaytiradi.</div>
+        <div class="tile"><span class="icon">🪣</span><h3>Turg‘un suvni yo‘qotish</h3>Hovlida suv to‘planadigan ochiq idishlarni bo‘shating va chivin ko‘payishi mumkin bo‘lgan joylarni kamaytiring.</div>
+        <div class="tile"><span class="icon">🔎</span><h3>Sayrdan keyin tekshirish</h3>O‘tloq yoki butazor joydan qaytgach, kiyim va tanani, ayniqsa teri burmalarini tekshiring.</div>
+        <div class="tile"><span class="icon">🩹</span><h3>Chaqilganda</h3>Joyni sovunli suv bilan yuving, qichishsa sovuq kompress qo‘ying. Nafas qisishi yoki yuz-tomoq shishi bo‘lsa, zudlik bilan tez yordam chaqiring.</div>
+      </div>
+      <p class="notice"><b>Kana haqida:</b> tanaga yopishgan kanani imkon qadar tez, ingichka uchli pinset bilan teriga yaqin joyidan ushlab, tekis tortib oling. Ezib yubormang, yog‘ yoki olov ishlatmang. Olish qiyin bo‘lsa, tibbiy yordamga murojaat qiling; keyin joyni tozalang va o‘zingizni kuzating.</p>
+    </div>
+  </section>
+
+  <section id="microbes" class="tab" hidden>
+    <div class="card">
+      <h2>🦠 Simulyatsiya: “Mikrob zanjiri”</h2>
+      <p>Bu soddalashtirilgan model. U mikroblar tarqalishi mumkinligini ko‘rsatadi; haqiqiy hayotda yuqish ehtimoli kasallik va sharoitga bog‘liq.</p>
+      <div class="sim-area">
+        <label for="method">Himoya usulini tanlang:</label>
+        <select id="method" style="width:100%;padding:12px;border-radius:10px;border:1px solid #bcd0e0;margin:8px 0 12px">
+          <option value="none">Himoyasiz aksirish</option>
+          <option value="elbow">Tirsak bukilmasiga aksirish</option>
+          <option value="tissue">Salfetka bilan yopish</option>
+          <option value="vent">Xonani shamollatish</option>
+        </select>
+        <div class="people" id="people">
+          <div class="person"><div class="face">🤧</div><b>1-o‘quvchi</b><small>Boshlovchi</small></div>
+          <div class="person"><div class="face">🙂</div><b>2-o‘quvchi</b><small>Yaqinda</small></div>
+          <div class="person"><div class="face">🙂</div><b>3-o‘quvchi</b><small>Yaqinda</small></div>
+          <div class="person"><div class="face">🙂</div><b>4-o‘quvchi</b><small>Uzoqroqda</small></div>
+        </div>
+        <div class="status" id="simStatus">Tajriba boshlash uchun tugmani bosing.</div>
+        <div class="bar"><span id="spreadBar"></span></div>
+        <button class="primary" onclick="runSimulation()">▶ Tajribani boshlash</button>
+        <button onclick="resetSimulation()">↺ Qayta boshlash</button>
+      </div>
+      <p class="notice">Muhim: tirsak bukilmasi yoki salfetka mikroblarning tarqalish xavfini kamaytiradi, ammo barcha xavfni yo‘q qilmaydi. Qo‘l yuvish va xonani shamollatish ham muhim.</p>
+    </div>
+    <div class="card">
+      <h2>Sinfxona muhokamasi</h2>
+      <ol>
+        <li>Qaysi himoya usuli tarqalishni kamaytirdi?</li>
+        <li>Nega yo‘talganidan keyin qo‘lni yuvish kerak?</li>
+        <li>Haqiqiy hayotda yana qanday choralar yordam beradi?</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="insects" class="tab" hidden>
+    <div class="card">
+      <h2>🦟 Simulyatsiya: “Hasharotlardan himoya zirhi”</h2>
+      <p>Sayrga chiqayotgan qahramonga mos himoya vositalarini tanlang.</p>
+      <div class="sim-area">
+        <div style="font-size:72px;text-align:center" id="hero">🧒</div>
+        <div class="grid">
+          <label class="tile"><input type="checkbox" class="protect" value="clothes"> 👕 Uzun yengli, yopiq kiyim</label>
+          <label class="tile"><input type="checkbox" class="protect" value="repellent"> 🧴 Yorliq bo‘yicha repellent</label>
+          <label class="tile"><input type="checkbox" class="protect" value="net"> 🪟 Moskit to‘ri</label>
+          <label class="tile"><input type="checkbox" class="protect" value="water"> 🪣 Turg‘un suvni yo‘qotish</label>
+          <label class="tile"><input type="checkbox" class="protect" value="check"> 🔎 Sayrdan keyin tanani tekshirish</label>
+        </div>
+        <button class="primary" onclick="checkProtection()">🛡️ Himoyani tekshirish</button>
+        <div class="status" id="protectStatus" aria-live="polite"></div>
+        <div class="bar"><span id="protectBar"></span></div>
+      </div>
+      <p class="notice">Himoya choralarini birgalikda qo‘llash samaraliroq. Hech bir vosita barcha hasharot chaqishining oldini 100% kafolatlamaydi.</p>
+    </div>
+    <div class="card">
+      <h2>Chaqilganda esda tuting</h2>
+      <ul>
+        <li>Oddiy chaqish joyini sovunli suv bilan yuvib, sovuq kompress qo‘yish mumkin.</li>
+        <li>Qashimaslikka harakat qiling.</li>
+        <li>Kana yopishgan bo‘lsa, xavfsiz olib tashlashga ishonchingiz komil bo‘lmasa tibbiy yordam so‘rang.</li>
+        <li>Nafas olish qiyinlashishi, hushdan ketish yoki yuz/tomoq shishi — shoshilinch holat.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="quiz" class="tab" hidden>
+    <div class="card">
+      <h2>🧠 Bilimingizni sinab ko‘ring!</h2>
+      <div class="bar"><span id="quizBar"></span></div>
+      <p id="quizCount">1-savol</p>
+      <div class="quiz-question" id="question"></div>
+      <div id="answers"></div>
+      <div id="feedback" aria-live="polite"></div>
+      <button class="primary" id="nextBtn" onclick="nextQuestion()" hidden>Keyingi savol →</button>
+      <button onclick="restartQuiz()">⟲ Viktorina boshidan</button>
+    </div>
+  </section>
+</main>
+<footer>6-sinf Tabiiy fan · O‘rganamiz, sinab ko‘ramiz, sog‘lom bo‘lamiz! 🌱</footer>
+<script>
+function showTab(id,btn){
+ document.querySelectorAll('.tab').forEach(x=>x.hidden=true);
+ document.getElementById(id).hidden=false;
+ document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));
+ btn.classList.add('active');
+}
+function runSimulation(){
+ const method=document.getElementById('method').value;
+ const people=[...document.querySelectorAll('#people .person')];
+ people.forEach((p,i)=>{p.style.borderColor='#bdd7eb';p.style.background='white';p.querySelector('.face').textContent=i===0?'🤧':'🙂';p.querySelector('small').textContent=i===0?'Boshlovchi':(i===3?'Uzoqroqda':'Yaqinda');});
+ let infected=1, message='';
+ if(method==='none'){
+   infected=4; message='Model: himoyasiz aksirishda tarqalish ehtimoli ko‘proq deb ko‘rsatiladi.';
+   people.slice(1).forEach(p=>{p.style.borderColor='#e85d75';p.style.background='#fff0f2';p.querySelector('.face').textContent='😷';p.querySelector('small').textContent='Xavf bor';});
+ }else if(method==='elbow'){
+   infected=2; message='Model: tirsak bukilmasi tomchilar tarqalishini kamaytiradi, lekin xavfni butunlay yo‘q qilmaydi.';
+   people[1].style.borderColor='#ffb547';people[1].querySelector('small').textContent='Kamaygan xavf';
+ }else if(method==='tissue'){
+   infected=2; message='Model: salfetka tomchilar tarqalishini kamaytirishga yordam beradi. Ishlatilgan salfetkani tashlang va qo‘lni yuving.';
+   people[1].style.borderColor='#ffb547';people[1].querySelector('small').textContent='Kamaygan xavf';
+ }else{
+   infected=2;message='Model: shamollatish havodagi zarrachalar miqdorini kamaytirishga yordam beradi; boshqa choralar ham zarur.';
+   people[1].style.borderColor='#ffb547';people[1].querySelector('small').textContent='Kamaygan xavf';
+ }
+ document.getElementById('simStatus').textContent=message;
+ document.getElementById('spreadBar').style.width=(infected/4*100)+'%';
+}
+function resetSimulation(){
+ document.querySelectorAll('#people .person').forEach((p,i)=>{p.style.borderColor='#bdd7eb';p.style.background='white';p.querySelector('.face').textContent=i===0?'🤧':'🙂';p.querySelector('small').textContent=i===0?'Boshlovchi':(i===3?'Uzoqroqda':'Yaqinda');});
+ document.getElementById('simStatus').textContent='Tajriba boshlash uchun tugmani bosing.';
+ document.getElementById('spreadBar').style.width='0';
+}
+function checkProtection(){
+ const chosen=[...document.querySelectorAll('.protect:checked')].map(x=>x.value);
+ const score=chosen.length;
+ document.getElementById('protectBar').style.width=(score/5*100)+'%';
+ let msg=score>=4?'Ajoyib! Siz bir nechta muhim himoya choralarini tanladingiz.':score>=2?'Yaxshi boshlanish! Yana himoya choralarini qo‘shing.':'Himoya yetarli emas. Bir nechta chorani birga tanlang.';
+ document.getElementById('protectStatus').textContent=`Tanlangan choralar: ${score}/5. ${msg}`;
+ document.getElementById('hero').textContent=score>=4?'🧒🛡️':'🧒';
+}
+const questions=[
+ {q:'Qo‘llarni sovunlab kamida qancha vaqt ishqalash tavsiya etiladi?',a:['5 soniya','20 soniya','2 soniya'],c:1,e:'Sovunlab ishqalash taxminan 20 soniya davom etishi kerak.'},
+ {q:'Yo‘tal yoki aksirishda og‘iz-burunni nima bilan yopish ma’qul?',a:['Kaft bilan','Tirsak bukilmasi yoki salfetka bilan','Hech narsa bilan yopmaslik'],c:1,e:'Tirsak bukilmasi yoki bir martalik salfetka mikroblarning qo‘lga tarqalishini kamaytiradi.'},
+ {q:'Xonani shamollatish nima uchun foydali?',a:['Havo almashinadi','Xona qorong‘ilashadi','Mikroblar ko‘payadi'],c:0,e:'Shamollatish yopiq xonadagi havoni almashtirishga yordam beradi.'},
+ {q:'Chivinlar ko‘payishiga qaysi joy yordam berishi mumkin?',a:['Quruq qum','Turg‘un suv to‘plangan idish','Toza, quruq pol'],c:1,e:'Ayrim chivinlar turg‘un suvda ko‘payadi.'},
+ {q:'O‘tloqdan qaytgach, nima qilish kerak?',a:['Tanani va kiyimni tekshirish','Kiyimni tekshirmaslik','Faqat oyoq kiyimni yechish'],c:0,e:'Tana va kiyimni tekshirish kanani erta aniqlashga yordam beradi.'},
+ {q:'Vaksinalar nima uchun qo‘llanadi?',a:['Ayrim kasalliklarga qarshi himoya hosil qilish uchun','Har qanday kasallikni darhol davolash uchun','Qo‘l yuvish o‘rniga'],c:0,e:'Vaksinalar muayyan infeksiyalarga qarshi immun himoya hosil qilishga yordam beradi.'},
+ {q:'Iflos suv va noto‘g‘ri saqlangan ovqat nimaga sabab bo‘lishi mumkin?',a:['Ayrim yuqumli kasalliklarga','Faqat shamollashga','Hech qanday xavf yo‘q'],c:0,e:'Xavfsiz suv va oziq-ovqat gigiyenasi muhim.'},
+ {q:'Kana yopishib qolsa, qaysi usul xavfsizroq?',a:['Yog‘ quyish yoki kuydirish','Ezib tashlash','Ingichka uchli pinset bilan teriga yaqin joyidan tekis tortib olish'],c:2,e:'Kanani ezmang va kuydirmang; to‘g‘ri olib tashlang yoki tibbiy yordam so‘rang.'}
+];
+let qi=0,score=0,answered=false;
+function renderQuestion(){
+ answered=false;
+ const q=questions[qi];
+ document.getElementById('quizCount').textContent=`${qi+1}-savol / ${questions.length}`;
+ document.getElementById('question').textContent=q.q;
+ document.getElementById('feedback').textContent='';
+ document.getElementById('nextBtn').hidden=true;
+ document.getElementById('quizBar').style.width=(qi/questions.length*100)+'%';
+ const box=document.getElementById('answers');box.innerHTML='';
+ q.a.forEach((answer,i)=>{const b=document.createElement('button');b.className='answer';b.textContent=String.fromCharCode(65+i)+'. '+answer;b.onclick=()=>chooseAnswer(i,b);box.appendChild(b);});
+}
+function chooseAnswer(i,btn){
+ if(answered)return;answered=true;
+ const q=questions[qi];
+ [...document.querySelectorAll('.answer')].forEach((b,j)=>{b.disabled=true;if(j===q.c)b.classList.add('correct');});
+ if(i===q.c){score++;document.getElementById('feedback').textContent='✅ To‘g‘ri! '+q.e;}
+ else{btn.classList.add('wrong');document.getElementById('feedback').textContent='❌ Bu safar xato. '+q.e;}
+ document.getElementById('nextBtn').hidden=false;
+ document.getElementById('nextBtn').textContent=qi===questions.length-1?'Natijani ko‘rish':'Keyingi savol →';
+}
+function nextQuestion(){
+ if(!answered)return;
+ qi++;
+ if(qi<questions.length){renderQuestion();return;}
+ document.getElementById('quizCount').textContent='Viktorina yakunlandi';
+ document.getElementById('question').textContent=`Natija: ${score}/${questions.length}`;
+ document.getElementById('answers').innerHTML=`<p>${score>=7?'🌟 A’lo!':score>=5?'👏 Yaxshi!':'📘 Mavzuni yana bir bor takrorlang.'}</p><p>To‘g‘ri javoblar: ${Math.round(score/questions.length*100)}%</p>`;
+ document.getElementById('feedback').textContent='Asosiy qoidalarni kundalik hayotda qo‘llashni unutmang.';
+ document.getElementById('nextBtn').hidden=true;document.getElementById('quizBar').style.width='100%';
+}
+function restartQuiz(){qi=0;score=0;renderQuestion();}
+renderQuestion();
+</script>
+</body>
+</html>

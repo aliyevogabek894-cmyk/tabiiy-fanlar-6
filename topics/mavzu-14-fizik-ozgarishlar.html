@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-sinf Tabiiy fan — Fizik o‘zgarishlar</title>
+<style>
+:root{--bg:#f3f7ff;--ink:#172554;--blue:#2563eb;--cyan:#06b6d4;--green:#16a34a;--orange:#f59e0b;--card:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#1e293b;line-height:1.6}
+header{background:linear-gradient(135deg,#1d4ed8,#0891b2);color:white;padding:32px 18px;text-align:center}
+header h1{font-size:clamp(1.7rem,4vw,2.7rem);margin:0 0 8px}header p{max-width:850px;margin:auto}
+main{max-width:1100px;margin:24px auto;padding:0 14px}.section{background:var(--card);padding:22px;border-radius:18px;margin:18px 0;box-shadow:0 5px 20px #0f172a0d}
+h2{color:#1d4ed8;margin-top:0}h3{color:#0e7490}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tile{background:#eff6ff;border-radius:14px;padding:15px;border:1px solid #dbeafe}.tile strong{display:block;color:#1d4ed8;font-size:1.05rem}
+.note{background:#ecfeff;border-left:5px solid var(--cyan);padding:13px 16px;border-radius:8px}
+.warning{background:#fff7ed;border-left:5px solid var(--orange);padding:13px 16px;border-radius:8px}
+button,select,input{font:inherit}button{border:0;border-radius:10px;padding:10px 15px;background:var(--blue);color:white;cursor:pointer;font-weight:bold}button:hover{filter:brightness(.92)}button.secondary{background:#475569}button.green{background:var(--green)}
+.lab{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}.stage{background:linear-gradient(#e0f2fe,#f8fafc);border:2px solid #bae6fd;border-radius:16px;min-height:250px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px}
+.cube{font-size:90px;transition:transform .5s}.thermo{font-weight:bold;font-size:1.2rem;color:#b91c1c}.water{width:130px;height:80px;background:#38bdf8;border:3px solid #0284c7;border-radius:10px 10px 20px 20px;position:relative;overflow:hidden;display:none}
+.bubble{position:absolute;bottom:-12px;width:10px;height:10px;border:2px solid white;border-radius:50%;animation:rise 2s infinite ease-in}
+.bubble:nth-child(2){left:35%;animation-delay:.5s}.bubble:nth-child(3){left:65%;animation-delay:1s}
+@keyframes rise{to{transform:translateY(-90px);opacity:0}}
+.controls{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}.status{font-weight:bold;color:#0f766e}.bar{height:12px;background:#e2e8f0;border-radius:20px;overflow:hidden}.bar span{height:100%;display:block;background:linear-gradient(90deg,#06b6d4,#2563eb);width:0%;transition:width .3s}
+.quiz-q{padding:14px;border:1px solid #e2e8f0;border-radius:12px;margin:12px 0}.quiz-q label{display:block;padding:5px;cursor:pointer}.result{font-size:1.1rem;font-weight:bold;margin-top:12px}
+footer{text-align:center;color:#64748b;padding:25px}
+@media(max-width:650px){.lab{grid-template-columns:1fr}.section{padding:17px}}
+</style>
+
+<style id="mobile-iframe-fix">
+/* Mobile & Narrow Iframe Responsive Enhancements */
+@media (max-width: 650px) {
+  html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-size: 14px !important;
+  }
+  body {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  header {
+    padding: 10px 8px !important;
+    flex-wrap: wrap !important;
+  }
+  main, .wrap, .container {
+    padding: 8px 6px !important;
+    max-width: 100% !important;
+  }
+  section, .card, .panel, .box {
+    padding: 10px !important;
+    margin: 8px 0 !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+  h1 {
+    font-size: clamp(17px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+  h2 {
+    font-size: clamp(15px, 4.5vw, 19px) !important;
+    line-height: 1.3 !important;
+  }
+  h3 {
+    font-size: 14.5px !important;
+  }
+  .grid, .sim-layout, .two, .cols, .row-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  svg, canvas, img, video {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  button, .btn, select, input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+  .avbox {
+    flex-direction: column !important;
+    position: static !important;
+    text-align: center !important;
+  }
+  .avw {
+    width: auto !important;
+  }
+  .av {
+    font-size: 44px !important;
+  }
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+    
+<header>
+  <h1>🔬 Fizik o‘zgarishlar dunyosi</h1>
+  <p>6-sinf Tabiiy fanlar uchun interaktiv dars, suv va muz simulyatsiyasi hamda bilimni tekshirish testi.</p>
+</header>
+<main>
+<section class="section">
+<h2>1. Fizik o‘zgarish nima?</h2>
+<p><b>Fizik o‘zgarish</b> — moddaning kimyoviy tarkibi o‘zgarmagan holda uning shakli, o‘lchami yoki agregat holati o‘zgarishidir. Bunda odatda yangi modda hosil bo‘lmaydi.</p>
+<div class="grid">
+ <div class="tile"><strong>🧊 Muzning erishi</strong>Qattiq suv suyuq suvga aylanadi. Modda baribir H₂O bo‘lib qoladi.</div>
+ <div class="tile"><strong>💧 Suvning bug‘lanishi</strong>Suyuq suv suv bug‘iga aylanadi.</div>
+ <div class="tile"><strong>📄 Qog‘ozni yirtish</strong>Shakli va o‘lchami o‘zgaradi, lekin qog‘ozning tarkibi asosan o‘zgarmaydi.</div>
+ <div class="tile"><strong>🧂 Tuzning suvda erishi</strong>Tuz zarrachalari suv ichida tarqaladi; suvni bug‘latib, tuzni qayta olish mumkin.</div>
+</div>
+<div class="note"><b>Esda tuting:</b> fizik o‘zgarishda moddaning tarkibi saqlanadi. Kimyoviy o‘zgarishda esa yangi modda yoki moddalar hosil bo‘lishi mumkin.</div>
+</section>
+
+<section class="section">
+<h2>2. Qaytar va qaytmas o‘zgarishlar</h2>
+<div class="grid">
+ <div class="tile"><strong>↔️ Qaytar o‘zgarish</strong>Sharoitni o‘zgartirib, dastlabki holatga qaytarish mumkin bo‘lgan jarayon.<br><b>Misol:</b> muz ⇄ suv ⇄ suv bug‘i.</div>
+ <div class="tile"><strong>➡️ Qaytmas o‘zgarish</strong>Dastlabki holatga oddiy usulda qaytarish qiyin yoki mumkin bo‘lmagan jarayon.<br><b>Misol:</b> oynaning sinishi, yog‘ochning yonishi.</div>
+</div>
+<div class="warning"><b>Muhim aniqlik:</b> fizik o‘zgarishlarning hammasi ham oson qaytarilavermaydi. Masalan, oynaning sinishi fizik o‘zgarish, lekin uni avvalgi butun holatiga qaytarish qiyin. Yog‘ochning yonishi esa kimyoviy o‘zgarishdir.</div>
+</section>
+
+<section class="section">
+<h2>3. Virtual laboratoriya: Suv va muz</h2>
+<p>Haroratni o‘zgartirib, suvning holati qanday almashishini kuzating. Bu soddalashtirilgan model: odatdagi atmosfera bosimida muz taxminan 0°C da eriydi, suv esa 100°C atrofida qaynaydi.</p>
+<div class="lab">
+ <div class="stage">
+   <div id="object" class="cube">🧊</div>
+   <div id="water" class="water"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span></div>
+   <div class="thermo" id="temp">Harorat: −10°C</div>
+   <div id="state" class="status">Holati: qattiq (muz)</div>
+ </div>
+ <div>
+  <label for="heat"><b>Haroratni sozlang:</b></label>
+  <input id="heat" type="range" min="-10" max="110" value="-10" style="width:100%;margin:15px 0">
+  <div class="bar"><span id="progress"></span></div>
+  <div class="controls">
+   <button onclick="changeTemp(-10)">❄️ Sovutish</button>
+   <button class="green" onclick="changeTemp(10)">🔥 Qizdirish</button>
+   <button class="secondary" onclick="resetLab()">↺ Boshidan</button>
+  </div>
+  <p id="explain">Muz sovuq holatda. Zarrachalar o‘z joyi atrofida tebranadi.</p>
+  <p><b>Kuzatish vazifasi:</b> haroratni sekin oshiring. 0°C atrofida nima sodir bo‘lishini va 100°C ga yaqinlashganda qanday o‘zgarish kuzatilishini ayting.</p>
+ </div>
+</div>
+</section>
+
+<section class="section">
+<h2>4. Zarrachalar modeli</h2>
+<p>Modda holati o‘zgarganda zarrachalarning o‘zi suv molekulasi bo‘lib qoladi; ularning harakati va o‘zaro joylashuvi o‘zgaradi.</p>
+<div class="grid">
+ <div class="tile"><strong>🧊 Qattiq holat</strong>Zarrachalar bir-biriga yaqin va tartibli joylashgan, asosan o‘z joyida tebranadi.</div>
+ <div class="tile"><strong>💧 Suyuq holat</strong>Zarrachalar yaqin, ammo bir-birining yonidan siljiy oladi.</div>
+ <div class="tile"><strong>☁️ Gaz holat</strong>Zarrachalar uzoqroq joylashadi va erkinroq, tez harakatlanadi.</div>
+</div>
+</section>
+
+<section class="section">
+<h2>5. Bilimingizni tekshiring</h2>
+<p>Har bir savol uchun bitta javob tanlang, so‘ng “Natijani tekshirish” tugmasini bosing.</p>
+<form id="quiz">
+<div class="quiz-q"><b>1. Muz eriganda qanday o‘zgarish yuz beradi?</b>
+<label><input type="radio" name="q1" value="a"> Kimyoviy o‘zgarish, yangi modda hosil bo‘ladi</label>
+<label><input type="radio" name="q1" value="b"> Fizik o‘zgarish, modda suv bo‘lib qoladi</label>
+<label><input type="radio" name="q1" value="c"> Hech qanday o‘zgarish bo‘lmaydi</label></div>
+<div class="quiz-q"><b>2. Qaysi biri kimyoviy o‘zgarish?</b>
+<label><input type="radio" name="q2" value="a"> Muzning erishi</label>
+<label><input type="radio" name="q2" value="b"> Qog‘ozni yirtish</label>
+<label><input type="radio" name="q2" value="c"> Yog‘ochning yonishi</label></div>
+<div class="quiz-q"><b>3. Suv odatdagi atmosfera bosimida taxminan necha °C da qaynaydi?</b>
+<label><input type="radio" name="q3" value="a"> 0°C</label>
+<label><input type="radio" name="q3" value="b"> 50°C</label>
+<label><input type="radio" name="q3" value="c"> 100°C</label></div>
+<div class="quiz-q"><b>4. Fizik o‘zgarishda nima saqlanib qoladi?</b>
+<label><input type="radio" name="q4" value="a"> Moddaning kimyoviy tarkibi</label>
+<label><input type="radio" name="q4" value="b"> Har doim shakli</label>
+<label><input type="radio" name="q4" value="c"> Har doim agregat holati</label></div>
+<div class="quiz-q"><b>5. Qaysi fizik o‘zgarishni qaytarish qiyin?</b>
+<label><input type="radio" name="q5" value="a"> Suvni muzlatish</label>
+<label><input type="radio" name="q5" value="b"> Oynaning sinishi</label>
+<label><input type="radio" name="q5" value="c"> Muzning erishi</label></div>
+</form>
+<div class="controls"><button onclick="checkQuiz()">Natijani tekshirish</button><button class="secondary" onclick="resetQuiz()">Qayta ishlash</button></div>
+<div id="quizResult" class="result" aria-live="polite"></div>
+</section>
+<section class="section">
+<h2>6. Dars yakuni</h2>
+<ul>
+<li>Fizik o‘zgarishda yangi modda hosil bo‘lmaydi.</li>
+<li>Modda qattiq, suyuq yoki gaz holatiga o‘tishi mumkin.</li>
+<li>Qaytar yoki qaytmaslik — jarayonni boshlang‘ich holatga qaytarish mumkinligiga bog‘liq.</li>
+<li>Harorat o‘zgarishi zarrachalar harakatiga ta’sir qiladi.</li>
+</ul>
+<p class="note"><b>Uyga vazifa:</b> uy yoki maktabdan 3 ta fizik o‘zgarish misolini toping. Har biri qaytar yoki qaytmasligini izohlang.</p>
+</section>
+</main>
+<footer>6-sinf Tabiiy fanlar • Interaktiv o‘quv materiali</footer>
+<script>
+const slider=document.getElementById('heat');
+function renderTemp(v){
+ v=Number(v); document.getElementById('temp').textContent='Harorat: '+(v<0?'−'+Math.abs(v):v)+'°C';
+ document.getElementById('progress').style.width=((v+10)/120*100)+'%';
+ const obj=document.getElementById('object'), water=document.getElementById('water'), state=document.getElementById('state'), exp=document.getElementById('explain');
+ if(v<0){obj.style.display='block';obj.textContent='🧊';water.style.display='none';state.textContent='Holati: qattiq (muz)';exp.textContent='Muz sovuq holatda. Zarrachalar o‘z joyi atrofida tebranadi.'}
+ else if(v<100){obj.style.display='block';obj.textContent='💧';water.style.display='none';state.textContent='Holati: suyuq (suv)';exp.textContent=v===0?'0°C atrofida muz erishi yoki suv muzlashi mumkin. Erish vaqtida berilgan issiqlik haroratni oshirishga emas, holatni o‘zgartirishga sarflanadi.':'Suv suyuq holatda. Zarrachalar bir-birining yonidan siljiy oladi.'}
+ else{obj.style.display='block';obj.textContent='☁️';water.style.display='block';state.textContent='Holati: gaz (suv bug‘i)';exp.textContent='100°C atrofida, odatdagi atmosfera bosimida suv qaynaydi va bug‘ hosil bo‘ladi.'}
+}
+slider.addEventListener('input',e=>renderTemp(e.target.value));
+function changeTemp(d){slider.value=Math.max(-10,Math.min(110,Number(slider.value)+d));renderTemp(slider.value)}
+function resetLab(){slider.value=-10;renderTemp(-10)}
+function checkQuiz(){
+ const answers={q1:'b',q2:'c',q3:'c',q4:'a',q5:'b'};let score=0;
+ for(const [q,a] of Object.entries(answers)){const chosen=document.querySelector('input[name="'+q+'"]:checked');if(chosen&&chosen.value===a)score++}
+ const r=document.getElementById('quizResult');r.textContent='Natija: '+score+'/5 ('+(score*20)+'%). '+(score===5?'A’lo! Mavzuni yaxshi o‘zlashtirdingiz.':score>=3?'Yaxshi! Xatolarni ko‘rib, yana urinib ko‘ring.':'Mavzuni qayta o‘qing va yana urinib ko‘ring.');r.style.color=score>=3?'#15803d':'#b91c1c';
+}
+function resetQuiz(){document.getElementById('quiz').reset();document.getElementById('quizResult').textContent=''}
+renderTemp(-10);
+</script>
+</body>
+</html>

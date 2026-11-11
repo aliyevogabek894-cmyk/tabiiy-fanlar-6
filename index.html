@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <title>6-sinf Tabiiy Fanlar | Zamonaviy Interaktiv Platforma</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔬</text></svg>">
+  <link rel="stylesheet" href="style.css?v=50">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Ambient Aurora & Starfield Canvas -->
+  <canvas id="space-canvas"></canvas>
+
+  <div class="app-container">
+
+    <!-- ULTRA-SLEEK TOP NAVBAR (Linear / Raycast / Apple Vision Style) -->
+    <header class="master-header">
+      <div class="brand-section">
+        <!-- Prominent Back button shown when viewing a single topic full-screen -->
+        <button id="btn-back-header" class="back-to-topics-btn" title="Mavzular ro'yxatiga qaytish">
+          <span>⬅</span> <span>Orqaga</span>
+        </button>
+
+        <div class="brand-icon-wrap">🔬</div>
+        <div class="brand-info">
+          <h1>Tabiiy Fanlar <span class="badge">6-SINF</span></h1>
+        </div>
+      </div>
+
+      <!-- Center Progress Pill -->
+      <div class="header-center">
+        <div class="progress-pill" title="O'zlashtirish ko'rsatkichi">
+          <div class="progress-bar-bg">
+            <div id="progress-bar-fill" class="progress-bar-fill"></div>
+          </div>
+          <span id="progress-label-text" class="progress-label">0/25</span>
+        </div>
+      </div>
+
+      <!-- Right Quick Actions -->
+      <div class="header-actions">
+        <select id="theme-select" class="header-btn" title="Dizayn rejimi">
+          <option value="dark">🌌 Tun</option>
+          <option value="cyber">🟢 Kiber</option>
+          <option value="light">☀️ Kun</option>
+        </select>
+
+        <button id="btn-open-lab" class="header-btn" title="Formulalar va Qoidalar">
+          <span>🧪</span> <span class="btn-text-desktop">Formulalar</span>
+        </button>
+
+        <button id="btn-open-badges" class="header-btn" title="Yutuqlar va Sertifikat">
+          <span>🏆</span> <span class="btn-text-desktop">Sertifikat</span>
+        </button>
+
+        <button id="btn-open-help" class="header-btn" title="Qo'llanma">
+          <span>❓</span>
+        </button>
+
+        <!-- Toggle Left Topics List -->
+        <button id="btn-mobile-sidebar" class="header-btn primary" title="Mavzular ro'yxati">
+          <span>☰</span> <span>Mavzular</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN WORKSPACE: SLIM LEFT TOPICS LIST (TAGMA-TAG) + MAIN LESSON VIEW -->
+    <div class="main-wrapper">
+
+      <!-- LEFT SIDEBAR: COMPACT TAGMA-TAG TOPICS LIST (Katta joy egallamaydigan, tagma-tag ro'yxat) -->
+      <aside id="topics-sidebar" class="topics-sidebar-left">
+        
+        <div class="sidebar-header">
+          <div class="sidebar-title-row">
+            <h2><span>📚</span> <span>Mavzular</span></h2>
+            <span id="sidebar-count" class="sidebar-count-badge">25</span>
+          </div>
+
+          <!-- Compact Search Input -->
+          <div class="search-box-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-topics" class="search-input" placeholder="Mavzuni izlash...">
+          </div>
+
+          <!-- Slim Category Filter Pills -->
+          <div class="category-filter-chips">
+            <button class="chip-btn active" data-cat="all">Barchasi</button>
+            <button class="chip-btn" data-cat="biologiya">Biologiya</button>
+            <button class="chip-btn" data-cat="tibbiyot">Tibbiyot</button>
+            <button class="chip-btn" data-cat="fizika">Fizika</button>
+            <button class="chip-btn" data-cat="kimyo">Kimyo</button>
+            <button class="chip-btn" data-cat="ekologiya">Ekologiya</button>
+            <button class="chip-btn" data-cat="geologiya">Geologiya</button>
+            <button class="chip-btn" data-cat="tuproqshunoslik">Tuproq</button>
+            <button class="chip-btn" data-cat="astronomiya">Koinot</button>
+          </div>
+        </div>
+
+        <!-- Topics Strictly Stacked Top-to-Bottom (Tagma-tag, ixcham qatorlar) -->
+        <div id="topics-list" class="topics-list-scroll">
+          <!-- Populated by app.js -->
+        </div>
+
+      </aside>
+
+      <!-- MAIN CONTENT AREA: Active Topic Viewer -->
+      <main id="main-content-area" class="content-area">
+
+        <!-- Unified Sleek Floating Control Bar (No bulky double boxes!) -->
+        <div class="topic-top-bar">
+          <div class="topic-top-left">
+            <button id="btn-back-to-topics" class="back-inline-btn" title="Mavzular ro'yxatiga qaytish">
+              <span>⬅ Orqaga</span>
+            </button>
+            <span id="topic-badge" class="topic-number-badge">1-MAVZU</span>
+            <span id="topic-title" class="topic-top-title">Ratsional ovqatlanish</span>
+            <span id="topic-category" class="topic-category-tag">Biologiya</span>
+          </div>
+
+          <div class="topic-top-controls">
+            <!-- Integrated Audio Narrator Pill -->
+            <div class="narrator-inline-group">
+              <button id="btn-audio-toggle" class="btn-ctrl audio-pill-btn" title="Mavzuni ovozli tinglash">
+                <span id="audio-icon">🔊</span>
+                <span class="audio-pill-label">Tinglash</span>
+                <span id="sound-wave" class="sound-wave">
+                  <i class="wave-bar"></i><i class="wave-bar"></i><i class="wave-bar"></i>
+                </span>
+              </button>
+              <select id="audio-speed" class="audio-speed-select" title="Ovoz tezligi">
+                <option value="0.8">0.8x</option>
+                <option value="1.0" selected>1x</option>
+                <option value="1.2">1.2x</option>
+              </select>
+            </div>
+
+            <button id="btn-prev" class="btn-ctrl" title="Oldingi mavzu (←)">
+              <span>◀</span>
+            </button>
+            <button id="btn-next" class="btn-ctrl" title="Keyingi mavzu (→)">
+              <span>▶</span>
+            </button>
+            <button id="btn-complete" class="btn-ctrl complete-btn" title="Mavzuni tugallandi deb belgilash">
+              <span>⭕</span> <span class="ctrl-label">Tugallandi</span>
+            </button>
+            <button id="btn-reload" class="btn-ctrl" title="Qayta yuklash">
+              <span>🔄</span>
+            </button>
+            <button id="btn-fullscreen" class="btn-ctrl" title="To'liq ekran (F)">
+              <span>⛶</span>
+            </button>
+            <button id="btn-newtab" class="btn-ctrl" title="Yangi oynada ochish">
+              <span>↗</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive Simulation Container (Full Seamless Height) -->
+        <div class="interactive-frame-container">
+          <div id="frame-loader" class="frame-loader">
+            <div class="spinner"></div>
+            <div style="font-size: 12.5px; font-weight: 600; color: var(--accent);">Yuklanmoqda...</div>
+          </div>
+
+          <iframe id="topic-iframe" title="Interaktiv Dars Oynasi" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+        </div>
+
+        <!-- Enriched Knowledge Hub (Tagma-tag joylashgan ma'lumotlar, faktlar, tajribalar va testlar) -->
+        <div class="topic-bottom-panel">
+          <div class="panel-tabs">
+            <button class="panel-tab-btn active" data-tab="tab-theory">
+              <span>💡</span> <span>Nazariya & Qoidalar</span>
+            </button>
+            <button class="panel-tab-btn" data-tab="tab-facts-exp">
+              <span>🔬</span> <span>Faktlar & Tajribalar</span>
+            </button>
+            <button class="panel-tab-btn" data-tab="tab-quiz">
+              <span>🎯</span> <span>Test & Viktorina</span>
+            </button>
+            <button class="panel-tab-btn" data-tab="tab-notes">
+              <span>📝</span> <span>Qaydlar</span>
+            </button>
+          </div>
+
+          <!-- Tab 1: Full Theory & Key Points (Tagma-tag) -->
+          <div id="tab-theory" class="tab-pane active">
+            <div id="full-theory-text" class="theory-prose-box"></div>
+            <h4 class="section-sub-heading">📌 Muhim Qoidalar va Xulosalar:</h4>
+            <div id="key-points-list" class="key-points-list"></div>
+            <div id="real-life-app-box" class="real-life-box"></div>
+          </div>
+
+          <!-- Tab 2: Fun Facts & Home Experiments -->
+          <div id="tab-facts-exp" class="tab-pane">
+            <h4 class="section-sub-heading" style="color:var(--warning);">🤯 Bilasizmi? Qiziqarli Ilmiy Faktlar:</h4>
+            <div id="fun-facts-list" class="stack-list"></div>
+
+            <h4 class="section-sub-heading" style="color:var(--success); margin-top:14px;">🧪 Amaliy Tajriba (Uyda yoki Darsda Sinab Ko'ring):</h4>
+            <div id="experiment-box" class="experiment-card"></div>
+          </div>
+
+          <!-- Tab 3: Quiz -->
+          <div id="tab-quiz" class="tab-pane">
+            <div id="quiz-container" class="quiz-container"></div>
+          </div>
+
+          <!-- Tab 4: Notes -->
+          <div id="tab-notes" class="tab-pane">
+            <div class="notes-wrapper">
+              <textarea id="topic-notes" placeholder="Mavzu bo'yicha asosiy xulosalaringizni yozib qoldiring..."></textarea>
+              <button id="btn-save-notes" class="header-btn primary">
+                <span>💾 Saqlash</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Bottom Navigation Bar -->
+          <div class="bottom-nav-actions">
+            <button id="btn-bottom-back" class="back-inline-btn">
+              <span>⬅ Orqaga (Mavzular ro'yxati)</span>
+            </button>
+            <button id="btn-bottom-next" class="header-btn primary">
+              <span>Keyingi mavzu ▶</span>
+            </button>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- MODAL 1: FORMULAS & SCIENTIFIC CHEAT SHEET -->
+  <div id="modal-lab" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><span>🧪</span> <span>Asosiy Formulalar va Qonunlar</span></h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="stack-list">
+          <div class="formula-row">
+            <div>
+              <b>⚖️ Zichlik Formulasi</b>
+              <p>ρ — zichlik (kg/m³), m — massa (kg), V — hajm (m³)</p>
+            </div>
+            <span class="formula-badge">ρ = m / V</span>
+          </div>
+          <div class="formula-row">
+            <div>
+              <b>🌍 Og'irlik Kuchi</b>
+              <p>g ≈ 9.8 N/kg (Yerda erkin tushish tezlanishi)</p>
+            </div>
+            <span class="formula-badge">F = m · g</span>
+          </div>
+          <div class="formula-row">
+            <div>
+              <b>🪞 Yorug'lik Qaytish Qonuni</b>
+              <p>Tushish burchagi (α) qaytish burchagiga (β) teng</p>
+            </div>
+            <span class="formula-badge">α = β</span>
+          </div>
+          <div class="formula-row">
+            <div>
+              <b>⚡ Elektr Zanjiri Qoidasi</b>
+              <p>Ketma-ket ulanishda tok kuchi bir xil, parallel ulanishda kuchlanish teng</p>
+            </div>
+            <span class="formula-badge">I = const</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: BADGES & CERTIFICATE -->
+  <div id="modal-badges" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><span>🏆</span> <span>Yutuqlar va Rasmiy Sertifikat</span></h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:8px;">
+          <div class="badge-card"><div>🧬</div><b>Yosh Biolog</b></div>
+          <div class="badge-card"><div>🛡️</div><b>Salomatlik</b></div>
+          <div class="badge-card"><div>⚡</div><b>Fizik</b></div>
+          <div class="badge-card"><div>🔬</div><b>Kimyogar</b></div>
+          <div class="badge-card"><div>⛰️</div><b>Geolog</b></div>
+          <div class="badge-card"><div>🪐</div><b>Astronom</b></div>
+        </div>
+
+        <div class="cert-box">
+          <h4 style="color:var(--accent); font-size:13.5px; margin-bottom:8px;">🎓 Bitiruvchi Sertifikatini Olish</h4>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;">
+            <input type="text" id="cert-student-name" placeholder="Ism va Familiyangizni kiriting..." class="cert-input">
+            <button id="btn-generate-cert" class="header-btn primary">📜 Sertifikat Yaratish</button>
+            <button id="btn-print-cert" class="header-btn" style="display:none;">🖨️ Chop Etish</button>
+          </div>
+          <div id="cert-preview-wrapper" style="display:none; text-align:center;">
+            <canvas id="cert-canvas" width="800" height="520" style="max-width:100%; height:auto; border-radius:10px;"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: HELP GUIDE -->
+  <div id="modal-help" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><span>❓</span> <span>Foydalanish Qo'llanmasi</span></h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body" style="font-size:13.5px; line-height:1.6;">
+        <ul style="padding-left:18px; display:grid; gap:6px;">
+          <li><b>Chap tomondagi mavzular:</b> Barcha 25 ta mavzu chap tomonda ixcham va <b>tagma-tag</b> qator bo'lib joylashgan.</li>
+          <li><b>Mavzuni to'liq ko'rish:</b> Istalgan mavzuning ustiga bossangiz, ekranda <b>faqat o'sha mavzuning o'zi</b> to'liq ochiladi.</li>
+          <li><b>Orqaga qaytish:</b> Tepada chiqadigan <b>⬅ Orqaga</b> tugmasini bossangiz, yana mavzular ro'yxatiga qaytadi.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="topics-data.js?v=50"></script>
+  <script src="app.js?v=50"></script>
+
+</body>
+</html>
