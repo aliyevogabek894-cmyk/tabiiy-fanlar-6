@@ -5,20 +5,49 @@
   <meta charset="UTF-8">
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
-  <meta name="theme-color" content="#6366f1">
+  <meta name="theme-color" content="#0ea5e9">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Tabiiy Fan 6">
   <title>6-sinf Tabiiy Fanlar | Darslar, BSB, ChSB & Ilova</title>
-  <link rel="manifest" href="manifest.json?v=80">
-  <link rel="apple-touch-icon" href="icon-192.png">
-  <link rel="icon" type="image/png" href="icon-192.png">
-  <link rel="stylesheet" href="style.css?v=80">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="favicon.ico?v=90" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="48x48" href="icons/icon-48.png?v=90">
+  <link rel="icon" type="image/png" sizes="96x96" href="icons/icon-96.png?v=90">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png?v=90">
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png?v=90">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon-180.png?v=90">
+  <script>window.__tfDeferredPrompt = null; window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); window.__tfDeferredPrompt = e; });</script>
+  <link rel="stylesheet" href="style.css?v=90">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
+
+  <!-- SCIENCE LAUNCH SPLASH SCREEN (Ilovaga kirganda chiqadigan darsga oid chiroyli kirish oynasi) -->
+  <div id="app-splash-screen" class="app-splash-screen">
+    <div class="splash-content">
+      <div class="splash-logo-ring">
+        <img src="icons/icon-512.png?v=90" alt="6-sinf Tabiiy Fanlar" class="splash-hero-img">
+      </div>
+      <div class="splash-subject-pills">
+        <span>🧬 Biologiya</span>
+        <span>⚡ Fizika</span>
+        <span>🧪 Kimyo</span>
+        <span>🌍 Geografiya</span>
+        <span>🪐 Koinot</span>
+      </div>
+      <h1 class="splash-title">6-SINF TABIIY FANLAR</h1>
+      <p class="splash-subtitle">25 ta Interaktiv Dars • Sof O'zbekcha Audio • 1–4 Chorak BSB & ChSB</p>
+      <div class="splash-loader-bar">
+        <div class="splash-loader-fill"></div>
+      </div>
+      <span class="splash-status-text">Ilova ishga tushmoqda...</span>
+    </div>
+  </div>
 
   <!-- Ambient Aurora & Starfield Canvas -->
   <canvas id="space-canvas"></canvas>
@@ -518,8 +547,8 @@
   </div>
 
   <!-- SCRIPTS -->
-  <script src="topics-data.js?v=80"></script>
-  <script src="app.js?v=80"></script>
+  <script src="topics-data.js?v=90"></script>
+  <script src="app.js?v=90"></script>
 
 </body>
 

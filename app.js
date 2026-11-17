@@ -18,7 +18,7 @@ class TabiiyFanlarApp {
     this.audioRate = 1.0;
     this.audioCtx = null;
     this.iframeResizeObserver = null;
-    this.deferredPrompt = null;
+    this.deferredPrompt = window.__tfDeferredPrompt || null;
 
     this.initElements();
     this.initCanvas();
@@ -28,15 +28,28 @@ class TabiiyFanlarApp {
     this.loadTopic(1);
     this.updateOverallProgress();
     this.initAudioContext();
+    this.hideSplashScreen();
+  }
+
+  hideSplashScreen() {
+    const splash = document.getElementById('app-splash-screen');
+    if (!splash) return;
+    setTimeout(() => {
+      splash.classList.add('hide');
+      setTimeout(() => {
+        if (splash.parentNode) splash.remove();
+      }, 500);
+    }, 1150);
   }
 
   initPWA() {
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js?v=80').catch(() => {});
+      navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(() => {});
     }
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       this.deferredPrompt = e;
+      window.__tfDeferredPrompt = e;
       if (window.location.search.includes('install=1')) {
         setTimeout(() => this.installPWA('Telefon'), 400);
       }
