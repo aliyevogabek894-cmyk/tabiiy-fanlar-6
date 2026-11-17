@@ -32,11 +32,14 @@ class TabiiyFanlarApp {
 
   initPWA() {
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js').catch(() => {});
+      navigator.serviceWorker.register('sw.js?v=80').catch(() => {});
     }
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       this.deferredPrompt = e;
+      if (window.location.search.includes('install=1')) {
+        setTimeout(() => this.installPWA('Telefon'), 400);
+      }
     });
   }
 
@@ -44,15 +47,25 @@ class TabiiyFanlarApp {
     this.playBeep(560, 'sine', 0.08);
     if (this.deferredPrompt) {
       this.deferredPrompt.prompt();
-      this.deferredPrompt.userChoice.then(() => {
+      this.deferredPrompt.userChoice.then((choice) => {
+        if (choice.outcome === 'accepted') {
+          this.showToast("🎉 Ilova qurilmangizning asosiy ekraniga o'rnatilmoqda!");
+        }
         this.deferredPrompt = null;
       });
       return;
     }
-    if (osName === 'Telefon') {
-      this.showToast("📱 Brauzer menyusidan (⋮ yoki Ulashish) 'Asosiy ekranga qo'shish' (Add to Home Screen / Установить приложение) tugmasini bosing!");
+    const modalInstall = document.getElementById('modal-install');
+    if (modalInstall) {
+      const chromeBtn = document.getElementById('btn-open-in-chrome');
+      if (chromeBtn) {
+        const host = window.location.host || 'tabiiy-fanlar.netlify.app';
+        const path = window.location.pathname || '/';
+        chromeBtn.href = `intent://${host}${path}?install=1#Intent;scheme=https;package=com.android.chrome;end`;
+      }
+      modalInstall.classList.add('active');
     } else {
-      this.showToast(`💻 ${osName} uchun brauzer manzil qatoridagi 'O'rnatish' (📥) belgisini bosing yoki pastdagi dastur faylini yuklab oling!`);
+      this.showToast("📱 Brauzer menyusidan (⋮) 'Asosiy ekranga qo'shish' (Установить приложение) tugmasini bosing!");
     }
   }
 
@@ -1019,6 +1032,14 @@ class TabiiyFanlarApp {
     setupModal(this.btnOpenHelp, this.modalHelp);
     setupModal(this.btnOpenLab, this.modalLab);
     setupModal(this.btnOpenBadges, this.modalBadges);
+    const modalInstall = document.getElementById('modal-install');
+    if (modalInstall) {
+      const closeInst = modalInstall.querySelector('.modal-close-btn');
+      if (closeInst) closeInst.addEventListener('click', () => modalInstall.classList.remove('active'));
+      modalInstall.addEventListener('click', (e) => {
+        if (e.target === modalInstall) modalInstall.classList.remove('active');
+      });
+    }
 
     const btnGenCert = document.getElementById('btn-generate-cert');
     const btnPrintCert = document.getElementById('btn-print-cert');

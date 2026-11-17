@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="uz" data-theme="dark">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
   <meta name="theme-color" content="#6366f1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>6-sinf Tabiiy Fanlar | Darslar, BSB, ChSB & Ilova</title>
-  <link rel="manifest" href="manifest.json?v=70">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔬</text></svg>">
-  <link rel="stylesheet" href="style.css?v=70">
+  <link rel="manifest" href="manifest.json?v=80">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="icon" type="image/png" href="icon-192.png">
+  <link rel="stylesheet" href="style.css?v=80">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
   <!-- Ambient Aurora & Starfield Canvas -->
@@ -53,7 +57,8 @@
           <option value="light">☀️ Kun</option>
         </select>
 
-        <button id="btn-open-download" class="header-btn download-top-btn" title="Saytni Windows, macOS, Linux va Telefonga yuklab olish">
+        <button id="btn-open-download" class="header-btn download-top-btn"
+          title="Saytni Windows, macOS, Linux va Telefonga yuklab olish">
           <span>📲</span> <span class="btn-text-desktop">Yuklab olish</span>
         </button>
 
@@ -81,7 +86,7 @@
 
       <!-- LEFT SIDEBAR: 1) 25 MAVZULAR -> 2) 8 BSB -> 3) 4 ChSB -> 4) YUKLAB OLISH -->
       <aside id="topics-sidebar" class="topics-sidebar-left">
-        
+
         <div class="sidebar-header">
           <div class="sidebar-title-row">
             <h2><span>📚</span> <span>Mavzular & BSB/ChSB</span></h2>
@@ -133,7 +138,8 @@
 
           <div class="topic-top-controls">
             <!-- Direct Word (.docx) download button when viewing a BSB or ChSB -->
-            <a id="btn-download-docx" class="btn-ctrl docx-top-btn" href="#" download style="display:none;" title="Asl Word (.docx) faylni yuklab olish">
+            <a id="btn-download-docx" class="btn-ctrl docx-top-btn" href="#" download style="display:none;"
+              title="Asl Word (.docx) faylni yuklab olish">
               <span>📥</span> <span>Word (.docx)</span>
             </a>
 
@@ -214,7 +220,8 @@
             <h4 class="section-sub-heading" style="color:var(--warning);">🤯 Bilasizmi? Qiziqarli Ilmiy Faktlar:</h4>
             <div id="fun-facts-list" class="stack-list"></div>
 
-            <h4 class="section-sub-heading" style="color:var(--success); margin-top:14px;">🧪 Amaliy Tajriba va Topshiriq:</h4>
+            <h4 class="section-sub-heading" style="color:var(--success); margin-top:14px;">🧪 Amaliy Tajriba va
+              Topshiriq:</h4>
             <div id="experiment-box" class="experiment-card"></div>
           </div>
 
@@ -226,7 +233,8 @@
           <!-- Tab 4: Notes -->
           <div id="tab-notes" class="tab-pane">
             <div class="notes-wrapper">
-              <textarea id="topic-notes" placeholder="Mavzu bo'yicha asosiy xulosalaringizni yozib qoldiring..."></textarea>
+              <textarea id="topic-notes"
+                placeholder="Mavzu bo'yicha asosiy xulosalaringizni yozib qoldiring..."></textarea>
               <button id="btn-save-notes" class="header-btn primary">
                 <span>💾 Saqlash</span>
               </button>
@@ -251,7 +259,8 @@
           <div class="download-hub-header">
             <div class="dl-hero-badge">📲 BARCHA QURILMALAR UCHUN RASMIY ILOVA</div>
             <h3>Saytni Kompyuter va Telefonga Yuklab Oling</h3>
-            <p>Platformadan internet bor yoki yo'qligidan qat'i nazar <b>Windows</b>, <b>macOS</b>, <b>Linux</b> hamda <b>Android / iPhone</b> qurilmalarida mustaqil dastur sifatida foydalaning.</p>
+            <p>Platformadan internet bor yoki yo'qligidan qat'i nazar <b>Windows</b>, <b>macOS</b>, <b>Linux</b> hamda
+              <b>Android / iPhone</b> qurilmalarida mustaqil dastur sifatida foydalaning.</p>
           </div>
 
           <div class="os-download-grid">
@@ -264,9 +273,11 @@
                   <span>Kompyuter va Noutbuklar uchun</span>
                 </div>
               </div>
-              <p class="os-desc">Windows ish stolida mustaqil dastur oynasida ochiluvchi yorliq va to'liq oflayn paket.</p>
+              <p class="os-desc">Windows ish stolida mustaqil dastur oynasida ochiluvchi yorliq va to'liq oflayn paket.
+              </p>
               <div class="os-btn-group">
-                <a href="downloads/Tabiiy_Fanlar_6_Windows.bat" download="Tabiiy_Fanlar_6_Windows.bat" class="os-dl-btn win-btn">
+                <a href="downloads/Tabiiy_Fanlar_6_Windows.bat" download="Tabiiy_Fanlar_6_Windows.bat"
+                  class="os-dl-btn win-btn">
                   <span>⬇️ Windows Dasturni Yuklash (.bat)</span>
                 </a>
                 <button type="button" class="os-pwa-btn" onclick="window.app && window.app.installPWA('Windows')">
@@ -284,9 +295,11 @@
                   <span>MacBook Air / Pro & iMac uchun</span>
                 </div>
               </div>
-              <p class="os-desc">Apple macOS tizimida ishlovchi maxsus `.command` dastur ishga tushirgichi va Web-App.</p>
+              <p class="os-desc">Apple macOS tizimida ishlovchi maxsus `.command` dastur ishga tushirgichi va Web-App.
+              </p>
               <div class="os-btn-group">
-                <a href="downloads/Tabiiy_Fanlar_6_macOS.command" download="Tabiiy_Fanlar_6_macOS.command" class="os-dl-btn mac-btn">
+                <a href="downloads/Tabiiy_Fanlar_6_macOS.command" download="Tabiiy_Fanlar_6_macOS.command"
+                  class="os-dl-btn mac-btn">
                   <span>⬇️ macOS Dasturni Yuklash (.command)</span>
                 </a>
                 <button type="button" class="os-pwa-btn" onclick="window.app && window.app.installPWA('macOS')">
@@ -306,7 +319,8 @@
               </div>
               <p class="os-desc">Linux tizimlari va elektron doskalar uchun maxsus `.sh` dastur fayli.</p>
               <div class="os-btn-group">
-                <a href="downloads/Tabiiy_Fanlar_6_Linux.sh" download="Tabiiy_Fanlar_6_Linux.sh" class="os-dl-btn linux-btn">
+                <a href="downloads/Tabiiy_Fanlar_6_Linux.sh" download="Tabiiy_Fanlar_6_Linux.sh"
+                  class="os-dl-btn linux-btn">
                   <span>⬇️ Linux Dasturni Yuklash (.sh)</span>
                 </a>
                 <button type="button" class="os-pwa-btn" onclick="window.app && window.app.installPWA('Linux')">
@@ -324,12 +338,15 @@
                   <span>Android va iPhone (iOS) uchun</span>
                 </div>
               </div>
-              <p class="os-desc">Telefon ekraniga mobil ilova (PWA) sifatida o'rnating yoki mobil faylni yuklab oling.</p>
+              <p class="os-desc">Telefon ekraniga mobil ilova (PWA) sifatida o'rnating yoki mobil faylni yuklab oling.
+              </p>
               <div class="os-btn-group">
-                <button type="button" class="os-dl-btn mob-btn" onclick="window.app && window.app.installPWA('Telefon')">
+                <button type="button" class="os-dl-btn mob-btn"
+                  onclick="window.app && window.app.installPWA('Telefon')">
                   <span>📲 Telefonga Ilovani O'rnatish (Android/iOS)</span>
                 </button>
-                <a href="downloads/Tabiiy_Fanlar_6_Mobil_Ilova.html" download="Tabiiy_Fanlar_6_Mobil_Ilova.html" class="os-pwa-btn" style="text-decoration:none; text-align:center;">
+                <a href="downloads/Tabiiy_Fanlar_6_Mobil_Ilova.html" download="Tabiiy_Fanlar_6_Mobil_Ilova.html"
+                  class="os-pwa-btn" style="text-decoration:none; text-align:center;">
                   <span>⬇️ Mobil Faylni Yuklab Olish (.html)</span>
                 </a>
               </div>
@@ -342,10 +359,12 @@
               <span style="font-size:24px;">📦</span>
               <div>
                 <b>To'liq Oflayn Arxiv Paket (Barcha 25 ta dars + 12 ta BSB/ChSB + Ovozlar)</b>
-                <p>Internetsiz ishlash uchun butun saytning tayyor `.zip` arxivini yuklab oling (Win / Mac / Linux / Android)</p>
+                <p>Internetsiz ishlash uchun butun saytning tayyor `.zip` arxivini yuklab oling (Win / Mac / Linux /
+                  Android)</p>
               </div>
             </div>
-            <a href="https://github.com/aliyevogabek894-cmyk/tabiiy-fanlar-6/archive/refs/heads/main.zip" download="6-sinf-tabiiy-fanlar-sayt.zip" class="offline-zip-btn">
+            <a href="https://github.com/aliyevogabek894-cmyk/tabiiy-fanlar-6/archive/refs/heads/main.zip"
+              download="6-sinf-tabiiy-fanlar-sayt.zip" class="offline-zip-btn">
               <span>📥 To'liq Saytni Yuklab Olish (.ZIP)</span>
             </a>
           </div>
@@ -408,23 +427,37 @@
       </div>
       <div class="modal-body">
         <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:8px;">
-          <div class="badge-card"><div>🧬</div><b>Yosh Biolog</b></div>
-          <div class="badge-card"><div>🛡️</div><b>Salomatlik</b></div>
-          <div class="badge-card"><div>⚡</div><b>Fizik</b></div>
-          <div class="badge-card"><div>🔬</div><b>Kimyogar</b></div>
-          <div class="badge-card"><div>⛰️</div><b>Geolog</b></div>
-          <div class="badge-card"><div>🪐</div><b>Astronom</b></div>
+          <div class="badge-card">
+            <div>🧬</div><b>Yosh Biolog</b>
+          </div>
+          <div class="badge-card">
+            <div>🛡️</div><b>Salomatlik</b>
+          </div>
+          <div class="badge-card">
+            <div>⚡</div><b>Fizik</b>
+          </div>
+          <div class="badge-card">
+            <div>🔬</div><b>Kimyogar</b>
+          </div>
+          <div class="badge-card">
+            <div>⛰️</div><b>Geolog</b>
+          </div>
+          <div class="badge-card">
+            <div>🪐</div><b>Astronom</b>
+          </div>
         </div>
 
         <div class="cert-box">
           <h4 style="color:var(--accent); font-size:13.5px; margin-bottom:8px;">🎓 Bitiruvchi Sertifikatini Olish</h4>
           <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;">
-            <input type="text" id="cert-student-name" placeholder="Ism va Familiyangizni kiriting..." class="cert-input">
+            <input type="text" id="cert-student-name" placeholder="Ism va Familiyangizni kiriting..."
+              class="cert-input">
             <button id="btn-generate-cert" class="header-btn primary">📜 Sertifikat Yaratish</button>
             <button id="btn-print-cert" class="header-btn" style="display:none;">🖨️ Chop Etish</button>
           </div>
           <div id="cert-preview-wrapper" style="display:none; text-align:center;">
-            <canvas id="cert-canvas" width="800" height="520" style="max-width:100%; height:auto; border-radius:10px;"></canvas>
+            <canvas id="cert-canvas" width="800" height="520"
+              style="max-width:100%; height:auto; border-radius:10px;"></canvas>
           </div>
         </div>
       </div>
@@ -441,16 +474,53 @@
       <div class="modal-body" style="font-size:13.5px; line-height:1.6;">
         <ul style="padding-left:18px; display:grid; gap:6px;">
           <li><b>1–25 Mavzular:</b> Chap tomonda barcha 25 ta dars ixcham va <b>tagma-tag</b> joylashgan.</li>
-          <li><b>BSB va ChSB bo'limlari:</b> Mavzulardan keyin alohida <b>📝 BSB (1–4 chorak ketma-ketlikda)</b> va <b>🏆 ChSB (1–4 chorak ketma-ketlikda)</b> joylashgan.</li>
-          <li><b>Yuklab olish:</b> Ro'yxatning eng oxirida (va sahifa pastida) saytni <b>Windows, macOS, Linux va Telefonga</b> yuklab olish bo'limi mavjud.</li>
+          <li><b>BSB va ChSB bo'limlari:</b> Mavzulardan keyin alohida <b>📝 BSB (1–4 chorak ketma-ketlikda)</b> va
+            <b>🏆 ChSB (1–4 chorak ketma-ketlikda)</b> joylashgan.</li>
+          <li><b>Yuklab olish:</b> Ro'yxatning eng oxirida (va sahifa pastida) saytni <b>Windows, macOS, Linux va
+              Telefonga</b> yuklab olish bo'limi mavjud.</li>
         </ul>
       </div>
     </div>
   </div>
 
+  <!-- MODAL 4: TELEFON EKRANIGA ILOVA QILIB O'RNATISH -->
+  <div id="modal-install" class="modal-overlay">
+    <div class="modal-card" style="max-width:480px;">
+      <div class="modal-header">
+        <h3><span>📲</span> <span>Telefon Ekraniga Ilova Qilib Qo'shish</span></h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body" style="font-size:13.5px; line-height:1.6;">
+        <div style="background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.4); border-radius:10px; padding:12px;">
+          <b style="color:#34d399; display:block; margin-bottom:6px;">🚀 Agar saytni Telegram ichidan ochgan bo'lsangiz:</b>
+          <p style="font-size:12.5px; color:var(--text-muted); margin-bottom:10px;">
+            Telegram ichki brauzeri telefon ekraniga yorliq qo'sha olmaydi. Quyidagi tugmani bosib saytni <b>Google Chrome</b> da oching:
+          </p>
+          <a id="btn-open-in-chrome" href="intent://tabiiy-fanlar.netlify.app/?install=1#Intent;scheme=https;package=com.android.chrome;end" class="os-dl-btn mob-btn" style="width:100%; padding:10px; font-size:13px;">
+            <span>🌐 Chrome'da Ochish va Ekranimga O'rnatish</span>
+          </a>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.04); border:1px solid var(--glass-border); border-radius:10px; padding:12px;">
+          <b style="color:var(--accent); display:block; margin-bottom:6px;">📱 Telefon asosiy ekraniga chiqarish (2 soniyada):</b>
+          <ol style="padding-left:18px; display:grid; gap:6px; font-size:13px;">
+            <li>Ekranning eng yuqori o'ng burchagidagi <b>⋮ (3 ta nuqta)</b> tugmasini bosing.</li>
+            <li>Menyudan <b>«Asosiy ekranga qo'shish»</b> (yoki <b>«Установить приложение» / «Добавить на главный экран»</b>) tugmasini bosing.</li>
+            <li><b>«O'rnatish / Добавить»</b> ni bosing — shunda <b>🔬 Tabiiy Fan 6</b> ilovasi telefoningizning asosiy ekranida paydo bo'ladi!</li>
+          </ol>
+        </div>
+
+        <a href="downloads/Tabiiy_Fanlar_6_Mobil_Ilova.html" download="Tabiiy_Fanlar_6_Mobil_Ilova.html" class="header-btn primary" style="justify-content:center; padding:10px; text-decoration:none; font-size:13px;">
+          <span>⬇️ Mobil Ilova Faylini Yuklab Olish (.html)</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
   <!-- SCRIPTS -->
-  <script src="topics-data.js?v=70"></script>
-  <script src="app.js?v=70"></script>
+  <script src="topics-data.js?v=80"></script>
+  <script src="app.js?v=80"></script>
 
 </body>
+
 </html>
