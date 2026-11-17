@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tabiiy-fanlar-6-v90';
+const CACHE_NAME = 'tabiiy-fanlar-6-v95';
 const ASSETS = [
   '/',
   '/index.html',

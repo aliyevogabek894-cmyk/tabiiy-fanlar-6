@@ -315,10 +315,10 @@ function confetti(){
 // Oyna
 function modal(html){ $("#mb").innerHTML = html + `<button class="btn big" onclick="$('#modal').classList.remove('on')">Yopish</button>`; $("#modal").classList.add("on"); }
 
-/* ===================== AVATAR "AZIZ" ===================== */
+/* ===================== INTERAKTIV YORDAMCHI ===================== */
 const MOOD = {happy:"😄",tired:"🥱",hungry:"🤤",heavy:"🤢",strong:"😎",sleep:"😴",sad:"😩",dizzy:"😵‍💫"};
 function avHTML(id){
-  return `<div class="avbox"><div class="avw"><div class="av" id="av${id}">😄</div><div class="fx" id="fx${id}"></div></div><div class="bub" id="bub${id}">Salom! Men Azizman 👋</div></div>`;
+  return `<div class="avbox"><div class="avw"><div class="av" id="av${id}">😄</div><div class="fx" id="fx${id}"></div></div><div class="bub" id="bub${id}">Salom, yosh tadqiqotchi! 👋</div></div>`;
 }
 // Holatni o'zgartirish: kayfiyat, matn, animatsiya, effekt emoji
 function setAv(id, m, t, anim, fx){
@@ -384,7 +384,7 @@ function buildHome(){
   <button class="btn big" style="background:#ec4899" onclick="show('s3')">🍎 3. Kaloriyaga e'tibor</button>
   <button class="btn big" style="background:#8b5cf6" onclick="show('t')">📝 Test</button>
   <button class="btn big alt" onclick="recap()">💡 Eslab qol!</button>`;
-  setAv("H", "happy", "Salom! Men Azizman. Keling, sog'lom ovqatlanishni o'rganamiz!", "jump", "👋");
+  setAv("H", "happy", "Salom, yosh tadqiqotchi! Keling, sog'lom va to'g'ri ovqatlanish qoidalarini birga o'rganamiz!", "jump", "👋");
 }
 function recap(){ modal(`<h2>💡 Eslab qol!</h2>` + RECAP.map(t => `<div class="card">${t}</div>`).join("")); }
 
