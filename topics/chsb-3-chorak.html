@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3-chorak ChSB: Hujayra, o‘simliklar, hayvonlar va inson organizmi (3-chorak mavzulari)</title>
+<style>
+  :root {
+    --accent: #f59e0b;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #475569;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    padding: 12px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .hero-banner {
+    background: linear-gradient(135deg, #d97706, #b45309);
+    color: #fff;
+    padding: 18px 20px;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    margin-bottom: 14px;
+  }
+  .hero-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .hero-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 12.5px;
+    font-weight: 700;
+  }
+  .hero-meta span {
+    background: rgba(0,0,0,0.22);
+    padding: 4px 10px;
+    border-radius: 8px;
+  }
+  .hero-banner h1 {
+    font-size: clamp(18px, 3.5vw, 24px);
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .action-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .mode-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .mode-btn {
+    border: 1px solid var(--border);
+    background: #f1f5f9;
+    color: var(--text);
+    padding: 8px 13px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .mode-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .dl-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .dl-btn {
+    text-decoration: none;
+    background: #0f172a;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 9px;
+    font-size: 12.5px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  .dl-btn.word { background: #2563eb; }
+  .dl-btn.print { background: #059669; }
+  .view-pane { display: none; }
+  .view-pane.active { display: block; }
+  .sec-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  }
+  .sec-header {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--accent);
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .q-card {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+  .q-title {
+    font-weight: 700;
+    font-size: 14.5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .q-num {
+    background: var(--accent);
+    color: #fff;
+    min-width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .q-pts {
+    margin-left: auto;
+    font-size: 11px;
+    background: #e2e8f0;
+    color: #334155;
+    padding: 2px 7px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+  .mcq-opts {
+    display: grid;
+    gap: 6px;
+  }
+  .mcq-opt {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 13.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.15s;
+  }
+  .mcq-opt:hover:not(:disabled) {
+    border-color: var(--accent);
+    background: #f0f9ff;
+  }
+  .opt-let {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: #f1f5f9;
+    font-weight: 800;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .mcq-opt.correct {
+    background: #dcfce7 !important;
+    border-color: #16a34a !important;
+    color: #14532d !important;
+    font-weight: 700;
+  }
+  .mcq-opt.wrong {
+    background: #fee2e2 !important;
+    border-color: #dc2626 !important;
+    color: #7f1d1d !important;
+  }
+  .q-feedback {
+    display: none;
+    margin-top: 8px;
+    padding: 8px 10px;
+    background: #eff6ff;
+    border-left: 3px solid #3b82f6;
+    border-radius: 6px;
+    font-size: 12.5px;
+  }
+  .q-feedback.show { display: block; }
+  .table-wrap { overflow-x: auto; margin: 8px 0; }
+  .doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  .doc-table th, .doc-table td {
+    border: 1px solid #cbd5e1;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  .doc-table th {
+    background: #f1f5f9;
+    font-weight: 800;
+  }
+  .match-select {
+    padding: 6px 10px;
+    border-radius: 7px;
+    border: 2px solid #94a3b8;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .match-select.correct { border-color: #16a34a; background: #dcfce7; }
+  .match-select.wrong { border-color: #dc2626; background: #fee2e2; }
+  .written-input {
+    width: 100%;
+    min-height: 65px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 9px;
+    font-family: inherit;
+    font-size: 13.5px;
+    margin-bottom: 8px;
+  }
+  .written-input.tall { min-height: 95px; }
+  .reveal-btn {
+    background: #e0e7ff;
+    color: #3730a3;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 7px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .sample-reveal {
+    display: none;
+    margin-top: 8px;
+    padding: 10px;
+    background: #ecfdf5;
+    border-left: 4px solid #10b981;
+    border-radius: 7px;
+    font-size: 13px;
+  }
+  .sample-reveal.show { display: block; }
+  .doc-sec-title {
+    font-size: 15.5px;
+    font-weight: 800;
+    color: var(--accent);
+    margin: 14px 0 6px;
+  }
+  .doc-p {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  .sample-ans-box {
+    background: #f0fdf4;
+    border-left: 4px solid #22c55e;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin: 6px 0;
+    font-size: 13.5px;
+  }
+  @media print {
+    .action-bar { display: none !important; }
+    .view-pane { display: block !important; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero-banner">
+    <div class="hero-top">
+      <span class="hero-badge">3-CHORAK • ChSB</span>
+      <div class="hero-meta">
+        <span>⏱️ 40 daqiqa</span>
+        <span>🎯 Maksimal: 30 ball</span>
+        <span id="live-score-pill">⭐ Ball: 0</span>
+      </div>
+    </div>
+    <h1>🏆 3-chorak ChSB: Hujayra, o‘simliklar, hayvonlar va inson organizmi (3-chorak mavzulari)</h1>
+  </div>
+
+  <div class="action-bar">
+    <div class="mode-tabs">
+      <button class="mode-btn active" onclick="switchPane('pane-interactive', this)">🎮 Interaktiv Yechish</button>
+      <button class="mode-btn" onclick="switchPane('pane-sheet', this)">📄 Savollar Blankasi</button>
+      <button class="mode-btn" onclick="switchPane('pane-teacher', this)">🔑 Javoblar & Mezonlar</button>
+    </div>
+    <div class="dl-actions">
+      <a class="dl-btn word" href="../docs/6-sinf_Tabiiy-fan_3-chorak_ChSB.docx" download="6-sinf_Tabiiy-fan_3-chorak_ChSB.docx">📥 Word (.docx) Yuklab Olish</a>
+      <button class="dl-btn print" onclick="window.print()">🖨️ Chop Etish</button>
+    </div>
+  </div>
+
+  <!-- PANE 1: INTERACTIVE EXAM -->
+  <div id="pane-interactive" class="view-pane active">
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>I. YOPIQ TEST SAVOLLARI</span>
+        <span style="font-size:12px; color:#64748b;">Har bir to‘g‘ri javob — 1 ball</span>
+      </div>
+      <div class="q-card" id="mcq-1"><div class="q-title"><span class="q-num">1</span> <span>Hujayra faoliyatini boshqaradigan qism qaysi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 1)"><span class="opt-let">A</span> <span>Xloroplast</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 1)"><span class="opt-let">B</span> <span>Yadro</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 1)"><span class="opt-let">C</span> <span>Hujayra devori</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 1)"><span class="opt-let">D</span> <span>Sitoplazma</span></button></div><div class="q-feedback" id="fb-mcq-1">To‘g‘ri javob: <b>B) Yadro</b></div></div><div class="q-card" id="mcq-2"><div class="q-title"><span class="q-num">2</span> <span>O‘simlik va hayvon hujayralarida umumiy bo‘lgan qismlar qaysilar?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 2)"><span class="opt-let">A</span> <span>Yadro va sitoplazma</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 2)"><span class="opt-let">B</span> <span>Xloroplast va hujayra devori</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 2)"><span class="opt-let">C</span> <span>Faqat hujayra devori</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 2)"><span class="opt-let">D</span> <span>Faqat yadro</span></button></div><div class="q-feedback" id="fb-mcq-2">To‘g‘ri javob: <b>A) Yadro va sitoplazma</b></div></div><div class="q-card" id="mcq-3"><div class="q-title"><span class="q-num">3</span> <span>Ildizning asosiy vazifasi qaysi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 3)"><span class="opt-let">A</span> <span>Tuproqdan suv va mineral moddalarni shimish</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 3)"><span class="opt-let">B</span> <span>Urug‘ hosil qilish</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 3)"><span class="opt-let">C</span> <span>Fotosintez qilish</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 3)"><span class="opt-let">D</span> <span>Gazlar almashinuvi</span></button></div><div class="q-feedback" id="fb-mcq-3">To‘g‘ri javob: <b>A) Tuproqdan suv va mineral moddalarni shimish</b></div></div><div class="q-card" id="mcq-4"><div class="q-title"><span class="q-num">4</span> <span>Qaysi hayvon sutemizuvchi hisoblanadi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 4)"><span class="opt-let">A</span> <span>Timsoh</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 4)"><span class="opt-let">B</span> <span>Akula</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 4)"><span class="opt-let">C</span> <span>Qurbaqa</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 4)"><span class="opt-let">D</span> <span>Delfin</span></button></div><div class="q-feedback" id="fb-mcq-4">To‘g‘ri javob: <b>D) Delfin</b></div></div><div class="q-card" id="mcq-5"><div class="q-title"><span class="q-num">5</span> <span>Hasharotlarning oyoqlari soni nechta?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 5)"><span class="opt-let">A</span> <span>Oltita</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 5)"><span class="opt-let">B</span> <span>O‘nta</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 5)"><span class="opt-let">C</span> <span>To‘rtta</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 5)"><span class="opt-let">D</span> <span>Sakkizta</span></button></div><div class="q-feedback" id="fb-mcq-5">To‘g‘ri javob: <b>A) Oltita</b></div></div><div class="q-card" id="mcq-6"><div class="q-title"><span class="q-num">6</span> <span>Qonning asosiy vazifasi qaysi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 6)"><span class="opt-let">A</span> <span>Ovqatni hazm qilish</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 6)"><span class="opt-let">B</span> <span>Kislorod va oziq moddalarni to‘qimalarga yetkazish</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 6)"><span class="opt-let">C</span> <span>Suyak hosil qilish</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 6)"><span class="opt-let">D</span> <span>Tovush hosil qilish</span></button></div><div class="q-feedback" id="fb-mcq-6">To‘g‘ri javob: <b>B) Kislorod va oziq moddalarni to‘qimalarga yetkazish</b></div></div><div class="q-card" id="mcq-7"><div class="q-title"><span class="q-num">7</span> <span>So‘lak ta’sirida og‘iz bo‘shlig‘ida qaysi oziq modda hazm bo‘la boshlaydi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 7)"><span class="opt-let">A</span> <span>Mineral tuzlar</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 7)"><span class="opt-let">B</span> <span>Suv</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 7)"><span class="opt-let">C</span> <span>Oqsillar</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 7)"><span class="opt-let">D</span> <span>Kraxmal (uglevodlar)</span></button></div><div class="q-feedback" id="fb-mcq-7">To‘g‘ri javob: <b>D) Kraxmal (uglevodlar)</b></div></div><div class="q-card" id="mcq-8"><div class="q-title"><span class="q-num">8</span> <span>Nafas chiqarilgan havoda nafas olingan havoga nisbatan qaysi gaz ko‘proq?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 8)"><span class="opt-let">A</span> <span>Vodorod</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 8)"><span class="opt-let">B</span> <span>Kislorod</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 8)"><span class="opt-let">C</span> <span>Azot</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 8)"><span class="opt-let">D</span> <span>Karbonat angidrid</span></button></div><div class="q-feedback" id="fb-mcq-8">To‘g‘ri javob: <b>D) Karbonat angidrid</b></div></div><div class="q-card" id="mcq-9"><div class="q-title"><span class="q-num">9</span> <span>Skeletning asosiy vazifasi qaysi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 9)"><span class="opt-let">A</span> <span>Ovqatni hazm qilish</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 9)"><span class="opt-let">B</span> <span>Tanaga tayanch bo‘lish va ichki a’zolarni himoya qilish</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 9)"><span class="opt-let">C</span> <span>Gazlar almashinuvi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 9)"><span class="opt-let">D</span> <span>Qonni tozalash</span></button></div><div class="q-feedback" id="fb-mcq-9">To‘g‘ri javob: <b>B) Tanaga tayanch bo‘lish va ichki a’zolarni himoya qilish</b></div></div><div class="q-card" id="mcq-10"><div class="q-title"><span class="q-num">10</span> <span>Fotosintez natijasida hosil bo‘ladigan moddalar qaysilar?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 10)"><span class="opt-let">A</span> <span>Tuz va kislorod</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 10)"><span class="opt-let">B</span> <span>Karbonat angidrid va suv</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 10)"><span class="opt-let">C</span> <span>Azot va vodorod</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 10)"><span class="opt-let">D</span> <span>Shakar (glyukoza) va kislorod</span></button></div><div class="q-feedback" id="fb-mcq-10">To‘g‘ri javob: <b>D) Shakar (glyukoza) va kislorod</b></div></div>
+    </div>
+
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>II. MOSLASHTIRING (4 ball)</span>
+        <span style="font-size:12px; color:#64748b;">Har bir to‘g‘ri juftlik — 1 ball</span>
+      </div>
+      <div class="table-wrap">
+        <table class="doc-table">
+          <tr><th>Chap ustun</th><th>O‘ng ustun</th><th style="width:110px;">Javobingiz</th></tr>
+          <tr><td>1. Baliqlar</td><td>A) Quyon</td><td style='text-align:center;'><select class="match-select" data-q="1" data-ans="B" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td>2. Qushlar</td><td>B) Karp</td><td style='text-align:center;'><select class="match-select" data-q="2" data-ans="D" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td>3. Sutemizuvchilar</td><td>C) Asalari</td><td style='text-align:center;'><select class="match-select" data-q="3" data-ans="A" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td>4. Hasharotlar</td><td>D) Chumchuq</td><td style='text-align:center;'><select class="match-select" data-q="4" data-ans="C" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td></td><td>E) Ilon</td><td style='text-align:center;'></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>III. QISQA JAVOBLI TOPSHIRIQLAR (6 ball)</span>
+      </div>
+      <div class="q-card"><div class="q-title"><span class="q-num">1</span> <span>O‘simlik hujayrasining hayvon hujayrasidan ikkita farqini yozing.  (2 ball)</span></div><textarea class="written-input" placeholder="Javobingizni shu yerga yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javobni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> O‘simlik hujayrasida xloroplast, hujayra devori va katta vakuola bor; hayvon hujayrasida bular yo‘q.</div></div><div class="q-card"><div class="q-title"><span class="q-num">2</span> <span>Fotosintez uchun zarur bo‘lgan uchta narsani yozing.  (2 ball)</span></div><textarea class="written-input" placeholder="Javobingizni shu yerga yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javobni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> Karbonat angidrid, suv va yorug‘lik (xlorofill ham qabul qilinadi).</div></div><div class="q-card"><div class="q-title"><span class="q-num">3</span> <span>Qon aylanish tizimiga kiradigan ikkita qismni yozing.  (2 ball)</span></div><textarea class="written-input" placeholder="Javobingizni shu yerga yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javobni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> Yurak va qon tomirlari (arteriya, vena, kapillyar); qonning o‘zi ham qabul qilinadi.</div></div>
+    </div>
+
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>IV. OCHIQ SAVOLLAR (10 ball)</span>
+      </div>
+      <div class="q-card"><div class="q-title"><span class="q-num">1</span> <span>Piyoz po‘sti hujayralari mikroskopda kuzatildi: hujayra devori va yadro ko‘rinadi, lekin yashil donachalar yo‘q. (a) Ko‘ringan ikki qismning vazifasini yozing. (b) Nima uchun xloroplast yo‘q?  (5 ball)</span></div><textarea class="written-input tall" placeholder="To‘liq va asoslangan javobingizni yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javob va mezonni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> (a) Hujayra devori hujayraga shakl beradi va uni himoya qiladi; yadro hujayra faoliyatini boshqaradi. (b) Xloroplast fotosintez uchun kerak. Piyoz yer ostida o‘sadi, unga yorug‘lik tushmaydi, fotosintez bo‘lmaydi, shuning uchun hujayralarida xloroplast yo‘q.</div></div><div class="q-card"><div class="q-title"><span class="q-num">2</span> <span>Kam harakatlilik va noto‘g‘ri ovqatlanish organizmga qanday zarar yetkazadi? Ikkita oqibatni yozing va salomatlikni saqlash uchun uchta tavsiya bering.  (5 ball)</span></div><textarea class="written-input tall" placeholder="To‘liq va asoslangan javobingizni yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javob va mezonni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> Oqibatlar: ortiqcha vazn; yurak va qon tomir kasalliklari xavfining ortishi; tez charchash; mushak va suyaklarning zaiflashishi. Tavsiyalar: har kuni jismoniy mashq qilish; sabzavot va mevani ko‘proq yeyish; shirinlikni cheklash; toza havoda sayr qilish; yetarlicha uxlash.</div></div>
+    </div>
+  </div>
+
+  <!-- PANE 2: PRINTABLE EXAM SHEET -->
+  <div id="pane-sheet" class="view-pane">
+    <div class="sec-block">
+      <p class="doc-p">6-SINF  •  TABIIY FAN  •  3-CHORAK</p>
+<p class="doc-p">CHORAK YAKUNIY SUMMATIV BAHOLASH (ChSB)</p>
+<p class="doc-p">Mavzu: Hujayra, o‘simliklar, hayvonlar va inson organizmi (3-chorak mavzulari)</p>
+<p class="doc-p">O‘quvchining F.I.SH.: ________________________________________   Sinf: ________</p>
+<p class="doc-p">Sana: ______________    Ajratilgan vaqt: 40 daqiqa    To‘plagan ball: ______ / 30</p>
+<h3 class="doc-sec-title">I. YOPIQ TEST (10 ball)</h3>
+<p class="doc-p">Har bir savolda faqat bitta to‘g‘ri javob bor. To‘g‘ri javob harfini aylana ichiga oling. Har bir to‘g‘ri javob – 1 ball.</p>
+<p class="doc-p">1. Hujayra faoliyatini boshqaradigan qism qaysi?</p>
+<p class="doc-p">A)  Xloroplast</p>
+<p class="doc-p">B)  Yadro</p>
+<p class="doc-p">C)  Hujayra devori</p>
+<p class="doc-p">D)  Sitoplazma</p>
+<p class="doc-p">2. O‘simlik va hayvon hujayralarida umumiy bo‘lgan qismlar qaysilar?</p>
+<p class="doc-p">A)  Yadro va sitoplazma</p>
+<p class="doc-p">B)  Xloroplast va hujayra devori</p>
+<p class="doc-p">C)  Faqat hujayra devori</p>
+<p class="doc-p">D)  Faqat yadro</p>
+<p class="doc-p">3. Ildizning asosiy vazifasi qaysi?</p>
+<p class="doc-p">A)  Tuproqdan suv va mineral moddalarni shimish</p>
+<p class="doc-p">B)  Urug‘ hosil qilish</p>
+<p class="doc-p">C)  Fotosintez qilish</p>
+<p class="doc-p">D)  Gazlar almashinuvi</p>
+<p class="doc-p">4. Qaysi hayvon sutemizuvchi hisoblanadi?</p>
+<p class="doc-p">A)  Timsoh</p>
+<p class="doc-p">B)  Akula</p>
+<p class="doc-p">C)  Qurbaqa</p>
+<p class="doc-p">D)  Delfin</p>
+<p class="doc-p">5. Hasharotlarning oyoqlari soni nechta?</p>
+<p class="doc-p">A)  Oltita</p>
+<p class="doc-p">B)  O‘nta</p>
+<p class="doc-p">C)  To‘rtta</p>
+<p class="doc-p">D)  Sakkizta</p>
+<p class="doc-p">6. Qonning asosiy vazifasi qaysi?</p>
+<p class="doc-p">A)  Ovqatni hazm qilish</p>
+<p class="doc-p">B)  Kislorod va oziq moddalarni to‘qimalarga yetkazish</p>
+<p class="doc-p">C)  Suyak hosil qilish</p>
+<p class="doc-p">D)  Tovush hosil qilish</p>
+<p class="doc-p">7. So‘lak ta’sirida og‘iz bo‘shlig‘ida qaysi oziq modda hazm bo‘la boshlaydi?</p>
+<p class="doc-p">A)  Mineral tuzlar</p>
+<p class="doc-p">B)  Suv</p>
+<p class="doc-p">C)  Oqsillar</p>
+<p class="doc-p">D)  Kraxmal (uglevodlar)</p>
+<p class="doc-p">8. Nafas chiqarilgan havoda nafas olingan havoga nisbatan qaysi gaz ko‘proq?</p>
+<p class="doc-p">A)  Vodorod</p>
+<p class="doc-p">B)  Kislorod</p>
+<p class="doc-p">C)  Azot</p>
+<p class="doc-p">D)  Karbonat angidrid</p>
+<p class="doc-p">9. Skeletning asosiy vazifasi qaysi?</p>
+<p class="doc-p">A)  Ovqatni hazm qilish</p>
+<p class="doc-p">B)  Tanaga tayanch bo‘lish va ichki a’zolarni himoya qilish</p>
+<p class="doc-p">C)  Gazlar almashinuvi</p>
+<p class="doc-p">D)  Qonni tozalash</p>
+<p class="doc-p">10. Fotosintez natijasida hosil bo‘ladigan moddalar qaysilar?</p>
+<p class="doc-p">A)  Tuz va kislorod</p>
+<p class="doc-p">B)  Karbonat angidrid va suv</p>
+<p class="doc-p">C)  Azot va vodorod</p>
+<p class="doc-p">D)  Shakar (glyukoza) va kislorod</p>
+<h3 class="doc-sec-title">II. MOSLASHTIRING (4 ball)</h3>
+<p class="doc-p">Hayvonlar sinfini unga mansub hayvon bilan moslashtiring. Har bir to‘g‘ri juftlik – 1 ball. (O‘ng ustunda ortiqcha javob bor.)</p>
+<div class="table-wrap"><table class="doc-table"><tr><th>Chap ustun</th><th>O‘ng ustun</th></tr><tr><td>1. Baliqlar</td><td>A) Quyon</td></tr><tr><td>2. Qushlar</td><td>B) Karp</td></tr><tr><td>3. Sutemizuvchilar</td><td>C) Asalari</td></tr><tr><td>4. Hasharotlar</td><td>D) Chumchuq</td></tr><tr><td></td><td>E) Ilon</td></tr></table></div>
+<p class="doc-p">Javoblar:   1 – ____    2 – ____    3 – ____    4 – ____</p>
+<h3 class="doc-sec-title">III. QISQA JAVOB (6 ball)</h3>
+<p class="doc-p">Har bir savol – 2 ball.</p>
+<p class="doc-p">1. O‘simlik hujayrasining hayvon hujayrasidan ikkita farqini yozing.  (2 ball)</p>
+<p class="doc-p">2. Fotosintez uchun zarur bo‘lgan uchta narsani yozing.  (2 ball)</p>
+<p class="doc-p">3. Qon aylanish tizimiga kiradigan ikkita qismni yozing.  (2 ball)</p>
+<h3 class="doc-sec-title">IV. OCHIQ SAVOL (10 ball)</h3>
+<p class="doc-p">Javobingizni to‘liq va asoslab yozing. Har bir savol – 5 ball.</p>
+<p class="doc-p">1. Piyoz po‘sti hujayralari mikroskopda kuzatildi: hujayra devori va yadro ko‘rinadi, lekin yashil donachalar yo‘q. (a) Ko‘ringan ikki qismning vazifasini yozing. (b) Nima uchun xloroplast yo‘q?  (5 ball)</p>
+<p class="doc-p">2. Kam harakatlilik va noto‘g‘ri ovqatlanish organizmga qanday zarar yetkazadi? Ikkita oqibatni yozing va salomatlikni saqlash uchun uchta tavsiya bering.  (5 ball)</p>
+    </div>
+  </div>
+
+  <!-- PANE 3: TEACHER RUBRIC & ANSWER KEY -->
+  <div id="pane-teacher" class="view-pane">
+    <div class="sec-block">
+      <h3 class="doc-sec-title">O‘QITUVCHI UCHUN: JAVOBLAR VA BAHOLASH MEZONLARI</h3>
+<p class="doc-p">6-sinf Tabiiy fan  •  3-chorak  •  ChSB  •  Maksimal ball: 30</p>
+<h3 class="doc-sec-title">1. Ballarning taqsimlanishi</h3>
+<div class="table-wrap"><table class="doc-table"><tr><th>Bo‘lim</th><th>Topshiriq soni</th><th>Har biri (ball)</th><th>Jami (ball)</th></tr><tr><td>I. Yopiq test</td><td>10</td><td>1</td><td>10</td></tr><tr><td>II. Moslashtirish</td><td>4 juftlik</td><td>1</td><td>4</td></tr><tr><td>III. Qisqa javob</td><td>3</td><td>2</td><td>6</td></tr><tr><td>IV. Ochiq savol</td><td>2</td><td>5</td><td>10</td></tr><tr><td>JAMI</td><td></td><td></td><td>30</td></tr></table></div>
+<h3 class="doc-sec-title">2. Yopiq test javoblari</h3>
+<div class="table-wrap"><table class="doc-table"><tr><th>№</th><th>Javob</th><th>To‘g‘ri javob matni</th></tr><tr><td>1</td><td>B</td><td>Yadro</td></tr><tr><td>2</td><td>A</td><td>Yadro va sitoplazma</td></tr><tr><td>3</td><td>A</td><td>Tuproqdan suv va mineral moddalarni shimish</td></tr><tr><td>4</td><td>D</td><td>Delfin</td></tr><tr><td>5</td><td>A</td><td>Oltita</td></tr><tr><td>6</td><td>B</td><td>Kislorod va oziq moddalarni to‘qimalarga yetkazish</td></tr><tr><td>7</td><td>D</td><td>Kraxmal (uglevodlar)</td></tr><tr><td>8</td><td>D</td><td>Karbonat angidrid</td></tr><tr><td>9</td><td>B</td><td>Tanaga tayanch bo‘lish va ichki a’zolarni himoya qilish</td></tr><tr><td>10</td><td>D</td><td>Shakar (glyukoza) va kislorod</td></tr></table></div>
+<h3 class="doc-sec-title">3. Moslashtirish kaliti</h3>
+<p class="doc-p">1–B,   2–D,   3–A,   4–C</p>
+<p class="doc-p">Har bir to‘g‘ri juftlik – 1 ball.</p>
+<h3 class="doc-sec-title">4. Qisqa javob: namunaviy javoblar va mezonlar</h3>
+<p class="doc-p">1. O‘simlik hujayrasining hayvon hujayrasidan ikkita farqini yozing.</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  O‘simlik hujayrasida xloroplast, hujayra devori va katta vakuola bor; hayvon hujayrasida bular yo‘q.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Birinchi farq</td><td>1</td></tr><tr><td>Ikkinchi farq</td><td>1</td></tr></table></div>
+<p class="doc-p">2. Fotosintez uchun zarur bo‘lgan uchta narsani yozing.</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  Karbonat angidrid, suv va yorug‘lik (xlorofill ham qabul qilinadi).</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Kamida ikkitasi to‘g‘ri</td><td>1</td></tr><tr><td>Uchalasi to‘g‘ri</td><td>1</td></tr></table></div>
+<p class="doc-p">3. Qon aylanish tizimiga kiradigan ikkita qismni yozing.</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  Yurak va qon tomirlari (arteriya, vena, kapillyar); qonning o‘zi ham qabul qilinadi.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Birinchi qism</td><td>1</td></tr><tr><td>Ikkinchi qism</td><td>1</td></tr></table></div>
+<h3 class="doc-sec-title">5. Ochiq savol: namunaviy javoblar va mezonlar</h3>
+<p class="doc-p">1. Piyoz po‘sti hujayralari mikroskopda kuzatildi: hujayra devori va yadro ko‘rinadi, lekin yashil donachalar yo‘q. (a) Ko‘ringan ikki qismning vazifasini yozing. (b) Nima uchun xloroplast yo‘q?</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  (a) Hujayra devori hujayraga shakl beradi va uni himoya qiladi; yadro hujayra faoliyatini boshqaradi. (b) Xloroplast fotosintez uchun kerak. Piyoz yer ostida o‘sadi, unga yorug‘lik tushmaydi, fotosintez bo‘lmaydi, shuning uchun hujayralarida xloroplast yo‘q.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Hujayra devorining vazifasi</td><td>1</td></tr><tr><td>Yadroning vazifasi</td><td>1</td></tr><tr><td>Xloroplast fotosintez uchun kerakligi</td><td>1</td></tr><tr><td>Piyoz yer ostida o‘sishi, yorug‘lik tushmasligi tufayli xloroplast yo‘qligi</td><td>2</td></tr></table></div>
+<p class="doc-p">Izoh: o‘quvchi mazmunan to‘g‘ri, boshqacha ifodalangan yoki boshqa to‘g‘ri misol keltirgan javobga ham mezon bo‘yicha ball beriladi.</p>
+<p class="doc-p">2. Kam harakatlilik va noto‘g‘ri ovqatlanish organizmga qanday zarar yetkazadi? Ikkita oqibatni yozing va salomatlikni saqlash uchun uchta tavsiya bering.</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  Oqibatlar: ortiqcha vazn; yurak va qon tomir kasalliklari xavfining ortishi; tez charchash; mushak va suyaklarning zaiflashishi. Tavsiyalar: har kuni jismoniy mashq qilish; sabzavot va mevani ko‘proq yeyish; shirinlikni cheklash; toza havoda sayr qilish; yetarlicha uxlash.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Ikkita to‘g‘ri oqibat (har biri 1 ball)</td><td>2</td></tr><tr><td>Uchta mantiqiy tavsiya (har biri 1 ball)</td><td>3</td></tr></table></div>
+<p class="doc-p">Izoh: o‘quvchi mazmunan to‘g‘ri, boshqacha ifodalangan yoki boshqa to‘g‘ri misol keltirgan javobga ham mezon bo‘yicha ball beriladi.</p>
+    </div>
+  </div>
+
+<script>
+  let currentScore = 0;
+  function updateScore(delta) {
+    currentScore += delta;
+    document.getElementById('live-score-pill').textContent = '⭐ Ball: ' + currentScore;
+  }
+
+  function selectMcq(btn, qnum) {
+    const card = document.getElementById('mcq-' + qnum);
+    const allBtns = card.querySelectorAll('.mcq-opt');
+    allBtns.forEach(b => b.disabled = true);
+    const isCorrect = btn.getAttribute('data-correct') === '1';
+    if (isCorrect) {
+      btn.classList.add('correct');
+      updateScore(1);
+    } else {
+      btn.classList.add('wrong');
+      allBtns.forEach(b => {
+        if (b.getAttribute('data-correct') === '1') b.classList.add('correct');
+      });
+    }
+    const fb = document.getElementById('fb-mcq-' + qnum);
+    if (fb) fb.classList.add('show');
+  }
+
+  function checkMatch(sel) {
+    const ans = sel.getAttribute('data-ans');
+    const val = sel.value;
+    if (!val) return;
+    sel.disabled = true;
+    if (val === ans) {
+      sel.classList.add('correct');
+      updateScore(1);
+    } else {
+      sel.classList.add('wrong');
+      sel.insertAdjacentHTML('afterend', '<div style="font-size:11.5px;color:#16a34a;font-weight:700;margin-top:3px;">To‘g‘ri: ' + ans + '</div>');
+    }
+  }
+
+  function switchPane(id, btn) {
+    document.querySelectorAll('.view-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>

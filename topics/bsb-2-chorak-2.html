@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2-chorak BSB-2: Issiqlik hodisalari</title>
+<style>
+  :root {
+    --accent: #6366f1;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #475569;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    padding: 12px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .hero-banner {
+    background: linear-gradient(135deg, #4f46e5, #0284c7);
+    color: #fff;
+    padding: 18px 20px;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    margin-bottom: 14px;
+  }
+  .hero-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .hero-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 12.5px;
+    font-weight: 700;
+  }
+  .hero-meta span {
+    background: rgba(0,0,0,0.22);
+    padding: 4px 10px;
+    border-radius: 8px;
+  }
+  .hero-banner h1 {
+    font-size: clamp(18px, 3.5vw, 24px);
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .action-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .mode-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .mode-btn {
+    border: 1px solid var(--border);
+    background: #f1f5f9;
+    color: var(--text);
+    padding: 8px 13px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .mode-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .dl-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .dl-btn {
+    text-decoration: none;
+    background: #0f172a;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 9px;
+    font-size: 12.5px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  .dl-btn.word { background: #2563eb; }
+  .dl-btn.print { background: #059669; }
+  .view-pane { display: none; }
+  .view-pane.active { display: block; }
+  .sec-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  }
+  .sec-header {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--accent);
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .q-card {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+  .q-title {
+    font-weight: 700;
+    font-size: 14.5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .q-num {
+    background: var(--accent);
+    color: #fff;
+    min-width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .q-pts {
+    margin-left: auto;
+    font-size: 11px;
+    background: #e2e8f0;
+    color: #334155;
+    padding: 2px 7px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+  .mcq-opts {
+    display: grid;
+    gap: 6px;
+  }
+  .mcq-opt {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 13.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.15s;
+  }
+  .mcq-opt:hover:not(:disabled) {
+    border-color: var(--accent);
+    background: #f0f9ff;
+  }
+  .opt-let {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: #f1f5f9;
+    font-weight: 800;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .mcq-opt.correct {
+    background: #dcfce7 !important;
+    border-color: #16a34a !important;
+    color: #14532d !important;
+    font-weight: 700;
+  }
+  .mcq-opt.wrong {
+    background: #fee2e2 !important;
+    border-color: #dc2626 !important;
+    color: #7f1d1d !important;
+  }
+  .q-feedback {
+    display: none;
+    margin-top: 8px;
+    padding: 8px 10px;
+    background: #eff6ff;
+    border-left: 3px solid #3b82f6;
+    border-radius: 6px;
+    font-size: 12.5px;
+  }
+  .q-feedback.show { display: block; }
+  .table-wrap { overflow-x: auto; margin: 8px 0; }
+  .doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  .doc-table th, .doc-table td {
+    border: 1px solid #cbd5e1;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  .doc-table th {
+    background: #f1f5f9;
+    font-weight: 800;
+  }
+  .match-select {
+    padding: 6px 10px;
+    border-radius: 7px;
+    border: 2px solid #94a3b8;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .match-select.correct { border-color: #16a34a; background: #dcfce7; }
+  .match-select.wrong { border-color: #dc2626; background: #fee2e2; }
+  .written-input {
+    width: 100%;
+    min-height: 65px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 9px;
+    font-family: inherit;
+    font-size: 13.5px;
+    margin-bottom: 8px;
+  }
+  .written-input.tall { min-height: 95px; }
+  .reveal-btn {
+    background: #e0e7ff;
+    color: #3730a3;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 7px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .sample-reveal {
+    display: none;
+    margin-top: 8px;
+    padding: 10px;
+    background: #ecfdf5;
+    border-left: 4px solid #10b981;
+    border-radius: 7px;
+    font-size: 13px;
+  }
+  .sample-reveal.show { display: block; }
+  .doc-sec-title {
+    font-size: 15.5px;
+    font-weight: 800;
+    color: var(--accent);
+    margin: 14px 0 6px;
+  }
+  .doc-p {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  .sample-ans-box {
+    background: #f0fdf4;
+    border-left: 4px solid #22c55e;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin: 6px 0;
+    font-size: 13.5px;
+  }
+  @media print {
+    .action-bar { display: none !important; }
+    .view-pane { display: block !important; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero-banner">
+    <div class="hero-top">
+      <span class="hero-badge">2-CHORAK • BSB-2</span>
+      <div class="hero-meta">
+        <span>⏱️ 20 daqiqa</span>
+        <span>🎯 Maksimal: 20 ball</span>
+        <span id="live-score-pill">⭐ Ball: 0</span>
+      </div>
+    </div>
+    <h1>📝 2-chorak BSB-2: Issiqlik hodisalari</h1>
+  </div>
+
+  <div class="action-bar">
+    <div class="mode-tabs">
+      <button class="mode-btn active" onclick="switchPane('pane-interactive', this)">🎮 Interaktiv Yechish</button>
+      <button class="mode-btn" onclick="switchPane('pane-sheet', this)">📄 Savollar Blankasi</button>
+      <button class="mode-btn" onclick="switchPane('pane-teacher', this)">🔑 Javoblar & Mezonlar</button>
+    </div>
+    <div class="dl-actions">
+      <a class="dl-btn word" href="../docs/6-sinf_Tabiiy-fan_2-chorak_BSB-2.docx" download="6-sinf_Tabiiy-fan_2-chorak_BSB-2.docx">📥 Word (.docx) Yuklab Olish</a>
+      <button class="dl-btn print" onclick="window.print()">🖨️ Chop Etish</button>
+    </div>
+  </div>
+
+  <!-- PANE 1: INTERACTIVE EXAM -->
+  <div id="pane-interactive" class="view-pane active">
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>I. YOPIQ TEST SAVOLLARI</span>
+        <span style="font-size:12px; color:#64748b;">Har bir to‘g‘ri javob — 1 ball</span>
+      </div>
+      <div class="q-card" id="mcq-1"><div class="q-title"><span class="q-num">1</span> <span>Haroratni o‘lchaydigan asbob qaysi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 1)"><span class="opt-let">A</span> <span>Termometr</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 1)"><span class="opt-let">B</span> <span>Dinamometr</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 1)"><span class="opt-let">C</span> <span>Tarozi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 1)"><span class="opt-let">D</span> <span>Barometr</span></button></div><div class="q-feedback" id="fb-mcq-1">To‘g‘ri javob: <b>A) Termometr</b></div></div><div class="q-card" id="mcq-2"><div class="q-title"><span class="q-num">2</span> <span>Selsiy shkalasida muzning erish harorati necha gradus?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 2)"><span class="opt-let">A</span> <span>37 °C</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 2)"><span class="opt-let">B</span> <span>0 °C</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 2)"><span class="opt-let">C</span> <span>–10 °C</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 2)"><span class="opt-let">D</span> <span>100 °C</span></button></div><div class="q-feedback" id="fb-mcq-2">To‘g‘ri javob: <b>B) 0 °C</b></div></div><div class="q-card" id="mcq-3"><div class="q-title"><span class="q-num">3</span> <span>Issiq choyga tushirilgan metall qoshiq dastasining qizishi issiqlik uzatishning qaysi turiga misol?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 3)"><span class="opt-let">A</span> <span>Issiqlik o‘tkazuvchanlik</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 3)"><span class="opt-let">B</span> <span>Konveksiya</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 3)"><span class="opt-let">C</span> <span>Nurlanish</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 3)"><span class="opt-let">D</span> <span>Bug‘lanish</span></button></div><div class="q-feedback" id="fb-mcq-3">To‘g‘ri javob: <b>A) Issiqlik o‘tkazuvchanlik</b></div></div><div class="q-card" id="mcq-4"><div class="q-title"><span class="q-num">4</span> <span>Quyoshdan Yergacha issiqlik qanday uzatiladi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 4)"><span class="opt-let">A</span> <span>Ishqalanish orqali</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 4)"><span class="opt-let">B</span> <span>Issiqlik o‘tkazuvchanlik orqali</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 4)"><span class="opt-let">C</span> <span>Konveksiya orqali</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 4)"><span class="opt-let">D</span> <span>Nurlanish orqali</span></button></div><div class="q-feedback" id="fb-mcq-4">To‘g‘ri javob: <b>D) Nurlanish orqali</b></div></div><div class="q-card" id="mcq-5"><div class="q-title"><span class="q-num">5</span> <span>Qizdirilganda jismlar (odatda) qanday o‘zgaradi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 5)"><span class="opt-let">A</span> <span>Hajmi kichrayadi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 5)"><span class="opt-let">B</span> <span>Massasi kamayadi</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 5)"><span class="opt-let">C</span> <span>Hajmi kattalashadi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 5)"><span class="opt-let">D</span> <span>Hajmi o‘zgarmaydi</span></button></div><div class="q-feedback" id="fb-mcq-5">To‘g‘ri javob: <b>C) Hajmi kattalashadi</b></div></div>
+    </div>
+
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>II. MOSLASHTIRING (4 ball)</span>
+        <span style="font-size:12px; color:#64748b;">Har bir to‘g‘ri juftlik — 1 ball</span>
+      </div>
+      <div class="table-wrap">
+        <table class="doc-table">
+          <tr><th>Chap ustun</th><th>O‘ng ustun</th><th style="width:110px;">Javobingiz</th></tr>
+          <tr><td>1. Issiqlik o‘tkazuvchanlik</td><td>A) Temir simning bir uchi qizdirilganda ikkinchi uchining ham qizishi</td><td style='text-align:center;'><select class="match-select" data-q="1" data-ans="A" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td>2. Konveksiya</td><td>B) Gulxan yonida turganda yuzning isishi</td><td style='text-align:center;'><select class="match-select" data-q="2" data-ans="C" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td>3. Nurlanish</td><td>C) Qaynayotgan suvda isigan qatlamlarning yuqoriga ko‘tarilishi</td><td style='text-align:center;'><select class="match-select" data-q="3" data-ans="B" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td>4. Issiqlik izolyatsiyasi</td><td>D) Muzning suvda suzishi</td><td style='text-align:center;'><select class="match-select" data-q="4" data-ans="E" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td></td><td>E) Termosda issiq choyning uzoq vaqt sovimasligi</td><td style='text-align:center;'></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>III. QISQA JAVOBLI TOPSHIRIQLAR (6 ball)</span>
+      </div>
+      <div class="q-card"><div class="q-title"><span class="q-num">1</span> <span>Havo harorati ertalab 8 °C, tushda esa 21 °C bo‘ldi. Harorat necha gradusga ko‘tarildi?  (2 ball)</span></div><textarea class="written-input" placeholder="Javobingizni shu yerga yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javobni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> 21 – 8 = 13 °C</div></div><div class="q-card"><div class="q-title"><span class="q-num">2</span> <span>Issiqlikni yaxshi o‘tkazadigan ikkita moddani yozing.  (2 ball)</span></div><textarea class="written-input" placeholder="Javobingizni shu yerga yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javobni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> Masalan: mis, alyuminiy, temir (metallar).</div></div><div class="q-card"><div class="q-title"><span class="q-num">3</span> <span>Issiqlikni yomon o‘tkazadigan (izolyator) ikkita materialni yozing.  (2 ball)</span></div><textarea class="written-input" placeholder="Javobingizni shu yerga yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javobni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> Masalan: yog‘och, ko‘pik, mato, shisha tola, havo qatlami.</div></div>
+    </div>
+
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>IV. OCHIQ SAVOLLAR (5 ball)</span>
+      </div>
+      <div class="q-card"><div class="q-title"><span class="q-num">1</span> <span>Nima uchun termos issiq choyni uzoq vaqt issiq saqlaydi? Issiqlik uzatish turlari (o‘tkazuvchanlik, konveksiya, nurlanish) bilan bog‘lab tushuntiring.  (5 ball)</span></div><textarea class="written-input tall" placeholder="To‘liq va asoslangan javobingizni yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javob va mezonni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> Termosning ikki devori orasidagi havo so‘rib olingan (vakuum), shu sababli issiqlik o‘tkazuvchanlik va konveksiya deyarli bo‘lmaydi. Ichki devor ko‘zgusimon bo‘lgani uchun nurlanish bilan chiqayotgan issiqlik qaytib, ichkariga qaytariladi. Zich qopqoq issiq havo va bug‘ning chiqib ketishini to‘sadi.</div></div>
+    </div>
+  </div>
+
+  <!-- PANE 2: PRINTABLE EXAM SHEET -->
+  <div id="pane-sheet" class="view-pane">
+    <div class="sec-block">
+      <p class="doc-p">6-SINF  •  TABIIY FAN  •  2-CHORAK</p>
+<p class="doc-p">BO‘LIM BO‘YICHA SUMMATIV BAHOLASH (BSB-2)</p>
+<p class="doc-p">Mavzu: Issiqlik hodisalari</p>
+<p class="doc-p">O‘quvchining F.I.SH.: ________________________________________   Sinf: ________</p>
+<p class="doc-p">Sana: ______________    Ajratilgan vaqt: 20 daqiqa    To‘plagan ball: ______ / 20</p>
+<h3 class="doc-sec-title">I. YOPIQ TEST (5 ball)</h3>
+<p class="doc-p">Har bir savolda faqat bitta to‘g‘ri javob bor. To‘g‘ri javob harfini aylana ichiga oling. Har bir to‘g‘ri javob – 1 ball.</p>
+<p class="doc-p">1. Haroratni o‘lchaydigan asbob qaysi?</p>
+<p class="doc-p">A)  Termometr</p>
+<p class="doc-p">B)  Dinamometr</p>
+<p class="doc-p">C)  Tarozi</p>
+<p class="doc-p">D)  Barometr</p>
+<p class="doc-p">2. Selsiy shkalasida muzning erish harorati necha gradus?</p>
+<p class="doc-p">A)  37 °C</p>
+<p class="doc-p">B)  0 °C</p>
+<p class="doc-p">C)  –10 °C</p>
+<p class="doc-p">D)  100 °C</p>
+<p class="doc-p">3. Issiq choyga tushirilgan metall qoshiq dastasining qizishi issiqlik uzatishning qaysi turiga misol?</p>
+<p class="doc-p">A)  Issiqlik o‘tkazuvchanlik</p>
+<p class="doc-p">B)  Konveksiya</p>
+<p class="doc-p">C)  Nurlanish</p>
+<p class="doc-p">D)  Bug‘lanish</p>
+<p class="doc-p">4. Quyoshdan Yergacha issiqlik qanday uzatiladi?</p>
+<p class="doc-p">A)  Ishqalanish orqali</p>
+<p class="doc-p">B)  Issiqlik o‘tkazuvchanlik orqali</p>
+<p class="doc-p">C)  Konveksiya orqali</p>
+<p class="doc-p">D)  Nurlanish orqali</p>
+<p class="doc-p">5. Qizdirilganda jismlar (odatda) qanday o‘zgaradi?</p>
+<p class="doc-p">A)  Hajmi kichrayadi</p>
+<p class="doc-p">B)  Massasi kamayadi</p>
+<p class="doc-p">C)  Hajmi kattalashadi</p>
+<p class="doc-p">D)  Hajmi o‘zgarmaydi</p>
+<h3 class="doc-sec-title">II. MOSLASHTIRING (4 ball)</h3>
+<p class="doc-p">Issiqlik uzatish turini mos misol bilan moslashtiring. Har bir to‘g‘ri juftlik – 1 ball. (O‘ng ustunda ortiqcha javob bor.)</p>
+<div class="table-wrap"><table class="doc-table"><tr><th>Chap ustun</th><th>O‘ng ustun</th></tr><tr><td>1. Issiqlik o‘tkazuvchanlik</td><td>A) Temir simning bir uchi qizdirilganda ikkinchi uchining ham qizishi</td></tr><tr><td>2. Konveksiya</td><td>B) Gulxan yonida turganda yuzning isishi</td></tr><tr><td>3. Nurlanish</td><td>C) Qaynayotgan suvda isigan qatlamlarning yuqoriga ko‘tarilishi</td></tr><tr><td>4. Issiqlik izolyatsiyasi</td><td>D) Muzning suvda suzishi</td></tr><tr><td></td><td>E) Termosda issiq choyning uzoq vaqt sovimasligi</td></tr></table></div>
+<p class="doc-p">Javoblar:   1 – ____    2 – ____    3 – ____    4 – ____</p>
+<h3 class="doc-sec-title">III. QISQA JAVOB (6 ball)</h3>
+<p class="doc-p">Har bir savol – 2 ball.</p>
+<p class="doc-p">1. Havo harorati ertalab 8 °C, tushda esa 21 °C bo‘ldi. Harorat necha gradusga ko‘tarildi?  (2 ball)</p>
+<p class="doc-p">2. Issiqlikni yaxshi o‘tkazadigan ikkita moddani yozing.  (2 ball)</p>
+<p class="doc-p">3. Issiqlikni yomon o‘tkazadigan (izolyator) ikkita materialni yozing.  (2 ball)</p>
+<h3 class="doc-sec-title">IV. OCHIQ SAVOL (5 ball)</h3>
+<p class="doc-p">Javobingizni to‘liq va asoslab yozing. Har bir savol – 5 ball.</p>
+<p class="doc-p">1. Nima uchun termos issiq choyni uzoq vaqt issiq saqlaydi? Issiqlik uzatish turlari (o‘tkazuvchanlik, konveksiya, nurlanish) bilan bog‘lab tushuntiring.  (5 ball)</p>
+    </div>
+  </div>
+
+  <!-- PANE 3: TEACHER RUBRIC & ANSWER KEY -->
+  <div id="pane-teacher" class="view-pane">
+    <div class="sec-block">
+      <h3 class="doc-sec-title">O‘QITUVCHI UCHUN: JAVOBLAR VA BAHOLASH MEZONLARI</h3>
+<p class="doc-p">6-sinf Tabiiy fan  •  2-chorak  •  BSB-2  •  Maksimal ball: 20</p>
+<h3 class="doc-sec-title">1. Ballarning taqsimlanishi</h3>
+<div class="table-wrap"><table class="doc-table"><tr><th>Bo‘lim</th><th>Topshiriq soni</th><th>Har biri (ball)</th><th>Jami (ball)</th></tr><tr><td>I. Yopiq test</td><td>5</td><td>1</td><td>5</td></tr><tr><td>II. Moslashtirish</td><td>4 juftlik</td><td>1</td><td>4</td></tr><tr><td>III. Qisqa javob</td><td>3</td><td>2</td><td>6</td></tr><tr><td>IV. Ochiq savol</td><td>1</td><td>5</td><td>5</td></tr><tr><td>JAMI</td><td></td><td></td><td>20</td></tr></table></div>
+<h3 class="doc-sec-title">2. Yopiq test javoblari</h3>
+<div class="table-wrap"><table class="doc-table"><tr><th>№</th><th>Javob</th><th>To‘g‘ri javob matni</th></tr><tr><td>1</td><td>A</td><td>Termometr</td></tr><tr><td>2</td><td>B</td><td>0 °C</td></tr><tr><td>3</td><td>A</td><td>Issiqlik o‘tkazuvchanlik</td></tr><tr><td>4</td><td>D</td><td>Nurlanish orqali</td></tr><tr><td>5</td><td>C</td><td>Hajmi kattalashadi</td></tr></table></div>
+<h3 class="doc-sec-title">3. Moslashtirish kaliti</h3>
+<p class="doc-p">1–A,   2–C,   3–B,   4–E</p>
+<p class="doc-p">Har bir to‘g‘ri juftlik – 1 ball.</p>
+<h3 class="doc-sec-title">4. Qisqa javob: namunaviy javoblar va mezonlar</h3>
+<p class="doc-p">1. Havo harorati ertalab 8 °C, tushda esa 21 °C bo‘ldi. Harorat necha gradusga ko‘tarildi?</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  21 – 8 = 13 °C</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>To‘g‘ri amal (21 – 8)</td><td>1</td></tr><tr><td>Natija – 13 °C</td><td>1</td></tr></table></div>
+<p class="doc-p">2. Issiqlikni yaxshi o‘tkazadigan ikkita moddani yozing.</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  Masalan: mis, alyuminiy, temir (metallar).</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Birinchi modda</td><td>1</td></tr><tr><td>Ikkinchi modda</td><td>1</td></tr></table></div>
+<p class="doc-p">3. Issiqlikni yomon o‘tkazadigan (izolyator) ikkita materialni yozing.</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  Masalan: yog‘och, ko‘pik, mato, shisha tola, havo qatlami.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Birinchi material</td><td>1</td></tr><tr><td>Ikkinchi material</td><td>1</td></tr></table></div>
+<h3 class="doc-sec-title">5. Ochiq savol: namunaviy javoblar va mezonlar</h3>
+<p class="doc-p">1. Nima uchun termos issiq choyni uzoq vaqt issiq saqlaydi? Issiqlik uzatish turlari (o‘tkazuvchanlik, konveksiya, nurlanish) bilan bog‘lab tushuntiring.</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  Termosning ikki devori orasidagi havo so‘rib olingan (vakuum), shu sababli issiqlik o‘tkazuvchanlik va konveksiya deyarli bo‘lmaydi. Ichki devor ko‘zgusimon bo‘lgani uchun nurlanish bilan chiqayotgan issiqlik qaytib, ichkariga qaytariladi. Zich qopqoq issiq havo va bug‘ning chiqib ketishini to‘sadi.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Vakuum qatlami o‘tkazuvchanlik va konveksiyani kamaytirishi</td><td>2</td></tr><tr><td>Ko‘zgusimon sirt nurlanishni qaytarishi</td><td>2</td></tr><tr><td>Qopqoq issiq havo chiqishini to‘sishi</td><td>1</td></tr></table></div>
+<p class="doc-p">Izoh: o‘quvchi mazmunan to‘g‘ri, boshqacha ifodalangan yoki boshqa to‘g‘ri misol keltirgan javobga ham mezon bo‘yicha ball beriladi.</p>
+    </div>
+  </div>
+
+<script>
+  let currentScore = 0;
+  function updateScore(delta) {
+    currentScore += delta;
+    document.getElementById('live-score-pill').textContent = '⭐ Ball: ' + currentScore;
+  }
+
+  function selectMcq(btn, qnum) {
+    const card = document.getElementById('mcq-' + qnum);
+    const allBtns = card.querySelectorAll('.mcq-opt');
+    allBtns.forEach(b => b.disabled = true);
+    const isCorrect = btn.getAttribute('data-correct') === '1';
+    if (isCorrect) {
+      btn.classList.add('correct');
+      updateScore(1);
+    } else {
+      btn.classList.add('wrong');
+      allBtns.forEach(b => {
+        if (b.getAttribute('data-correct') === '1') b.classList.add('correct');
+      });
+    }
+    const fb = document.getElementById('fb-mcq-' + qnum);
+    if (fb) fb.classList.add('show');
+  }
+
+  function checkMatch(sel) {
+    const ans = sel.getAttribute('data-ans');
+    const val = sel.value;
+    if (!val) return;
+    sel.disabled = true;
+    if (val === ans) {
+      sel.classList.add('correct');
+      updateScore(1);
+    } else {
+      sel.classList.add('wrong');
+      sel.insertAdjacentHTML('afterend', '<div style="font-size:11.5px;color:#16a34a;font-weight:700;margin-top:3px;">To‘g‘ri: ' + ans + '</div>');
+    }
+  }
+
+  function switchPane(id, btn) {
+    document.querySelectorAll('.view-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>

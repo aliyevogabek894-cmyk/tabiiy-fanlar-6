@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
-  <title>6-sinf Tabiiy Fanlar | Zamonaviy Interaktiv Platforma</title>
+  <meta name="theme-color" content="#6366f1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>6-sinf Tabiiy Fanlar | Darslar, BSB, ChSB & Ilova</title>
+  <link rel="manifest" href="manifest.json?v=70">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔬</text></svg>">
-  <link rel="stylesheet" href="style.css?v=60">
+  <link rel="stylesheet" href="style.css?v=70">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,7 +21,7 @@
 
   <div class="app-container">
 
-    <!-- ULTRA-SLEEK TOP NAVBAR (Linear / Raycast / Apple Vision Style) -->
+    <!-- ULTRA-SLEEK TOP NAVBAR -->
     <header class="master-header">
       <div class="brand-section">
         <!-- Prominent Back button shown when viewing a single topic full-screen -->
@@ -37,7 +41,7 @@
           <div class="progress-bar-bg">
             <div id="progress-bar-fill" class="progress-bar-fill"></div>
           </div>
-          <span id="progress-label-text" class="progress-label">0/25</span>
+          <span id="progress-label-text" class="progress-label">0/37</span>
         </div>
       </div>
 
@@ -48,6 +52,10 @@
           <option value="cyber">🟢 Kiber</option>
           <option value="light">☀️ Kun</option>
         </select>
+
+        <button id="btn-open-download" class="header-btn download-top-btn" title="Saytni Windows, macOS, Linux va Telefonga yuklab olish">
+          <span>📲</span> <span class="btn-text-desktop">Yuklab olish</span>
+        </button>
 
         <button id="btn-open-lab" class="header-btn" title="Formulalar va Qoidalar">
           <span>🧪</span> <span class="btn-text-desktop">Formulalar</span>
@@ -62,7 +70,7 @@
         </button>
 
         <!-- Toggle Left Topics List -->
-        <button id="btn-mobile-sidebar" class="header-btn primary" title="Mavzular ro'yxati">
+        <button id="btn-mobile-sidebar" class="header-btn primary" title="Mavzular, BSB va ChSB ro'yxati">
           <span>☰</span> <span>Mavzular</span>
         </button>
       </div>
@@ -71,46 +79,48 @@
     <!-- MAIN WORKSPACE: SLIM LEFT TOPICS LIST (TAGMA-TAG) + MAIN LESSON VIEW -->
     <div class="main-wrapper">
 
-      <!-- LEFT SIDEBAR: COMPACT TAGMA-TAG TOPICS LIST (Katta joy egallamaydigan, tagma-tag ro'yxat) -->
+      <!-- LEFT SIDEBAR: 1) 25 MAVZULAR -> 2) 8 BSB -> 3) 4 ChSB -> 4) YUKLAB OLISH -->
       <aside id="topics-sidebar" class="topics-sidebar-left">
         
         <div class="sidebar-header">
           <div class="sidebar-title-row">
-            <h2><span>📚</span> <span>Mavzular</span></h2>
-            <span id="sidebar-count" class="sidebar-count-badge">25</span>
+            <h2><span>📚</span> <span>Mavzular & BSB/ChSB</span></h2>
+            <span id="sidebar-count" class="sidebar-count-badge">37</span>
           </div>
 
           <!-- Compact Search Input -->
           <div class="search-box-wrap">
             <span class="search-icon">🔍</span>
-            <input type="text" id="search-topics" class="search-input" placeholder="Mavzuni izlash...">
+            <input type="text" id="search-topics" class="search-input" placeholder="Mavzu, BSB yoki ChSB izlash...">
           </div>
 
           <!-- Slim Category Filter Pills -->
           <div class="category-filter-chips">
             <button class="chip-btn active" data-cat="all">Barchasi</button>
+            <button class="chip-btn" data-cat="darslar">📚 Darslar</button>
+            <button class="chip-btn chip-bsb" data-cat="bsb">📝 BSB (8)</button>
+            <button class="chip-btn chip-chsb" data-cat="chsb">🏆 ChSB (4)</button>
             <button class="chip-btn" data-cat="biologiya">Biologiya</button>
             <button class="chip-btn" data-cat="tibbiyot">Tibbiyot</button>
             <button class="chip-btn" data-cat="fizika">Fizika</button>
             <button class="chip-btn" data-cat="kimyo">Kimyo</button>
             <button class="chip-btn" data-cat="ekologiya">Ekologiya</button>
             <button class="chip-btn" data-cat="geologiya">Geologiya</button>
-            <button class="chip-btn" data-cat="tuproqshunoslik">Tuproq</button>
             <button class="chip-btn" data-cat="astronomiya">Koinot</button>
           </div>
         </div>
 
-        <!-- Topics Strictly Stacked Top-to-Bottom (Tagma-tag, ixcham qatorlar) -->
+        <!-- Topics, BSB, ChSB & Download Hub Stacked Top-to-Bottom (Tagma-tag) -->
         <div id="topics-list" class="topics-list-scroll">
           <!-- Populated by app.js -->
         </div>
 
       </aside>
 
-      <!-- MAIN CONTENT AREA: Active Topic Viewer -->
+      <!-- MAIN CONTENT AREA: Active Topic / BSB / ChSB Viewer -->
       <main id="main-content-area" class="content-area">
 
-        <!-- Unified Sleek Floating Control Bar (No bulky double boxes!) -->
+        <!-- Unified Sleek Floating Control Bar -->
         <div class="topic-top-bar">
           <div class="topic-top-left">
             <button id="btn-back-to-topics" class="back-inline-btn" title="Mavzular ro'yxatiga qaytish">
@@ -122,9 +132,14 @@
           </div>
 
           <div class="topic-top-controls">
+            <!-- Direct Word (.docx) download button when viewing a BSB or ChSB -->
+            <a id="btn-download-docx" class="btn-ctrl docx-top-btn" href="#" download style="display:none;" title="Asl Word (.docx) faylni yuklab olish">
+              <span>📥</span> <span>Word (.docx)</span>
+            </a>
+
             <!-- Integrated Audio Narrator Pill -->
             <div class="narrator-inline-group">
-              <button id="btn-audio-toggle" class="btn-ctrl audio-pill-btn" title="Mavzuni ovozli tinglash">
+              <button id="btn-audio-toggle" class="btn-ctrl audio-pill-btn" title="Mavzuni sof o'zbek tilida tinglash">
                 <span id="audio-icon">🔊</span>
                 <span class="audio-pill-label">Tinglash</span>
                 <span id="sound-wave" class="sound-wave">
@@ -138,13 +153,13 @@
               </select>
             </div>
 
-            <button id="btn-prev" class="btn-ctrl" title="Oldingi mavzu (←)">
+            <button id="btn-prev" class="btn-ctrl" title="Oldingi (←)">
               <span>◀</span>
             </button>
-            <button id="btn-next" class="btn-ctrl" title="Keyingi mavzu (→)">
+            <button id="btn-next" class="btn-ctrl" title="Keyingi (→)">
               <span>▶</span>
             </button>
-            <button id="btn-complete" class="btn-ctrl complete-btn" title="Mavzuni tugallandi deb belgilash">
+            <button id="btn-complete" class="btn-ctrl complete-btn" title="Tugallandi deb belgilash">
               <span>⭕</span> <span class="ctrl-label">Tugallandi</span>
             </button>
             <button id="btn-reload" class="btn-ctrl" title="Qayta yuklash">
@@ -159,7 +174,7 @@
           </div>
         </div>
 
-        <!-- Interactive Simulation Container (Full Seamless Height) -->
+        <!-- Interactive Simulation / BSB / ChSB Container -->
         <div class="interactive-frame-container">
           <div id="frame-loader" class="frame-loader">
             <div class="spinner"></div>
@@ -169,7 +184,7 @@
           <iframe id="topic-iframe" title="Interaktiv Dars Oynasi"></iframe>
         </div>
 
-        <!-- Enriched Knowledge Hub (Tagma-tag joylashgan ma'lumotlar, faktlar, tajribalar va testlar) -->
+        <!-- Enriched Knowledge Hub -->
         <div class="topic-bottom-panel">
           <div class="panel-tabs">
             <button class="panel-tab-btn active" data-tab="tab-theory">
@@ -186,7 +201,7 @@
             </button>
           </div>
 
-          <!-- Tab 1: Full Theory & Key Points (Tagma-tag) -->
+          <!-- Tab 1: Full Theory & Key Points -->
           <div id="tab-theory" class="tab-pane active">
             <div id="full-theory-text" class="theory-prose-box"></div>
             <h4 class="section-sub-heading">📌 Muhim Qoidalar va Xulosalar:</h4>
@@ -199,7 +214,7 @@
             <h4 class="section-sub-heading" style="color:var(--warning);">🤯 Bilasizmi? Qiziqarli Ilmiy Faktlar:</h4>
             <div id="fun-facts-list" class="stack-list"></div>
 
-            <h4 class="section-sub-heading" style="color:var(--success); margin-top:14px;">🧪 Amaliy Tajriba (Uyda yoki Darsda Sinab Ko'ring):</h4>
+            <h4 class="section-sub-heading" style="color:var(--success); margin-top:14px;">🧪 Amaliy Tajriba va Topshiriq:</h4>
             <div id="experiment-box" class="experiment-card"></div>
           </div>
 
@@ -224,10 +239,117 @@
               <span>⬅ Orqaga (Mavzular ro'yxati)</span>
             </button>
             <button id="btn-bottom-next" class="header-btn primary">
-              <span>Keyingi mavzu ▶</span>
+              <span>Keyingi ▶</span>
             </button>
           </div>
         </div>
+
+        <!-- ================================================================
+             CROSS-PLATFORM DOWNLOAD CENTER (macOS • Windows • Linux • Telefon)
+             ================================================================ -->
+        <section id="download-hub-section" class="download-hub-card">
+          <div class="download-hub-header">
+            <div class="dl-hero-badge">📲 BARCHA QURILMALAR UCHUN RASMIY ILOVA</div>
+            <h3>Saytni Kompyuter va Telefonga Yuklab Oling</h3>
+            <p>Platformadan internet bor yoki yo'qligidan qat'i nazar <b>Windows</b>, <b>macOS</b>, <b>Linux</b> hamda <b>Android / iPhone</b> qurilmalarida mustaqil dastur sifatida foydalaning.</p>
+          </div>
+
+          <div class="os-download-grid">
+            <!-- 1. Windows -->
+            <div class="os-card os-win">
+              <div class="os-card-top">
+                <span class="os-icon">🪟</span>
+                <div>
+                  <h4>Windows 10 / 11</h4>
+                  <span>Kompyuter va Noutbuklar uchun</span>
+                </div>
+              </div>
+              <p class="os-desc">Windows ish stolida mustaqil dastur oynasida ochiluvchi yorliq va to'liq oflayn paket.</p>
+              <div class="os-btn-group">
+                <a href="downloads/Tabiiy_Fanlar_6_Windows.bat" download="Tabiiy_Fanlar_6_Windows.bat" class="os-dl-btn win-btn">
+                  <span>⬇️ Windows Dasturni Yuklash (.bat)</span>
+                </a>
+                <button type="button" class="os-pwa-btn" onclick="window.app && window.app.installPWA('Windows')">
+                  <span>⚡ Kompyuterga 1-klikda O'rnatish</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 2. macOS -->
+            <div class="os-card os-mac">
+              <div class="os-card-top">
+                <span class="os-icon">🍎</span>
+                <div>
+                  <h4>macOS (Apple Mac)</h4>
+                  <span>MacBook Air / Pro & iMac uchun</span>
+                </div>
+              </div>
+              <p class="os-desc">Apple macOS tizimida ishlovchi maxsus `.command` dastur ishga tushirgichi va Web-App.</p>
+              <div class="os-btn-group">
+                <a href="downloads/Tabiiy_Fanlar_6_macOS.command" download="Tabiiy_Fanlar_6_macOS.command" class="os-dl-btn mac-btn">
+                  <span>⬇️ macOS Dasturni Yuklash (.command)</span>
+                </a>
+                <button type="button" class="os-pwa-btn" onclick="window.app && window.app.installPWA('macOS')">
+                  <span>⚡ Mac Dock'ga O'rnatish</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. Linux -->
+            <div class="os-card os-linux">
+              <div class="os-card-top">
+                <span class="os-icon">🐧</span>
+                <div>
+                  <h4>Linux OS</h4>
+                  <span>Ubuntu • Debian • Mint • Fedora</span>
+                </div>
+              </div>
+              <p class="os-desc">Linux tizimlari va elektron doskalar uchun maxsus `.sh` dastur fayli.</p>
+              <div class="os-btn-group">
+                <a href="downloads/Tabiiy_Fanlar_6_Linux.sh" download="Tabiiy_Fanlar_6_Linux.sh" class="os-dl-btn linux-btn">
+                  <span>⬇️ Linux Dasturni Yuklash (.sh)</span>
+                </a>
+                <button type="button" class="os-pwa-btn" onclick="window.app && window.app.installPWA('Linux')">
+                  <span>⚡ Linux Ilova Sifatida O'rnatish</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 4. Mobile (Android & iOS) -->
+            <div class="os-card os-mobile">
+              <div class="os-card-top">
+                <span class="os-icon">📱</span>
+                <div>
+                  <h4>Telefon & Planshet</h4>
+                  <span>Android va iPhone (iOS) uchun</span>
+                </div>
+              </div>
+              <p class="os-desc">Telefon ekraniga mobil ilova (PWA) sifatida o'rnating yoki mobil faylni yuklab oling.</p>
+              <div class="os-btn-group">
+                <button type="button" class="os-dl-btn mob-btn" onclick="window.app && window.app.installPWA('Telefon')">
+                  <span>📲 Telefonga Ilovani O'rnatish (Android/iOS)</span>
+                </button>
+                <a href="downloads/Tabiiy_Fanlar_6_Mobil_Ilova.html" download="Tabiiy_Fanlar_6_Mobil_Ilova.html" class="os-pwa-btn" style="text-decoration:none; text-align:center;">
+                  <span>⬇️ Mobil Faylni Yuklab Olish (.html)</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Full Offline ZIP Archive Bar -->
+          <div class="offline-zip-banner">
+            <div class="offline-zip-info">
+              <span style="font-size:24px;">📦</span>
+              <div>
+                <b>To'liq Oflayn Arxiv Paket (Barcha 25 ta dars + 12 ta BSB/ChSB + Ovozlar)</b>
+                <p>Internetsiz ishlash uchun butun saytning tayyor `.zip` arxivini yuklab oling (Win / Mac / Linux / Android)</p>
+              </div>
+            </div>
+            <a href="6-sinf-tabiiy-fanlar-sayt.zip" download="6-sinf-tabiiy-fanlar-sayt.zip" class="offline-zip-btn">
+              <span>📥 To'liq Saytni Yuklab Olish (.ZIP)</span>
+            </a>
+          </div>
+        </section>
 
       </main>
 
@@ -318,17 +440,17 @@
       </div>
       <div class="modal-body" style="font-size:13.5px; line-height:1.6;">
         <ul style="padding-left:18px; display:grid; gap:6px;">
-          <li><b>Chap tomondagi mavzular:</b> Barcha 25 ta mavzu chap tomonda ixcham va <b>tagma-tag</b> qator bo'lib joylashgan.</li>
-          <li><b>Mavzuni to'liq ko'rish:</b> Istalgan mavzuning ustiga bossangiz, ekranda <b>faqat o'sha mavzuning o'zi</b> to'liq ochiladi.</li>
-          <li><b>Orqaga qaytish:</b> Tepada chiqadigan <b>⬅ Orqaga</b> tugmasini bossangiz, yana mavzular ro'yxatiga qaytadi.</li>
+          <li><b>1–25 Mavzular:</b> Chap tomonda barcha 25 ta dars ixcham va <b>tagma-tag</b> joylashgan.</li>
+          <li><b>BSB va ChSB bo'limlari:</b> Mavzulardan keyin alohida <b>📝 BSB (1–4 chorak ketma-ketlikda)</b> va <b>🏆 ChSB (1–4 chorak ketma-ketlikda)</b> joylashgan.</li>
+          <li><b>Yuklab olish:</b> Ro'yxatning eng oxirida (va sahifa pastida) saytni <b>Windows, macOS, Linux va Telefonga</b> yuklab olish bo'limi mavjud.</li>
         </ul>
       </div>
     </div>
   </div>
 
   <!-- SCRIPTS -->
-  <script src="topics-data.js?v=60"></script>
-  <script src="app.js?v=60"></script>
+  <script src="topics-data.js?v=70"></script>
+  <script src="app.js?v=70"></script>
 
 </body>
 </html>

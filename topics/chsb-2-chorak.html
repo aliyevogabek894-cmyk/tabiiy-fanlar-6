@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2-chorak ChSB: Harakat, kuch va issiqlik hodisalari (2-chorak mavzulari)</title>
+<style>
+  :root {
+    --accent: #f59e0b;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #475569;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    padding: 12px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .hero-banner {
+    background: linear-gradient(135deg, #d97706, #b45309);
+    color: #fff;
+    padding: 18px 20px;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    margin-bottom: 14px;
+  }
+  .hero-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .hero-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 12.5px;
+    font-weight: 700;
+  }
+  .hero-meta span {
+    background: rgba(0,0,0,0.22);
+    padding: 4px 10px;
+    border-radius: 8px;
+  }
+  .hero-banner h1 {
+    font-size: clamp(18px, 3.5vw, 24px);
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .action-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .mode-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .mode-btn {
+    border: 1px solid var(--border);
+    background: #f1f5f9;
+    color: var(--text);
+    padding: 8px 13px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .mode-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .dl-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .dl-btn {
+    text-decoration: none;
+    background: #0f172a;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 9px;
+    font-size: 12.5px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  .dl-btn.word { background: #2563eb; }
+  .dl-btn.print { background: #059669; }
+  .view-pane { display: none; }
+  .view-pane.active { display: block; }
+  .sec-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  }
+  .sec-header {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--accent);
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .q-card {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+  .q-title {
+    font-weight: 700;
+    font-size: 14.5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .q-num {
+    background: var(--accent);
+    color: #fff;
+    min-width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .q-pts {
+    margin-left: auto;
+    font-size: 11px;
+    background: #e2e8f0;
+    color: #334155;
+    padding: 2px 7px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+  .mcq-opts {
+    display: grid;
+    gap: 6px;
+  }
+  .mcq-opt {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 13.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.15s;
+  }
+  .mcq-opt:hover:not(:disabled) {
+    border-color: var(--accent);
+    background: #f0f9ff;
+  }
+  .opt-let {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: #f1f5f9;
+    font-weight: 800;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .mcq-opt.correct {
+    background: #dcfce7 !important;
+    border-color: #16a34a !important;
+    color: #14532d !important;
+    font-weight: 700;
+  }
+  .mcq-opt.wrong {
+    background: #fee2e2 !important;
+    border-color: #dc2626 !important;
+    color: #7f1d1d !important;
+  }
+  .q-feedback {
+    display: none;
+    margin-top: 8px;
+    padding: 8px 10px;
+    background: #eff6ff;
+    border-left: 3px solid #3b82f6;
+    border-radius: 6px;
+    font-size: 12.5px;
+  }
+  .q-feedback.show { display: block; }
+  .table-wrap { overflow-x: auto; margin: 8px 0; }
+  .doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  .doc-table th, .doc-table td {
+    border: 1px solid #cbd5e1;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  .doc-table th {
+    background: #f1f5f9;
+    font-weight: 800;
+  }
+  .match-select {
+    padding: 6px 10px;
+    border-radius: 7px;
+    border: 2px solid #94a3b8;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .match-select.correct { border-color: #16a34a; background: #dcfce7; }
+  .match-select.wrong { border-color: #dc2626; background: #fee2e2; }
+  .written-input {
+    width: 100%;
+    min-height: 65px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 9px;
+    font-family: inherit;
+    font-size: 13.5px;
+    margin-bottom: 8px;
+  }
+  .written-input.tall { min-height: 95px; }
+  .reveal-btn {
+    background: #e0e7ff;
+    color: #3730a3;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 7px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .sample-reveal {
+    display: none;
+    margin-top: 8px;
+    padding: 10px;
+    background: #ecfdf5;
+    border-left: 4px solid #10b981;
+    border-radius: 7px;
+    font-size: 13px;
+  }
+  .sample-reveal.show { display: block; }
+  .doc-sec-title {
+    font-size: 15.5px;
+    font-weight: 800;
+    color: var(--accent);
+    margin: 14px 0 6px;
+  }
+  .doc-p {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  .sample-ans-box {
+    background: #f0fdf4;
+    border-left: 4px solid #22c55e;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin: 6px 0;
+    font-size: 13.5px;
+  }
+  @media print {
+    .action-bar { display: none !important; }
+    .view-pane { display: block !important; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero-banner">
+    <div class="hero-top">
+      <span class="hero-badge">2-CHORAK • ChSB</span>
+      <div class="hero-meta">
+        <span>⏱️ 40 daqiqa</span>
+        <span>🎯 Maksimal: 30 ball</span>
+        <span id="live-score-pill">⭐ Ball: 0</span>
+      </div>
+    </div>
+    <h1>🏆 2-chorak ChSB: Harakat, kuch va issiqlik hodisalari (2-chorak mavzulari)</h1>
+  </div>
+
+  <div class="action-bar">
+    <div class="mode-tabs">
+      <button class="mode-btn active" onclick="switchPane('pane-interactive', this)">🎮 Interaktiv Yechish</button>
+      <button class="mode-btn" onclick="switchPane('pane-sheet', this)">📄 Savollar Blankasi</button>
+      <button class="mode-btn" onclick="switchPane('pane-teacher', this)">🔑 Javoblar & Mezonlar</button>
+    </div>
+    <div class="dl-actions">
+      <a class="dl-btn word" href="../docs/6-sinf_Tabiiy-fan_2-chorak_ChSB.docx" download="6-sinf_Tabiiy-fan_2-chorak_ChSB.docx">📥 Word (.docx) Yuklab Olish</a>
+      <button class="dl-btn print" onclick="window.print()">🖨️ Chop Etish</button>
+    </div>
+  </div>
+
+  <!-- PANE 1: INTERACTIVE EXAM -->
+  <div id="pane-interactive" class="view-pane active">
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>I. YOPIQ TEST SAVOLLARI</span>
+        <span style="font-size:12px; color:#64748b;">Har bir to‘g‘ri javob — 1 ball</span>
+      </div>
+      <div class="q-card" id="mcq-1"><div class="q-title"><span class="q-num">1</span> <span>90 km/soat tezlik necha m/s ga teng?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 1)"><span class="opt-let">A</span> <span>324 m/s</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 1)"><span class="opt-let">B</span> <span>15 m/s</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 1)"><span class="opt-let">C</span> <span>90 m/s</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 1)"><span class="opt-let">D</span> <span>25 m/s</span></button></div><div class="q-feedback" id="fb-mcq-1">To‘g‘ri javob: <b>D) 25 m/s</b></div></div><div class="q-card" id="mcq-2"><div class="q-title"><span class="q-num">2</span> <span>Bosib o‘tilgan yo‘l qaysi formula bilan topiladi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 2)"><span class="opt-let">A</span> <span>s = v + t</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 2)"><span class="opt-let">B</span> <span>s = v / t</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 2)"><span class="opt-let">C</span> <span>s = t / v</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 2)"><span class="opt-let">D</span> <span>s = v · t</span></button></div><div class="q-feedback" id="fb-mcq-2">To‘g‘ri javob: <b>D) s = v · t</b></div></div><div class="q-card" id="mcq-3"><div class="q-title"><span class="q-num">3</span> <span>Jismni Yerga tortuvchi kuch qanday nomlanadi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 3)"><span class="opt-let">A</span> <span>Ishqalanish kuchi</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 3)"><span class="opt-let">B</span> <span>Og‘irlik (tortishish) kuchi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 3)"><span class="opt-let">C</span> <span>Elastiklik kuchi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 3)"><span class="opt-let">D</span> <span>Magnit kuchi</span></button></div><div class="q-feedback" id="fb-mcq-3">To‘g‘ri javob: <b>B) Og‘irlik (tortishish) kuchi</b></div></div><div class="q-card" id="mcq-4"><div class="q-title"><span class="q-num">4</span> <span>Cho‘zilgan prujinada qaysi kuch paydo bo‘ladi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 4)"><span class="opt-let">A</span> <span>Suzish kuchi</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 4)"><span class="opt-let">B</span> <span>Elastiklik kuchi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 4)"><span class="opt-let">C</span> <span>Ishqalanish kuchi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 4)"><span class="opt-let">D</span> <span>Magnit kuchi</span></button></div><div class="q-feedback" id="fb-mcq-4">To‘g‘ri javob: <b>B) Elastiklik kuchi</b></div></div><div class="q-card" id="mcq-5"><div class="q-title"><span class="q-num">5</span> <span>Qaysi holda ishqalanish kuchi katta bo‘ladi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 5)"><span class="opt-let">A</span> <span>Sirtlar moylanganda</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 5)"><span class="opt-let">B</span> <span>Sirtlar g‘adir-budur bo‘lganda</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 5)"><span class="opt-let">C</span> <span>Sirtlar orasiga yog‘ surtilganda</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 5)"><span class="opt-let">D</span> <span>Sirtlar juda silliq bo‘lganda</span></button></div><div class="q-feedback" id="fb-mcq-5">To‘g‘ri javob: <b>B) Sirtlar g‘adir-budur bo‘lganda</b></div></div><div class="q-card" id="mcq-6"><div class="q-title"><span class="q-num">6</span> <span>Suyuqlik va gazlarda issiqlik asosan qanday uzatiladi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 6)"><span class="opt-let">A</span> <span>Issiqlik uzatilmaydi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 6)"><span class="opt-let">B</span> <span>Faqat issiqlik o‘tkazuvchanlik orqali</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 6)"><span class="opt-let">C</span> <span>Faqat ishqalanish orqali</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 6)"><span class="opt-let">D</span> <span>Konveksiya orqali</span></button></div><div class="q-feedback" id="fb-mcq-6">To‘g‘ri javob: <b>D) Konveksiya orqali</b></div></div><div class="q-card" id="mcq-7"><div class="q-title"><span class="q-num">7</span> <span>Issiqlik qaysi yo‘nalishda uzatiladi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 7)"><span class="opt-let">A</span> <span>Faqat pastga</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 7)"><span class="opt-let">B</span> <span>Sovuq jismdan qizigan jismga</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 7)"><span class="opt-let">C</span> <span>Qizigan jismdan sovuq jismga</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 7)"><span class="opt-let">D</span> <span>Har ikki yo‘nalishda teng</span></button></div><div class="q-feedback" id="fb-mcq-7">To‘g‘ri javob: <b>C) Qizigan jismdan sovuq jismga</b></div></div><div class="q-card" id="mcq-8"><div class="q-title"><span class="q-num">8</span> <span>Temir yo‘l relslari orasida kichik tirqish qoldirilishining sababi nima?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 8)"><span class="opt-let">A</span> <span>Qizdirilganda relslarning uzayishi (kengayishi)</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 8)"><span class="opt-let">B</span> <span>Sovuqda relslarning og‘irlashishi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 8)"><span class="opt-let">C</span> <span>Poyezd tezligini oshirish</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 8)"><span class="opt-let">D</span> <span>Relslarning tezroq zanglashi</span></button></div><div class="q-feedback" id="fb-mcq-8">To‘g‘ri javob: <b>A) Qizdirilganda relslarning uzayishi (kengayishi)</b></div></div><div class="q-card" id="mcq-9"><div class="q-title"><span class="q-num">9</span> <span>Jism 10 s da 50 m yo‘l bosdi. Uning tezligi qancha?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 9)"><span class="opt-let">A</span> <span>60 m/s</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 9)"><span class="opt-let">B</span> <span>0,2 m/s</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 9)"><span class="opt-let">C</span> <span>500 m/s</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 9)"><span class="opt-let">D</span> <span>5 m/s</span></button></div><div class="q-feedback" id="fb-mcq-9">To‘g‘ri javob: <b>D) 5 m/s</b></div></div><div class="q-card" id="mcq-10"><div class="q-title"><span class="q-num">10</span> <span>Kuchni o‘lchaydigan asbob qaysi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 10)"><span class="opt-let">A</span> <span>Barometr</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 10)"><span class="opt-let">B</span> <span>Menzurka</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 10)"><span class="opt-let">C</span> <span>Termometr</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 10)"><span class="opt-let">D</span> <span>Dinamometr</span></button></div><div class="q-feedback" id="fb-mcq-10">To‘g‘ri javob: <b>D) Dinamometr</b></div></div>
+    </div>
+
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>II. MOSLASHTIRING (4 ball)</span>
+        <span style="font-size:12px; color:#64748b;">Har bir to‘g‘ri juftlik — 1 ball</span>
+      </div>
+      <div class="table-wrap">
+        <table class="doc-table">
+          <tr><th>Chap ustun</th><th>O‘ng ustun</th><th style="width:110px;">Javobingiz</th></tr>
+          <tr><td>1. Tezlik</td><td>A) kg</td><td style='text-align:center;'><select class="match-select" data-q="1" data-ans="C" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td>2. Kuch</td><td>B) °C</td><td style='text-align:center;'><select class="match-select" data-q="2" data-ans="D" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td>3. Harorat</td><td>C) m/s</td><td style='text-align:center;'><select class="match-select" data-q="3" data-ans="B" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td>4. Yo‘l (masofa)</td><td>D) N (nyuton)</td><td style='text-align:center;'><select class="match-select" data-q="4" data-ans="E" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td></td><td>E) m</td><td style='text-align:center;'></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>III. QISQA JAVOBLI TOPSHIRIQLAR (6 ball)</span>
+      </div>
+      <div class="q-card"><div class="q-title"><span class="q-num">1</span> <span>Poyezd 3 soatda 240 km yo‘l yurdi. Uning o‘rtacha tezligi qancha?  (2 ball)</span></div><textarea class="written-input" placeholder="Javobingizni shu yerga yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javobni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> v = s / t = 240 / 3 = 80 km/soat</div></div><div class="q-card"><div class="q-title"><span class="q-num">2</span> <span>Konveksiya nima? Bitta misol keltiring.  (2 ball)</span></div><textarea class="written-input" placeholder="Javobingizni shu yerga yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javobni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> Suyuqlik yoki gaz qatlamlarining ko‘chishi orqali issiqlik uzatilishi. Masalan, isitgich yonidagi issiq havoning yuqoriga ko‘tarilishi.</div></div><div class="q-card"><div class="q-title"><span class="q-num">3</span> <span>Ishqalanish kuchini kamaytirishning ikkita usulini yozing.  (2 ball)</span></div><textarea class="written-input" placeholder="Javobingizni shu yerga yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javobni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> Masalan: sirtlarni silliqlash, moylash, sirpanish o‘rniga g‘ildirashdan foydalanish.</div></div>
+    </div>
+
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>IV. OCHIQ SAVOLLAR (10 ball)</span>
+      </div>
+      <div class="q-card"><div class="q-title"><span class="q-num">1</span> <span>Maktabga velosipedda 15 minutda 3 km yo‘l bosasiz. O‘rtacha tezligingizni km/soat va m/s da hisoblang.  (5 ball)</span></div><textarea class="written-input tall" placeholder="To‘liq va asoslangan javobingizni yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javob va mezonni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> t = 15 min = 0,25 soat. v = s / t = 3 / 0,25 = 12 km/soat. m/s da: 12 000 m / 3600 s ≈ 3,3 m/s.</div></div><div class="q-card"><div class="q-title"><span class="q-num">2</span> <span>Qishda tashqarida temir tutqichni ushlasak, yog‘och tutqichga qaraganda ancha sovuq tuyuladi, garchi ikkalasi ham bir xil haroratda bo‘lsa. Sababini issiqlik o‘tkazuvchanlik asosida tushuntiring.  (5 ball)</span></div><textarea class="written-input tall" placeholder="To‘liq va asoslangan javobingizni yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javob va mezonni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> Ikkala buyum ham bir xil haroratda. Metall issiqlikni yaxshi o‘tkazadi, shu sababli qo‘limizdan issiqlikni tez olib ketadi va sovuq tuyuladi. Yog‘och issiqlikni yomon o‘tkazadi, qo‘limizdan kam issiqlik oladi, shuning uchun u iliqroq tuyuladi.</div></div>
+    </div>
+  </div>
+
+  <!-- PANE 2: PRINTABLE EXAM SHEET -->
+  <div id="pane-sheet" class="view-pane">
+    <div class="sec-block">
+      <p class="doc-p">6-SINF  •  TABIIY FAN  •  2-CHORAK</p>
+<p class="doc-p">CHORAK YAKUNIY SUMMATIV BAHOLASH (ChSB)</p>
+<p class="doc-p">Mavzu: Harakat, kuch va issiqlik hodisalari (2-chorak mavzulari)</p>
+<p class="doc-p">O‘quvchining F.I.SH.: ________________________________________   Sinf: ________</p>
+<p class="doc-p">Sana: ______________    Ajratilgan vaqt: 40 daqiqa    To‘plagan ball: ______ / 30</p>
+<h3 class="doc-sec-title">I. YOPIQ TEST (10 ball)</h3>
+<p class="doc-p">Har bir savolda faqat bitta to‘g‘ri javob bor. To‘g‘ri javob harfini aylana ichiga oling. Har bir to‘g‘ri javob – 1 ball.</p>
+<p class="doc-p">1. 90 km/soat tezlik necha m/s ga teng?</p>
+<p class="doc-p">A)  324 m/s</p>
+<p class="doc-p">B)  15 m/s</p>
+<p class="doc-p">C)  90 m/s</p>
+<p class="doc-p">D)  25 m/s</p>
+<p class="doc-p">2. Bosib o‘tilgan yo‘l qaysi formula bilan topiladi?</p>
+<p class="doc-p">A)  s = v + t</p>
+<p class="doc-p">B)  s = v / t</p>
+<p class="doc-p">C)  s = t / v</p>
+<p class="doc-p">D)  s = v · t</p>
+<p class="doc-p">3. Jismni Yerga tortuvchi kuch qanday nomlanadi?</p>
+<p class="doc-p">A)  Ishqalanish kuchi</p>
+<p class="doc-p">B)  Og‘irlik (tortishish) kuchi</p>
+<p class="doc-p">C)  Elastiklik kuchi</p>
+<p class="doc-p">D)  Magnit kuchi</p>
+<p class="doc-p">4. Cho‘zilgan prujinada qaysi kuch paydo bo‘ladi?</p>
+<p class="doc-p">A)  Suzish kuchi</p>
+<p class="doc-p">B)  Elastiklik kuchi</p>
+<p class="doc-p">C)  Ishqalanish kuchi</p>
+<p class="doc-p">D)  Magnit kuchi</p>
+<p class="doc-p">5. Qaysi holda ishqalanish kuchi katta bo‘ladi?</p>
+<p class="doc-p">A)  Sirtlar moylanganda</p>
+<p class="doc-p">B)  Sirtlar g‘adir-budur bo‘lganda</p>
+<p class="doc-p">C)  Sirtlar orasiga yog‘ surtilganda</p>
+<p class="doc-p">D)  Sirtlar juda silliq bo‘lganda</p>
+<p class="doc-p">6. Suyuqlik va gazlarda issiqlik asosan qanday uzatiladi?</p>
+<p class="doc-p">A)  Issiqlik uzatilmaydi</p>
+<p class="doc-p">B)  Faqat issiqlik o‘tkazuvchanlik orqali</p>
+<p class="doc-p">C)  Faqat ishqalanish orqali</p>
+<p class="doc-p">D)  Konveksiya orqali</p>
+<p class="doc-p">7. Issiqlik qaysi yo‘nalishda uzatiladi?</p>
+<p class="doc-p">A)  Faqat pastga</p>
+<p class="doc-p">B)  Sovuq jismdan qizigan jismga</p>
+<p class="doc-p">C)  Qizigan jismdan sovuq jismga</p>
+<p class="doc-p">D)  Har ikki yo‘nalishda teng</p>
+<p class="doc-p">8. Temir yo‘l relslari orasida kichik tirqish qoldirilishining sababi nima?</p>
+<p class="doc-p">A)  Qizdirilganda relslarning uzayishi (kengayishi)</p>
+<p class="doc-p">B)  Sovuqda relslarning og‘irlashishi</p>
+<p class="doc-p">C)  Poyezd tezligini oshirish</p>
+<p class="doc-p">D)  Relslarning tezroq zanglashi</p>
+<p class="doc-p">9. Jism 10 s da 50 m yo‘l bosdi. Uning tezligi qancha?</p>
+<p class="doc-p">A)  60 m/s</p>
+<p class="doc-p">B)  0,2 m/s</p>
+<p class="doc-p">C)  500 m/s</p>
+<p class="doc-p">D)  5 m/s</p>
+<p class="doc-p">10. Kuchni o‘lchaydigan asbob qaysi?</p>
+<p class="doc-p">A)  Barometr</p>
+<p class="doc-p">B)  Menzurka</p>
+<p class="doc-p">C)  Termometr</p>
+<p class="doc-p">D)  Dinamometr</p>
+<h3 class="doc-sec-title">II. MOSLASHTIRING (4 ball)</h3>
+<p class="doc-p">Fizik kattalikni uning o‘lchov birligi bilan moslashtiring. Har bir to‘g‘ri juftlik – 1 ball. (O‘ng ustunda ortiqcha javob bor.)</p>
+<div class="table-wrap"><table class="doc-table"><tr><th>Chap ustun</th><th>O‘ng ustun</th></tr><tr><td>1. Tezlik</td><td>A) kg</td></tr><tr><td>2. Kuch</td><td>B) °C</td></tr><tr><td>3. Harorat</td><td>C) m/s</td></tr><tr><td>4. Yo‘l (masofa)</td><td>D) N (nyuton)</td></tr><tr><td></td><td>E) m</td></tr></table></div>
+<p class="doc-p">Javoblar:   1 – ____    2 – ____    3 – ____    4 – ____</p>
+<h3 class="doc-sec-title">III. QISQA JAVOB (6 ball)</h3>
+<p class="doc-p">Har bir savol – 2 ball.</p>
+<p class="doc-p">1. Poyezd 3 soatda 240 km yo‘l yurdi. Uning o‘rtacha tezligi qancha?  (2 ball)</p>
+<p class="doc-p">2. Konveksiya nima? Bitta misol keltiring.  (2 ball)</p>
+<p class="doc-p">3. Ishqalanish kuchini kamaytirishning ikkita usulini yozing.  (2 ball)</p>
+<h3 class="doc-sec-title">IV. OCHIQ SAVOL (10 ball)</h3>
+<p class="doc-p">Javobingizni to‘liq va asoslab yozing. Har bir savol – 5 ball.</p>
+<p class="doc-p">1. Maktabga velosipedda 15 minutda 3 km yo‘l bosasiz. O‘rtacha tezligingizni km/soat va m/s da hisoblang.  (5 ball)</p>
+<p class="doc-p">2. Qishda tashqarida temir tutqichni ushlasak, yog‘och tutqichga qaraganda ancha sovuq tuyuladi, garchi ikkalasi ham bir xil haroratda bo‘lsa. Sababini issiqlik o‘tkazuvchanlik asosida tushuntiring.  (5 ball)</p>
+    </div>
+  </div>
+
+  <!-- PANE 3: TEACHER RUBRIC & ANSWER KEY -->
+  <div id="pane-teacher" class="view-pane">
+    <div class="sec-block">
+      <h3 class="doc-sec-title">O‘QITUVCHI UCHUN: JAVOBLAR VA BAHOLASH MEZONLARI</h3>
+<p class="doc-p">6-sinf Tabiiy fan  •  2-chorak  •  ChSB  •  Maksimal ball: 30</p>
+<h3 class="doc-sec-title">1. Ballarning taqsimlanishi</h3>
+<div class="table-wrap"><table class="doc-table"><tr><th>Bo‘lim</th><th>Topshiriq soni</th><th>Har biri (ball)</th><th>Jami (ball)</th></tr><tr><td>I. Yopiq test</td><td>10</td><td>1</td><td>10</td></tr><tr><td>II. Moslashtirish</td><td>4 juftlik</td><td>1</td><td>4</td></tr><tr><td>III. Qisqa javob</td><td>3</td><td>2</td><td>6</td></tr><tr><td>IV. Ochiq savol</td><td>2</td><td>5</td><td>10</td></tr><tr><td>JAMI</td><td></td><td></td><td>30</td></tr></table></div>
+<h3 class="doc-sec-title">2. Yopiq test javoblari</h3>
+<div class="table-wrap"><table class="doc-table"><tr><th>№</th><th>Javob</th><th>To‘g‘ri javob matni</th></tr><tr><td>1</td><td>D</td><td>25 m/s</td></tr><tr><td>2</td><td>D</td><td>s = v · t</td></tr><tr><td>3</td><td>B</td><td>Og‘irlik (tortishish) kuchi</td></tr><tr><td>4</td><td>B</td><td>Elastiklik kuchi</td></tr><tr><td>5</td><td>B</td><td>Sirtlar g‘adir-budur bo‘lganda</td></tr><tr><td>6</td><td>D</td><td>Konveksiya orqali</td></tr><tr><td>7</td><td>C</td><td>Qizigan jismdan sovuq jismga</td></tr><tr><td>8</td><td>A</td><td>Qizdirilganda relslarning uzayishi (kengayishi)</td></tr><tr><td>9</td><td>D</td><td>5 m/s</td></tr><tr><td>10</td><td>D</td><td>Dinamometr</td></tr></table></div>
+<h3 class="doc-sec-title">3. Moslashtirish kaliti</h3>
+<p class="doc-p">1–C,   2–D,   3–B,   4–E</p>
+<p class="doc-p">Har bir to‘g‘ri juftlik – 1 ball.</p>
+<h3 class="doc-sec-title">4. Qisqa javob: namunaviy javoblar va mezonlar</h3>
+<p class="doc-p">1. Poyezd 3 soatda 240 km yo‘l yurdi. Uning o‘rtacha tezligi qancha?</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  v = s / t = 240 / 3 = 80 km/soat</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Formula v = s / t</td><td>1</td></tr><tr><td>Natija – 80 km/soat</td><td>1</td></tr></table></div>
+<p class="doc-p">2. Konveksiya nima? Bitta misol keltiring.</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  Suyuqlik yoki gaz qatlamlarining ko‘chishi orqali issiqlik uzatilishi. Masalan, isitgich yonidagi issiq havoning yuqoriga ko‘tarilishi.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>To‘g‘ri ta’rif</td><td>1</td></tr><tr><td>To‘g‘ri misol</td><td>1</td></tr></table></div>
+<p class="doc-p">3. Ishqalanish kuchini kamaytirishning ikkita usulini yozing.</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  Masalan: sirtlarni silliqlash, moylash, sirpanish o‘rniga g‘ildirashdan foydalanish.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Birinchi usul</td><td>1</td></tr><tr><td>Ikkinchi usul</td><td>1</td></tr></table></div>
+<h3 class="doc-sec-title">5. Ochiq savol: namunaviy javoblar va mezonlar</h3>
+<p class="doc-p">1. Maktabga velosipedda 15 minutda 3 km yo‘l bosasiz. O‘rtacha tezligingizni km/soat va m/s da hisoblang.</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  t = 15 min = 0,25 soat. v = s / t = 3 / 0,25 = 12 km/soat. m/s da: 12 000 m / 3600 s ≈ 3,3 m/s.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Vaqt soatga aylantirilgan (0,25 soat)</td><td>1</td></tr><tr><td>Formula v = s / t qo‘llangan</td><td>1</td></tr><tr><td>12 km/soat natijasi</td><td>1</td></tr><tr><td>m/s ga aylantirish amali (12 000 / 3600)</td><td>1</td></tr><tr><td>≈ 3,3 m/s natijasi</td><td>1</td></tr></table></div>
+<p class="doc-p">Izoh: o‘quvchi mazmunan to‘g‘ri, boshqacha ifodalangan yoki boshqa to‘g‘ri misol keltirgan javobga ham mezon bo‘yicha ball beriladi.</p>
+<p class="doc-p">2. Qishda tashqarida temir tutqichni ushlasak, yog‘och tutqichga qaraganda ancha sovuq tuyuladi, garchi ikkalasi ham bir xil haroratda bo‘lsa. Sababini issiqlik o‘tkazuvchanlik asosida tushuntiring.</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  Ikkala buyum ham bir xil haroratda. Metall issiqlikni yaxshi o‘tkazadi, shu sababli qo‘limizdan issiqlikni tez olib ketadi va sovuq tuyuladi. Yog‘och issiqlikni yomon o‘tkazadi, qo‘limizdan kam issiqlik oladi, shuning uchun u iliqroq tuyuladi.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Ikkala buyum bir xil haroratda ekanligi</td><td>1</td></tr><tr><td>Metall issiqlikni yaxshi o‘tkazishi va qo‘ldan issiqlikni tez olishi</td><td>2</td></tr><tr><td>Yog‘och yomon o‘tkazgich – kam issiqlik olishi</td><td>2</td></tr></table></div>
+<p class="doc-p">Izoh: o‘quvchi mazmunan to‘g‘ri, boshqacha ifodalangan yoki boshqa to‘g‘ri misol keltirgan javobga ham mezon bo‘yicha ball beriladi.</p>
+    </div>
+  </div>
+
+<script>
+  let currentScore = 0;
+  function updateScore(delta) {
+    currentScore += delta;
+    document.getElementById('live-score-pill').textContent = '⭐ Ball: ' + currentScore;
+  }
+
+  function selectMcq(btn, qnum) {
+    const card = document.getElementById('mcq-' + qnum);
+    const allBtns = card.querySelectorAll('.mcq-opt');
+    allBtns.forEach(b => b.disabled = true);
+    const isCorrect = btn.getAttribute('data-correct') === '1';
+    if (isCorrect) {
+      btn.classList.add('correct');
+      updateScore(1);
+    } else {
+      btn.classList.add('wrong');
+      allBtns.forEach(b => {
+        if (b.getAttribute('data-correct') === '1') b.classList.add('correct');
+      });
+    }
+    const fb = document.getElementById('fb-mcq-' + qnum);
+    if (fb) fb.classList.add('show');
+  }
+
+  function checkMatch(sel) {
+    const ans = sel.getAttribute('data-ans');
+    const val = sel.value;
+    if (!val) return;
+    sel.disabled = true;
+    if (val === ans) {
+      sel.classList.add('correct');
+      updateScore(1);
+    } else {
+      sel.classList.add('wrong');
+      sel.insertAdjacentHTML('afterend', '<div style="font-size:11.5px;color:#16a34a;font-weight:700;margin-top:3px;">To‘g‘ri: ' + ans + '</div>');
+    }
+  }
+
+  function switchPane(id, btn) {
+    document.querySelectorAll('.view-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>

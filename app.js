@@ -18,14 +18,53 @@ class TabiiyFanlarApp {
     this.audioRate = 1.0;
     this.audioCtx = null;
     this.iframeResizeObserver = null;
+    this.deferredPrompt = null;
 
     this.initElements();
     this.initCanvas();
     this.initEventListeners();
+    this.initPWA();
     this.renderSidebar();
     this.loadTopic(1);
     this.updateOverallProgress();
     this.initAudioContext();
+  }
+
+  initPWA() {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      this.deferredPrompt = e;
+    });
+  }
+
+  installPWA(osName = 'Qurilma') {
+    this.playBeep(560, 'sine', 0.08);
+    if (this.deferredPrompt) {
+      this.deferredPrompt.prompt();
+      this.deferredPrompt.userChoice.then(() => {
+        this.deferredPrompt = null;
+      });
+      return;
+    }
+    if (osName === 'Telefon') {
+      this.showToast("📱 Brauzer menyusidan (⋮ yoki Ulashish) 'Asosiy ekranga qo'shish' (Add to Home Screen / Установить приложение) tugmasini bosing!");
+    } else {
+      this.showToast(`💻 ${osName} uchun brauzer manzil qatoridagi 'O'rnatish' (📥) belgisini bosing yoki pastdagi dastur faylini yuklab oling!`);
+    }
+  }
+
+  scrollToDownloadHub() {
+    this.playBeep(520, 'sine', 0.06);
+    document.body.classList.add('topic-focused');
+    const hub = document.getElementById('download-hub-section');
+    if (hub) {
+      setTimeout(() => {
+        hub.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
   }
 
   initElements() {
@@ -47,6 +86,8 @@ class TabiiyFanlarApp {
     this.btnFullscreen = document.getElementById('btn-fullscreen');
     this.btnNewTab = document.getElementById('btn-newtab');
     this.btnReload = document.getElementById('btn-reload');
+    this.btnDownloadDocx = document.getElementById('btn-download-docx');
+    this.btnOpenDownload = document.getElementById('btn-open-download');
 
     // Back / Topics Navigation Buttons
     this.btnBackHeader = document.getElementById('btn-back-header');
@@ -201,16 +242,32 @@ class TabiiyFanlarApp {
   }
 
   // ==========================================================================
-  // RENDER COMPACT TAGMA-TAG TOPICS LIST (No boxy rectangles!)
+  // RENDER COMPACT TAGMA-TAG SIDEBAR:
+  // 1) 1-25 Mavzular -> 2) 8 ta BSB (ketma-ket) -> 3) 4 ta ChSB (ketma-ket) -> 4) Yuklab olish
   // ==========================================================================
   renderSidebar() {
     this.topicsList.innerHTML = '';
     const filtered = TOPICS_DATA.filter(t => {
-      const matchesCat = this.activeFilter === 'all' || t.cat.toLowerCase() === this.activeFilter.toLowerCase();
-      const matchesSearch = !this.searchQuery ||
-        t.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        `${t.num}-mavzu`.includes(this.searchQuery.toLowerCase()) ||
-        t.cat.toLowerCase().includes(this.searchQuery.toLowerCase());
+      const sType = t.sectionType || (t.id <= 25 ? 'lesson' : 'bsb');
+      let matchesCat = false;
+      if (this.activeFilter === 'all') {
+        matchesCat = true;
+      } else if (this.activeFilter === 'darslar') {
+        matchesCat = sType === 'lesson';
+      } else if (this.activeFilter === 'bsb') {
+        matchesCat = sType === 'bsb';
+      } else if (this.activeFilter === 'chsb') {
+        matchesCat = sType === 'chsb';
+      } else {
+        matchesCat = t.cat.toLowerCase() === this.activeFilter.toLowerCase();
+      }
+
+      const q = this.searchQuery.toLowerCase();
+      const matchesSearch = !q ||
+        t.title.toLowerCase().includes(q) ||
+        `${t.num}`.toLowerCase().includes(q) ||
+        `${t.num}-mavzu`.toLowerCase().includes(q) ||
+        t.cat.toLowerCase().includes(q);
       return matchesCat && matchesSearch;
     });
 
@@ -225,31 +282,69 @@ class TabiiyFanlarApp {
       return;
     }
 
-    filtered.forEach(topic => {
-      const isCompleted = this.completedTopics.includes(topic.id);
-      const isActive = topic.id === this.currentTopicId;
+    const lessons = filtered.filter(t => (t.sectionType || 'lesson') === 'lesson');
+    const bsbList = filtered.filter(t => t.sectionType === 'bsb');
+    const chsbList = filtered.filter(t => t.sectionType === 'chsb');
 
-      const item = document.createElement('div');
-      item.className = `topic-nav-item ${isActive ? 'active' : ''}`;
-      item.dataset.id = topic.id;
-      item.title = `${topic.num}-mavzu: ${topic.title} (${topic.cat})`;
-      item.innerHTML = `
-        <span class="t-num-pill">${topic.num}</span>
-        <span class="t-row-text">${topic.icon} ${topic.title}</span>
-        <span class="t-row-status ${isCompleted ? 'done' : ''}">${isCompleted ? '✓' : '›'}</span>
-      `;
+    const appendGroup = (headerTitle, headerClass, items, badgeClass) => {
+      if (items.length === 0) return;
+      const secHeader = document.createElement('div');
+      secHeader.className = `sidebar-sec-divider ${headerClass}`;
+      secHeader.innerHTML = `<span>${headerTitle}</span> <span>${items.length}</span>`;
+      this.topicsList.appendChild(secHeader);
 
-      // Clicking any topic opens ONLY that topic in 100% full-screen focus mode!
-      item.addEventListener('click', () => {
-        this.playBeep(440, 'sine', 0.05);
-        this.openTopicFullScreen(topic.id, true);
+      items.forEach(topic => {
+        const isCompleted = this.completedTopics.includes(topic.id);
+        const isActive = topic.id === this.currentTopicId;
+
+        const item = document.createElement('div');
+        item.className = `topic-nav-item ${isActive ? 'active' : ''}`;
+        item.dataset.id = topic.id;
+        item.title = `${topic.title} (${topic.cat})`;
+
+        const pillLabel = topic.shortCode || topic.num;
+        item.innerHTML = `
+          <span class="t-num-pill ${badgeClass}">${pillLabel}</span>
+          <span class="t-row-text">${topic.icon} ${topic.title}</span>
+          <span class="t-row-status ${isCompleted ? 'done' : ''}">${isCompleted ? '✓' : '›'}</span>
+        `;
+
+        item.addEventListener('click', () => {
+          this.playBeep(440, 'sine', 0.05);
+          this.openTopicFullScreen(topic.id, true);
+        });
+
+        this.topicsList.appendChild(item);
       });
+    };
 
-      this.topicsList.appendChild(item);
-    });
+    // 1. 25 ta Mavzular (Darslar)
+    appendGroup('📚 1–25 Mavzular', 'sec-lessons', lessons, '');
+
+    // 2. BSB lar (Alohida bo'lim, 1-chorakdan 4-chorakkacha ketma-ketlikda)
+    appendGroup('📝 BSB (1–4 Chorak)', 'sec-bsb', bsbList, 'pill-bsb');
+
+    // 3. ChSB lar (Alohida bo'lim, 1-chorakdan 4-chorakkacha ketma-ketlikda)
+    appendGroup('🏆 ChSB (1–4 Chorak)', 'sec-chsb', chsbList, 'pill-chsb');
+
+    // 4. Eng oxirida: Ilovani Yuklab Olish (Windows, macOS, Linux, Telefon)
+    const dlDivider = document.createElement('div');
+    dlDivider.className = 'sidebar-sec-divider sec-dl';
+    dlDivider.innerHTML = `<span>📲 Ilovani Yuklab Olish</span> <span>4 OS</span>`;
+    this.topicsList.appendChild(dlDivider);
+
+    const dlItem = document.createElement('div');
+    dlItem.className = 'topic-nav-item sidebar-dl-item';
+    dlItem.innerHTML = `
+      <span class="t-num-pill" style="background:#10b981;color:#fff;">📲</span>
+      <span class="t-row-text" style="color:#6ee7b7;font-weight:800;">Yuklab olish (Win • Mac • Linux • Tel)</span>
+      <span class="t-row-status" style="color:#6ee7b7;">⬇️</span>
+    `;
+    dlItem.addEventListener('click', () => this.scrollToDownloadHub());
+    this.topicsList.appendChild(dlItem);
   }
 
-  // Load a Topic
+  // Load a Topic / BSB / ChSB
   loadTopic(id) {
     const topic = TOPICS_DATA.find(t => t.id === id);
     if (!topic) return;
@@ -259,9 +354,20 @@ class TabiiyFanlarApp {
 
     this.frameLoader.classList.add('active');
 
-    this.topicBadge.textContent = `${topic.num}-MAVZU`;
+    const isAssessment = topic.sectionType === 'bsb' || topic.sectionType === 'chsb';
+    this.topicBadge.textContent = isAssessment ? `${topic.num}` : `${topic.num}-MAVZU`;
     this.topicTitle.textContent = `${topic.icon} ${topic.title}`;
     this.topicCategory.textContent = topic.cat;
+
+    if (this.btnDownloadDocx) {
+      if (topic.docxFile) {
+        this.btnDownloadDocx.href = topic.docxFile;
+        this.btnDownloadDocx.setAttribute('download', topic.docxFile.split('/').pop());
+        this.btnDownloadDocx.style.display = 'inline-flex';
+      } else {
+        this.btnDownloadDocx.style.display = 'none';
+      }
+    }
 
     this.btnPrev.disabled = (id === 1);
     this.btnNext.disabled = (id === TOPICS_DATA.length);
@@ -792,6 +898,10 @@ class TabiiyFanlarApp {
 
     if (this.btnMobileToggle) {
       this.btnMobileToggle.addEventListener('click', () => this.toggleTopicsSidebar());
+    }
+
+    if (this.btnOpenDownload) {
+      this.btnOpenDownload.addEventListener('click', () => this.scrollToDownloadHub());
     }
 
     window.addEventListener('popstate', () => {

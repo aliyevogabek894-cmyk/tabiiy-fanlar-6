@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1-chorak ChSB: Ekosistema, modda va uning xossalari, tadqiqot (1-chorak mavzulari)</title>
+<style>
+  :root {
+    --accent: #f59e0b;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #475569;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    padding: 12px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .hero-banner {
+    background: linear-gradient(135deg, #d97706, #b45309);
+    color: #fff;
+    padding: 18px 20px;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    margin-bottom: 14px;
+  }
+  .hero-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .hero-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 12.5px;
+    font-weight: 700;
+  }
+  .hero-meta span {
+    background: rgba(0,0,0,0.22);
+    padding: 4px 10px;
+    border-radius: 8px;
+  }
+  .hero-banner h1 {
+    font-size: clamp(18px, 3.5vw, 24px);
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .action-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .mode-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .mode-btn {
+    border: 1px solid var(--border);
+    background: #f1f5f9;
+    color: var(--text);
+    padding: 8px 13px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .mode-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .dl-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .dl-btn {
+    text-decoration: none;
+    background: #0f172a;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 9px;
+    font-size: 12.5px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  .dl-btn.word { background: #2563eb; }
+  .dl-btn.print { background: #059669; }
+  .view-pane { display: none; }
+  .view-pane.active { display: block; }
+  .sec-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  }
+  .sec-header {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--accent);
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .q-card {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+  .q-title {
+    font-weight: 700;
+    font-size: 14.5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .q-num {
+    background: var(--accent);
+    color: #fff;
+    min-width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .q-pts {
+    margin-left: auto;
+    font-size: 11px;
+    background: #e2e8f0;
+    color: #334155;
+    padding: 2px 7px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+  .mcq-opts {
+    display: grid;
+    gap: 6px;
+  }
+  .mcq-opt {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 13.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.15s;
+  }
+  .mcq-opt:hover:not(:disabled) {
+    border-color: var(--accent);
+    background: #f0f9ff;
+  }
+  .opt-let {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: #f1f5f9;
+    font-weight: 800;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .mcq-opt.correct {
+    background: #dcfce7 !important;
+    border-color: #16a34a !important;
+    color: #14532d !important;
+    font-weight: 700;
+  }
+  .mcq-opt.wrong {
+    background: #fee2e2 !important;
+    border-color: #dc2626 !important;
+    color: #7f1d1d !important;
+  }
+  .q-feedback {
+    display: none;
+    margin-top: 8px;
+    padding: 8px 10px;
+    background: #eff6ff;
+    border-left: 3px solid #3b82f6;
+    border-radius: 6px;
+    font-size: 12.5px;
+  }
+  .q-feedback.show { display: block; }
+  .table-wrap { overflow-x: auto; margin: 8px 0; }
+  .doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  .doc-table th, .doc-table td {
+    border: 1px solid #cbd5e1;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  .doc-table th {
+    background: #f1f5f9;
+    font-weight: 800;
+  }
+  .match-select {
+    padding: 6px 10px;
+    border-radius: 7px;
+    border: 2px solid #94a3b8;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .match-select.correct { border-color: #16a34a; background: #dcfce7; }
+  .match-select.wrong { border-color: #dc2626; background: #fee2e2; }
+  .written-input {
+    width: 100%;
+    min-height: 65px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 9px;
+    font-family: inherit;
+    font-size: 13.5px;
+    margin-bottom: 8px;
+  }
+  .written-input.tall { min-height: 95px; }
+  .reveal-btn {
+    background: #e0e7ff;
+    color: #3730a3;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 7px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .sample-reveal {
+    display: none;
+    margin-top: 8px;
+    padding: 10px;
+    background: #ecfdf5;
+    border-left: 4px solid #10b981;
+    border-radius: 7px;
+    font-size: 13px;
+  }
+  .sample-reveal.show { display: block; }
+  .doc-sec-title {
+    font-size: 15.5px;
+    font-weight: 800;
+    color: var(--accent);
+    margin: 14px 0 6px;
+  }
+  .doc-p {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  .sample-ans-box {
+    background: #f0fdf4;
+    border-left: 4px solid #22c55e;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin: 6px 0;
+    font-size: 13.5px;
+  }
+  @media print {
+    .action-bar { display: none !important; }
+    .view-pane { display: block !important; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero-banner">
+    <div class="hero-top">
+      <span class="hero-badge">1-CHORAK • ChSB</span>
+      <div class="hero-meta">
+        <span>⏱️ 40 daqiqa</span>
+        <span>🎯 Maksimal: 30 ball</span>
+        <span id="live-score-pill">⭐ Ball: 0</span>
+      </div>
+    </div>
+    <h1>🏆 1-chorak ChSB: Ekosistema, modda va uning xossalari, tadqiqot (1-chorak mavzulari)</h1>
+  </div>
+
+  <div class="action-bar">
+    <div class="mode-tabs">
+      <button class="mode-btn active" onclick="switchPane('pane-interactive', this)">🎮 Interaktiv Yechish</button>
+      <button class="mode-btn" onclick="switchPane('pane-sheet', this)">📄 Savollar Blankasi</button>
+      <button class="mode-btn" onclick="switchPane('pane-teacher', this)">🔑 Javoblar & Mezonlar</button>
+    </div>
+    <div class="dl-actions">
+      <a class="dl-btn word" href="../docs/6-sinf_Tabiiy-fan_1-chorak_ChSB.docx" download="6-sinf_Tabiiy-fan_1-chorak_ChSB.docx">📥 Word (.docx) Yuklab Olish</a>
+      <button class="dl-btn print" onclick="window.print()">🖨️ Chop Etish</button>
+    </div>
+  </div>
+
+  <!-- PANE 1: INTERACTIVE EXAM -->
+  <div id="pane-interactive" class="view-pane active">
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>I. YOPIQ TEST SAVOLLARI</span>
+        <span style="font-size:12px; color:#64748b;">Har bir to‘g‘ri javob — 1 ball</span>
+      </div>
+      <div class="q-card" id="mcq-1"><div class="q-title"><span class="q-num">1</span> <span>Ekosistemaning tirik qismiga nimalar kiradi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 1)"><span class="opt-let">A</span> <span>Faqat yirtqich hayvonlar</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 1)"><span class="opt-let">B</span> <span>Harorat va namlik</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 1)"><span class="opt-let">C</span> <span>Quyosh nuri, havo va suv</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 1)"><span class="opt-let">D</span> <span>O‘simliklar, hayvonlar, qo‘ziqorinlar va mikroorganizmlar</span></button></div><div class="q-feedback" id="fb-mcq-1">To‘g‘ri javob: <b>D) O‘simliklar, hayvonlar, qo‘ziqorinlar va mikroorganizmlar</b></div></div><div class="q-card" id="mcq-2"><div class="q-title"><span class="q-num">2</span> <span>Qaysi organizm geterotrof usulda oziqlanadi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 2)"><span class="opt-let">A</span> <span>Olma daraxti</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 2)"><span class="opt-let">B</span> <span>Quyon</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 2)"><span class="opt-let">C</span> <span>Chinor</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 2)"><span class="opt-let">D</span> <span>Lola</span></button></div><div class="q-feedback" id="fb-mcq-2">To‘g‘ri javob: <b>B) Quyon</b></div></div><div class="q-card" id="mcq-3"><div class="q-title"><span class="q-num">3</span> <span>Massasi 300 g, hajmi 100 sm³ bo‘lgan jismning zichligi qancha?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 3)"><span class="opt-let">A</span> <span>200 g/sm³</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 3)"><span class="opt-let">B</span> <span>0,33 g/sm³</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 3)"><span class="opt-let">C</span> <span>30 g/sm³</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 3)"><span class="opt-let">D</span> <span>3 g/sm³</span></button></div><div class="q-feedback" id="fb-mcq-3">To‘g‘ri javob: <b>D) 3 g/sm³</b></div></div><div class="q-card" id="mcq-4"><div class="q-title"><span class="q-num">4</span> <span>Qaysi holatdagi moddaning molekulalari tartib bilan joylashgan?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 4)"><span class="opt-let">A</span> <span>Gaz holatdagi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 4)"><span class="opt-let">B</span> <span>Suyuq holatdagi</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 4)"><span class="opt-let">C</span> <span>Qattiq holatdagi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 4)"><span class="opt-let">D</span> <span>Hech qaysi holatda</span></button></div><div class="q-feedback" id="fb-mcq-4">To‘g‘ri javob: <b>C) Qattiq holatdagi</b></div></div><div class="q-card" id="mcq-5"><div class="q-title"><span class="q-num">5</span> <span>Gazlarning qaysi xususiyati to‘g‘ri?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 5)"><span class="opt-let">A</span> <span>Doimiy shaklga ega</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 5)"><span class="opt-let">B</span> <span>Siqiladi va o‘zi joylashgan idish shaklini oladi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 5)"><span class="opt-let">C</span> <span>Molekulalari tartib bilan joylashgan</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 5)"><span class="opt-let">D</span> <span>Siqib bo‘lmaydi</span></button></div><div class="q-feedback" id="fb-mcq-5">To‘g‘ri javob: <b>B) Siqiladi va o‘zi joylashgan idish shaklini oladi</b></div></div><div class="q-card" id="mcq-6"><div class="q-title"><span class="q-num">6</span> <span>Kondensatsiyaga qaysi misol to‘g‘ri keladi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 6)"><span class="opt-let">A</span> <span>Suvning qaynashi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 6)"><span class="opt-let">B</span> <span>Muzning erishi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 6)"><span class="opt-let">C</span> <span>Ho‘l kiyimning qurishi</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 6)"><span class="opt-let">D</span> <span>Sovuq stakan sirtida suv tomchilari hosil bo‘lishi</span></button></div><div class="q-feedback" id="fb-mcq-6">To‘g‘ri javob: <b>D) Sovuq stakan sirtida suv tomchilari hosil bo‘lishi</b></div></div><div class="q-card" id="mcq-7"><div class="q-title"><span class="q-num">7</span> <span>“O‘simlik → quyon → tulki” zanjirida tulki qaysi guruhga kiradi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 7)"><span class="opt-let">A</span> <span>Parchalovchi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 7)"><span class="opt-let">B</span> <span>Ishlab chiqaruvchi</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 7)"><span class="opt-let">C</span> <span>Iste’molchi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 7)"><span class="opt-let">D</span> <span>Jonsiz tabiat</span></button></div><div class="q-feedback" id="fb-mcq-7">To‘g‘ri javob: <b>C) Iste’molchi</b></div></div><div class="q-card" id="mcq-8"><div class="q-title"><span class="q-num">8</span> <span>Tuz va suv aralashmasidan tuzni ajratib olish uchun qaysi usul mos?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 8)"><span class="opt-let">A</span> <span>Magnit yordamida ajratish</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 8)"><span class="opt-let">B</span> <span>Qo‘lda terib olish</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 8)"><span class="opt-let">C</span> <span>Qog‘oz filtr orqali filtrlash</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 8)"><span class="opt-let">D</span> <span>Suvni bug‘latish</span></button></div><div class="q-feedback" id="fb-mcq-8">To‘g‘ri javob: <b>D) Suvni bug‘latish</b></div></div><div class="q-card" id="mcq-9"><div class="q-title"><span class="q-num">9</span> <span>Tadqiqotning to‘g‘ri ketma-ketligini belgilang.</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 9)"><span class="opt-let">A</span> <span>Tajriba → savol → xulosa → faraz</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 9)"><span class="opt-let">B</span> <span>Xulosa → tajriba → faraz → savol</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 9)"><span class="opt-let">C</span> <span>Faraz → xulosa → savol → tajriba</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 9)"><span class="opt-let">D</span> <span>Savol qo‘yish → faraz → tajriba → xulosa</span></button></div><div class="q-feedback" id="fb-mcq-9">To‘g‘ri javob: <b>D) Savol qo‘yish → faraz → tajriba → xulosa</b></div></div><div class="q-card" id="mcq-10"><div class="q-title"><span class="q-num">10</span> <span>Muz erib suvga aylanganda nima o‘zgaradi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 10)"><span class="opt-let">A</span> <span>Modda massasi yo‘qoladi</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 10)"><span class="opt-let">B</span> <span>Moddaning agregat holati o‘zgaradi, tarkibi o‘zgarmaydi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 10)"><span class="opt-let">C</span> <span>Yangi modda hosil bo‘ladi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 10)"><span class="opt-let">D</span> <span>Molekulalar yo‘qolib ketadi</span></button></div><div class="q-feedback" id="fb-mcq-10">To‘g‘ri javob: <b>B) Moddaning agregat holati o‘zgaradi, tarkibi o‘zgarmaydi</b></div></div>
+    </div>
+
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>II. MOSLASHTIRING (4 ball)</span>
+        <span style="font-size:12px; color:#64748b;">Har bir to‘g‘ri juftlik — 1 ball</span>
+      </div>
+      <div class="table-wrap">
+        <table class="doc-table">
+          <tr><th>Chap ustun</th><th>O‘ng ustun</th><th style="width:110px;">Javobingiz</th></tr>
+          <tr><td>1. Tarozi</td><td>A) Suyuqlik hajmi</td><td style='text-align:center;'><select class="match-select" data-q="1" data-ans="B" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td>2. Termometr</td><td>B) Massa</td><td style='text-align:center;'><select class="match-select" data-q="2" data-ans="D" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td>3. Menzurka</td><td>C) Uzunlik</td><td style='text-align:center;'><select class="match-select" data-q="3" data-ans="A" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td>4. Chizg‘ich</td><td>D) Harorat</td><td style='text-align:center;'><select class="match-select" data-q="4" data-ans="C" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td></td><td>E) Atmosfera bosimi</td><td style='text-align:center;'></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>III. QISQA JAVOBLI TOPSHIRIQLAR (6 ball)</span>
+      </div>
+      <div class="q-card"><div class="q-title"><span class="q-num">1</span> <span>Qattiq va gazsimon moddalarda molekulalar qanday joylashganini yozing.  (2 ball)</span></div><textarea class="written-input" placeholder="Javobingizni shu yerga yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javobni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> Qattiq moddalarda molekulalar tartib bilan, bir-biriga yaqin joylashgan. Gazlarda molekulalar tartibsiz, bir-biridan uzoq joylashgan va tez harakatlanadi.</div></div><div class="q-card"><div class="q-title"><span class="q-num">2</span> <span>Hajmi 20 sm³ bo‘lgan jismning zichligi 8 g/sm³. Uning massasi qancha?  (2 ball)</span></div><textarea class="written-input" placeholder="Javobingizni shu yerga yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javobni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> m = ρ · V = 8 · 20 = 160 g</div></div><div class="q-card"><div class="q-title"><span class="q-num">3</span> <span>Parchalovchilar (masalan, bakteriyalar, qo‘ziqorinlar) ekosistemada qanday ahamiyatga ega?  (2 ball)</span></div><textarea class="written-input" placeholder="Javobingizni shu yerga yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javobni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> O‘lik o‘simlik va hayvon qoldiqlarini parchalab, mineral moddalarni tuproqqa qaytaradi; o‘simliklar bu moddalardan qayta foydalanadi.</div></div>
+    </div>
+
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>IV. OCHIQ SAVOLLAR (10 ball)</span>
+      </div>
+      <div class="q-card"><div class="q-title"><span class="q-num">1</span> <span>Shisha idishga issiq suv quyib, usti sovuq qopqoq bilan yopildi. Birozdan keyin qopqoqning ichki tomonida suv tomchilari paydo bo‘ldi. Bu hodisani tushuntiring va tabiatdagi qaysi jarayonga o‘xshashligini yozing.  (5 ball)</span></div><textarea class="written-input tall" placeholder="To‘liq va asoslangan javobingizni yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javob va mezonni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> Issiq suv bug‘lanadi (suyuqlik bug‘ga aylanadi). Suv bug‘i sovuq qopqoqqa tegib sovib, kondensatsiyalanadi, ya’ni tomchilarga aylanadi. Tabiatda ham shunday: suv bug‘lanib, yuqorida sovib bulut hosil qiladi, so‘ng yog‘in bo‘lib tushadi – bu suvning tabiatda aylanishi.</div></div><div class="q-card"><div class="q-title"><span class="q-num">2</span> <span>O‘zingiz yashaydigan hudud (bog‘ yoki maktab hovlisi) ekosistemasidan 3 ta tirik va 3 ta jonsiz tabiat qismini yozing hamda ularning o‘zaro bog‘liqligiga bitta misol keltiring.  (5 ball)</span></div><textarea class="written-input tall" placeholder="To‘liq va asoslangan javobingizni yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javob va mezonni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> Tirik: olma daraxti, chumchuq, o‘t. Jonsiz: Quyosh nuri, tuproq, suv. Bog‘liqlik: o‘simlik Quyosh nuri va suvdan foydalanib oziq hosil qiladi, chumchuq esa o‘simlik urug‘i bilan oziqlanadi.</div></div>
+    </div>
+  </div>
+
+  <!-- PANE 2: PRINTABLE EXAM SHEET -->
+  <div id="pane-sheet" class="view-pane">
+    <div class="sec-block">
+      <p class="doc-p">6-SINF  •  TABIIY FAN  •  1-CHORAK</p>
+<p class="doc-p">CHORAK YAKUNIY SUMMATIV BAHOLASH (ChSB)</p>
+<p class="doc-p">Mavzu: Ekosistema, modda va uning xossalari, tadqiqot (1-chorak mavzulari)</p>
+<p class="doc-p">O‘quvchining F.I.SH.: ________________________________________   Sinf: ________</p>
+<p class="doc-p">Sana: ______________    Ajratilgan vaqt: 40 daqiqa    To‘plagan ball: ______ / 30</p>
+<h3 class="doc-sec-title">I. YOPIQ TEST (10 ball)</h3>
+<p class="doc-p">Har bir savolda faqat bitta to‘g‘ri javob bor. To‘g‘ri javob harfini aylana ichiga oling. Har bir to‘g‘ri javob – 1 ball.</p>
+<p class="doc-p">1. Ekosistemaning tirik qismiga nimalar kiradi?</p>
+<p class="doc-p">A)  Faqat yirtqich hayvonlar</p>
+<p class="doc-p">B)  Harorat va namlik</p>
+<p class="doc-p">C)  Quyosh nuri, havo va suv</p>
+<p class="doc-p">D)  O‘simliklar, hayvonlar, qo‘ziqorinlar va mikroorganizmlar</p>
+<p class="doc-p">2. Qaysi organizm geterotrof usulda oziqlanadi?</p>
+<p class="doc-p">A)  Olma daraxti</p>
+<p class="doc-p">B)  Quyon</p>
+<p class="doc-p">C)  Chinor</p>
+<p class="doc-p">D)  Lola</p>
+<p class="doc-p">3. Massasi 300 g, hajmi 100 sm³ bo‘lgan jismning zichligi qancha?</p>
+<p class="doc-p">A)  200 g/sm³</p>
+<p class="doc-p">B)  0,33 g/sm³</p>
+<p class="doc-p">C)  30 g/sm³</p>
+<p class="doc-p">D)  3 g/sm³</p>
+<p class="doc-p">4. Qaysi holatdagi moddaning molekulalari tartib bilan joylashgan?</p>
+<p class="doc-p">A)  Gaz holatdagi</p>
+<p class="doc-p">B)  Suyuq holatdagi</p>
+<p class="doc-p">C)  Qattiq holatdagi</p>
+<p class="doc-p">D)  Hech qaysi holatda</p>
+<p class="doc-p">5. Gazlarning qaysi xususiyati to‘g‘ri?</p>
+<p class="doc-p">A)  Doimiy shaklga ega</p>
+<p class="doc-p">B)  Siqiladi va o‘zi joylashgan idish shaklini oladi</p>
+<p class="doc-p">C)  Molekulalari tartib bilan joylashgan</p>
+<p class="doc-p">D)  Siqib bo‘lmaydi</p>
+<p class="doc-p">6. Kondensatsiyaga qaysi misol to‘g‘ri keladi?</p>
+<p class="doc-p">A)  Suvning qaynashi</p>
+<p class="doc-p">B)  Muzning erishi</p>
+<p class="doc-p">C)  Ho‘l kiyimning qurishi</p>
+<p class="doc-p">D)  Sovuq stakan sirtida suv tomchilari hosil bo‘lishi</p>
+<p class="doc-p">7. “O‘simlik → quyon → tulki” zanjirida tulki qaysi guruhga kiradi?</p>
+<p class="doc-p">A)  Parchalovchi</p>
+<p class="doc-p">B)  Ishlab chiqaruvchi</p>
+<p class="doc-p">C)  Iste’molchi</p>
+<p class="doc-p">D)  Jonsiz tabiat</p>
+<p class="doc-p">8. Tuz va suv aralashmasidan tuzni ajratib olish uchun qaysi usul mos?</p>
+<p class="doc-p">A)  Magnit yordamida ajratish</p>
+<p class="doc-p">B)  Qo‘lda terib olish</p>
+<p class="doc-p">C)  Qog‘oz filtr orqali filtrlash</p>
+<p class="doc-p">D)  Suvni bug‘latish</p>
+<p class="doc-p">9. Tadqiqotning to‘g‘ri ketma-ketligini belgilang.</p>
+<p class="doc-p">A)  Tajriba → savol → xulosa → faraz</p>
+<p class="doc-p">B)  Xulosa → tajriba → faraz → savol</p>
+<p class="doc-p">C)  Faraz → xulosa → savol → tajriba</p>
+<p class="doc-p">D)  Savol qo‘yish → faraz → tajriba → xulosa</p>
+<p class="doc-p">10. Muz erib suvga aylanganda nima o‘zgaradi?</p>
+<p class="doc-p">A)  Modda massasi yo‘qoladi</p>
+<p class="doc-p">B)  Moddaning agregat holati o‘zgaradi, tarkibi o‘zgarmaydi</p>
+<p class="doc-p">C)  Yangi modda hosil bo‘ladi</p>
+<p class="doc-p">D)  Molekulalar yo‘qolib ketadi</p>
+<h3 class="doc-sec-title">II. MOSLASHTIRING (4 ball)</h3>
+<p class="doc-p">Asbobni u o‘lchaydigan kattalik bilan moslashtiring. Har bir to‘g‘ri juftlik – 1 ball. (O‘ng ustunda ortiqcha javob bor.)</p>
+<div class="table-wrap"><table class="doc-table"><tr><th>Chap ustun</th><th>O‘ng ustun</th></tr><tr><td>1. Tarozi</td><td>A) Suyuqlik hajmi</td></tr><tr><td>2. Termometr</td><td>B) Massa</td></tr><tr><td>3. Menzurka</td><td>C) Uzunlik</td></tr><tr><td>4. Chizg‘ich</td><td>D) Harorat</td></tr><tr><td></td><td>E) Atmosfera bosimi</td></tr></table></div>
+<p class="doc-p">Javoblar:   1 – ____    2 – ____    3 – ____    4 – ____</p>
+<h3 class="doc-sec-title">III. QISQA JAVOB (6 ball)</h3>
+<p class="doc-p">Har bir savol – 2 ball.</p>
+<p class="doc-p">1. Qattiq va gazsimon moddalarda molekulalar qanday joylashganini yozing.  (2 ball)</p>
+<p class="doc-p">2. Hajmi 20 sm³ bo‘lgan jismning zichligi 8 g/sm³. Uning massasi qancha?  (2 ball)</p>
+<p class="doc-p">3. Parchalovchilar (masalan, bakteriyalar, qo‘ziqorinlar) ekosistemada qanday ahamiyatga ega?  (2 ball)</p>
+<h3 class="doc-sec-title">IV. OCHIQ SAVOL (10 ball)</h3>
+<p class="doc-p">Javobingizni to‘liq va asoslab yozing. Har bir savol – 5 ball.</p>
+<p class="doc-p">1. Shisha idishga issiq suv quyib, usti sovuq qopqoq bilan yopildi. Birozdan keyin qopqoqning ichki tomonida suv tomchilari paydo bo‘ldi. Bu hodisani tushuntiring va tabiatdagi qaysi jarayonga o‘xshashligini yozing.  (5 ball)</p>
+<p class="doc-p">2. O‘zingiz yashaydigan hudud (bog‘ yoki maktab hovlisi) ekosistemasidan 3 ta tirik va 3 ta jonsiz tabiat qismini yozing hamda ularning o‘zaro bog‘liqligiga bitta misol keltiring.  (5 ball)</p>
+    </div>
+  </div>
+
+  <!-- PANE 3: TEACHER RUBRIC & ANSWER KEY -->
+  <div id="pane-teacher" class="view-pane">
+    <div class="sec-block">
+      <h3 class="doc-sec-title">O‘QITUVCHI UCHUN: JAVOBLAR VA BAHOLASH MEZONLARI</h3>
+<p class="doc-p">6-sinf Tabiiy fan  •  1-chorak  •  ChSB  •  Maksimal ball: 30</p>
+<h3 class="doc-sec-title">1. Ballarning taqsimlanishi</h3>
+<div class="table-wrap"><table class="doc-table"><tr><th>Bo‘lim</th><th>Topshiriq soni</th><th>Har biri (ball)</th><th>Jami (ball)</th></tr><tr><td>I. Yopiq test</td><td>10</td><td>1</td><td>10</td></tr><tr><td>II. Moslashtirish</td><td>4 juftlik</td><td>1</td><td>4</td></tr><tr><td>III. Qisqa javob</td><td>3</td><td>2</td><td>6</td></tr><tr><td>IV. Ochiq savol</td><td>2</td><td>5</td><td>10</td></tr><tr><td>JAMI</td><td></td><td></td><td>30</td></tr></table></div>
+<h3 class="doc-sec-title">2. Yopiq test javoblari</h3>
+<div class="table-wrap"><table class="doc-table"><tr><th>№</th><th>Javob</th><th>To‘g‘ri javob matni</th></tr><tr><td>1</td><td>D</td><td>O‘simliklar, hayvonlar, qo‘ziqorinlar va mikroorganizmlar</td></tr><tr><td>2</td><td>B</td><td>Quyon</td></tr><tr><td>3</td><td>D</td><td>3 g/sm³</td></tr><tr><td>4</td><td>C</td><td>Qattiq holatdagi</td></tr><tr><td>5</td><td>B</td><td>Siqiladi va o‘zi joylashgan idish shaklini oladi</td></tr><tr><td>6</td><td>D</td><td>Sovuq stakan sirtida suv tomchilari hosil bo‘lishi</td></tr><tr><td>7</td><td>C</td><td>Iste’molchi</td></tr><tr><td>8</td><td>D</td><td>Suvni bug‘latish</td></tr><tr><td>9</td><td>D</td><td>Savol qo‘yish → faraz → tajriba → xulosa</td></tr><tr><td>10</td><td>B</td><td>Moddaning agregat holati o‘zgaradi, tarkibi o‘zgarmaydi</td></tr></table></div>
+<h3 class="doc-sec-title">3. Moslashtirish kaliti</h3>
+<p class="doc-p">1–B,   2–D,   3–A,   4–C</p>
+<p class="doc-p">Har bir to‘g‘ri juftlik – 1 ball.</p>
+<h3 class="doc-sec-title">4. Qisqa javob: namunaviy javoblar va mezonlar</h3>
+<p class="doc-p">1. Qattiq va gazsimon moddalarda molekulalar qanday joylashganini yozing.</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  Qattiq moddalarda molekulalar tartib bilan, bir-biriga yaqin joylashgan. Gazlarda molekulalar tartibsiz, bir-biridan uzoq joylashgan va tez harakatlanadi.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Qattiq moddalar</td><td>1</td></tr><tr><td>Gazlar</td><td>1</td></tr></table></div>
+<p class="doc-p">2. Hajmi 20 sm³ bo‘lgan jismning zichligi 8 g/sm³. Uning massasi qancha?</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  m = ρ · V = 8 · 20 = 160 g</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Formula m = ρ · V</td><td>1</td></tr><tr><td>Natija va birlik (160 g)</td><td>1</td></tr></table></div>
+<p class="doc-p">3. Parchalovchilar (masalan, bakteriyalar, qo‘ziqorinlar) ekosistemada qanday ahamiyatga ega?</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  O‘lik o‘simlik va hayvon qoldiqlarini parchalab, mineral moddalarni tuproqqa qaytaradi; o‘simliklar bu moddalardan qayta foydalanadi.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>O‘lik qoldiqlarni parchalashi</td><td>1</td></tr><tr><td>Moddalarning tabiatga qaytishi (tuproq unumdorligi)</td><td>1</td></tr></table></div>
+<h3 class="doc-sec-title">5. Ochiq savol: namunaviy javoblar va mezonlar</h3>
+<p class="doc-p">1. Shisha idishga issiq suv quyib, usti sovuq qopqoq bilan yopildi. Birozdan keyin qopqoqning ichki tomonida suv tomchilari paydo bo‘ldi. Bu hodisani tushuntiring va tabiatdagi qaysi jarayonga o‘xshashligini yozing.</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  Issiq suv bug‘lanadi (suyuqlik bug‘ga aylanadi). Suv bug‘i sovuq qopqoqqa tegib sovib, kondensatsiyalanadi, ya’ni tomchilarga aylanadi. Tabiatda ham shunday: suv bug‘lanib, yuqorida sovib bulut hosil qiladi, so‘ng yog‘in bo‘lib tushadi – bu suvning tabiatda aylanishi.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Bug‘lanish jarayoni tushuntirilgan</td><td>2</td></tr><tr><td>Kondensatsiya jarayoni tushuntirilgan</td><td>2</td></tr><tr><td>Suvning tabiatda aylanishi bilan bog‘langan</td><td>1</td></tr></table></div>
+<p class="doc-p">Izoh: o‘quvchi mazmunan to‘g‘ri, boshqacha ifodalangan yoki boshqa to‘g‘ri misol keltirgan javobga ham mezon bo‘yicha ball beriladi.</p>
+<p class="doc-p">2. O‘zingiz yashaydigan hudud (bog‘ yoki maktab hovlisi) ekosistemasidan 3 ta tirik va 3 ta jonsiz tabiat qismini yozing hamda ularning o‘zaro bog‘liqligiga bitta misol keltiring.</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  Tirik: olma daraxti, chumchuq, o‘t. Jonsiz: Quyosh nuri, tuproq, suv. Bog‘liqlik: o‘simlik Quyosh nuri va suvdan foydalanib oziq hosil qiladi, chumchuq esa o‘simlik urug‘i bilan oziqlanadi.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>3 ta tirik tabiat qismi</td><td>1</td></tr><tr><td>3 ta jonsiz tabiat qismi</td><td>1</td></tr><tr><td>Bog‘liqlik misoli keltirilgan</td><td>1</td></tr><tr><td>Bog‘liqlik to‘g‘ri va aniq tushuntirilgan</td><td>2</td></tr></table></div>
+<p class="doc-p">Izoh: o‘quvchi mazmunan to‘g‘ri, boshqacha ifodalangan yoki boshqa to‘g‘ri misol keltirgan javobga ham mezon bo‘yicha ball beriladi.</p>
+    </div>
+  </div>
+
+<script>
+  let currentScore = 0;
+  function updateScore(delta) {
+    currentScore += delta;
+    document.getElementById('live-score-pill').textContent = '⭐ Ball: ' + currentScore;
+  }
+
+  function selectMcq(btn, qnum) {
+    const card = document.getElementById('mcq-' + qnum);
+    const allBtns = card.querySelectorAll('.mcq-opt');
+    allBtns.forEach(b => b.disabled = true);
+    const isCorrect = btn.getAttribute('data-correct') === '1';
+    if (isCorrect) {
+      btn.classList.add('correct');
+      updateScore(1);
+    } else {
+      btn.classList.add('wrong');
+      allBtns.forEach(b => {
+        if (b.getAttribute('data-correct') === '1') b.classList.add('correct');
+      });
+    }
+    const fb = document.getElementById('fb-mcq-' + qnum);
+    if (fb) fb.classList.add('show');
+  }
+
+  function checkMatch(sel) {
+    const ans = sel.getAttribute('data-ans');
+    const val = sel.value;
+    if (!val) return;
+    sel.disabled = true;
+    if (val === ans) {
+      sel.classList.add('correct');
+      updateScore(1);
+    } else {
+      sel.classList.add('wrong');
+      sel.insertAdjacentHTML('afterend', '<div style="font-size:11.5px;color:#16a34a;font-weight:700;margin-top:3px;">To‘g‘ri: ' + ans + '</div>');
+    }
+  }
+
+  function switchPane(id, btn) {
+    document.querySelectorAll('.view-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>

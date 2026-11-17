@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4-chorak BSB-2: Suv, yorug‘lik va tovush</title>
+<style>
+  :root {
+    --accent: #6366f1;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #475569;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    padding: 12px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .hero-banner {
+    background: linear-gradient(135deg, #4f46e5, #0284c7);
+    color: #fff;
+    padding: 18px 20px;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    margin-bottom: 14px;
+  }
+  .hero-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .hero-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 12.5px;
+    font-weight: 700;
+  }
+  .hero-meta span {
+    background: rgba(0,0,0,0.22);
+    padding: 4px 10px;
+    border-radius: 8px;
+  }
+  .hero-banner h1 {
+    font-size: clamp(18px, 3.5vw, 24px);
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .action-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .mode-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .mode-btn {
+    border: 1px solid var(--border);
+    background: #f1f5f9;
+    color: var(--text);
+    padding: 8px 13px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .mode-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .dl-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .dl-btn {
+    text-decoration: none;
+    background: #0f172a;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 9px;
+    font-size: 12.5px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  .dl-btn.word { background: #2563eb; }
+  .dl-btn.print { background: #059669; }
+  .view-pane { display: none; }
+  .view-pane.active { display: block; }
+  .sec-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  }
+  .sec-header {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--accent);
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .q-card {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+  .q-title {
+    font-weight: 700;
+    font-size: 14.5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .q-num {
+    background: var(--accent);
+    color: #fff;
+    min-width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .q-pts {
+    margin-left: auto;
+    font-size: 11px;
+    background: #e2e8f0;
+    color: #334155;
+    padding: 2px 7px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+  .mcq-opts {
+    display: grid;
+    gap: 6px;
+  }
+  .mcq-opt {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 13.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.15s;
+  }
+  .mcq-opt:hover:not(:disabled) {
+    border-color: var(--accent);
+    background: #f0f9ff;
+  }
+  .opt-let {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: #f1f5f9;
+    font-weight: 800;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .mcq-opt.correct {
+    background: #dcfce7 !important;
+    border-color: #16a34a !important;
+    color: #14532d !important;
+    font-weight: 700;
+  }
+  .mcq-opt.wrong {
+    background: #fee2e2 !important;
+    border-color: #dc2626 !important;
+    color: #7f1d1d !important;
+  }
+  .q-feedback {
+    display: none;
+    margin-top: 8px;
+    padding: 8px 10px;
+    background: #eff6ff;
+    border-left: 3px solid #3b82f6;
+    border-radius: 6px;
+    font-size: 12.5px;
+  }
+  .q-feedback.show { display: block; }
+  .table-wrap { overflow-x: auto; margin: 8px 0; }
+  .doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  .doc-table th, .doc-table td {
+    border: 1px solid #cbd5e1;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  .doc-table th {
+    background: #f1f5f9;
+    font-weight: 800;
+  }
+  .match-select {
+    padding: 6px 10px;
+    border-radius: 7px;
+    border: 2px solid #94a3b8;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .match-select.correct { border-color: #16a34a; background: #dcfce7; }
+  .match-select.wrong { border-color: #dc2626; background: #fee2e2; }
+  .written-input {
+    width: 100%;
+    min-height: 65px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 9px;
+    font-family: inherit;
+    font-size: 13.5px;
+    margin-bottom: 8px;
+  }
+  .written-input.tall { min-height: 95px; }
+  .reveal-btn {
+    background: #e0e7ff;
+    color: #3730a3;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 7px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .sample-reveal {
+    display: none;
+    margin-top: 8px;
+    padding: 10px;
+    background: #ecfdf5;
+    border-left: 4px solid #10b981;
+    border-radius: 7px;
+    font-size: 13px;
+  }
+  .sample-reveal.show { display: block; }
+  .doc-sec-title {
+    font-size: 15.5px;
+    font-weight: 800;
+    color: var(--accent);
+    margin: 14px 0 6px;
+  }
+  .doc-p {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  .sample-ans-box {
+    background: #f0fdf4;
+    border-left: 4px solid #22c55e;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin: 6px 0;
+    font-size: 13.5px;
+  }
+  @media print {
+    .action-bar { display: none !important; }
+    .view-pane { display: block !important; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero-banner">
+    <div class="hero-top">
+      <span class="hero-badge">4-CHORAK • BSB-2</span>
+      <div class="hero-meta">
+        <span>⏱️ 20 daqiqa</span>
+        <span>🎯 Maksimal: 20 ball</span>
+        <span id="live-score-pill">⭐ Ball: 0</span>
+      </div>
+    </div>
+    <h1>📝 4-chorak BSB-2: Suv, yorug‘lik va tovush</h1>
+  </div>
+
+  <div class="action-bar">
+    <div class="mode-tabs">
+      <button class="mode-btn active" onclick="switchPane('pane-interactive', this)">🎮 Interaktiv Yechish</button>
+      <button class="mode-btn" onclick="switchPane('pane-sheet', this)">📄 Savollar Blankasi</button>
+      <button class="mode-btn" onclick="switchPane('pane-teacher', this)">🔑 Javoblar & Mezonlar</button>
+    </div>
+    <div class="dl-actions">
+      <a class="dl-btn word" href="../docs/6-sinf_Tabiiy-fan_4-chorak_BSB-2.docx" download="6-sinf_Tabiiy-fan_4-chorak_BSB-2.docx">📥 Word (.docx) Yuklab Olish</a>
+      <button class="dl-btn print" onclick="window.print()">🖨️ Chop Etish</button>
+    </div>
+  </div>
+
+  <!-- PANE 1: INTERACTIVE EXAM -->
+  <div id="pane-interactive" class="view-pane active">
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>I. YOPIQ TEST SAVOLLARI</span>
+        <span style="font-size:12px; color:#64748b;">Har bir to‘g‘ri javob — 1 ball</span>
+      </div>
+      <div class="q-card" id="mcq-1"><div class="q-title"><span class="q-num">1</span> <span>Yomg‘ir yog‘ishidan oldin atmosferada qanday jarayon sodir bo‘ladi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 1)"><span class="opt-let">A</span> <span>Yer po‘stining muzlashi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 1)"><span class="opt-let">B</span> <span>Havoning butunlay quruqlashishi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 1)"><span class="opt-let">C</span> <span>Bulutlarning erib ketishi</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 1)"><span class="opt-let">D</span> <span>Suv bug‘ining sovib, kondensatsiyalanib bulut hosil qilishi</span></button></div><div class="q-feedback" id="fb-mcq-1">To‘g‘ri javob: <b>D) Suv bug‘ining sovib, kondensatsiyalanib bulut hosil qilishi</b></div></div><div class="q-card" id="mcq-2"><div class="q-title"><span class="q-num">2</span> <span>Qaysi jism yorug‘lik manbai hisoblanadi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 2)"><span class="opt-let">A</span> <span>Oy</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 2)"><span class="opt-let">B</span> <span>Daftar</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 2)"><span class="opt-let">C</span> <span>Ko‘zgu</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 2)"><span class="opt-let">D</span> <span>Quyosh</span></button></div><div class="q-feedback" id="fb-mcq-2">To‘g‘ri javob: <b>D) Quyosh</b></div></div><div class="q-card" id="mcq-3"><div class="q-title"><span class="q-num">3</span> <span>Bir jinsli muhitda yorug‘lik qanday tarqaladi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 3)"><span class="opt-let">A</span> <span>Aylana bo‘ylab</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 3)"><span class="opt-let">B</span> <span>To‘g‘ri chiziq bo‘ylab</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 3)"><span class="opt-let">C</span> <span>Faqat pastga</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 3)"><span class="opt-let">D</span> <span>Egri chiziq bo‘ylab</span></button></div><div class="q-feedback" id="fb-mcq-3">To‘g‘ri javob: <b>B) To‘g‘ri chiziq bo‘ylab</b></div></div><div class="q-card" id="mcq-4"><div class="q-title"><span class="q-num">4</span> <span>Tovush qaysi muhitda tarqalmaydi?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 4)"><span class="opt-let">A</span> <span>Suvda</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 4)"><span class="opt-let">B</span> <span>Vakuumda (havosiz bo‘shliqda)</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 4)"><span class="opt-let">C</span> <span>Havoda</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 4)"><span class="opt-let">D</span> <span>Metallda</span></button></div><div class="q-feedback" id="fb-mcq-4">To‘g‘ri javob: <b>B) Vakuumda (havosiz bo‘shliqda)</b></div></div><div class="q-card" id="mcq-5"><div class="q-title"><span class="q-num">5</span> <span>Soya hosil bo‘lishining sababi nima?</span> <span class="q-pts">1 ball</span></div><div class="mcq-opts"><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 5)"><span class="opt-let">A</span> <span>Yorug‘likning bug‘lanishi</span></button><button type="button" class="mcq-opt" data-correct="1" onclick="selectMcq(this, 5)"><span class="opt-let">B</span> <span>Yorug‘lik to‘g‘ri chiziq bo‘ylab tarqaladi va to‘siqdan o‘tmaydi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 5)"><span class="opt-let">C</span> <span>Tovushning qaytishi</span></button><button type="button" class="mcq-opt" data-correct="0" onclick="selectMcq(this, 5)"><span class="opt-let">D</span> <span>Jismning qizishi</span></button></div><div class="q-feedback" id="fb-mcq-5">To‘g‘ri javob: <b>B) Yorug‘lik to‘g‘ri chiziq bo‘ylab tarqaladi va to‘siqdan o‘tmaydi</b></div></div>
+    </div>
+
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>II. MOSLASHTIRING (4 ball)</span>
+        <span style="font-size:12px; color:#64748b;">Har bir to‘g‘ri juftlik — 1 ball</span>
+      </div>
+      <div class="table-wrap">
+        <table class="doc-table">
+          <tr><th>Chap ustun</th><th>O‘ng ustun</th><th style="width:110px;">Javobingiz</th></tr>
+          <tr><td>1. Yorug‘likning qaytishi</td><td>A) Nurning bir muhitdan ikkinchisiga o‘tganda yo‘nalishini o‘zgartirishi</td><td style='text-align:center;'><select class="match-select" data-q="1" data-ans="B" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td>2. Yorug‘likning sinishi</td><td>B) Nurning ko‘zguga tushib, orqaga qaytishi</td><td style='text-align:center;'><select class="match-select" data-q="2" data-ans="A" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td>3. Aks-sado</td><td>C) Tovushning vakuumda tarqalishi</td><td style='text-align:center;'><select class="match-select" data-q="3" data-ans="D" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td>4. Soya</td><td>D) Tovushning to‘siqdan qaytib, qayta eshitilishi</td><td style='text-align:center;'><select class="match-select" data-q="4" data-ans="E" onchange="checkMatch(this)"><option value="">Tanlang...</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></td></tr><tr><td></td><td>E) Yorug‘lik o‘tmaydigan jism orqasida hosil bo‘ladigan qorong‘i soha</td><td style='text-align:center;'></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>III. QISQA JAVOBLI TOPSHIRIQLAR (6 ball)</span>
+      </div>
+      <div class="q-card"><div class="q-title"><span class="q-num">1</span> <span>Tovush manbai nima? Bitta misol keltiring.  (2 ball)</span></div><textarea class="written-input" placeholder="Javobingizni shu yerga yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javobni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> Tebranayotgan jism. Masalan, gitara simi, ovoz paychalari, dinamik.</div></div><div class="q-card"><div class="q-title"><span class="q-num">2</span> <span>Yorug‘lik vakuumda taxminan qanday tezlik bilan tarqaladi?  (2 ball)</span></div><textarea class="written-input" placeholder="Javobingizni shu yerga yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javobni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> Taxminan 300 000 km/s.</div></div><div class="q-card"><div class="q-title"><span class="q-num">3</span> <span>Suvni tozalashning ikkita usulini yozing.  (2 ball)</span></div><textarea class="written-input" placeholder="Javobingizni shu yerga yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javobni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> Masalan: tindirish, filtrlash, qaynatish, xlorlash.</div></div>
+    </div>
+
+    <div class="sec-block">
+      <div class="sec-header">
+        <span>IV. OCHIQ SAVOLLAR (5 ball)</span>
+      </div>
+      <div class="q-card"><div class="q-title"><span class="q-num">1</span> <span>Chaqmoq chaqqandan 6 soniya keyin momaqaldiroq eshitildi. Tovushning havodagi tezligi taxminan 340 m/s bo‘lsa, chaqmoq qancha uzoqlikda bo‘lgan? Nima uchun avval chaqmoqni ko‘ramiz, so‘ng gumburlashni eshitamiz?  (5 ball)</span></div><textarea class="written-input tall" placeholder="To‘liq va asoslangan javobingizni yozing..."></textarea><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">👁️ Namunaviy javob va mezonni ko‘rish</button><div class="sample-reveal"><b>✅ Namunaviy javob:</b> s = v · t = 340 · 6 = 2040 m ≈ 2 km. Yorug‘likning tezligi (≈ 300 000 km/s) tovush tezligidan (340 m/s) ancha katta, shuning uchun chaqmoq nurini deyarli bir zumda ko‘ramiz, tovush esa kechroq yetib keladi.</div></div>
+    </div>
+  </div>
+
+  <!-- PANE 2: PRINTABLE EXAM SHEET -->
+  <div id="pane-sheet" class="view-pane">
+    <div class="sec-block">
+      <p class="doc-p">6-SINF  •  TABIIY FAN  •  4-CHORAK</p>
+<p class="doc-p">BO‘LIM BO‘YICHA SUMMATIV BAHOLASH (BSB-2)</p>
+<p class="doc-p">Mavzu: Suv, yorug‘lik va tovush</p>
+<p class="doc-p">O‘quvchining F.I.SH.: ________________________________________   Sinf: ________</p>
+<p class="doc-p">Sana: ______________    Ajratilgan vaqt: 20 daqiqa    To‘plagan ball: ______ / 20</p>
+<h3 class="doc-sec-title">I. YOPIQ TEST (5 ball)</h3>
+<p class="doc-p">Har bir savolda faqat bitta to‘g‘ri javob bor. To‘g‘ri javob harfini aylana ichiga oling. Har bir to‘g‘ri javob – 1 ball.</p>
+<p class="doc-p">1. Yomg‘ir yog‘ishidan oldin atmosferada qanday jarayon sodir bo‘ladi?</p>
+<p class="doc-p">A)  Yer po‘stining muzlashi</p>
+<p class="doc-p">B)  Havoning butunlay quruqlashishi</p>
+<p class="doc-p">C)  Bulutlarning erib ketishi</p>
+<p class="doc-p">D)  Suv bug‘ining sovib, kondensatsiyalanib bulut hosil qilishi</p>
+<p class="doc-p">2. Qaysi jism yorug‘lik manbai hisoblanadi?</p>
+<p class="doc-p">A)  Oy</p>
+<p class="doc-p">B)  Daftar</p>
+<p class="doc-p">C)  Ko‘zgu</p>
+<p class="doc-p">D)  Quyosh</p>
+<p class="doc-p">3. Bir jinsli muhitda yorug‘lik qanday tarqaladi?</p>
+<p class="doc-p">A)  Aylana bo‘ylab</p>
+<p class="doc-p">B)  To‘g‘ri chiziq bo‘ylab</p>
+<p class="doc-p">C)  Faqat pastga</p>
+<p class="doc-p">D)  Egri chiziq bo‘ylab</p>
+<p class="doc-p">4. Tovush qaysi muhitda tarqalmaydi?</p>
+<p class="doc-p">A)  Suvda</p>
+<p class="doc-p">B)  Vakuumda (havosiz bo‘shliqda)</p>
+<p class="doc-p">C)  Havoda</p>
+<p class="doc-p">D)  Metallda</p>
+<p class="doc-p">5. Soya hosil bo‘lishining sababi nima?</p>
+<p class="doc-p">A)  Yorug‘likning bug‘lanishi</p>
+<p class="doc-p">B)  Yorug‘lik to‘g‘ri chiziq bo‘ylab tarqaladi va to‘siqdan o‘tmaydi</p>
+<p class="doc-p">C)  Tovushning qaytishi</p>
+<p class="doc-p">D)  Jismning qizishi</p>
+<h3 class="doc-sec-title">II. MOSLASHTIRING (4 ball)</h3>
+<p class="doc-p">Hodisani uning izohi bilan moslashtiring. Har bir to‘g‘ri juftlik – 1 ball. (O‘ng ustunda ortiqcha javob bor.)</p>
+<div class="table-wrap"><table class="doc-table"><tr><th>Chap ustun</th><th>O‘ng ustun</th></tr><tr><td>1. Yorug‘likning qaytishi</td><td>A) Nurning bir muhitdan ikkinchisiga o‘tganda yo‘nalishini o‘zgartirishi</td></tr><tr><td>2. Yorug‘likning sinishi</td><td>B) Nurning ko‘zguga tushib, orqaga qaytishi</td></tr><tr><td>3. Aks-sado</td><td>C) Tovushning vakuumda tarqalishi</td></tr><tr><td>4. Soya</td><td>D) Tovushning to‘siqdan qaytib, qayta eshitilishi</td></tr><tr><td></td><td>E) Yorug‘lik o‘tmaydigan jism orqasida hosil bo‘ladigan qorong‘i soha</td></tr></table></div>
+<p class="doc-p">Javoblar:   1 – ____    2 – ____    3 – ____    4 – ____</p>
+<h3 class="doc-sec-title">III. QISQA JAVOB (6 ball)</h3>
+<p class="doc-p">Har bir savol – 2 ball.</p>
+<p class="doc-p">1. Tovush manbai nima? Bitta misol keltiring.  (2 ball)</p>
+<p class="doc-p">2. Yorug‘lik vakuumda taxminan qanday tezlik bilan tarqaladi?  (2 ball)</p>
+<p class="doc-p">3. Suvni tozalashning ikkita usulini yozing.  (2 ball)</p>
+<h3 class="doc-sec-title">IV. OCHIQ SAVOL (5 ball)</h3>
+<p class="doc-p">Javobingizni to‘liq va asoslab yozing. Har bir savol – 5 ball.</p>
+<p class="doc-p">1. Chaqmoq chaqqandan 6 soniya keyin momaqaldiroq eshitildi. Tovushning havodagi tezligi taxminan 340 m/s bo‘lsa, chaqmoq qancha uzoqlikda bo‘lgan? Nima uchun avval chaqmoqni ko‘ramiz, so‘ng gumburlashni eshitamiz?  (5 ball)</p>
+    </div>
+  </div>
+
+  <!-- PANE 3: TEACHER RUBRIC & ANSWER KEY -->
+  <div id="pane-teacher" class="view-pane">
+    <div class="sec-block">
+      <h3 class="doc-sec-title">O‘QITUVCHI UCHUN: JAVOBLAR VA BAHOLASH MEZONLARI</h3>
+<p class="doc-p">6-sinf Tabiiy fan  •  4-chorak  •  BSB-2  •  Maksimal ball: 20</p>
+<h3 class="doc-sec-title">1. Ballarning taqsimlanishi</h3>
+<div class="table-wrap"><table class="doc-table"><tr><th>Bo‘lim</th><th>Topshiriq soni</th><th>Har biri (ball)</th><th>Jami (ball)</th></tr><tr><td>I. Yopiq test</td><td>5</td><td>1</td><td>5</td></tr><tr><td>II. Moslashtirish</td><td>4 juftlik</td><td>1</td><td>4</td></tr><tr><td>III. Qisqa javob</td><td>3</td><td>2</td><td>6</td></tr><tr><td>IV. Ochiq savol</td><td>1</td><td>5</td><td>5</td></tr><tr><td>JAMI</td><td></td><td></td><td>20</td></tr></table></div>
+<h3 class="doc-sec-title">2. Yopiq test javoblari</h3>
+<div class="table-wrap"><table class="doc-table"><tr><th>№</th><th>Javob</th><th>To‘g‘ri javob matni</th></tr><tr><td>1</td><td>D</td><td>Suv bug‘ining sovib, kondensatsiyalanib bulut hosil qilishi</td></tr><tr><td>2</td><td>D</td><td>Quyosh</td></tr><tr><td>3</td><td>B</td><td>To‘g‘ri chiziq bo‘ylab</td></tr><tr><td>4</td><td>B</td><td>Vakuumda (havosiz bo‘shliqda)</td></tr><tr><td>5</td><td>B</td><td>Yorug‘lik to‘g‘ri chiziq bo‘ylab tarqaladi va to‘siqdan o‘tmaydi</td></tr></table></div>
+<h3 class="doc-sec-title">3. Moslashtirish kaliti</h3>
+<p class="doc-p">1–B,   2–A,   3–D,   4–E</p>
+<p class="doc-p">Har bir to‘g‘ri juftlik – 1 ball.</p>
+<h3 class="doc-sec-title">4. Qisqa javob: namunaviy javoblar va mezonlar</h3>
+<p class="doc-p">1. Tovush manbai nima? Bitta misol keltiring.</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  Tebranayotgan jism. Masalan, gitara simi, ovoz paychalari, dinamik.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Tebranayotgan jism</td><td>1</td></tr><tr><td>To‘g‘ri misol</td><td>1</td></tr></table></div>
+<p class="doc-p">2. Yorug‘lik vakuumda taxminan qanday tezlik bilan tarqaladi?</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  Taxminan 300 000 km/s.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Son qiymati (300 000)</td><td>1</td></tr><tr><td>Birlik (km/s)</td><td>1</td></tr></table></div>
+<p class="doc-p">3. Suvni tozalashning ikkita usulini yozing.</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  Masalan: tindirish, filtrlash, qaynatish, xlorlash.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Birinchi usul</td><td>1</td></tr><tr><td>Ikkinchi usul</td><td>1</td></tr></table></div>
+<h3 class="doc-sec-title">5. Ochiq savol: namunaviy javoblar va mezonlar</h3>
+<p class="doc-p">1. Chaqmoq chaqqandan 6 soniya keyin momaqaldiroq eshitildi. Tovushning havodagi tezligi taxminan 340 m/s bo‘lsa, chaqmoq qancha uzoqlikda bo‘lgan? Nima uchun avval chaqmoqni ko‘ramiz, so‘ng gumburlashni eshitamiz?</p>
+<div class="sample-ans-box"><b>✅ Namunaviy javob:</b>  s = v · t = 340 · 6 = 2040 m ≈ 2 km. Yorug‘likning tezligi (≈ 300 000 km/s) tovush tezligidan (340 m/s) ancha katta, shuning uchun chaqmoq nurini deyarli bir zumda ko‘ramiz, tovush esa kechroq yetib keladi.</div>
+<div class="table-wrap"><table class="doc-table"><tr><th>Baholash mezoni</th><th>Ball</th></tr><tr><td>Formula s = v · t</td><td>1</td></tr><tr><td>Hisob: 340 · 6 = 2040 m (≈ 2 km)</td><td>2</td></tr><tr><td>Yorug‘lik tezligi tovush tezligidan ancha katta ekani tushuntirilgan</td><td>2</td></tr></table></div>
+<p class="doc-p">Izoh: o‘quvchi mazmunan to‘g‘ri, boshqacha ifodalangan yoki boshqa to‘g‘ri misol keltirgan javobga ham mezon bo‘yicha ball beriladi.</p>
+    </div>
+  </div>
+
+<script>
+  let currentScore = 0;
+  function updateScore(delta) {
+    currentScore += delta;
+    document.getElementById('live-score-pill').textContent = '⭐ Ball: ' + currentScore;
+  }
+
+  function selectMcq(btn, qnum) {
+    const card = document.getElementById('mcq-' + qnum);
+    const allBtns = card.querySelectorAll('.mcq-opt');
+    allBtns.forEach(b => b.disabled = true);
+    const isCorrect = btn.getAttribute('data-correct') === '1';
+    if (isCorrect) {
+      btn.classList.add('correct');
+      updateScore(1);
+    } else {
+      btn.classList.add('wrong');
+      allBtns.forEach(b => {
+        if (b.getAttribute('data-correct') === '1') b.classList.add('correct');
+      });
+    }
+    const fb = document.getElementById('fb-mcq-' + qnum);
+    if (fb) fb.classList.add('show');
+  }
+
+  function checkMatch(sel) {
+    const ans = sel.getAttribute('data-ans');
+    const val = sel.value;
+    if (!val) return;
+    sel.disabled = true;
+    if (val === ans) {
+      sel.classList.add('correct');
+      updateScore(1);
+    } else {
+      sel.classList.add('wrong');
+      sel.insertAdjacentHTML('afterend', '<div style="font-size:11.5px;color:#16a34a;font-weight:700;margin-top:3px;">To‘g‘ri: ' + ans + '</div>');
+    }
+  }
+
+  function switchPane(id, btn) {
+    document.querySelectorAll('.view-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
